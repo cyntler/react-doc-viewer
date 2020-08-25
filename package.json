@@ -1,5 +1,5 @@
 {
- "name": "@react-doc-viewer/core",
+ "name": "react-doc-viewer",
  "version": "0.0.12",
  "description": "Document viewer for react. Renders online/local documents. Plugins for new document renderers.",
  "author": "Matthew Mogford",
