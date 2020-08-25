@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders component with no documents 1`] = `
+<div
+  class="sc-fzpjYC jPfBLW"
+  data-testid="react-doc-viewer"
+  id="react-doc-viewer"
+>
+  <div
+    class="sc-Axmtr geoSRH"
+    data-testid="header-bar"
+    id="header-bar"
+  />
+  <div
+    class="sc-AxmLO bNNfcA"
+    id="proxy-renderer"
+  >
+    <div
+      id="no-documents"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders component with no file name 1`] = `
+<div
+  class="sc-fzpjYC jPfBLW"
+  data-testid="react-doc-viewer"
+  id="react-doc-viewer"
+>
+  <div
+    class="sc-Axmtr geoSRH"
+    data-testid="header-bar"
+    id="header-bar"
+  />
+  <div
+    class="sc-AxmLO bNNfcA"
+    id="proxy-renderer"
+  >
+    <div
+      data-testid="loading-renderer"
+      id="loading-renderer"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders component with no header 1`] = `
+<div
+  class="sc-fzpjYC jPfBLW"
+  data-testid="react-doc-viewer"
+  id="react-doc-viewer"
+>
+  <div
+    class="sc-AxmLO bNNfcA"
+    id="proxy-renderer"
+  >
+    <div
+      data-testid="loading-renderer"
+      id="loading-renderer"
+    />
+  </div>
+</div>
+`;
