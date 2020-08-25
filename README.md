@@ -1,4 +1,4 @@
-# @react-doc-viewer/core
+# react-doc-viewer
 
 # Contents
 
@@ -34,9 +34,9 @@
 ## Installation
 
 ```bash
- npm i @react-doc-viewer/core
+ npm i react-doc-viewer
  # or
- yarn add @react-doc-viewer/core
+ yarn add react-doc-viewer
 ```
 
 <br />
@@ -52,7 +52,7 @@ DocViewer requires at least an array of document objects to function.
 Each document object must have a uri to a file, either a url that returns a file or a local file.
 
 ```tsx
-import DocViewer from "@react-doc-viewer/core";
+import DocViewer from "react-doc-viewer";
 
 function App() {
   const docs = [
