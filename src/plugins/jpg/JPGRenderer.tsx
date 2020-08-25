@@ -1,11 +1,11 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import DocViewerState from "../../state";
+import { DocViewerState } from "../../state";
 import { DocRenderer } from "../../types";
-import linkRenderResponder from "../../utils/linkRenderResponder";
+import { linkRenderResponder } from "../../utils/linkRenderResponder";
 
-const JPGRenderer: DocRenderer = () => {
+export const JPGRenderer: DocRenderer = () => {
   const currentDocument = useRecoilValue(DocViewerState.currentDocument);
 
   if (!currentDocument) return null;
@@ -16,8 +16,6 @@ const JPGRenderer: DocRenderer = () => {
     </Container>
   );
 };
-
-export default JPGRenderer;
 
 JPGRenderer.fileTypes = ["image/jpg", "image/jpeg"];
 JPGRenderer.priority = 1;

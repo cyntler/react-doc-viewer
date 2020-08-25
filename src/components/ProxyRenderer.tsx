@@ -1,11 +1,11 @@
 import React, { FC, useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import DocViewerState from "../state";
-import useDocumentLoader from "../utils/useDocumentLoader";
-import useWindowSize from "../utils/useWindowSize";
+import { DocViewerState } from "../state";
+import { useDocumentLoader } from "../utils/useDocumentLoader";
+import { useWindowSize } from "../utils/useWindowSize";
 
-const ProxyRenderer: FC<{}> = () => {
+export const ProxyRenderer: FC<{}> = () => {
   const { CurrentRenderer } = useDocumentLoader();
 
   const setRendererRect = useSetRecoilState(DocViewerState.rendererRect);
@@ -51,8 +51,6 @@ const ProxyRenderer: FC<{}> = () => {
     </Container>
   );
 };
-
-export default ProxyRenderer;
 
 const Container = styled.div`
   display: flex;

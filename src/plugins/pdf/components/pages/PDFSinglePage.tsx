@@ -2,15 +2,15 @@ import React, { FC } from "react";
 import { Page } from "react-pdf";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import DocViewerState from "../../../../state";
+import { DocViewerState } from "../../../../state";
 import { IStyledProps } from "../../../../types";
-import PDFRendererState from "../../state";
+import { PDFRendererState } from "../../state";
 
 interface Props {
   pageNum?: number;
 }
 
-const PDFSinglePage: FC<Props> = (props) => {
+export const PDFSinglePage: FC<Props> = (props) => {
   const { pageNum } = props;
 
   const rendererRect = useRecoilValue(DocViewerState.rendererRect);
@@ -38,8 +38,6 @@ const PDFSinglePage: FC<Props> = (props) => {
     </PageWrapper>
   );
 };
-
-export default PDFSinglePage;
 
 interface PageWrapperProps {
   last?: boolean;

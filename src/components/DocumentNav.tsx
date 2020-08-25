@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import DocViewerState from "../state";
-import DocViewerSelectors from "../state/selectors";
+import { DocViewerState } from "../state";
+import { DocViewerSelectors } from "../state/selectors";
 import { IStyledProps } from "../types";
 import { ButtonSecondary } from "./common/Button";
 
-const DocumentNav: FC<{}> = () => {
+export const DocumentNav: FC<{}> = () => {
   const nextDocument = useSetRecoilState(DocViewerSelectors.setNextDocument);
   const previousDocument = useSetRecoilState(
     DocViewerSelectors.setPreviousDocument
@@ -50,8 +50,6 @@ const DocumentNav: FC<{}> = () => {
     </Container>
   );
 };
-
-export default DocumentNav;
 
 const Container = styled.div`
   min-width: 150px;

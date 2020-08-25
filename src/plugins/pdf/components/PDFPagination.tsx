@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import Button from "../../../components/common/Button";
+import { Button } from "../../../components/common/Button";
 import { IStyledProps } from "../../../types";
-import PDFRendererState from "../state";
+import { PDFRendererState } from "../state";
 
-const PDFPagination: FC<{}> = () => {
+export const PDFPagination: FC<{}> = () => {
   const [currentPage, setCurrentPage] = useRecoilState(
     PDFRendererState.currentPage
   );
@@ -40,8 +40,6 @@ const PDFPagination: FC<{}> = () => {
     </Container>
   );
 };
-
-export default PDFPagination;
 
 const Container = styled.div`
   display: flex;

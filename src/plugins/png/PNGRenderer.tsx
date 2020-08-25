@@ -1,11 +1,11 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import DocViewerState from "../../state";
+import { DocViewerState } from "../../state";
 import { DocRenderer } from "../../types";
-import linkRenderResponder from "../../utils/linkRenderResponder";
+import { linkRenderResponder } from "../../utils/linkRenderResponder";
 
-const PNGRenderer: DocRenderer = () => {
+export const PNGRenderer: DocRenderer = () => {
   const currentDocument = useRecoilValue(DocViewerState.currentDocument);
 
   if (!currentDocument) return null;
@@ -16,8 +16,6 @@ const PNGRenderer: DocRenderer = () => {
     </Container>
   );
 };
-
-export default PNGRenderer;
 
 PNGRenderer.fileTypes = ["image/png"];
 PNGRenderer.priority = 1;

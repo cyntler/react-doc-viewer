@@ -145,7 +145,7 @@ Inside JPGRenderer, export a functional component of type `DocRenderer`
 import React from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import DocViewerState from "../../state";
+import { DocViewerState } from "../../state";
 import { DocRenderer } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
 

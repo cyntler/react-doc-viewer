@@ -4,13 +4,13 @@ import React from "react";
 import { pdfjs } from "react-pdf";
 import styled from "styled-components";
 import { DocRenderer, IStyledProps } from "../../types";
-import linkRenderResponder from "../../utils/linkRenderResponder";
-import PDFPages from "./components/pages/PDFPages";
-import PDFControls from "./components/PDFControls";
+import { linkRenderResponder } from "../../utils/linkRenderResponder";
+import { PDFPages } from "./components/pages/PDFPages";
+import { PDFControls } from "./components/PDFControls";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
-const PDFRenderer: DocRenderer = () => {
+export const PDFRenderer: DocRenderer = () => {
   return (
     <Container id="pdf-renderer" data-testid="pdf-renderer">
       <PDFControls />
@@ -18,8 +18,6 @@ const PDFRenderer: DocRenderer = () => {
     </Container>
   );
 };
-
-export default PDFRenderer;
 
 PDFRenderer.fileTypes = ["application/pdf"];
 PDFRenderer.priority = 1;

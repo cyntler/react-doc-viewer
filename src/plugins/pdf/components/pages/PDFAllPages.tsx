@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useRecoilValue } from "recoil";
-import PDFRendererState from "../../state";
-import PDFSinglePage from "./PDFSinglePage";
+import { PDFRendererState } from "../../state";
+import { PDFSinglePage } from "./PDFSinglePage";
 
 interface Props {
   pageNum?: number;

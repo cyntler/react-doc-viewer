@@ -1,8 +1,8 @@
 import React, { CSSProperties, FC } from "react";
 import { RecoilRoot } from "recoil";
 import styled, { ThemeProvider } from "styled-components";
-import HeaderBar from "./components/HeaderBar";
-import ProxyRenderer from "./components/ProxyRenderer";
+import { HeaderBar } from "./components/HeaderBar";
+import { ProxyRenderer } from "./components/ProxyRenderer";
 import "./plugins";
 import { initializeRecoilRoot } from "./state";
 import { defaultTheme } from "./theme";
@@ -50,5 +50,6 @@ const Container = styled.div`
   background: #eee;
 `;
 
-export * from "./types";
+export * from "./components/common";
 export * from "./state";
+export * from "./types";

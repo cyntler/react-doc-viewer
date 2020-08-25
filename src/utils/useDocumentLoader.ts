@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import DocViewerState from "../state";
+import { DocViewerState } from "../state";
 import { DocRenderer, FileType, IDocument } from "../types";
-import useRendererSelector from "./useRendererSelector";
+import { useRendererSelector } from "./useRendererSelector";
 
 /**
  * Custom Hook for loading the current document into context
  */
-const useDocumentLoader = (): {
+export const useDocumentLoader = (): {
   currentDocument: IDocument | undefined;
   CurrentRenderer: DocRenderer | undefined;
 } => {
@@ -47,5 +47,3 @@ const useDocumentLoader = (): {
 
   return { currentDocument, CurrentRenderer };
 };
-
-export default useDocumentLoader;

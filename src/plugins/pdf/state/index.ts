@@ -14,7 +14,7 @@ export const initialPDFState: IPDFState = {
   currentPage: 1,
 };
 
-export default class PDFRendererState {
+export class PDFRendererState {
   static zoomLevel = atom<number>({
     key: "zoomLevel",
     default: initialPDFState.zoomLevel,

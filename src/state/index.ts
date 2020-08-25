@@ -30,7 +30,7 @@ export const initializeRecoilRoot = (
   };
 };
 
-export default class DocViewerState {
+export class DocViewerState {
   static currentFileNo = atom<number>({
     key: "currentFileNo",
     default: initialMainState.currentFileNo,

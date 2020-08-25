@@ -14,7 +14,7 @@ export const ButtonSecondaryStyle = css`
   color: ${(props: IStyledProps) => props.theme.text_secondary};
 `;
 
-const Button = styled.a<ButtonProps>`
+export const Button = styled.a<ButtonProps>`
   ${ButtonPrimaryStyle}
   display: flex;
   justify-content: center;
@@ -44,5 +44,3 @@ export const ButtonPrimary = styled(Button)``;
 export const ButtonSecondary = styled(Button)`
   ${ButtonSecondaryStyle}
 `;
-
-export default Button;

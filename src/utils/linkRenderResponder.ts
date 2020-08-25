@@ -1,7 +1,7 @@
 import events from "alcumus-local-events";
 import { DocRenderer, FileType } from "../types";
 
-const linkRenderResponder = (Renderer: DocRenderer) => {
+export const linkRenderResponder = (Renderer: DocRenderer) => {
   events.on(
     "request-document-renderer",
     (_ev: any, payload: { fileType: FileType }, something: DocRenderer[]) => {
@@ -11,5 +11,3 @@ const linkRenderResponder = (Renderer: DocRenderer) => {
     }
   );
 };
-
-export default linkRenderResponder;

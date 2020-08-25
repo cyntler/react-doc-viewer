@@ -1,13 +1,13 @@
 import events from "alcumus-local-events";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import DocViewerState from "../state";
+import { DocViewerState } from "../state";
 import { DocRenderer } from "../types";
 
 /**
  * Custom Hook for loading the current document into context
  */
-const useRendererSelector = (): {
+export const useRendererSelector = (): {
   CurrentRenderer: DocRenderer | undefined;
 } => {
   const currentDocument = useRecoilValue(DocViewerState.currentDocument);
@@ -42,5 +42,3 @@ const useRendererSelector = (): {
 
   return { CurrentRenderer };
 };
-
-export default useRendererSelector;

@@ -2,12 +2,12 @@ import React, { FC, useEffect } from "react";
 import { Document } from "react-pdf";
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import DocViewerState from "../../../../state";
-import PDFRendererState from "../../state";
+import { DocViewerState } from "../../../../state";
+import { PDFRendererState } from "../../state";
 import { PDFAllPages } from "./PDFAllPages";
-import PDFSinglePage from "./PDFSinglePage";
+import { PDFSinglePage } from "./PDFSinglePage";
 
-const PDFPages: FC<{}> = () => {
+export const PDFPages: FC<{}> = () => {
   const currentDocument = useRecoilValue(DocViewerState.currentDocument);
   const setNumPages = useSetRecoilState(PDFRendererState.numPages);
   const resetNumPages = useResetRecoilState(PDFRendererState.numPages);
@@ -37,5 +37,3 @@ const DocumentPDF = styled(Document)`
   flex-direction: column;
   margin: 0 auto;
 `;
-
-export default PDFPages;

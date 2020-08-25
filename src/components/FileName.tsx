@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import DocViewerState from "../state";
+import { DocViewerState } from "../state";
 import { IStyledProps } from "../types";
 
-const FileName: FC<{}> = () => {
+export const FileName: FC<{}> = () => {
   const config = useRecoilValue(DocViewerState.config);
   const currentDocument = useRecoilValue(DocViewerState.currentDocument);
 
@@ -22,8 +22,6 @@ const FileName: FC<{}> = () => {
     </Container>
   );
 };
-
-export default FileName;
 
 const Container = styled.div`
   flex: 1;

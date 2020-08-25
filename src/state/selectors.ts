@@ -1,7 +1,7 @@
 import { selector } from "recoil";
-import DocViewerState from ".";
+import { DocViewerState } from ".";
 
-export default class DocViewerSelectors {
+export class DocViewerSelectors {
   static setNextDocument = selector<void>({
     key: "setNextDocument",
     get: () => {},

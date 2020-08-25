@@ -10,14 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import styled from "styled-components";
-import Button from "../../../components/common/Button";
-import DocViewerState from "../../../state";
+import { Button } from "../../../components/common/Button";
+import { DocViewerState } from "../../../state";
 import { IStyledProps } from "../../../types";
-import { initialPDFState } from "../state";
-import PDFRendererState from "../state";
-import PDFPagination from "./PDFPagination";
+import { initialPDFState, PDFRendererState } from "../state";
+import { PDFPagination } from "./PDFPagination";
 
-const PDFControls: FC<{}> = () => {
+export const PDFControls: FC<{}> = () => {
   const [paginated, setPDFPaginated] = useRecoilState(
     PDFRendererState.paginated
   );
@@ -74,8 +73,6 @@ const PDFControls: FC<{}> = () => {
     </Container>
   );
 };
-
-export default PDFControls;
 
 const Container = styled.div`
   display: flex;

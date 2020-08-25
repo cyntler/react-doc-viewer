@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import DocViewerState from "../state";
+import { DocViewerState } from "../state";
 import { IStyledProps } from "../types";
-import DocumentNav from "./DocumentNav";
-import FileName from "./FileName";
+import { DocumentNav } from "./DocumentNav";
+import { FileName } from "./FileName";
 
-const HeaderBar: FC<{}> = () => {
+export const HeaderBar: FC<{}> = () => {
   const config = useRecoilValue(DocViewerState.config);
 
   if (config?.header?.disableHeader) return null;
@@ -18,8 +18,6 @@ const HeaderBar: FC<{}> = () => {
     </Container>
   );
 };
-
-export default HeaderBar;
 
 const Container = styled.div`
   display: flex;
