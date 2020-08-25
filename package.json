@@ -1,6 +1,6 @@
 {
  "name": "react-doc-viewer",
- "version": "0.0.14",
+ "version": "0.0.15",
  "description": "Document viewer for react. Renders online/local documents. Plugins for new document renderers.",
  "author": "Matthew Mogford",
  "license": "ISC",
