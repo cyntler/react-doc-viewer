@@ -53,3 +53,4 @@ const Container = styled.div`
 export * from "./components/common";
 export * from "./state";
 export * from "./types";
+export * from "./utils/linkRenderResponder";
