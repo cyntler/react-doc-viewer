@@ -44,9 +44,9 @@
   "version:pre": "if [ $(git rev-parse --abbrev-ref HEAD) != 'master' ]; then echo \"\\033[1m\\033[31mCurrently on $(git rev-parse --abbrev-ref HEAD) branch. Please checkout master.\\033[0m\"; exit 1; else exit 0; fi",
   "version:changelog": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md'",
   "version:post": "git push origin master && git push origin master --tags",
-  "build-release:patch": "react-scripts test --watchAll=false && npm run build && npm run version:patch && npm publish",
-  "build-release:minor": "react-scripts test --watchAll=false && npm run build && npm run version:minor && npm publish",
-  "build-release:major": "react-scripts test --watchAll=false && npm run build && npm run version:major && npm publish"
+  "build-release:patch": "react-scripts test --watchAll=false && npm run build && npm run version:patch",
+  "build-release:minor": "react-scripts test --watchAll=false && npm run build && npm run version:minor",
+  "build-release:major": "react-scripts test --watchAll=false && npm run build && npm run version:major"
  },
  "eslintConfig": {
   "extends": "react-app"
