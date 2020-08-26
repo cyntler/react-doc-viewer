@@ -1,3 +1,13 @@
+#### 0.0.19 (2020-08-26)
+
+##### Documentation Changes
+
+*  README updated (39fd2b93)
+
+##### Bug Fixes
+
+*  FileType removed, as the component needs to be ambiguous to plugin renderers (fcf9e1c0)
+
 #### 0.0.18 (2020-08-26)
 
 #### 0.0.17 (2020-08-25)
