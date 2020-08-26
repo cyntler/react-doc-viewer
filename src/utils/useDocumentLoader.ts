@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { DocViewerState } from "../state";
-import { DocRenderer, FileType, IDocument } from "../types";
+import { DocRenderer, IDocument } from "../types";
 import { useRendererSelector } from "./useRendererSelector";
 
 /**
@@ -33,7 +33,7 @@ export const useDocumentLoader = (): {
           setCurrentDocument({
             ...currentDocument,
             base64Data: fileReader.result as string,
-            fileType: blob.type as FileType,
+            fileType: blob.type,
           });
         });
         fileReader.readAsDataURL(blob);

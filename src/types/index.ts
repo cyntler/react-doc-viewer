@@ -22,20 +22,13 @@ export interface IStyledProps extends ThemedStyledProps<any, any> {
   theme: ITheme;
 }
 
-export type FileType =
-  | "application/pdf"
-  | "image/png"
-  | "image/jpg"
-  | "image/gif"
-  | "image/jpeg";
-
 export interface IDocument {
   uri: string;
-  fileType?: FileType;
+  fileType?: string;
   base64Data?: string;
 }
 
 export interface DocRenderer extends FC<{}> {
-  fileTypes: FileType[];
+  fileTypes: string[];
   priority: number;
 }
