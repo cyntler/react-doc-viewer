@@ -3,7 +3,6 @@ import { RecoilRoot } from "recoil";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
-import "./plugins";
 import { initializeRecoilRoot } from "./state";
 import { defaultTheme } from "./theme";
 import { IConfig, IDocument, ITheme } from "./types";
