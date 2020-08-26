@@ -2,7 +2,7 @@
 
 exports[`renders component with no documents 1`] = `
 <div
-  class="sc-fzpjYC jPfBLW"
+  class="sc-fzozJi jKOiIQ"
   data-testid="react-doc-viewer"
   id="react-doc-viewer"
 >
@@ -24,7 +24,7 @@ exports[`renders component with no documents 1`] = `
 
 exports[`renders component with no file name 1`] = `
 <div
-  class="sc-fzpjYC jPfBLW"
+  class="sc-fzozJi jKOiIQ"
   data-testid="react-doc-viewer"
   id="react-doc-viewer"
 >
@@ -47,7 +47,7 @@ exports[`renders component with no file name 1`] = `
 
 exports[`renders component with no header 1`] = `
 <div
-  class="sc-fzpjYC jPfBLW"
+  class="sc-fzozJi jKOiIQ"
   data-testid="react-doc-viewer"
   id="react-doc-viewer"
 >

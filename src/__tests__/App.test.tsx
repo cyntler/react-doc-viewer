@@ -2,6 +2,9 @@ import { act, render } from "@testing-library/react";
 import React from "react";
 import DocViewer from "../DocViewer";
 
+// This is only imported for testing purposes. It will warn about a fatal error.
+import "react-doc-viewer-plugins";
+
 test("renders component with no documents", () => {
   const comp = render(<DocViewer documents={[]} />);
   expect(comp?.getByTestId("react-doc-viewer")).toMatchSnapshot();

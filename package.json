@@ -1,7 +1,7 @@
 {
  "name": "react-doc-viewer",
  "version": "0.0.18",
- "description": "Document viewer for react. Renders online/local documents. Plugins for new document renderers.",
+ "description": "Document viewer for react. Renders online/local documents.",
  "author": "Matthew Mogford",
  "license": "ISC",
  "main": "build/DocViewer.js",
@@ -29,6 +29,7 @@
   "@types/styled-components": "^5.1.2",
   "generate-changelog": "^1.8.0",
   "react": "^16.13.1",
+  "react-doc-viewer-plugins": "^0.0.9",
   "react-dom": "^16.13.1",
   "react-scripts": "3.4.3",
   "typescript": "^3.9.7"

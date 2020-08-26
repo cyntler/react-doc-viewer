@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import DocViewer from "./DocViewer";
 import "./index.css";
-// import * as serviceWorker from "./serviceWorker";
+
+// This is only imported for testing purposes. It will warn about a fatal error.
+import "react-doc-viewer-plugins";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,8 +22,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();

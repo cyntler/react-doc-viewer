@@ -2,13 +2,15 @@
 
 # Contents
 
-- [Current Renderable File Types](#current-renderable-file-types)
 - [Installation](#installation)
-- [Usage](#usage) <br />
+  - [Core](#core)
+  - [Included Renderers](#included-renderers)
+- [Usage](#usage)
   - [Basic](#basic)
   - [Themed](#themed)
   - [Styling](#styling)
     - [CSS Class](#css-class)
+    - [CSS Class Default Override](#css-class-default-override)
     - [React Inline](#react-inline)
     - [StyledComponent](#styledcomponent)
   - [Config](#config)
@@ -20,18 +22,9 @@
 <br />
 <br />
 
-## Current Renderable File Types
-
-| MIME Type             | Available |
-| --------------------- | --------- |
-| application/pdf       | `✓`       |
-| image/png             | `✓`       |
-| image/jpg, image/jpeg | `✓`       |
-
-<br />
-<br />
-
 ## Installation
+
+### Core
 
 ```bash
  npm i react-doc-viewer
@@ -39,12 +32,27 @@
  yarn add react-doc-viewer
 ```
 
+### Included Renderers
+
+[npmjs.com/package/react-doc-viewer-plugins](https://www.npmjs.com/package/react-doc-viewer-plugins)
+
+> If you want to only create your own custom file renderers you can skip this step.
+
+Otherwise, install `react-doc-viewer-plugins` to use the included renderers.<br />
+You will still be able to create custom file renderers.
+
+```bash
+ npm i react-doc-viewer-plugins
+ # or
+ yarn add react-doc-viewer-plugins
+```
+
 <br />
 <br />
 
 ## Usage
 
-- **Warning** - _By default the component height will expand and contract to the current loaded file. The width will expand to fill the parent._
+> **Warning** - _By default the component height will expand and contract to the current loaded file. The width will expand to fill the parent._
 
 ### Basic
 
@@ -53,6 +61,8 @@ Each document object must have a uri to a file, either a url that returns a file
 
 ```tsx
 import DocViewer from "react-doc-viewer";
+// Don't forget to import included renderers / custom renderers
+import "react-doc-viewer-plugins";
 
 function App() {
   const docs = [
@@ -93,6 +103,16 @@ Any styling applied to the `<DocViewer>` component, is directly applied to the m
 <DocViewer documents={docs} className="my-doc-viewer-style" />
 ```
 
+#### - CSS Class Default Override
+
+Each component / div already has a DOM id that can be used to style any part of the document viewer.
+
+```css
+#react-doc-viewer #header-bar {
+  background-color: #faf;
+}
+```
+
 #### - React Inline
 
 ```xml
@@ -131,69 +151,8 @@ You can provide a config object, which configures parts of the component as requ
 
 ### Creating a Renderer Plugin
 
-Create a new folder inside `src/plugins`.
-
-> e.g. `src/plugins/jpg`
-
-Inside this folder, create a Renderer React Typescript file.
-
-> e.g. `JPGRenderer.tsx`
-
-Inside JPGRenderer, export a functional component of type `DocRenderer`
-
-```tsx
-import React from "react";
-import { useRecoilValue } from "recoil";
-import styled from "styled-components";
-import { DocViewerState } from "../../state";
-import { DocRenderer } from "../../types";
-import linkRenderResponder from "../../utils/linkRenderResponder";
-
-// Be sure that Renderer correctly uses type DocRenderer
-const JPGRenderer: DocRenderer = () => {
-  // Fetch the currentDocument loaded from main component state
-  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
-
-  if (!currentDocument) return null;
-
-  return (
-    <Container id="jpg-renderer">
-      <Img id="jpg-img" src={currentDocument.base64Data} />
-    </Container>
-  );
-};
-
-export default JPGRenderer;
-
-// List the MIME types that this renderer will respond to
-JPGRenderer.fileTypes = ["image/jpg", "image/jpeg"];
-
-// If you have more than one renderer for the same MIME type, use priority. 1 is more preferable.
-JPGRenderer.priority = 1;
-
-// Add the renderer to an event listener for 'request-document-renderer' from "alcumus-local-events"
-linkRenderResponder(JPGRenderer);
-```
-
-If you are creating a renderer for a new MIME type, also update the following files.
-
-Update `src/plugins/index.ts` with a direct import to your new renderer file.
-This ensures that the linked event listener is running from the start of component use.
-
-```typescript
-import "./jpg/JPGRenderer";
-```
-
-Update `src/types/index.ts` with your new MIME type.
-This should match the array from JPGRenderer.filetypes.
-
-```typescript
-export type FileType =
-  | "application/pdf"
-  | "image/png"
-  | "image/jpg"
-  | "image/jpeg";
-```
+Please visit the plugins package for instructions on contributing to document renderers.<br />
+[npmjs.com/package/react-doc-viewer-plugins#contributing](https://www.npmjs.com/package/react-doc-viewer-plugins#contributing)
 
 <br />
 <br />
@@ -216,11 +175,11 @@ export type FileType =
 
 ### `IDocument`
 
-| name        | type                                                               |
-| ----------- | ------------------------------------------------------------------ |
-| uri         | `string`                                                           |
-| fileType?   | [`FileType`](#current-renderable-file-types) - **Used Internally** |
-| base64Data? | `string` - **Used Internally**                                     |
+| name        | type                                                          |
+| ----------- | ------------------------------------------------------------- |
+| uri         | `string`                                                      |
+| fileType?   | `string` - **Used Internally - Ignored if passed into props** |
+| base64Data? | `string` - **Used Internally - Ignored if passed into props** |
 
 ---
 
@@ -257,10 +216,10 @@ export type FileType =
 
 ### `DocRenderer`
 
-| name      | type                                           |
-| --------- | ---------------------------------------------- |
-| fileTypes | [`FileType[]`](#current-renderable-file-types) |
-| priority  | `number`                                       |
+| name      | type       |
+| --------- | ---------- |
+| fileTypes | `string[]` |
+| priority  | `number`   |
 
 ---
 
@@ -269,4 +228,8 @@ export type FileType =
 
 ## Setup Demo
 
-`npm i && npm run start`
+```bash
+npm i && npm run start
+# or
+yarn && yarn start
+```
