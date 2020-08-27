@@ -25,7 +25,7 @@
   "@types/styled-components": "^5.1.2",
   "generate-changelog": "^1.8.0",
   "react": "^16.13.1",
-  "react-doc-viewer-plugins": "^0.0.9",
+  "react-doc-viewer-plugins": "^0.0.14",
   "react-dom": "^16.13.1",
   "react-scripts": "3.4.3",
   "typescript": "^3.9.7"
