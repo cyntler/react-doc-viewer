@@ -30,5 +30,5 @@ export interface IDocument {
 
 export interface DocRenderer extends FC<{}> {
   fileTypes: string[];
-  priority: number;
+  weight: number;
 }

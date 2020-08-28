@@ -29,7 +29,7 @@ export const useRendererSelector = (): {
 
       // Arbitrary sorting of priorities for demo purposes
       const [SelectedRenderer] = respondingRenderers.sort(
-        (a, b) => a.priority - b.priority
+        (a, b) => b.weight - a.weight
       );
 
       if (SelectedRenderer && SelectedRenderer !== undefined) {
