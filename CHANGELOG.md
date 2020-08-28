@@ -1,3 +1,13 @@
+#### 0.0.22 (2020-08-28)
+
+##### New Features
+
+* **Merge Default Plugins:**  Plugins have been pulled back into the component package, Updated README to inform on updated and better way to use included and custom plugins (34bed0c7)
+
+##### Bug Fixes
+
+*  If user passes in a bad file / url and uri ends up not being useful, (ae99034f)
+
 #### 0.0.21 (2020-08-27)
 
 ##### Chores
