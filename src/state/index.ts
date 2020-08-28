@@ -1,5 +1,5 @@
 import { atom, MutableSnapshot, selector } from "recoil";
-import { DocViewerProps } from "../DocViewer";
+import { DocViewerProps } from "..";
 import { IConfig, IDocument } from "../types";
 
 export type IMainState = {
