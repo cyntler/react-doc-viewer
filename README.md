@@ -59,8 +59,6 @@ Each document object must have a uri to a file, either a url that returns a file
 
 ```tsx
 import DocViewer from "react-doc-viewer";
-// Don't forget to import included renderers / custom renderers
-import "react-doc-viewer-plugins";
 
 function App() {
   const docs = [
