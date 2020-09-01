@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { DocViewerState } from "../state";
+import { useContext, useEffect } from "react";
+import { DocViewerContext } from "../state";
+import { updateCurrentDocument } from "../state/actions";
 import { DocRenderer, IDocument } from "../types";
 import { useRendererSelector } from "./useRendererSelector";
 
@@ -11,10 +11,10 @@ export const useDocumentLoader = (): {
   currentDocument: IDocument | undefined;
   CurrentRenderer: DocRenderer | undefined;
 } => {
-  const [currentDocument, setCurrentDocument] = useRecoilState(
-    DocViewerState.currentDocument
-  );
-  const currentFileNo = useRecoilValue(DocViewerState.currentFileNo);
+  const {
+    state: { currentFileNo, currentDocument },
+    dispatch,
+  } = useContext(DocViewerContext);
 
   const { CurrentRenderer } = useRendererSelector();
 
@@ -30,11 +30,14 @@ export const useDocumentLoader = (): {
 
         const fileReader = new FileReader();
         fileReader.addEventListener("loadend", () => {
-          setCurrentDocument({
-            ...currentDocument,
-            base64Data: fileReader.result as string,
-            fileType: blob.type,
-          });
+          dispatch(
+            updateCurrentDocument({
+              ...currentDocument,
+              base64Data: fileReader.result as string,
+              fileType: blob.type,
+            })
+          );
+          // dispatch(setDocumentLoading(false));
         });
         fileReader.readAsDataURL(blob);
       });

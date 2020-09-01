@@ -1,10 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { Page } from "react-pdf";
-import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { DocViewerState } from "../../../../state";
+import { DocViewerContext } from "../../../../state";
 import { IStyledProps } from "../../../../types";
-import PDFRendererState from "../../state";
+import { PDFContext } from "../../state";
 
 interface Props {
   pageNum?: number;
@@ -13,12 +12,13 @@ interface Props {
 const PDFSinglePage: FC<Props> = (props) => {
   const { pageNum } = props;
 
-  const rendererRect = useRecoilValue(DocViewerState.rendererRect);
+  const {
+    state: { rendererRect },
+  } = useContext(DocViewerContext);
 
-  const paginated = useRecoilValue(PDFRendererState.paginated);
-  const zoomLevel = useRecoilValue(PDFRendererState.zoomLevel);
-  const numPages = useRecoilValue(PDFRendererState.numPages);
-  const currentPage = useRecoilValue(PDFRendererState.currentPage);
+  const {
+    state: { paginated, zoomLevel, numPages, currentPage },
+  } = useContext(PDFContext);
 
   const _pageNum = pageNum || currentPage;
 

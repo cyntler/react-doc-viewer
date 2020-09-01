@@ -3,24 +3,24 @@ import {
   faStepForward,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FC } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { Button } from "../../../components/common";
 import { IStyledProps } from "../../../types";
-import PDFRendererState from "../state";
+import { PDFContext } from "../state";
+import { setCurrentPage } from "../state/actions";
 
 const PDFPagination: FC<{}> = () => {
-  const [currentPage, setCurrentPage] = useRecoilState(
-    PDFRendererState.currentPage
-  );
-  const numPages = useRecoilValue(PDFRendererState.numPages);
+  const {
+    state: { currentPage, numPages },
+    dispatch,
+  } = useContext(PDFContext);
 
   return (
     <Container id="pdf-pagination">
       <PageNavButtonLeft
         id="pdf-pagination-prev"
-        onClick={() => setCurrentPage(currentPage - 1)}
+        onClick={() => dispatch(setCurrentPage(currentPage - 1))}
         disabled={currentPage === 1}
       >
         <FontAwesomeIcon icon={faStepBackward} />
@@ -32,7 +32,7 @@ const PDFPagination: FC<{}> = () => {
 
       <PageNavButtonRight
         id="pdf-pagination-next"
-        onClick={() => setCurrentPage(currentPage + 1)}
+        onClick={() => dispatch(setCurrentPage(currentPage + 1))}
         disabled={currentPage >= numPages}
       >
         <FontAwesomeIcon icon={faStepForward} />

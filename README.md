@@ -94,7 +94,28 @@ import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 ### Custom Renderer
 
 To create a custom renderer, that will just exist for your project.
-Follow Step 2 under [Contributing](#contributing)
+
+```tsx
+import React, { useContext } from "react";
+import DocViewer, { DocRenderer, DocViewerContext } from "react-doc-viewer";
+
+const MyCustomPNGRenderer: DocRenderer = () => {
+  const {
+    state: { currentDocument },
+  } = useContext(DocViewerContext);
+
+  if (!currentDocument) return null;
+
+  return (
+    <div id="my-png-renderer">
+      <img id="png-img" src={currentDocument.base64Data} />
+    </div>
+  );
+};
+
+MyCustomPNGRenderer.fileTypes = ["image/png"];
+MyCustomPNGRenderer.weight = 1;
+```
 
 And supply it to DocViewer > pluginRenderers inside an `Array`.
 
@@ -102,7 +123,7 @@ And supply it to DocViewer > pluginRenderers inside an `Array`.
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 
 <DocViewer
-  pluginRenderers={[MyCustomRenderer]}
+  pluginRenderers={[MyCustomPNGRenderer]}
   documents={
     [
       // ...
@@ -202,16 +223,17 @@ Inside this folder, create a Renderer React Typescript file.
 **Step 2** - Inside JPGRenderer, export a functional component of type `DocRenderer`
 
 ```tsx
-import React from "react";
-import { useRecoilValue } from "recoil";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { DocViewerState } from "../../state";
+import { DocViewerContext } from "../../state";
 import { DocRenderer } from "../../types";
 
 // Be sure that Renderer correctly uses type DocRenderer
 const JPGRenderer: DocRenderer = () => {
   // Fetch the currentDocument loaded from main state
-  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
+  const {
+    state: { currentDocument },
+  } = useContext(DocViewerContext);
 
   if (!currentDocument) return null;
 

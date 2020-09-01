@@ -1,11 +1,12 @@
-import React from "react";
-import { useRecoilValue } from "recoil";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { DocViewerState } from "../../state";
+import { DocViewerContext } from "../../state";
 import { DocRenderer } from "../../types";
 
 const JPGRenderer: DocRenderer = () => {
-  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
+  const {
+    state: { currentDocument },
+  } = useContext(DocViewerContext);
 
   if (!currentDocument) return null;
 
