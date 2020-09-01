@@ -1,3 +1,9 @@
+#### 0.0.28 (2020-09-01)
+
+##### Bug Fixes
+
+*  Removed necessity for 2 context calls (1e9886ca)
+
 #### 0.0.27 (2020-09-01)
 
 ##### Documentation Changes
