@@ -1,3 +1,17 @@
+#### 0.0.25 (2020-09-01)
+
+##### Chores
+
+*  Renamed MainContext to DocViewerContext for external plugins to import it with a less generic name (c433d438)
+
+##### Documentation Changes
+
+*  Added README info for importing and using the included individual renderers (3a87cf87)
+
+##### Refactors
+
+*  Reverting from Recoil to react state, context and reducers (ff26a49b)
+
 #### 0.0.24 (2020-08-28)
 
 #### 0.0.23 (2020-08-28)
