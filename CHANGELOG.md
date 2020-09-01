@@ -1,3 +1,9 @@
+#### 0.0.26 (2020-09-01)
+
+##### Bug Fixes
+
+*  Pass mainState context to CurrentRenderer for ease of use/access to loaded data, and other mainState props (98efa91c)
+
 #### 0.0.25 (2020-09-01)
 
 ##### Chores
