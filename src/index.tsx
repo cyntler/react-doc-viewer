@@ -58,6 +58,5 @@ const Container = styled.div`
 `;
 
 export { DocViewerRenderers } from "./plugins";
-export { DocViewerContext } from "./state";
 export * from "./types";
 export { JPGRenderer, PDFRenderer, PNGRenderer };

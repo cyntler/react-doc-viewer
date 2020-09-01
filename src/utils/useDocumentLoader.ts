@@ -1,20 +1,20 @@
-import { useContext, useEffect } from "react";
+import { Dispatch, useContext, useEffect } from "react";
 import { DocViewerContext } from "../state";
-import { updateCurrentDocument } from "../state/actions";
-import { DocRenderer, IDocument } from "../types";
+import { MainStateActions, updateCurrentDocument } from "../state/actions";
+import { IMainState } from "../state/reducer";
+import { DocRenderer } from "../types";
 import { useRendererSelector } from "./useRendererSelector";
 
 /**
  * Custom Hook for loading the current document into context
  */
 export const useDocumentLoader = (): {
-  currentDocument: IDocument | undefined;
+  state: IMainState;
+  dispatch: Dispatch<MainStateActions>;
   CurrentRenderer: DocRenderer | undefined;
 } => {
-  const {
-    state: { currentFileNo, currentDocument },
-    dispatch,
-  } = useContext(DocViewerContext);
+  const { state, dispatch } = useContext(DocViewerContext);
+  const { currentFileNo, currentDocument } = state;
 
   const { CurrentRenderer } = useRendererSelector();
 
@@ -48,5 +48,5 @@ export const useDocumentLoader = (): {
     [currentFileNo, documentURI]
   );
 
-  return { currentDocument, CurrentRenderer };
+  return { state, dispatch, CurrentRenderer };
 };

@@ -103,14 +103,12 @@ import DocViewer, { PDFRenderer, PNGRenderer } from "react-doc-viewer";
 To create a custom renderer, that will just exist for your project.
 
 ```tsx
-import React, { useContext } from "react";
-import DocViewer, { DocRenderer, DocViewerContext } from "react-doc-viewer";
+import React from "react";
+import DocViewer from "react-doc-viewer";
 
-const MyCustomPNGRenderer: DocRenderer = () => {
-  const {
-    state: { currentDocument },
-  } = useContext(DocViewerContext);
-
+const MyCustomPNGRenderer: DocRenderer = ({
+  mainState: { currentDocument },
+}) => {
   if (!currentDocument) return null;
 
   return (
@@ -230,18 +228,11 @@ Inside this folder, create a Renderer React Typescript file.
 **Step 2** - Inside JPGRenderer, export a functional component of type `DocRenderer`
 
 ```tsx
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { DocViewerContext } from "../../state";
+import React from "react";
 import { DocRenderer } from "../../types";
 
 // Be sure that Renderer correctly uses type DocRenderer
-const JPGRenderer: DocRenderer = () => {
-  // Fetch the currentDocument loaded from main state
-  const {
-    state: { currentDocument },
-  } = useContext(DocViewerContext);
-
+const JPGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
   if (!currentDocument) return null;
 
   return (
@@ -284,13 +275,14 @@ export const DocViewerRenderers = [
 
 ### `DocViewer props`
 
-| name       | type                        |
-| ---------- | --------------------------- |
-| documents  | [`IDocument[]`](#idocument) |
-| className? | `string`                    |
-| style?     | `React.CSSProperties`       |
-| config?    | [`IConfig`](#iconfig)       |
-| theme?     | [`ITheme`](#itheme)         |
+| name             | type                            |
+| ---------------- | ------------------------------- |
+| documents        | [`IDocument[]`](#idocument)     |
+| className?       | `string`                        |
+| style?           | `React.CSSProperties`           |
+| config?          | [`IConfig`](#iconfig)           |
+| theme?           | [`ITheme`](#itheme)             |
+| pluginRenderers? | [`DocRenderer[]`](#docrenderer) |
 
 ---
 
@@ -335,11 +327,32 @@ export const DocViewerRenderers = [
 
 ---
 
-### `DocRenderer`
+### `DocRenderer` extends React.FC\<[`DocRendererProps`](#docrendererprops)\>
 
 | name      | type       |
 | --------- | ---------- |
 | fileTypes | `string[]` |
 | weight    | `number`   |
+
+---
+
+### `DocRendererProps`
+
+| name      | type                        |
+| --------- | --------------------------- |
+| mainState | [`IMainState`](#imainstate) |
+
+---
+
+### `IMainState`
+
+| name             | type                        |
+| ---------------- | --------------------------- |
+| currentFileNo    | number                      |
+| documents        | [`IDocument[]`](#idocument) |
+| documentLoading? | boolean                     |
+| currentDocument? | [`IDocument`](#idocument)   |
+| rendererRect?    | DOMRect                     |
+| config?          | [`IConfig`](#iconfig)       |
 
 ---
