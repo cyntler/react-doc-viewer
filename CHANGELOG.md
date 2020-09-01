@@ -1,3 +1,9 @@
+#### 0.0.27 (2020-09-01)
+
+##### Documentation Changes
+
+*  Removed Setup Demo from contents at top of README (8a8db314)
+
 #### 0.0.26 (2020-09-01)
 
 ##### Bug Fixes
