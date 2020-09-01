@@ -10,9 +10,9 @@ import { PDFProvider } from "./state";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
-const PDFRenderer: DocRenderer = () => {
+const PDFRenderer: DocRenderer = ({ mainState }) => {
   return (
-    <PDFProvider>
+    <PDFProvider mainState={mainState}>
       <Container id="pdf-renderer" data-testid="pdf-renderer">
         <PDFControls />
         <PDFPages />

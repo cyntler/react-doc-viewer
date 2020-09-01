@@ -1,3 +1,4 @@
+import { IMainState } from "../../../state/reducer";
 import {
   PDFActions as PDFStateActions,
   SetCurrentPage,
@@ -15,6 +16,7 @@ export type IPDFState = {
   paginated: boolean;
   numPages: number;
   currentPage: number;
+  mainState?: IMainState;
 };
 
 export const initialPDFState: IPDFState = {
