@@ -1,12 +1,11 @@
 import React, { CSSProperties, FC, useEffect } from "react";
-import { RecoilRoot } from "recoil";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
 import JPGRenderer from "./plugins/jpg";
 import PDFRenderer from "./plugins/pdf";
 import PNGRenderer from "./plugins/png";
-import { initializeRecoilRoot } from "./state";
+import { AppProvider } from "./state";
 import { defaultTheme } from "./theme";
 import { DocRenderer, IConfig, IDocument, ITheme } from "./types";
 import { linkRenderResponder } from "./utils/linkRenderResponder";
@@ -32,7 +31,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
   }
 
   return (
-    <RecoilRoot initializeState={initializeRecoilRoot(props)}>
+    <AppProvider {...props}>
       <ThemeProvider
         theme={props.theme ? { ...defaultTheme, ...props.theme } : defaultTheme}
       >
@@ -45,7 +44,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
           <ProxyRenderer />
         </Container>
       </ThemeProvider>
-    </RecoilRoot>
+    </AppProvider>
   );
 };
 
@@ -59,5 +58,6 @@ const Container = styled.div`
 `;
 
 export { DocViewerRenderers } from "./plugins";
+export { DocViewerContext } from "./state";
 export * from "./types";
 export { JPGRenderer, PDFRenderer, PNGRenderer };

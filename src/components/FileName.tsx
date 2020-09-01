@@ -1,12 +1,12 @@
-import React, { FC } from "react";
-import { useRecoilValue } from "recoil";
+import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { DocViewerState } from "../state";
+import { DocViewerContext } from "../state";
 import { IStyledProps } from "../types";
 
 export const FileName: FC<{}> = () => {
-  const config = useRecoilValue(DocViewerState.config);
-  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
+  const {
+    state: { config, currentDocument },
+  } = useContext(DocViewerContext);
 
   if (!currentDocument || config?.header?.disableFileName) return null;
 

@@ -7,24 +7,25 @@ import {
   faSearchPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FC } from "react";
-import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { Button } from "../../../components/common";
-import { DocViewerState } from "../../../state";
+import { DocViewerContext } from "../../../state";
 import { IStyledProps } from "../../../types";
-import PDFRendererState, { initialPDFState } from "../state";
+import { PDFContext } from "../state";
+import { setPDFPaginated, setZoomLevel } from "../state/actions";
+import { initialPDFState } from "../state/reducer";
 import PDFPagination from "./PDFPagination";
 
 const PDFControls: FC<{}> = () => {
-  const [paginated, setPDFPaginated] = useRecoilState(
-    PDFRendererState.paginated
-  );
-  const [zoomLevel, setZoomLevel] = useRecoilState(PDFRendererState.zoomLevel);
-  const resetZoomLevel = useResetRecoilState(PDFRendererState.zoomLevel);
-  const numPages = useRecoilValue(PDFRendererState.numPages);
+  const {
+    state: { currentDocument },
+  } = useContext(DocViewerContext);
 
-  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
+  const {
+    state: { paginated, zoomLevel, numPages },
+    dispatch,
+  } = useContext(PDFContext);
 
   return (
     <Container id="pdf-controls">
@@ -42,21 +43,21 @@ const PDFControls: FC<{}> = () => {
 
       <Button
         id="pdf-zoom-out"
-        onMouseDown={() => setZoomLevel(zoomLevel - 0.1)}
+        onMouseDown={() => dispatch(setZoomLevel(zoomLevel - 0.1))}
       >
         <FontAwesomeIcon icon={faSearchMinus} />
       </Button>
 
       <Button
         id="pdf-zoom-in"
-        onMouseDown={() => setZoomLevel(zoomLevel + 0.1)}
+        onMouseDown={() => dispatch(setZoomLevel(zoomLevel + 0.1))}
       >
         <FontAwesomeIcon icon={faSearchPlus} />
       </Button>
 
       <Button
         id="pdf-zoom-reset"
-        onMouseDown={() => resetZoomLevel()}
+        onMouseDown={() => dispatch(setZoomLevel(initialPDFState.zoomLevel))}
         disabled={zoomLevel === initialPDFState.zoomLevel}
       >
         <FontAwesomeIcon icon={faExpand} />
@@ -65,7 +66,7 @@ const PDFControls: FC<{}> = () => {
       {numPages > 1 && (
         <Button
           id="pdf-toggle-pagination"
-          onMouseDown={() => setPDFPaginated(!paginated)}
+          onMouseDown={() => dispatch(setPDFPaginated(!paginated))}
         >
           <FontAwesomeIcon icon={paginated ? faArrowsAltV : faArrowsAltH} />
         </Button>
