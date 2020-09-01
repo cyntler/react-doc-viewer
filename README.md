@@ -19,7 +19,6 @@
 - [Contributing](#contributing)
   - [Creating a Renderer Plugin](#creating-a-renderer-plugin)
 - [API](#api)
-- [Setup Demo](#setup-demo)
 
 <br />
 <br />
