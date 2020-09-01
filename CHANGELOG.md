@@ -1,3 +1,9 @@
+#### 0.0.29 (2020-09-01)
+
+##### Chores
+
+*  No longer require public folder (2a639dcc)
+
 #### 0.0.28 (2020-09-01)
 
 ##### Bug Fixes
