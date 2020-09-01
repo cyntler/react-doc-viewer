@@ -80,11 +80,18 @@ import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 
 <DocViewer
   pluginRenderers={DocViewerRenderers}
-  documents={
-    [
-      // ...
-    ]
-  }
+  {/* ... */}
+/>;
+```
+
+Or you can import individual renderers.
+
+```tsx
+import DocViewer, { PDFRenderer, PNGRenderer } from "react-doc-viewer";
+
+<DocViewer
+  pluginRenderers={[PDFRenderer, PNGRenderer]}
+  {/* ... */}
 />;
 ```
 
