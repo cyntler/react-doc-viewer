@@ -1,13 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { DocViewerContext } from "../../state";
 import { DocRenderer } from "../../types";
 
-const PNGRenderer: DocRenderer = () => {
-  const {
-    state: { currentDocument },
-  } = useContext(DocViewerContext);
-
+const PNGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
   if (!currentDocument) return null;
 
   return (

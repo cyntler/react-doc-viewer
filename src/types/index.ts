@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { ThemedStyledProps } from "styled-components";
+import { IMainState } from "../state/reducer";
 
 export interface IConfig {
   header?: IHeaderConfig;
@@ -28,7 +29,10 @@ export interface IDocument {
   base64Data?: string;
 }
 
-export interface DocRenderer extends FC<{}> {
+export interface DocRendererProps {
+  mainState: IMainState;
+}
+export interface DocRenderer extends FC<DocRendererProps> {
   fileTypes: string[];
   weight: number;
 }
