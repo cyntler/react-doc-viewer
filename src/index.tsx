@@ -58,6 +58,6 @@ const Container = styled.div`
 `;
 
 export { DocViewerRenderers } from "./plugins";
-export { MainContext } from "./state";
+export { DocViewerContext } from "./state";
 export * from "./types";
 export { JPGRenderer, PDFRenderer, PNGRenderer };

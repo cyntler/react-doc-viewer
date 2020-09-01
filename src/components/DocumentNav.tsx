@@ -2,7 +2,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../state";
+import { DocViewerContext } from "../state";
 import { nextDocument, previousDocument } from "../state/actions";
 import { IStyledProps } from "../types";
 import { ButtonSecondary } from "./common/Button";
@@ -11,7 +11,7 @@ export const DocumentNav: FC<{}> = () => {
   const {
     state: { currentDocument, currentFileNo, documents },
     dispatch,
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   if (documents.length <= 1 || !currentDocument) return null;
 

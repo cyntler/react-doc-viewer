@@ -14,7 +14,7 @@ import {
   MainStateReducer,
 } from "./reducer";
 
-const MainContext = createContext<{
+const DocViewerContext = createContext<{
   state: IMainState;
   dispatch: Dispatch<MainStateActions>;
 }>({ state: initialState, dispatch: () => null });
@@ -37,10 +37,10 @@ const AppProvider: FC<DocViewerProps> = (props) => {
   }, [documents]);
 
   return (
-    <MainContext.Provider value={{ state, dispatch }}>
+    <DocViewerContext.Provider value={{ state, dispatch }}>
       {children}
-    </MainContext.Provider>
+    </DocViewerContext.Provider>
   );
 };
 
-export { MainContext, AppProvider };
+export { DocViewerContext, AppProvider };

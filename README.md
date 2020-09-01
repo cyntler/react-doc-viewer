@@ -97,12 +97,12 @@ To create a custom renderer, that will just exist for your project.
 
 ```tsx
 import React, { useContext } from "react";
-import DocViewer, { DocRenderer, MainContext } from "react-doc-viewer";
+import DocViewer, { DocRenderer, DocViewerContext } from "react-doc-viewer";
 
 const MyCustomPNGRenderer: DocRenderer = () => {
   const {
     state: { currentDocument },
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   if (!currentDocument) return null;
 
@@ -225,7 +225,7 @@ Inside this folder, create a Renderer React Typescript file.
 ```tsx
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../../state";
+import { DocViewerContext } from "../../state";
 import { DocRenderer } from "../../types";
 
 // Be sure that Renderer correctly uses type DocRenderer
@@ -233,7 +233,7 @@ const JPGRenderer: DocRenderer = () => {
   // Fetch the currentDocument loaded from main state
   const {
     state: { currentDocument },
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   if (!currentDocument) return null;
 

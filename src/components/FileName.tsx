@@ -1,12 +1,12 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../state";
+import { DocViewerContext } from "../state";
 import { IStyledProps } from "../types";
 
 export const FileName: FC<{}> = () => {
   const {
     state: { config, currentDocument },
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   if (!currentDocument || config?.header?.disableFileName) return null;
 

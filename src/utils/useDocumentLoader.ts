@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { MainContext } from "../state";
+import { DocViewerContext } from "../state";
 import { updateCurrentDocument } from "../state/actions";
 import { DocRenderer, IDocument } from "../types";
 import { useRendererSelector } from "./useRendererSelector";
@@ -14,7 +14,7 @@ export const useDocumentLoader = (): {
   const {
     state: { currentFileNo, currentDocument },
     dispatch,
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   const { CurrentRenderer } = useRendererSelector();
 

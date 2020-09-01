@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../../state";
+import { DocViewerContext } from "../../state";
 import { DocRenderer } from "../../types";
 
 const JPGRenderer: DocRenderer = () => {
   const {
     state: { currentDocument },
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   if (!currentDocument) return null;
 

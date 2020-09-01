@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect } from "react";
 import { Document } from "react-pdf";
 import styled from "styled-components";
-import { MainContext } from "../../../../state";
+import { DocViewerContext } from "../../../../state";
 import { PDFContext } from "../../state";
 import { setNumPages } from "../../state/actions";
 import { initialPDFState } from "../../state/reducer";
@@ -11,7 +11,7 @@ import PDFSinglePage from "./PDFSinglePage";
 const PDFPages: FC<{}> = () => {
   const {
     state: { currentDocument },
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
   const {
     state: { paginated },
     dispatch,

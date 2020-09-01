@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { Button } from "../../../components/common";
-import { MainContext } from "../../../state";
+import { DocViewerContext } from "../../../state";
 import { IStyledProps } from "../../../types";
 import { PDFContext } from "../state";
 import { setPDFPaginated, setZoomLevel } from "../state/actions";
@@ -20,7 +20,7 @@ import PDFPagination from "./PDFPagination";
 const PDFControls: FC<{}> = () => {
   const {
     state: { currentDocument },
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   const {
     state: { paginated, zoomLevel, numPages },

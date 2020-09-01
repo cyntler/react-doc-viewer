@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../state";
+import { DocViewerContext } from "../state";
 import { setRendererRect } from "../state/actions";
 import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";
@@ -11,7 +11,7 @@ export const ProxyRenderer: FC<{}> = () => {
   const {
     state: { currentDocument, documentLoading, documents },
     dispatch,
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   const size = useWindowSize();
 

@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../state";
+import { DocViewerContext } from "../state";
 import { IStyledProps } from "../types";
 import { DocumentNav } from "./DocumentNav";
 import { FileName } from "./FileName";
@@ -8,7 +8,7 @@ import { FileName } from "./FileName";
 export const HeaderBar: FC<{}> = () => {
   const {
     state: { config },
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   if (config?.header?.disableHeader) return null;
 

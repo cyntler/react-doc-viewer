@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import { Page } from "react-pdf";
 import styled from "styled-components";
-import { MainContext } from "../../../../state";
+import { DocViewerContext } from "../../../../state";
 import { IStyledProps } from "../../../../types";
 import { PDFContext } from "../../state";
 
@@ -14,7 +14,7 @@ const PDFSinglePage: FC<Props> = (props) => {
 
   const {
     state: { rendererRect },
-  } = useContext(MainContext);
+  } = useContext(DocViewerContext);
 
   const {
     state: { paginated, zoomLevel, numPages, currentPage },
