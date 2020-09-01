@@ -1,23 +1,23 @@
-import React, { FC, useCallback } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import React, { FC, useCallback, useContext } from "react";
 import styled from "styled-components";
-import { DocViewerState } from "../state";
+import { MainContext } from "../state";
+import { setRendererRect } from "../state/actions";
 import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";
 
 export const ProxyRenderer: FC<{}> = () => {
   const { CurrentRenderer } = useDocumentLoader();
 
-  const setRendererRect = useSetRecoilState(DocViewerState.rendererRect);
-  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
-  const documentLoading = useRecoilValue(DocViewerState.documentLoading);
-  const documents = useRecoilValue(DocViewerState.documents);
+  const {
+    state: { currentDocument, documentLoading, documents },
+    dispatch,
+  } = useContext(MainContext);
 
   const size = useWindowSize();
 
   const containerRef = useCallback(
     (node) => {
-      node && setRendererRect(node?.getBoundingClientRect());
+      node && dispatch(setRendererRect(node?.getBoundingClientRect()));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [size]

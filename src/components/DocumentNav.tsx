@@ -1,21 +1,17 @@
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FC } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { DocViewerState } from "../state";
-import { DocViewerSelectors } from "../state/selectors";
+import { MainContext } from "../state";
+import { nextDocument, previousDocument } from "../state/actions";
 import { IStyledProps } from "../types";
 import { ButtonSecondary } from "./common/Button";
 
 export const DocumentNav: FC<{}> = () => {
-  const nextDocument = useSetRecoilState(DocViewerSelectors.setNextDocument);
-  const previousDocument = useSetRecoilState(
-    DocViewerSelectors.setPreviousDocument
-  );
-  const currentFileNo = useRecoilValue(DocViewerState.currentFileNo);
-  const documents = useRecoilValue(DocViewerState.documents);
-  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
+  const {
+    state: { currentDocument, currentFileNo, documents },
+    dispatch,
+  } = useContext(MainContext);
 
   if (documents.length <= 1 || !currentDocument) return null;
 
@@ -34,7 +30,7 @@ export const DocumentNav: FC<{}> = () => {
 
       <ButtonPrev
         id="doc-nav-prev"
-        onClick={() => previousDocument()}
+        onClick={() => dispatch(previousDocument())}
         disabled={currentFileNo === 0}
       >
         <FontAwesomeIcon icon={faArrowLeft} />
@@ -42,7 +38,7 @@ export const DocumentNav: FC<{}> = () => {
 
       <ButtonNext
         id="doc-nav-next"
-        onClick={() => nextDocument()}
+        onClick={() => dispatch(nextDocument())}
         disabled={currentFileNo >= documents.length - 1}
       >
         <FontAwesomeIcon icon={faArrowRight} />

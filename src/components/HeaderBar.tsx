@@ -1,13 +1,14 @@
-import React, { FC } from "react";
-import { useRecoilValue } from "recoil";
+import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { DocViewerState } from "../state";
+import { MainContext } from "../state";
 import { IStyledProps } from "../types";
 import { DocumentNav } from "./DocumentNav";
 import { FileName } from "./FileName";
 
 export const HeaderBar: FC<{}> = () => {
-  const config = useRecoilValue(DocViewerState.config);
+  const {
+    state: { config },
+  } = useContext(MainContext);
 
   if (config?.header?.disableHeader) return null;
 

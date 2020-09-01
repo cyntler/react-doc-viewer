@@ -13,7 +13,6 @@
   "alcumus-local-events": "^1.1.33",
   "pdfjs-dist": "^2.1.5",
   "react-pdf": "^5.0.0-beta.5",
-  "recoil": "0.0.10",
   "styled-components": "^5.1.1"
  },
  "devDependencies": {
