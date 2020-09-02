@@ -1,23 +1,33 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { DocViewerContext } from "../state";
+import { nextDocument, previousDocument } from "../state/actions";
 import { IStyledProps } from "../types";
 import { DocumentNav } from "./DocumentNav";
 import { FileName } from "./FileName";
 
 export const HeaderBar: FC<{}> = () => {
-  const {
-    state: { config },
-  } = useContext(DocViewerContext);
+  const { state, dispatch } = useContext(DocViewerContext);
+  const { config } = state;
 
   if (config?.header?.disableHeader) return null;
 
-  return (
-    <Container id="header-bar" data-testid="header-bar">
-      <FileName />
-      <DocumentNav />
-    </Container>
+  const override = config?.header?.overrideComponent?.(
+    state,
+    () => dispatch(previousDocument()),
+    () => dispatch(nextDocument())
   );
+
+  if (override) {
+    return override;
+  } else {
+    return (
+      <Container id="header-bar" data-testid="header-bar">
+        <FileName />
+        <DocumentNav />
+      </Container>
+    );
+  }
 };
 
 const Container = styled.div`
