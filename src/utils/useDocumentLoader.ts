@@ -1,6 +1,10 @@
 import { Dispatch, useContext, useEffect } from "react";
 import { DocViewerContext } from "../state";
-import { MainStateActions, updateCurrentDocument } from "../state/actions";
+import {
+  MainStateActions,
+  setDocumentLoading,
+  updateCurrentDocument,
+} from "../state/actions";
 import { IMainState } from "../state/reducer";
 import { DocRenderer } from "../types";
 import { useRendererSelector } from "./useRendererSelector";
@@ -37,7 +41,7 @@ export const useDocumentLoader = (): {
               fileType: blob.type,
             })
           );
-          // dispatch(setDocumentLoading(false));
+          dispatch(setDocumentLoading(false));
         });
         fileReader.readAsDataURL(blob);
       });

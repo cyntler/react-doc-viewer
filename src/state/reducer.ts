@@ -54,6 +54,8 @@ export const mainStateReducer: MainStateReducer = (
     }
 
     case NEXT_DOCUMENT: {
+      if (state.currentFileNo >= state.documents.length - 1) return state;
+
       const nextDocumentNo = state.currentFileNo + 1;
       return {
         ...state,
@@ -64,6 +66,8 @@ export const mainStateReducer: MainStateReducer = (
     }
 
     case PREVIOUS_DOCUMENT: {
+      if (state.currentFileNo <= 0) return state;
+
       const prevDocumentNo = state.currentFileNo - 1;
       return {
         ...state,
@@ -78,7 +82,6 @@ export const mainStateReducer: MainStateReducer = (
       return {
         ...state,
         currentDocument: document,
-        documentLoading: false,
       };
     }
 

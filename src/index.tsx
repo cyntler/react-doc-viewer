@@ -20,11 +20,13 @@ export interface DocViewerProps {
 }
 
 const DocViewer: FC<DocViewerProps> = (props) => {
+  const { documents, theme, pluginRenderers } = props;
+
   useEffect(() => {
-    props.pluginRenderers?.map((r) => linkRenderResponder(r));
+    pluginRenderers?.map((r) => linkRenderResponder(r));
   }, []);
 
-  if (!props.documents || props.documents === undefined) {
+  if (!documents || documents === undefined) {
     throw new Error(
       "Please provide an array of documents to DocViewer.\ne.g. <DocViewer documents={[ { uri: 'https://mypdf.pdf' } ]} />"
     );
@@ -33,7 +35,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
   return (
     <AppProvider {...props}>
       <ThemeProvider
-        theme={props.theme ? { ...defaultTheme, ...props.theme } : defaultTheme}
+        theme={theme ? { ...defaultTheme, ...theme } : defaultTheme}
       >
         <Container
           id="react-doc-viewer"
