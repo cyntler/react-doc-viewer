@@ -1,3 +1,21 @@
+#### 0.0.31 (2020-09-02)
+
+##### Chores
+
+*  Removed unused css file (485f15b3)
+
+##### New Features
+
+*  Removed FontAwesome and included replacement svgs, which are resizable and colourable (7c7c3fca)
+
+##### Bug Fixes
+
+*  IIconProps import type fixed (1e1b00c5)
+
+##### Tests
+
+*  Updated snapshots for tests (f40a5447)
+
 #### 0.0.30 (2020-09-02)
 
 ##### New Features
