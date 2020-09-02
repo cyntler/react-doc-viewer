@@ -1,3 +1,9 @@
+#### 0.0.30 (2020-09-02)
+
+##### New Features
+
+*  implemented ability to fully replace the contents of the header, but also retain access to the state and document navigation actions (2c1e3d0d)
+
 #### 0.0.29 (2020-09-01)
 
 ##### Chores
