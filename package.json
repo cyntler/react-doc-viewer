@@ -7,9 +7,6 @@
  "main": "build/index.js",
  "types": "build/index.d.ts",
  "dependencies": {
-  "@fortawesome/fontawesome-svg-core": "^1.2.30",
-  "@fortawesome/free-solid-svg-icons": "^5.14.0",
-  "@fortawesome/react-fontawesome": "^0.1.11",
   "alcumus-local-events": "^1.1.33",
   "pdfjs-dist": "^2.1.5",
   "react-pdf": "^5.0.0-beta.5",
