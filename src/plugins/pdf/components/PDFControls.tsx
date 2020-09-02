@@ -1,12 +1,3 @@
-import {
-  faArrowsAltH,
-  faArrowsAltV,
-  faExpand,
-  faFileDownload,
-  faSearchMinus,
-  faSearchPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { Button } from "../../../components/common";
@@ -14,6 +5,13 @@ import { IStyledProps } from "../../../types";
 import { PDFContext } from "../state";
 import { setPDFPaginated, setZoomLevel } from "../state/actions";
 import { initialPDFState } from "../state/reducer";
+import {
+  DownloadPDFIcon,
+  ResetZoomPDFIcon,
+  TogglePaginationPDFIcon,
+  ZoomInPDFIcon,
+  ZoomOutPDFIcon,
+} from "./icons";
 import PDFPagination from "./PDFPagination";
 
 const PDFControls: FC<{}> = () => {
@@ -29,44 +27,48 @@ const PDFControls: FC<{}> = () => {
       {paginated && numPages > 1 && <PDFPagination />}
 
       {currentDocument?.base64Data && (
-        <Button
+        <ControlButton
           id="pdf-download"
           href={currentDocument?.base64Data}
           download={currentDocument?.uri}
         >
-          <FontAwesomeIcon icon={faFileDownload} />
-        </Button>
+          <DownloadPDFIcon color="#000" size="75%" />
+        </ControlButton>
       )}
 
-      <Button
+      <ControlButton
         id="pdf-zoom-out"
         onMouseDown={() => dispatch(setZoomLevel(zoomLevel - 0.1))}
       >
-        <FontAwesomeIcon icon={faSearchMinus} />
-      </Button>
+        <ZoomOutPDFIcon color="#000" size="80%" />
+      </ControlButton>
 
-      <Button
+      <ControlButton
         id="pdf-zoom-in"
         onMouseDown={() => dispatch(setZoomLevel(zoomLevel + 0.1))}
       >
-        <FontAwesomeIcon icon={faSearchPlus} />
-      </Button>
+        <ZoomInPDFIcon color="#000" size="80%" />
+      </ControlButton>
 
-      <Button
+      <ControlButton
         id="pdf-zoom-reset"
         onMouseDown={() => dispatch(setZoomLevel(initialPDFState.zoomLevel))}
         disabled={zoomLevel === initialPDFState.zoomLevel}
       >
-        <FontAwesomeIcon icon={faExpand} />
-      </Button>
+        <ResetZoomPDFIcon color="#000" size="70%" />
+      </ControlButton>
 
       {numPages > 1 && (
-        <Button
+        <ControlButton
           id="pdf-toggle-pagination"
           onMouseDown={() => dispatch(setPDFPaginated(!paginated))}
         >
-          <FontAwesomeIcon icon={paginated ? faArrowsAltV : faArrowsAltH} />
-        </Button>
+          <TogglePaginationPDFIcon
+            color="#000"
+            size="70%"
+            reverse={paginated}
+          />
+        </ControlButton>
       )}
     </Container>
   );
@@ -87,5 +89,14 @@ const Container = styled.div`
 
   @media (max-width: 768px) {
     padding: 6px;
+  }
+`;
+
+const ControlButton = styled(Button)`
+  width: 30px;
+  height: 30px;
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 25px;
   }
 `;

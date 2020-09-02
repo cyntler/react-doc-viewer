@@ -1,14 +1,10 @@
-import {
-  faStepBackward,
-  faStepForward,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { Button } from "../../../components/common";
 import { IStyledProps } from "../../../types";
 import { PDFContext } from "../state";
 import { setCurrentPage } from "../state/actions";
+import { NextPDFNavIcon, PrevPDFNavIcon } from "./icons";
 
 const PDFPagination: FC<{}> = () => {
   const {
@@ -23,7 +19,7 @@ const PDFPagination: FC<{}> = () => {
         onClick={() => dispatch(setCurrentPage(currentPage - 1))}
         disabled={currentPage === 1}
       >
-        <FontAwesomeIcon icon={faStepBackward} />
+        <PrevPDFNavIcon color="#000" size="50%" />
       </PageNavButtonLeft>
 
       <PageTag id="pdf-pagination-info">
@@ -35,7 +31,7 @@ const PDFPagination: FC<{}> = () => {
         onClick={() => dispatch(setCurrentPage(currentPage + 1))}
         disabled={currentPage >= numPages}
       >
-        <FontAwesomeIcon icon={faStepForward} />
+        <NextPDFNavIcon color="#000" size="50%" />
       </PageNavButtonRight>
     </Container>
   );
@@ -49,9 +45,16 @@ const Container = styled.div`
 `;
 
 const PageNavButtonLeft = styled(Button)`
+  width: 30px;
+  height: 30px;
   margin: 0 5px;
+
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
-const PageNavButtonRight = styled(Button)`
+const PageNavButtonRight = styled(PageNavButtonLeft)`
   margin: 0 20px 0 5px;
 `;
 
