@@ -28,23 +28,33 @@ export const useDocumentLoader = (): {
     () => {
       if (!currentDocument) return;
 
-      Promise.resolve().then(async () => {
-        const res = await fetch(documentURI);
-        const blob = await res.blob();
+      const controller = new AbortController();
+      const { signal } = controller;
 
-        const fileReader = new FileReader();
-        fileReader.addEventListener("loadend", () => {
-          dispatch(
-            updateCurrentDocument({
-              ...currentDocument,
-              base64Data: fileReader.result as string,
-              fileType: blob.type,
-            })
-          );
-          dispatch(setDocumentLoading(false));
+      fetch(documentURI, { signal })
+        .then(async (res) => {
+          const blob = await res.blob();
+
+          const fileReader = new FileReader();
+          fileReader.addEventListener("loadend", () => {
+            dispatch(
+              updateCurrentDocument({
+                ...currentDocument,
+                base64Data: fileReader.result as string,
+                fileType: blob.type,
+              })
+            );
+            dispatch(setDocumentLoading(false));
+          });
+          fileReader.readAsDataURL(blob);
+        })
+        .catch((e) => {
+          return e;
         });
-        fileReader.readAsDataURL(blob);
-      });
+
+      return () => {
+        controller.abort();
+      };
     },
     // eslint ignore added, because a warning appears for dispatch to
     // be a dependancy of the useEffect
