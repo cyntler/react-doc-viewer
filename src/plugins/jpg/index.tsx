@@ -22,10 +22,12 @@ const Container = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
+  width: 100%;
   height: 100%;
   background-color: #fff;
 `;
 
 const Img = styled.img`
-  width: 50%;
+  max-width: 95%;
+  max-height: 95%;
 `;

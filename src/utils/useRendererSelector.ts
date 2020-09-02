@@ -1,4 +1,3 @@
-import events from "alcumus-local-events";
 import { useContext, useEffect, useState } from "react";
 import { DocViewerContext } from "../state";
 import { DocRenderer } from "../types";
@@ -10,7 +9,7 @@ export const useRendererSelector = (): {
   CurrentRenderer: DocRenderer | undefined;
 } => {
   const {
-    state: { currentDocument },
+    state: { currentDocument, pluginRenderers },
   } = useContext(DocViewerContext);
 
   const [CurrentRenderer, setCurrentRenderer] = useState<DocRenderer>();
@@ -18,27 +17,25 @@ export const useRendererSelector = (): {
   useEffect(() => {
     if (!currentDocument) return;
 
-    Promise.resolve().then(async () => {
-      const respondingRenderers: DocRenderer[] = [];
+    const matchingRenderers: DocRenderer[] = [];
 
-      // Emit async event, to populate respondingRenderers array
-      await events.emitAsync(
-        "request-document-renderer",
-        currentDocument,
-        respondingRenderers
-      );
-
-      // Arbitrary sorting of priorities for demo purposes
-      const [SelectedRenderer] = respondingRenderers.sort(
-        (a, b) => b.weight - a.weight
-      );
-
-      if (SelectedRenderer && SelectedRenderer !== undefined) {
-        setCurrentRenderer(() => SelectedRenderer);
-      } else {
-        setCurrentRenderer(undefined);
+    pluginRenderers?.map((r) => {
+      if (currentDocument.fileType === undefined) return;
+      if (r.fileTypes.indexOf(currentDocument.fileType) >= 0) {
+        matchingRenderers.push(r);
       }
     });
+
+    // Compute prefered Renderer based on weight
+    const [SelectedRenderer] = matchingRenderers.sort(
+      (a, b) => b.weight - a.weight
+    );
+
+    if (SelectedRenderer && SelectedRenderer !== undefined) {
+      setCurrentRenderer(() => SelectedRenderer);
+    } else {
+      setCurrentRenderer(undefined);
+    }
   }, [currentDocument]);
 
   return { CurrentRenderer };

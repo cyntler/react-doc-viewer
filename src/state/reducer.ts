@@ -1,4 +1,4 @@
-import { IConfig, IDocument } from "../types";
+import { DocRenderer, IConfig, IDocument } from "../types";
 import {
   MainStateActions,
   NEXT_DOCUMENT,
@@ -22,6 +22,7 @@ export type IMainState = {
   currentDocument?: IDocument;
   rendererRect?: DOMRect;
   config?: IConfig;
+  pluginRenderers?: DocRenderer[];
 };
 
 export const initialState: IMainState = {
@@ -31,6 +32,7 @@ export const initialState: IMainState = {
   currentDocument: undefined,
   rendererRect: undefined,
   config: {},
+  pluginRenderers: [],
 };
 
 export type MainStateReducer = (

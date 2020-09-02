@@ -20,13 +20,14 @@ const DocViewerContext = createContext<{
 }>({ state: initialState, dispatch: () => null });
 
 const AppProvider: FC<DocViewerProps> = (props) => {
-  const { children, documents, config } = props;
+  const { children, documents, config, pluginRenderers } = props;
 
   const [state, dispatch] = useReducer<MainStateReducer>(mainStateReducer, {
     ...initialState,
     documents: documents || [],
     currentDocument: documents && documents.length ? documents[0] : undefined,
     config,
+    pluginRenderers,
   });
 
   // On inital load, and whenever they change,

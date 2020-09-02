@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useEffect } from "react";
+import React, { CSSProperties, FC } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
@@ -8,7 +8,6 @@ import PNGRenderer from "./plugins/png";
 import { AppProvider } from "./state";
 import { defaultTheme } from "./theme";
 import { DocRenderer, IConfig, IDocument, ITheme } from "./types";
-import { linkRenderResponder } from "./utils/linkRenderResponder";
 
 export interface DocViewerProps {
   documents: IDocument[];
@@ -20,11 +19,7 @@ export interface DocViewerProps {
 }
 
 const DocViewer: FC<DocViewerProps> = (props) => {
-  const { documents, theme, pluginRenderers } = props;
-
-  useEffect(() => {
-    pluginRenderers?.map((r) => linkRenderResponder(r));
-  }, []);
+  const { documents, theme } = props;
 
   if (!documents || documents === undefined) {
     throw new Error(
