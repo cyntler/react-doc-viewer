@@ -1,5 +1,5 @@
 import React from "react";
-import { IIconProps } from ".";
+import { IIconProps } from "../../../../components/icons";
 
 export const PrevPDFNavIcon = (props: IIconProps) => {
   return <PDFNavArrow {...props} reverse />;
