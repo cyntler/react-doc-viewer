@@ -18,6 +18,7 @@
   - [Config](#config)
 - [Contributing](#contributing)
   - [Creating a Renderer Plugin](#creating-a-renderer-plugin)
+- [Overriding Header Component](#overriding-header-component)
 - [API](#api)
 
 <br />
@@ -268,6 +269,57 @@ export const DocViewerRenderers = [
 <br />
 <br />
 
+## Overriding Header Component
+
+You can pass a callback function to `config.header.overrideComponent` that returns a React Element. The function's parameters will be populated and usable, this function will also be re-called whenever the mainState updates.
+Parameters include the state object from the main component, and document navigation functions for `previousDocument` and `nextDocument`.
+
+Example:
+
+```tsx
+
+const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
+    if (!state.currentDocument || state.config?.header?.disableFileName) {
+      return null;
+    }
+
+    return (
+      <>
+        <div>{state.currentDocument.uri || ""}</div>
+        <div>
+          <button
+            onClick={previousDocument}
+            disabled={state.currentFileNo === 0}
+          >
+            Previous Document
+          </button>
+          <button
+            onClick={nextDocument}
+            disabled={state.currentFileNo >= state.documents.length - 1}
+          >
+            Next Document
+          </button>
+        </div>
+      </>
+    );
+  };
+
+<DocViewer
+  pluginRenderers={DocViewerRenderers}
+  documents={
+    {
+      /**/
+    }
+  }
+  config={{
+    header: {
+      overrideComponent: myHeader;
+      },
+    },
+  }
+/>
+```
+
 ## API
 
 ---
@@ -305,10 +357,22 @@ export const DocViewerRenderers = [
 
 ### `IHeaderConfig`
 
-| name             | type      |
-| ---------------- | --------- |
-| disableHeader?   | `boolean` |
-| disableFileName? | `boolean` |
+| name               | type                                  |
+| ------------------ | ------------------------------------- |
+| disableHeader?     | `boolean`                             |
+| disableFileName?   | `boolean`                             |
+| overrideComponent? | [`IHeaderOverride`](#iheaderoverride) |
+
+---
+
+### `IHeaderOverride` () => `ReactElement<any, any> | null`
+
+| name             | type                        |
+| ---------------- | --------------------------- |
+| state            | [`IMainState`](#imainstate) |
+| previousDocument | `() => void`                |
+| nextDocument     | `() => void`                |
+| `returns`        | `ReactElement<any, any>     | null` |
 
 ---
 

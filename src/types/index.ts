@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 import { ThemedStyledProps } from "styled-components";
 import { IMainState } from "../state/reducer";
 
@@ -8,7 +8,15 @@ export interface IConfig {
 export interface IHeaderConfig {
   disableHeader?: boolean;
   disableFileName?: boolean;
+  overrideComponent?: IHeaderOverride;
 }
+
+export type IHeaderOverride = (
+  state: IMainState,
+  previousDocument: () => void,
+  nextDocument: () => void
+) => ReactElement<any, any> | null;
+
 export interface ITheme {
   primary?: string;
   secondary?: string;
