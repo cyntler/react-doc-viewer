@@ -59,6 +59,7 @@ const Container = styled.div`
 const LoadingContainer = styled.div`
   display: flex;
   flex: 1;
+  height: 75px;
   align-items: center;
   justify-content: center;
 `;
