@@ -14,14 +14,15 @@ export const ButtonSecondaryStyle = css`
   color: ${(props: IStyledProps) => props.theme.text_secondary};
 `;
 
-export const Button = styled.a<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
   ${ButtonPrimaryStyle}
   display: flex;
   justify-content: center;
   align-items: center;
   width: 35px;
   height: 35px;
-  margin-left: 5px;
+  padding: 0;
+  margin: 0 0 0 5px;
   text-align: center;
   font-size: 18px;
   border: 0;
