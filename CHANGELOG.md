@@ -1,3 +1,22 @@
+#### 0.0.32 (2020-09-03)
+
+##### Chores
+
+*  Added default height to loading container (e5570741)
+
+##### New Features
+
+*  pluginRenderers are now passed directly to the main state context, and the correct renderer is retrieved from there depending on it's fileType associations (4c7abfd3)
+
+##### Bug Fixes
+
+*  Changed Button to actual <button> from <a> to prevent annoying text selection bug (25dc93eb)
+*  Abort fetch of file when new file is selected mid fetch. Also display loading spinner (db440e66)
+
+##### Tests
+
+*  Updated test snapshot (7660907f)
+
 #### 0.0.31 (2020-09-02)
 
 ##### Chores
