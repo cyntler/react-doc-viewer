@@ -1,8 +1,10 @@
 import React, { FC, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
 import { setRendererRect } from "../state/actions";
+import { IStyledProps } from "../types";
 import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";
+import { LinkButton } from "./common";
 import { LoadingIcon } from "./icons";
 
 export const ProxyRenderer: FC<{}> = () => {
@@ -33,10 +35,19 @@ export const ProxyRenderer: FC<{}> = () => {
     } else {
       if (CurrentRenderer) {
         return <CurrentRenderer mainState={state} />;
+      } else if (CurrentRenderer === undefined) {
+        return null;
       } else {
         return (
           <div id="no-renderer" data-testid="no-renderer">
             No Renderer for file type {currentDocument?.fileType}
+            <DownloadButton
+              id="no-renderer-download"
+              href={currentDocument?.uri}
+              download={currentDocument?.uri}
+            >
+              Download File
+            </DownloadButton>
           </div>
         );
       }
@@ -76,4 +87,14 @@ const LoadingIconContainer = styled.div`
   animation-duration: 4s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+`;
+
+const DownloadButton = styled(LinkButton)`
+  width: 130px;
+  height: 30px;
+  background-color: ${(props: IStyledProps) => props.theme.primary};
+  @media (max-width: 768px) {
+    width: 125px;
+    height: 25px;
+  }
 `;
