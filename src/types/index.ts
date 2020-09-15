@@ -1,4 +1,4 @@
-import { FC, ReactElement, ReactNode } from "react";
+import { FC, ReactElement } from "react";
 import { ThemedStyledProps } from "styled-components";
 import { IMainState } from "../state/reducer";
 
@@ -43,4 +43,5 @@ export interface DocRendererProps {
 export interface DocRenderer extends FC<DocRendererProps> {
   fileTypes: string[];
   weight: number;
+  fileLoader?: (() => void) | null | undefined;
 }
