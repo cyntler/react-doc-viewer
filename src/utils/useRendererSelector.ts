@@ -6,16 +6,25 @@ import { DocRenderer } from "../types";
  * Custom Hook for loading the current document into context
  */
 export const useRendererSelector = (): {
-  CurrentRenderer: DocRenderer | undefined;
+  CurrentRenderer: DocRenderer | null | undefined;
 } => {
   const {
     state: { currentDocument, pluginRenderers },
   } = useContext(DocViewerContext);
 
-  const [CurrentRenderer, setCurrentRenderer] = useState<DocRenderer>();
+  const [CurrentRenderer, setCurrentRenderer] = useState<
+    DocRenderer | null | undefined
+  >();
 
   useEffect(() => {
     if (!currentDocument) return;
+
+    // Do not advance if the document does not yet have a fileType
+    // This prevents prematurely showing 'no renderer' message
+    if (!currentDocument.fileType) {
+      setCurrentRenderer(undefined);
+      return;
+    }
 
     const matchingRenderers: DocRenderer[] = [];
 
@@ -34,7 +43,7 @@ export const useRendererSelector = (): {
     if (SelectedRenderer && SelectedRenderer !== undefined) {
       setCurrentRenderer(() => SelectedRenderer);
     } else {
-      setCurrentRenderer(undefined);
+      setCurrentRenderer(null);
     }
   }, [currentDocument]);
 
