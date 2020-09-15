@@ -140,6 +140,23 @@ import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 <br />
 <br />
 
+### Custom File Loader
+
+If you need to prevent the actual loading of the file by `react-doc-viewer`.
+you can decorate your custom renderer with a callback to do as you wish. e.g. Load the file yourself in an iFrame.
+
+```tsx
+MyCustomPNGRenderer.fileLoader = (fileLoadComplete) => {
+  myCustomFileLoaderCode().then(() => {
+    // Whenever you have finished you must call fileLoadComplete() to remove the loading animation
+    fileLoadComplete();
+  });
+};
+```
+
+<br />
+<br />
+
 ### Themed
 
 You can provide a theme object with one or all of the available properties.
@@ -392,10 +409,11 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 
 ### `DocRenderer` extends React.FC\<[`DocRendererProps`](#docrendererprops)\>
 
-| name      | type       |
-| --------- | ---------- |
-| fileTypes | `string[]` |
-| weight    | `number`   |
+| name        | type                                     |
+| ----------- | ---------------------------------------- |
+| fileTypes   | `string[]`                               |
+| weight      | `number`                                 |
+| fileLoader? | `(fileLoadComplete: () => void) => void` |
 
 ---
 
