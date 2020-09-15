@@ -43,5 +43,5 @@ export interface DocRendererProps {
 export interface DocRenderer extends FC<DocRendererProps> {
   fileTypes: string[];
   weight: number;
-  fileLoader?: (() => void) | null | undefined;
+  fileLoader?: ((fileLoadComplete: () => void) => void) | null | undefined;
 }

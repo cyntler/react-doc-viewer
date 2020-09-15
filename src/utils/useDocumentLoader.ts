@@ -63,7 +63,9 @@ export const useDocumentLoader = (): {
     if (CurrentRenderer === null) {
       dispatch(setDocumentLoading(false));
     } else if (CurrentRenderer.fileLoader !== undefined) {
-      dispatch(setDocumentLoading(false));
+      CurrentRenderer.fileLoader?.(() => {
+        dispatch(setDocumentLoading(false));
+      });
     } else {
       defaultFileLoader(documentURI, signal, (blob, fileReader) => {
         dispatch(
