@@ -1,3 +1,9 @@
+#### 0.0.34 (2020-09-16)
+
+##### Bug Fixes
+
+*  Document fetches header even if file type is supplied (b5296d0f)
+
 #### 0.0.33 (2020-09-16)
 
 ##### Other Changes
