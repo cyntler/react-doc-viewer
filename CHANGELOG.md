@@ -1,3 +1,10 @@
+#### 0.0.33 (2020-09-16)
+
+##### Other Changes
+
+* develop (66cd5676)
+* mattmogford-alcumus/issue19 (f8f16bc1)
+
 #### 0.0.32 (2020-09-03)
 
 ##### Chores
