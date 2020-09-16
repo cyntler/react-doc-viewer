@@ -29,6 +29,7 @@ export const useDocumentLoader = (): {
       if (!currentDocument) return;
       if (currentDocument.fileType !== undefined) {
         dispatch(updateCurrentDocument({ uri: currentDocument.uri }));
+        return;
       }
 
       const controller = new AbortController();
