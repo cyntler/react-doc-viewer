@@ -23,7 +23,7 @@ const PDFRenderer: DocRenderer = ({ mainState }) => {
 
 export default PDFRenderer;
 
-PDFRenderer.fileTypes = ["application/pdf"];
+PDFRenderer.fileTypes = ["pdf", "application/pdf"];
 PDFRenderer.weight = 0;
 
 const Container = styled.div`

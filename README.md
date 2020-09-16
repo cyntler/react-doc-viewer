@@ -118,7 +118,7 @@ const MyCustomPNGRenderer: DocRenderer = ({
   );
 };
 
-MyCustomPNGRenderer.fileTypes = ["image/png"];
+MyCustomPNGRenderer.fileTypes = ["png", "image/png"];
 MyCustomPNGRenderer.weight = 1;
 ```
 
@@ -262,7 +262,7 @@ const JPGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
 export default JPGRenderer;
 
 // List the MIME types that this renderer will respond to
-JPGRenderer.fileTypes = ["image/jpg", "image/jpeg"];
+JPGRenderer.fileTypes = ["jpg", "jpeg", "image/jpg", "image/jpeg"];
 
 // If you have more than one renderer for the same MIME type, use weight. higher is more preferable.
 // Included renderers have a weight of zero
@@ -359,7 +359,7 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 | name        | type                                                          |
 | ----------- | ------------------------------------------------------------- |
 | uri         | `string`                                                      |
-| fileType?   | `string` - **Used Internally - Ignored if passed into props** |
+| fileType?   | `string`                                                      |
 | base64Data? | `string` - **Used Internally - Ignored if passed into props** |
 
 ---

@@ -14,7 +14,7 @@ const PNGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
 
 export default PNGRenderer;
 
-PNGRenderer.fileTypes = ["image/png"];
+PNGRenderer.fileTypes = ["png", "image/png"];
 PNGRenderer.weight = 0;
 
 const Container = styled.div`

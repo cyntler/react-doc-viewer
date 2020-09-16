@@ -14,7 +14,7 @@ const JPGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
 
 export default JPGRenderer;
 
-JPGRenderer.fileTypes = ["image/jpg", "image/jpeg"];
+JPGRenderer.fileTypes = ["jpg", "jpeg", "image/jpg", "image/jpeg"];
 JPGRenderer.weight = 0;
 
 const Container = styled.div`
