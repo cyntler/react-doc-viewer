@@ -118,7 +118,7 @@ const MyCustomPNGRenderer: DocRenderer = ({
   );
 };
 
-MyCustomPNGRenderer.fileTypes = ["image/png"];
+MyCustomPNGRenderer.fileTypes = ["png", "image/png"];
 MyCustomPNGRenderer.weight = 1;
 ```
 
@@ -135,6 +135,23 @@ import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
     ]
   }
 />;
+```
+
+<br />
+<br />
+
+### Custom File Loader
+
+If you need to prevent the actual loading of the file by `react-doc-viewer`.
+you can decorate your custom renderer with a callback to do as you wish. e.g. Load the file yourself in an iFrame.
+
+```tsx
+MyCustomPNGRenderer.fileLoader = (fileLoadComplete) => {
+  myCustomFileLoaderCode().then(() => {
+    // Whenever you have finished you must call fileLoadComplete() to remove the loading animation
+    fileLoadComplete();
+  });
+};
 ```
 
 <br />
@@ -245,7 +262,7 @@ const JPGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
 export default JPGRenderer;
 
 // List the MIME types that this renderer will respond to
-JPGRenderer.fileTypes = ["image/jpg", "image/jpeg"];
+JPGRenderer.fileTypes = ["jpg", "jpeg", "image/jpg", "image/jpeg"];
 
 // If you have more than one renderer for the same MIME type, use weight. higher is more preferable.
 // Included renderers have a weight of zero
@@ -342,7 +359,7 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 | name        | type                                                          |
 | ----------- | ------------------------------------------------------------- |
 | uri         | `string`                                                      |
-| fileType?   | `string` - **Used Internally - Ignored if passed into props** |
+| fileType?   | `string`                                                      |
 | base64Data? | `string` - **Used Internally - Ignored if passed into props** |
 
 ---
@@ -392,10 +409,11 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 
 ### `DocRenderer` extends React.FC\<[`DocRendererProps`](#docrendererprops)\>
 
-| name      | type       |
-| --------- | ---------- |
-| fileTypes | `string[]` |
-| weight    | `number`   |
+| name        | type                                     |
+| ----------- | ---------------------------------------- |
+| fileTypes   | `string[]`                               |
+| weight      | `number`                                 |
+| fileLoader? | `(fileLoadComplete: () => void) => void` |
 
 ---
 

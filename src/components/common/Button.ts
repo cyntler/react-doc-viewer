@@ -41,6 +41,29 @@ export const Button = styled.button<ButtonProps>`
   }
 `;
 
+export const LinkButton = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 35px;
+  background-color: ${(props: IStyledProps) => props.theme.primary};
+  color: ${(props: IStyledProps) => props.theme.text_primary};
+  box-shadow: 2px 2px 3px #00000033;
+
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  @media (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+`;
+
 export const ButtonPrimary = styled(Button)``;
 export const ButtonSecondary = styled(Button)`
   ${ButtonSecondaryStyle}

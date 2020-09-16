@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { Button } from "../../../components/common";
+import { Button, LinkButton } from "../../../components/common";
 import { IStyledProps } from "../../../types";
 import { PDFContext } from "../state";
 import { setPDFPaginated, setZoomLevel } from "../state/actions";
@@ -27,13 +27,13 @@ const PDFControls: FC<{}> = () => {
       {paginated && numPages > 1 && <PDFPagination />}
 
       {currentDocument?.base64Data && (
-        <ControlButton
+        <DownloadButton
           id="pdf-download"
           href={currentDocument?.base64Data}
           download={currentDocument?.uri}
         >
           <DownloadPDFIcon color="#000" size="75%" />
-        </ControlButton>
+        </DownloadButton>
       )}
 
       <ControlButton
@@ -93,6 +93,15 @@ const Container = styled.div`
 `;
 
 const ControlButton = styled(Button)`
+  width: 30px;
+  height: 30px;
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 25px;
+  }
+`;
+
+const DownloadButton = styled(LinkButton)`
   width: 30px;
   height: 30px;
   @media (max-width: 768px) {
