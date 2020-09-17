@@ -27,10 +27,7 @@ export const useDocumentLoader = (): {
   useEffect(
     () => {
       if (!currentDocument) return;
-      if (currentDocument.fileType !== undefined) {
-        dispatch(updateCurrentDocument({ uri: currentDocument.uri }));
-        return;
-      }
+      if (currentDocument.fileType !== undefined) return;
 
       const controller = new AbortController();
       const { signal } = controller;
