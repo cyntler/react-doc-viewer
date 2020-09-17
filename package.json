@@ -7,8 +7,8 @@
  "main": "build/index.js",
  "types": "build/index.d.ts",
  "dependencies": {
-  "pdfjs-dist": "^2.1.5",
-  "react-pdf": "^5.0.0-beta.5",
+  "pdfjs-dist": "2.4.456",
+  "react-pdf": "5.0.0",
   "styled-components": "^5.1.1"
  },
  "devDependencies": {
@@ -17,10 +17,10 @@
   "@testing-library/user-event": "^7.1.2",
   "@types/jest": "^24.0.0",
   "@types/node": "^12.0.0",
-  "@types/pdfjs-dist": "^2.1.5",
+  "@types/pdfjs-dist": "2.1.5",
   "@types/react": "^16.9.46",
   "@types/react-dom": "^16.9.8",
-  "@types/react-pdf": "^4.0.5",
+  "@types/react-pdf": "4.0.5",
   "@types/styled-components": "^5.1.2",
   "generate-changelog": "^1.8.0",
   "react": "^16.13.1",
