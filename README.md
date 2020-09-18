@@ -26,11 +26,18 @@
 
 ## Current Renderable File Types
 
-| MIME Type             | Available |
-| --------------------- | --------- |
-| application/pdf       | `✓`       |
-| image/png             | `✓`       |
-| image/jpg, image/jpeg | `✓`       |
+| Extension | MIME Type                                                                          | Available |
+| --------- | ---------------------------------------------------------------------------------- | --------- |
+| doc       | application/msword                                                                 | `✓`       |
+| docx      | application/vnd.openxmlformats-officedocument.wordprocessingml.document            | `✓`       |
+| jpg       | image/jpg                                                                          | `✓`       |
+| jpeg      | image/jpeg                                                                         | `✓`       |
+| pdf       | application/pdf                                                                    | `✓`       |
+| png       | image/png                                                                          | `✓`       |
+| ppt       | application/vnd.ms-powerpoint                                                      | `✓`       |
+| pptx      | applicatiapplication/vnd.openxmlformats-officedocument.presentationml.presentation | `✓`       |
+| xls       | application/vnd.ms-excel                                                           | `✓`       |
+| xlsx      | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet                  | `✓`       |
 
 <br />
 <br />

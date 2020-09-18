@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
 import JPGRenderer from "./plugins/jpg";
+import MSDocRenderer from "./plugins/msdoc";
 import PDFRenderer from "./plugins/pdf";
 import PNGRenderer from "./plugins/png";
 import { AppProvider } from "./state";
@@ -56,4 +57,4 @@ const Container = styled.div`
 
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";
-export { JPGRenderer, PDFRenderer, PNGRenderer };
+export { JPGRenderer, MSDocRenderer, PDFRenderer, PNGRenderer };
