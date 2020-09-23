@@ -1,3 +1,9 @@
+#### 0.0.39 (2020-09-23)
+
+##### Documentation Changes
+
+*  README updated (819acb5b)
+
 #### 0.0.38 (2020-09-23)
 
 ##### New Features
