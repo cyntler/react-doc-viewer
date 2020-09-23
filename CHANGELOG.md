@@ -1,3 +1,10 @@
+#### 0.0.38 (2020-09-23)
+
+##### New Features
+
+*  Added renderer for .msg file extension (b4cf7bf4)
+*  useDocumentLoader hook now allows use of custom fileLoaders. e.g. bse64, ArrayBuffer (ebc9a454)
+
 #### 0.0.37 (2020-09-18)
 
 ##### Other Changes
