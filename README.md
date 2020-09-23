@@ -153,7 +153,7 @@ If you need to prevent the actual loading of the file by `react-doc-viewer`.
 you can decorate your custom renderer with a callback to do as you wish. e.g. Load the file yourself in an iFrame.
 
 ```tsx
-MyCustomPNGRenderer.fileLoader = (fileLoadComplete) => {
+MyCustomPNGRenderer.fileLoader = (documentURI, signal, fileLoadComplete) => {
   myCustomFileLoaderCode().then(() => {
     // Whenever you have finished you must call fileLoadComplete() to remove the loading animation
     fileLoadComplete();
@@ -416,11 +416,29 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 
 ### `DocRenderer` extends React.FC\<[`DocRendererProps`](#docrendererprops)\>
 
-| name        | type                                     |
-| ----------- | ---------------------------------------- |
-| fileTypes   | `string[]`                               |
-| weight      | `number`                                 |
-| fileLoader? | `(fileLoadComplete: () => void) => void` |
+| name        | type                                          |
+| ----------- | --------------------------------------------- |
+| fileTypes   | `string[]`                                    |
+| weight      | `number`                                      |
+| fileLoader? | [`FileLoaderFunction`](#fileloaderfunction) ` | null | undefined` |
+
+---
+
+### `FileLoaderFunction`
+
+| name             | type                                        |
+| ---------------- | ------------------------------------------- |
+| documentURI      | `string`                                    |
+| signal           | `AbortSignal`                               |
+| fileLoadComplete | [`FileLoaderComplete`](#fileloadercomplete) |
+
+---
+
+### `FileLoaderComplete`
+
+| name       | type         |
+| ---------- | ------------ |
+| fileReader | `FileReader` |
 
 ---
 
