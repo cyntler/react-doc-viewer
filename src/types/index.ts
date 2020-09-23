@@ -35,6 +35,7 @@ export interface IDocument {
   uri: string;
   fileType?: string;
   base64Data?: string;
+  arrayBuffer?: ArrayBuffer;
 }
 
 export interface DocRendererProps {
@@ -43,5 +44,13 @@ export interface DocRendererProps {
 export interface DocRenderer extends FC<DocRendererProps> {
   fileTypes: string[];
   weight: number;
-  fileLoader?: ((fileLoadComplete: () => void) => void) | null | undefined;
+  fileLoader?: FileLoaderFunction | null | undefined;
 }
+
+export type FileLoaderFunction = (
+  documentURI: string,
+  signal: AbortSignal,
+  fileLoadComplete: FileLoaderComplete
+) => void;
+
+export type FileLoaderComplete = (fileReader?: FileReader) => void;

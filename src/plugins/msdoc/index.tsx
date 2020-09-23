@@ -47,7 +47,9 @@ MSDocRenderer.fileTypes = [
   ...MSDocFTMaps.ppt,
 ];
 MSDocRenderer.weight = 0;
-MSDocRenderer.fileLoader = (fileLoadComplete) => fileLoadComplete();
+MSDocRenderer.fileLoader = (documentURI, signal, fileLoadComplete) => {
+  fileLoadComplete();
+};
 
 const Container = styled.div`
   width: 100%;

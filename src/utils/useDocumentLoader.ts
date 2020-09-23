@@ -6,7 +6,8 @@ import {
   updateCurrentDocument,
 } from "../state/actions";
 import { IMainState } from "../state/reducer";
-import { DocRenderer } from "../types";
+import { DocRenderer, FileLoaderComplete } from "../types";
+import { defaultFileLoader } from "./fileLoaders";
 import { useRendererSelector } from "./useRendererSelector";
 
 /**
@@ -61,22 +62,29 @@ export const useDocumentLoader = (): {
     const controller = new AbortController();
     const { signal } = controller;
 
+    const fileLoaderComplete: FileLoaderComplete = (fileReader) => {
+      if (!currentDocument || !fileReader) {
+        dispatch(setDocumentLoading(false));
+        return;
+      }
+
+      let updatedDocument = { ...currentDocument };
+      if (fileReader.result instanceof ArrayBuffer) {
+        updatedDocument.arrayBuffer = fileReader.result;
+      } else if (isBase64(fileReader.result)) {
+        if (fileReader.result) updatedDocument.base64Data = fileReader.result;
+      }
+
+      dispatch(updateCurrentDocument(updatedDocument));
+      dispatch(setDocumentLoading(false));
+    };
+
     if (CurrentRenderer === null) {
       dispatch(setDocumentLoading(false));
     } else if (CurrentRenderer.fileLoader !== undefined) {
-      CurrentRenderer.fileLoader?.(() => {
-        dispatch(setDocumentLoading(false));
-      });
+      CurrentRenderer.fileLoader?.(documentURI, signal, fileLoaderComplete);
     } else {
-      defaultFileLoader(documentURI, signal, (blob, fileReader) => {
-        dispatch(
-          updateCurrentDocument({
-            ...currentDocument,
-            base64Data: fileReader.result as string,
-          })
-        );
-        dispatch(setDocumentLoading(false));
-      });
+      defaultFileLoader(documentURI, signal, fileLoaderComplete);
     }
 
     return () => {
@@ -87,20 +95,6 @@ export const useDocumentLoader = (): {
   return { state, dispatch, CurrentRenderer };
 };
 
-const defaultFileLoader = (
-  documentURI: string,
-  signal: AbortSignal,
-  cb: (blob: Blob, fileReader: FileReader) => void
-) => {
-  fetch(documentURI, { signal })
-    .then(async (res) => {
-      const blob = await res.blob();
-
-      const fileReader = new FileReader();
-      fileReader.addEventListener("loadend", () => cb(blob, fileReader));
-      fileReader.readAsDataURL(blob);
-    })
-    .catch((e) => {
-      return e;
-    });
+const isBase64 = (value: any) => {
+  return typeof value === "string" || value instanceof String;
 };
