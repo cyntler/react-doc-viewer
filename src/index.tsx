@@ -4,6 +4,7 @@ import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
 import JPGRenderer from "./plugins/jpg";
 import MSDocRenderer from "./plugins/msdoc";
+import MSGRenderer from "./plugins/msg";
 import PDFRenderer from "./plugins/pdf";
 import PNGRenderer from "./plugins/png";
 import { AppProvider } from "./state";
@@ -57,4 +58,4 @@ const Container = styled.div`
 
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";
-export { JPGRenderer, MSDocRenderer, PDFRenderer, PNGRenderer };
+export { JPGRenderer, MSDocRenderer, MSGRenderer, PDFRenderer, PNGRenderer };

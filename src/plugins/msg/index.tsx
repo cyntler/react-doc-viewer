@@ -1,0 +1,95 @@
+import React, { FC, useEffect, useState } from "react";
+import styled from "styled-components";
+import { MSGErrorResult, MSGFileData, MSGReader } from "wl-msg-reader";
+import { DocRenderer, IStyledProps } from "../../types";
+import { arrayBufferFileLoader } from "../../utils/fileLoaders";
+
+const MSGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
+  const [fileData, setFileData] = useState<MSGFileData | MSGErrorResult>();
+
+  useEffect(() => {
+    if (!currentDocument || !currentDocument.arrayBuffer) return;
+
+    const _fd = new MSGReader(currentDocument.arrayBuffer).getFileData();
+    setFileData(_fd);
+  }, [currentDocument?.arrayBuffer]);
+
+  if (!fileData || fileData.hasOwnProperty("error")) {
+    return <span>{(fileData as MSGErrorResult)?.error}</span>;
+  }
+
+  let {
+    recipients,
+    subject,
+    body,
+    senderEmail,
+    senderName,
+  } = fileData as MSGFileData;
+
+  body = body.replace(/(\r\n|\n|\r)/gm, "<br />");
+
+  return (
+    <Container id="msg-renderer">
+      <h2 id="msg-subject-title">{subject}</h2>
+
+      <Sender name={senderName} email={senderEmail} />
+
+      <RecipientContainer id="msg-recipient">
+        <h3 id="msg-recipient-title">Recipients</h3>
+        <ul id="msg-recipient-ul">
+          {recipients.map((r, i) => (
+            <li key={i} id="msg-recipient-li">
+              <span id="msg-recipient-name">{r.name}</span>
+              {r.hasOwnProperty("email") && (
+                <span id="msg-recipient-email"> - {r.email}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </RecipientContainer>
+
+      <BodyContainer id="msg-body" dangerouslySetInnerHTML={{ __html: body }} />
+    </Container>
+  );
+};
+
+const Sender: FC<{ name: string; email: string }> = ({ name, email }) => {
+  if (!name && !email) return null;
+
+  return (
+    <SenderContainer id="msg-sender">
+      <h3 id="msg-sender-title">Sender</h3>
+      {name !== undefined && <div id="msg-sender-name">{name}</div>}
+      {email !== undefined && <div id="msg-sender-email">{email}</div>}
+    </SenderContainer>
+  );
+};
+
+export default MSGRenderer;
+
+MSGRenderer.fileTypes = ["msg", "application/vnd.ms-outlook"];
+MSGRenderer.weight = 0;
+MSGRenderer.fileLoader = arrayBufferFileLoader;
+
+const Container = styled.div`
+  width: 100%;
+  padding: 0 30px;
+`;
+
+const SenderContainer = styled.div`
+  padding: 0 15px 15px 15px;
+  margin-top: 20px;
+  border: 1px solid ${(props: IStyledProps) => props.theme.secondary};
+`;
+
+const RecipientContainer = styled.div`
+  padding: 0 15px;
+  margin-top: 20px;
+  border: 1px solid ${(props: IStyledProps) => props.theme.secondary};
+`;
+
+const BodyContainer = styled.div`
+  padding: 15px;
+  margin: 20px 0 20px 0;
+  border: 1px solid ${(props: IStyledProps) => props.theme.secondary};
+`;

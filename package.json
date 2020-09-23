@@ -9,7 +9,8 @@
  "dependencies": {
   "pdfjs-dist": "2.4.456",
   "react-pdf": "5.0.0",
-  "styled-components": "^5.1.1"
+  "styled-components": "^5.1.1",
+  "wl-msg-reader": "^0.2.0"
  },
  "devDependencies": {
   "@testing-library/jest-dom": "^4.2.4",
