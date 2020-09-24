@@ -5,13 +5,14 @@ import { DocRenderer } from "../../types";
 const ImageProxyRenderer: DocRenderer = (props) => {
   const {
     mainState: { currentDocument },
+    children,
   } = props;
 
   if (!currentDocument) return null;
 
   return (
     <Container id="image-renderer" {...props}>
-      <Img id="image-img" src={currentDocument.base64Data} />
+      {children || <Img id="image-img" src={currentDocument.base64Data} />}
     </Container>
   );
 };
