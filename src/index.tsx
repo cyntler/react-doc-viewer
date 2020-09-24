@@ -9,9 +9,15 @@ import MSDocRenderer from "./plugins/msdoc";
 import MSGRenderer from "./plugins/msg";
 import PDFRenderer from "./plugins/pdf";
 import PNGRenderer from "./plugins/png";
+import TIFFRenderer from "./plugins/tiff";
 import { AppProvider } from "./state";
 import { defaultTheme } from "./theme";
 import { DocRenderer, IConfig, IDocument, ITheme } from "./types";
+import {
+  arrayBufferFileLoader,
+  base64FileLoader,
+  defaultFileLoader,
+} from "./utils/fileLoaders";
 
 export interface DocViewerProps {
   documents: IDocument[];
@@ -68,4 +74,6 @@ export {
   MSGRenderer,
   PDFRenderer,
   PNGRenderer,
+  TIFFRenderer,
 };
+export { defaultFileLoader, base64FileLoader, arrayBufferFileLoader };
