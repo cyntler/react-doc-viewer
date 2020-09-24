@@ -2,6 +2,7 @@ import React, { CSSProperties, FC } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
+import ImageProxyRenderer from "./plugins/image";
 import JPGRenderer from "./plugins/jpg";
 import MSDocRenderer from "./plugins/msdoc";
 import MSGRenderer from "./plugins/msg";
@@ -58,4 +59,11 @@ const Container = styled.div`
 
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";
-export { JPGRenderer, MSDocRenderer, MSGRenderer, PDFRenderer, PNGRenderer };
+export {
+  ImageProxyRenderer,
+  JPGRenderer,
+  MSDocRenderer,
+  MSGRenderer,
+  PDFRenderer,
+  PNGRenderer,
+};
