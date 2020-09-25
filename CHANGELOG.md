@@ -1,3 +1,14 @@
+#### 0.0.40 (2020-09-24)
+
+##### Documentation Changes
+
+*  README - styled component example is missing a closing bracket after DocViewer Fixes #31 (7964c0b9)
+
+##### New Features
+
+*  BMP Image renderer added (2cb03e4c)
+*  Internal ImageProxyRenderer created, that can be used by all other Image renderers, and styled by them (90e575da)
+
 #### 0.0.39 (2020-09-23)
 
 ##### Documentation Changes
