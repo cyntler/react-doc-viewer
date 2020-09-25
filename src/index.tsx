@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
 import BMPRenderer from "./plugins/bmp";
+import HTMLRenderer from "./plugins/html";
 import ImageProxyRenderer from "./plugins/image";
 import JPGRenderer from "./plugins/jpg";
 import MSDocRenderer from "./plugins/msdoc";
@@ -68,6 +69,7 @@ export { DocViewerRenderers } from "./plugins";
 export * from "./types";
 export {
   BMPRenderer,
+  HTMLRenderer,
   ImageProxyRenderer,
   JPGRenderer,
   MSDocRenderer,
