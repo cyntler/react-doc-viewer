@@ -1,4 +1,5 @@
 import BMPRenderer from "./bmp";
+import HTMLRenderer from "./html";
 import JPGRenderer from "./jpg";
 import MSDocRenderer from "./msdoc";
 import MSGRenderer from "./msg";
@@ -8,6 +9,7 @@ import TIFFRenderer from "./tiff";
 
 export const DocViewerRenderers = [
   BMPRenderer,
+  HTMLRenderer,
   JPGRenderer,
   MSDocRenderer,
   MSGRenderer,
