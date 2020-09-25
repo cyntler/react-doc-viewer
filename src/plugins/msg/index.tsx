@@ -14,6 +14,27 @@ const MSGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
     setFileData(_fd);
   }, [currentDocument?.arrayBuffer]);
 
+  useEffect(() => {
+    if (!fileData || fileData.hasOwnProperty("error")) return;
+
+    let iframeCont = document.getElementById(
+      "msg-body"
+    ) as HTMLIFrameElement | null;
+    let iframe = iframeCont?.contentWindow && iframeCont.contentWindow;
+    if (!iframe) return;
+
+    const iframeDoc = iframe.document;
+
+    let body = (fileData as MSGFileData).body.replace(
+      /(\r\n|\n|\r)/gm,
+      "<br />"
+    );
+
+    iframeDoc.open();
+    iframeDoc.write(`${body}`);
+    iframeDoc.close();
+  }, [fileData]);
+
   if (!fileData || fileData.hasOwnProperty("error")) {
     return <span>{(fileData as MSGErrorResult)?.error}</span>;
   }
@@ -21,16 +42,15 @@ const MSGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
   let {
     recipients,
     subject,
-    body,
     senderEmail,
     senderName,
   } = fileData as MSGFileData;
 
-  body = body.replace(/(\r\n|\n|\r)/gm, "<br />");
-
   return (
     <Container id="msg-renderer">
-      <h2 id="msg-subject-title">{subject}</h2>
+      <h2 id="msg-subject-title" style={{ marginBottom: 0 }}>
+        {subject}
+      </h2>
 
       <Sender name={senderName} email={senderEmail} />
 
@@ -48,7 +68,7 @@ const MSGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
         </ul>
       </RecipientContainer>
 
-      <BodyContainer id="msg-body" dangerouslySetInnerHTML={{ __html: body }} />
+      <BodyIFrame id="msg-body" sandbox="allow-same-origin" />
     </Container>
   );
 };
@@ -72,6 +92,8 @@ MSGRenderer.weight = 0;
 MSGRenderer.fileLoader = arrayBufferFileLoader;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 0 30px;
 `;
@@ -88,7 +110,8 @@ const RecipientContainer = styled.div`
   border: 1px solid ${(props: IStyledProps) => props.theme.secondary};
 `;
 
-const BodyContainer = styled.div`
+const BodyIFrame = styled.iframe`
+  height: 100%;
   padding: 15px;
   margin: 20px 0 20px 0;
   border: 1px solid ${(props: IStyledProps) => props.theme.secondary};
