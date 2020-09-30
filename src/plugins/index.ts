@@ -6,6 +6,7 @@ import MSGRenderer from "./msg";
 import PDFRenderer from "./pdf";
 import PNGRenderer from "./png";
 import TIFFRenderer from "./tiff";
+import TXTRenderer from "./txt";
 
 export const DocViewerRenderers = [
   BMPRenderer,
@@ -16,4 +17,5 @@ export const DocViewerRenderers = [
   PDFRenderer,
   PNGRenderer,
   TIFFRenderer,
+  TXTRenderer,
 ];

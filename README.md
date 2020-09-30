@@ -40,6 +40,7 @@
 | ppt       | application/vnd.ms-powerpoint                                                      | `✓`       |
 | pptx      | applicatiapplication/vnd.openxmlformats-officedocument.presentationml.presentation | `✓`       |
 | tiff      | image/tiff                                                                         | `✓`       |
+| txt       | text/plain                                                                         | `✓`       |
 | xls       | application/vnd.ms-excel                                                           | `✓`       |
 | xlsx      | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet                  | `✓`       |
 
