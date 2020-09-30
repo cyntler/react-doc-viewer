@@ -16,7 +16,7 @@ const TIFFRenderer: DocRenderer = (props) => {
     if (!currentDocument || loadedCanvas) return;
 
     var canvas = document.getElementById("tiff-img");
-    canvas && parseTIFF(currentDocument.arrayBuffer, canvas);
+    canvas && parseTIFF(currentDocument.fileData as ArrayBuffer, canvas);
     setLoadedCanvas(true);
   }, []);
 

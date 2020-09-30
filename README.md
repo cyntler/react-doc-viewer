@@ -124,7 +124,7 @@ const MyCustomPNGRenderer: DocRenderer = ({
 
   return (
     <div id="my-png-renderer">
-      <img id="png-img" src={currentDocument.base64Data} />
+      <img id="png-img" src={currentDocument.fileData as string} />
     </div>
   );
 };
@@ -157,10 +157,14 @@ If you need to prevent the actual loading of the file by `react-doc-viewer`.
 you can decorate your custom renderer with a callback to do as you wish. e.g. Load the file yourself in an iFrame.
 
 ```tsx
-MyCustomPNGRenderer.fileLoader = (documentURI, signal, fileLoadComplete) => {
+MyCustomPNGRenderer.fileLoader = ({
+  documentURI,
+  signal,
+  fileLoaderComplete,
+}) => {
   myCustomFileLoaderCode().then(() => {
-    // Whenever you have finished you must call fileLoadComplete() to remove the loading animation
-    fileLoadComplete();
+    // Whenever you have finished you must call fileLoaderComplete() to remove the loading animation
+    fileLoaderComplete();
   });
 };
 ```
@@ -265,7 +269,7 @@ const JPGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
 
   return (
     <div id="jpg-renderer">
-      <img id="jpg-img" src={currentDocument.base64Data} />
+      <img id="jpg-img" src={currentDocument.fileData as string} />
     </div>
   );
 };
@@ -367,11 +371,11 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 
 ### `IDocument`
 
-| name        | type                                                          |
-| ----------- | ------------------------------------------------------------- |
-| uri         | `string`                                                      |
-| fileType?   | `string`                                                      |
-| base64Data? | `string` - **Used Internally - Ignored if passed into props** |
+| name      | type     |
+| --------- | -------- |
+| uri       | `string` |
+| fileType? | `string` |
+| fileData? | `string  | ArrayBuffer` - **Used Internally - Ignored if passed into props** |
 
 ---
 
@@ -430,11 +434,17 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 
 ### `FileLoaderFunction`
 
-| name             | type                                        |
-| ---------------- | ------------------------------------------- |
-| documentURI      | `string`                                    |
-| signal           | `AbortSignal`                               |
-| fileLoadComplete | [`FileLoaderComplete`](#fileloadercomplete) |
+(props: [`FileLoaderFuncProps`](#fileloaderfuncprops)) => void
+
+---
+
+### `FileLoaderFuncProps`
+
+| name               | type                                        |
+| ------------------ | ------------------------------------------- |
+| documentURI        | `string`                                    |
+| signal             | `AbortSignal`                               |
+| fileLoaderComplete | [`FileLoaderComplete`](#fileloadercomplete) |
 
 ---
 

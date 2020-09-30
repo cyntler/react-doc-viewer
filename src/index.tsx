@@ -14,11 +14,6 @@ import TIFFRenderer from "./plugins/tiff";
 import { AppProvider } from "./state";
 import { defaultTheme } from "./theme";
 import { DocRenderer, IConfig, IDocument, ITheme } from "./types";
-import {
-  arrayBufferFileLoader,
-  base64FileLoader,
-  defaultFileLoader,
-} from "./utils/fileLoaders";
 
 export interface DocViewerProps {
   documents: IDocument[];
@@ -67,6 +62,7 @@ const Container = styled.div`
 
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";
+export * from "./utils/fileLoaders";
 export {
   BMPRenderer,
   HTMLRenderer,
@@ -78,4 +74,3 @@ export {
   PNGRenderer,
   TIFFRenderer,
 };
-export { defaultFileLoader, base64FileLoader, arrayBufferFileLoader };

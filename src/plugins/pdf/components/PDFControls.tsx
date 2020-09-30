@@ -26,10 +26,10 @@ const PDFControls: FC<{}> = () => {
     <Container id="pdf-controls">
       {paginated && numPages > 1 && <PDFPagination />}
 
-      {currentDocument?.base64Data && (
+      {currentDocument?.fileData && (
         <DownloadButton
           id="pdf-download"
-          href={currentDocument?.base64Data}
+          href={currentDocument?.fileData as string}
           download={currentDocument?.uri}
         >
           <DownloadPDFIcon color="#000" size="75%" />

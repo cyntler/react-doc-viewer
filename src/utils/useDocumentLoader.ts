@@ -6,8 +6,8 @@ import {
   updateCurrentDocument,
 } from "../state/actions";
 import { IMainState } from "../state/reducer";
-import { DocRenderer, FileLoaderComplete } from "../types";
-import { defaultFileLoader } from "./fileLoaders";
+import { DocRenderer } from "../types";
+import { defaultFileLoader, FileLoaderComplete } from "./fileLoaders";
 import { useRendererSelector } from "./useRendererSelector";
 
 /**
@@ -69,10 +69,8 @@ export const useDocumentLoader = (): {
       }
 
       let updatedDocument = { ...currentDocument };
-      if (fileReader.result instanceof ArrayBuffer) {
-        updatedDocument.arrayBuffer = fileReader.result;
-      } else if (isBase64(fileReader.result)) {
-        if (fileReader.result) updatedDocument.base64Data = fileReader.result;
+      if (fileReader.result !== null) {
+        updatedDocument.fileData = fileReader.result;
       }
 
       dispatch(updateCurrentDocument(updatedDocument));
@@ -82,9 +80,9 @@ export const useDocumentLoader = (): {
     if (CurrentRenderer === null) {
       dispatch(setDocumentLoading(false));
     } else if (CurrentRenderer.fileLoader !== undefined) {
-      CurrentRenderer.fileLoader?.(documentURI, signal, fileLoaderComplete);
+      CurrentRenderer.fileLoader?.({ documentURI, signal, fileLoaderComplete });
     } else {
-      defaultFileLoader(documentURI, signal, fileLoaderComplete);
+      defaultFileLoader({ documentURI, signal, fileLoaderComplete });
     }
 
     return () => {
@@ -93,8 +91,4 @@ export const useDocumentLoader = (): {
   }, [CurrentRenderer]);
 
   return { state, dispatch, CurrentRenderer };
-};
-
-const isBase64 = (value: any) => {
-  return typeof value === "string" || value instanceof String;
 };

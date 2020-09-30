@@ -8,11 +8,13 @@ const MSGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
   const [fileData, setFileData] = useState<MSGFileData | MSGErrorResult>();
 
   useEffect(() => {
-    if (!currentDocument || !currentDocument.arrayBuffer) return;
+    if (!currentDocument || !currentDocument.fileData) return;
 
-    const _fd = new MSGReader(currentDocument.arrayBuffer).getFileData();
+    const _fd = new MSGReader(
+      currentDocument.fileData as ArrayBuffer
+    ).getFileData();
     setFileData(_fd);
-  }, [currentDocument?.arrayBuffer]);
+  }, [currentDocument?.fileData]);
 
   useEffect(() => {
     if (!fileData || fileData.hasOwnProperty("error")) return;

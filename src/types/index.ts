@@ -1,6 +1,7 @@
 import { FC, ReactElement } from "react";
 import { ThemedStyledProps } from "styled-components";
 import { IMainState } from "../state/reducer";
+import { FileLoaderFunction } from "../utils/fileLoaders";
 
 export interface IConfig {
   header?: IHeaderConfig;
@@ -34,8 +35,7 @@ export interface IStyledProps extends ThemedStyledProps<any, any> {
 export interface IDocument {
   uri: string;
   fileType?: string;
-  base64Data?: string;
-  arrayBuffer?: ArrayBuffer;
+  fileData?: string | ArrayBuffer;
 }
 
 export interface DocRendererProps {
@@ -46,11 +46,3 @@ export interface DocRenderer extends FC<DocRendererProps> {
   weight: number;
   fileLoader?: FileLoaderFunction | null | undefined;
 }
-
-export type FileLoaderFunction = (
-  documentURI: string,
-  signal: AbortSignal,
-  fileLoadComplete: FileLoaderComplete
-) => void;
-
-export type FileLoaderComplete = (fileReader?: FileReader) => void;
