@@ -1,3 +1,19 @@
+#### 0.0.42 (2020-09-30)
+
+##### Documentation Changes
+
+*  README - styled component example is missing a closing bracket after DocViewer Fixes #31 (da0a40ee)
+
+##### New Features
+
+*  BMP Image renderer added (2e8578b1)
+*  Internal ImageProxyRenderer created, that can be used by all other Image renderers, and styled by them (dc2afb71)
+
+##### Other Changes
+
+* Alcumus/react-doc-viewer into develop (2184d46c)
+* mattmogford-alcumus/40_Create-HTMLRenderer (9eff64e2)
+
 #### 0.0.41 (2020-09-25)
 
 #### 0.0.40 (2020-09-24)
