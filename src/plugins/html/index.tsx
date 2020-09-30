@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { DocRenderer, IStyledProps } from "../../types";
-import { base64FileLoader } from "../../utils/fileLoaders";
+import { dataURLFileLoader } from "../../utils/fileLoaders";
 
 const HTMLRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
   useEffect(() => {
-    const bodyBase64 =
-      currentDocument?.base64Data?.replace("data:text/html;base64,", "") || "";
+    const b64String = currentDocument?.fileData as string;
+    const bodyBase64 = b64String?.replace("data:text/html;base64,", "") || "";
     const body: string = window.atob(bodyBase64);
 
     let iframeCont = document.getElementById(
@@ -32,7 +32,7 @@ export default HTMLRenderer;
 
 HTMLRenderer.fileTypes = ["htm", "html", "text/htm", "text/html"];
 HTMLRenderer.weight = 0;
-HTMLRenderer.fileLoader = base64FileLoader;
+HTMLRenderer.fileLoader = dataURLFileLoader;
 
 const Container = styled.div`
   display: flex;
