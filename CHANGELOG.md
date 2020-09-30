@@ -1,3 +1,9 @@
+#### 0.0.43 (2020-09-30)
+
+##### New Features
+
+* **Combine File Loaders:**  File Loaders duplicate code combined, also base64 and arrayBuffer combined into fileData (#47) (f3fd9952)
+
 #### 0.0.42 (2020-09-30)
 
 ##### Documentation Changes
