@@ -1,3 +1,9 @@
+#### 0.1.2 (2020-10-26)
+
+##### Bug Fixes
+
+*  Added github url to npm package ([b713957f](https://github.com/Alcumus/react-doc-viewer/commit/b713957fef42e896ab45d99a3127a59e98a11e60))
+
 #### 0.1.1 (2020-10-26)
 
 ##### New Features
