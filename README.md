@@ -238,7 +238,8 @@ You can provide a config object, which configures parts of the component as requ
 <DocViewer documents={docs} config={{
  header: {
   disableHeader: false,
-  disableFileName: false
+  disableFileName: false,
+  retainURLParams: false
  }
 }} />
 ```
@@ -394,6 +395,7 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 | ------------------ | ------------------------------------- |
 | disableHeader?     | `boolean`                             |
 | disableFileName?   | `boolean`                             |
+| retainURLParams?   | `boolean`                             |
 | overrideComponent? | [`IHeaderOverride`](#iheaderoverride) |
 
 ---
