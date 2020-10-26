@@ -1,3 +1,11 @@
+#### 0.1.1 (2020-10-26)
+
+##### New Features
+
+* **FileName Header:**
+  *  decodeURI when rendering fileName in header title (79c0da83)
+  *  When rendering fileName in header, remove url params unless requested to keep (109da8d7)
+
 #### 0.0.43 (2020-09-30)
 
 ##### New Features
