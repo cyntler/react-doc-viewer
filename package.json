@@ -4,6 +4,9 @@
  "description": "Document viewer for react. Renders online/local documents.",
  "author": "Matthew Mogford",
  "license": "ISC",
+ "repository": {
+  "url": "https://github.com/Alcumus/react-doc-viewer"
+ },
  "main": "build/index.js",
  "types": "build/index.d.ts",
  "dependencies": {
