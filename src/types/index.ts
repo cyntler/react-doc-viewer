@@ -9,6 +9,7 @@ export interface IConfig {
 export interface IHeaderConfig {
   disableHeader?: boolean;
   disableFileName?: boolean;
+  retainURLParams?: boolean;
   overrideComponent?: IHeaderOverride;
 }
 
