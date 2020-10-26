@@ -11,6 +11,8 @@ export const FileName: FC<{}> = () => {
   if (!currentDocument || config?.header?.disableFileName) return null;
 
   let fileName = currentDocument.uri || "";
+  fileName = decodeURI(fileName);
+
   if (!config?.header?.retainURLParams) {
     fileName = fileName.split("?")[0];
   }
