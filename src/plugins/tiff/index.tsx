@@ -11,14 +11,27 @@ const TIFFRenderer: DocRenderer = (props) => {
   } = props;
 
   const [loadedCanvas, setLoadedCanvas] = useState(false);
+  const [corruptedFile, setCorruptedFile] = useState(false);
 
   useEffect(() => {
     if (!currentDocument || loadedCanvas) return;
 
     var canvas = document.getElementById("tiff-img");
-    canvas && parseTIFF(currentDocument.fileData as ArrayBuffer, canvas);
-    setLoadedCanvas(true);
+    try {
+      canvas && parseTIFF(currentDocument.fileData as ArrayBuffer, canvas);
+      setLoadedCanvas(true);
+    } catch (error) {
+      setCorruptedFile(true);
+    }
   }, []);
+
+  if (corruptedFile) {
+    return (
+      <ImageProxyRenderer {...props}>
+        <div>Your file is corrupted. Please check it on your machine.</div>
+      </ImageProxyRenderer>
+    );
+  }
 
   return (
     <ImageProxyRenderer {...props}>
