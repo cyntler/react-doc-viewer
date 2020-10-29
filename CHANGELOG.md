@@ -1,3 +1,9 @@
+#### 0.1.5 (2020-10-29)
+
+##### Bug Fixes
+
+* **TIFFRenderer file Corrupt:**  Don't crash if parseTIFF fails because of corrupted file. ([30755e57](https://github.com/Alcumus/react-doc-viewer/commit/30755e57ec0bef8a665ce1c6f9e8f93c4ada55dc))
+
 #### 0.1.4 (2020-10-29)
 
 ##### Bug Fixes
