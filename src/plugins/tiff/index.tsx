@@ -26,7 +26,7 @@ const TIFFRenderer: DocRenderer = (props) => {
     </ImageProxyRenderer>
   );
 };
-TIFFRenderer.fileTypes = ["tiff", "image/tiff"];
+TIFFRenderer.fileTypes = ["tif", "tiff", "image/tif", "image/tiff"];
 TIFFRenderer.weight = 0;
 TIFFRenderer.fileLoader = arrayBufferFileLoader;
 
