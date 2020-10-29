@@ -1,3 +1,13 @@
+#### 0.1.3 (2020-10-29)
+
+##### New Features
+
+* **TIF:**  Added .tif as an option to render within TIFFRenderer. ([a32f9b0f](https://github.com/Alcumus/react-doc-viewer/commit/a32f9b0ffff1a0a37d14a6dd948e1d0f52ffe6c6))
+
+##### Other Changes
+
+* fix/pptx ([60c27812](https://github.com/Alcumus/react-doc-viewer/commit/60c27812f658d4edf4a7cc1673c26a95b838eca1))
+
 #### 0.1.2 (2020-10-26)
 
 ##### Bug Fixes
