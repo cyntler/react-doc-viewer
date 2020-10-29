@@ -1,3 +1,9 @@
+#### 0.1.4 (2020-10-29)
+
+##### Bug Fixes
+
+* **TIFFRenderer crash:**  If parseTiff is supplied with an undefined tiffArrayBuffer. Return out. ([eedeac1e](https://github.com/Alcumus/react-doc-viewer/commit/eedeac1e0deada4126e77058d5c52b1ed92f200f))
+
 #### 0.1.3 (2020-10-29)
 
 ##### New Features
