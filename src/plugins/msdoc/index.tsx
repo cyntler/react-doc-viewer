@@ -45,6 +45,7 @@ MSDocRenderer.fileTypes = [
   ...MSDocFTMaps.xls,
   ...MSDocFTMaps.xlsx,
   ...MSDocFTMaps.ppt,
+  ...MSDocFTMaps.pptx,
 ];
 MSDocRenderer.weight = 0;
 MSDocRenderer.fileLoader = ({ fileLoaderComplete }) => fileLoaderComplete();
