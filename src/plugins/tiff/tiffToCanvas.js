@@ -347,14 +347,14 @@ const parseFileDirectory = (byteOffset) => {
 export const parseTIFF = (tiffArrayBuffer, _canvas) => {
   let canvas = _canvas || document.createElement("canvas");
 
+  if (!tiffArrayBuffer) return;
+
   tiffDataView = new DataView(tiffArrayBuffer);
   // canvas = _canvas;
 
   littleEndian = isLittleEndian(tiffDataView);
 
-  if (!hasTowel(tiffDataView, littleEndian)) {
-    return;
-  }
+  if (!hasTowel(tiffDataView, littleEndian)) return;
 
   var firstIFDByteOffset = getBytes(4, 4);
 
