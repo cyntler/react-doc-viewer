@@ -393,7 +393,7 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 | uri       | `string` |
 | fileType? | `string` |
 | fileName? | `string` |
-| fileData? | `string` |
+| fileData? | `string  | ArrayBuffer` - **Used Internally - Ignored if passed into props** |
 
 ---
 
@@ -423,7 +423,7 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 | state            | [`IMainState`](#imainstate) |
 | previousDocument | `() => void`                |
 | nextDocument     | `() => void`                |
-| `returns`        | `ReactElement<any, any>`    |
+| `returns`        | `ReactElement<any, any>     | null` |
 
 ---
 
@@ -443,11 +443,11 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 
 ### `DocRenderer` extends React.FC\<[`DocRendererProps`](#docrendererprops)\>
 
-| name        | type                                        |
-| ----------- | ------------------------------------------- |
-| fileTypes   | `string[]`                                  |
-| weight      | `number`                                    |
-| fileLoader? | [`FileLoaderFunction`](#fileloaderfunction) |
+| name        | type                                          |
+| ----------- | --------------------------------------------- |
+| fileTypes   | `string[]`                                    |
+| weight      | `number`                                      |
+| fileLoader? | [`FileLoaderFunction`](#fileloaderfunction) ` | null | undefined` |
 
 ---
 
