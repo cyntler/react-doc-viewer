@@ -2,24 +2,39 @@
 
 # Contents
 
-- [Current Renderable File Types](#current-renderable-file-types)
-- [Installation](#installation)
-  - [Core](#core)
-- [Usage](#usage)
-  - [Basic](#basic)
-  - [Included Renderers](#included-renderers)
-  - [Custom Renderer](#custom-renderer)
-  - [Themed](#themed)
-  - [Styling](#styling)
-    - [CSS Class](#css-class)
-    - [CSS Class Default Override](#css-class-default-override)
-    - [React Inline](#react-inline)
-    - [StyledComponent](#styledcomponent)
-  - [Config](#config)
-- [Contributing](#contributing)
-  - [Creating a Renderer Plugin](#creating-a-renderer-plugin)
-- [Overriding Header Component](#overriding-header-component)
-- [API](#api)
+- [react-doc-viewer](#react-doc-viewer)
+- [Contents](#contents)
+  - [Current Renderable File Types](#current-renderable-file-types)
+  - [Installation](#installation)
+    - [Core](#core)
+  - [Usage](#usage)
+    - [Basic](#basic)
+    - [Included Renderers](#included-renderers)
+    - [Custom Renderer](#custom-renderer)
+    - [Custom File Loader](#custom-file-loader)
+    - [Themed](#themed)
+    - [Styling](#styling)
+      - [- CSS Class](#--css-class)
+      - [- CSS Class Default Override](#--css-class-default-override)
+      - [- React Inline](#--react-inline)
+      - [- StyledComponent](#--styledcomponent)
+    - [Config](#config)
+  - [Contributing](#contributing)
+    - [Creating a Renderer Plugin](#creating-a-renderer-plugin)
+  - [Overriding Header Component](#overriding-header-component)
+  - [API](#api)
+    - [`DocViewer props`](#docviewer-props)
+    - [`IDocument`](#idocument)
+    - [`IConfig`](#iconfig)
+    - [`IHeaderConfig`](#iheaderconfig)
+    - [`IHeaderOverride` () => `ReactElement<any, any> | null`](#iheaderoverride---reactelementany-any--null)
+    - [`ITheme`](#itheme)
+    - [`DocRenderer` extends React.FC\<`DocRendererProps`\>](#docrenderer-extends-reactfcdocrendererprops)
+    - [`FileLoaderFunction`](#fileloaderfunction)
+    - [`FileLoaderFuncProps`](#fileloaderfuncprops)
+    - [`FileLoaderComplete`](#fileloadercomplete)
+    - [`DocRendererProps`](#docrendererprops)
+    - [`IMainState`](#imainstate)
 
 <br />
 <br />
@@ -374,9 +389,10 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 ### `IDocument`
 
 | name      | type     |
-| --------- | -------- |
+| --------- | -------- | ----------------------------------------------------------------- |
 | uri       | `string` |
 | fileType? | `string` |
+| fileName? | `string` |
 | fileData? | `string  | ArrayBuffer` - **Used Internally - Ignored if passed into props** |
 
 ---
@@ -403,7 +419,7 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 ### `IHeaderOverride` () => `ReactElement<any, any> | null`
 
 | name             | type                        |
-| ---------------- | --------------------------- |
+| ---------------- | --------------------------- | ----- |
 | state            | [`IMainState`](#imainstate) |
 | previousDocument | `() => void`                |
 | nextDocument     | `() => void`                |
@@ -428,7 +444,7 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 ### `DocRenderer` extends React.FC\<[`DocRendererProps`](#docrendererprops)\>
 
 | name        | type                                          |
-| ----------- | --------------------------------------------- |
+| ----------- | --------------------------------------------- | ---- | ---------- |
 | fileTypes   | `string[]`                                    |
 | weight      | `number`                                      |
 | fileLoader? | [`FileLoaderFunction`](#fileloaderfunction) ` | null | undefined` |
