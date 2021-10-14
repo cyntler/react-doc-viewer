@@ -19,7 +19,7 @@ export const useDocumentLoader = (): {
   CurrentRenderer: DocRenderer | null | undefined;
 } => {
   const { state, dispatch } = useContext(DocViewerContext);
-  const { currentFileNo, currentDocument } = state;
+  const { currentFileNo, currentDocument, prefetchMethod } = state;
 
   const { CurrentRenderer } = useRendererSelector();
 
@@ -33,7 +33,7 @@ export const useDocumentLoader = (): {
       const controller = new AbortController();
       const { signal } = controller;
 
-      fetch(documentURI, { method: "HEAD", signal }).then((response) => {
+      fetch(documentURI, { method: prefetchMethod || "HEAD", signal }).then((response) => {
         const contentTypeRaw = response.headers.get("content-type");
         const contentTypes = contentTypeRaw?.split(";") || [];
         const contentType = contentTypes.length ? contentTypes[0] : undefined;
