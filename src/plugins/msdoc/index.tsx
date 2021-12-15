@@ -26,6 +26,7 @@ const MSDocFTMaps = {
   docx: [
     "docx",
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/octet-stream"
   ],
   xls: ["xls", "application/vnd.ms-excel"],
   xlsx: [
