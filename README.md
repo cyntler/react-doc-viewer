@@ -185,9 +185,13 @@ Each component / div already has a DOM id that can be used to style any part of 
 
 ```tsx
 import styled from "styled-components";
-//...
+
+// ...
+
 <MyDocViewer documents={docs} />;
-//...
+
+// ...
+
 const MyDocViewer = styled(DocViewer)`
   border-radius: 10px;
 `;
@@ -197,7 +201,7 @@ const MyDocViewer = styled(DocViewer)`
 
 You can provide a config object, which configures parts of the component as required.
 
-```xml
+```tsx
 <DocViewer documents={docs} config={{
  header: {
   disableHeader: false,
