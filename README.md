@@ -250,14 +250,13 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
   pluginRenderers={DocViewerRenderers}
   documents={
     {
-      /**/
+      // ...
     }
   }
   config={{
     header: {
-      overrideComponent: myHeader;
-      },
-    },
-  }
+      overrideComponent: myHeader
+    }
+  }}
 />
 ```
