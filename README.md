@@ -34,7 +34,7 @@ Use one of the package managers for Node.js.
 
 ## Usage
 
-> **Warning** - _By default the component height will expand and contract to the current loaded file. The width will expand to fill the parent._
+> **Warning:** _By default the component height will expand and contract to the current loaded file. The width will expand to fill the parent._
 
 ### Basic
 
