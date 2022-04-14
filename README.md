@@ -79,9 +79,6 @@ import DocViewer, { PDFRenderer, PNGRenderer } from "react-doc-viewer";
 />;
 ```
 
-<br />
-<br />
-
 ### Custom Renderer
 
 To create a custom renderer, that will just exist for your project.
