@@ -20,7 +20,8 @@ const DocViewerContext = createContext<{
 }>({ state: initialState, dispatch: () => null });
 
 const AppProvider: FC<DocViewerProps> = (props) => {
-  const { children, documents, config, pluginRenderers, prefetchMethod } = props;
+  const { children, documents, config, pluginRenderers, prefetchMethod } =
+    props;
 
   const [state, dispatch] = useReducer<MainStateReducer>(mainStateReducer, {
     ...initialState,
@@ -31,12 +32,10 @@ const AppProvider: FC<DocViewerProps> = (props) => {
     prefetchMethod,
   });
 
-  // On inital load, and whenever they change,
-  // replace documents with the new props passed in
   useEffect(() => {
     dispatch(setAllDocuments(documents));
     config && dispatch(setMainConfig(config));
-  }, [documents]);
+  }, [documents, config]);
 
   return (
     <DocViewerContext.Provider value={{ state, dispatch }}>

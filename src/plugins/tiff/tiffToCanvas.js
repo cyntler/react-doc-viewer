@@ -680,10 +680,13 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
             // Bilevel or Grayscale
             // BlackIsZero
             case 1:
-              red = green = blue = clampColorSample(
-                pixelSamples[0],
-                sampleProperties[0].bitsPerSample
-              );
+              red =
+                green =
+                blue =
+                  clampColorSample(
+                    pixelSamples[0],
+                    sampleProperties[0].bitsPerSample
+                  );
               break;
 
             // RGB Full Color

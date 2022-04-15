@@ -1,6 +1,5 @@
 import { IConfig, IDocument } from "../types";
 
-// SET_DOCUMENTS
 export const SET_ALL_DOCUMENTS: string = "SET_ALL_DOCUMENTS";
 export interface SetAllDocuments {
   type: typeof SET_ALL_DOCUMENTS;
@@ -11,7 +10,6 @@ export const setAllDocuments = (documents: IDocument[]): SetAllDocuments => ({
   documents,
 });
 
-// SET_DOCUMENT_LOADING
 export const SET_DOCUMENT_LOADING: string = "SET_DOCUMENT_LOADING";
 export interface SetDocumentLoading {
   type: typeof SET_DOCUMENT_LOADING;
@@ -22,14 +20,12 @@ export const setDocumentLoading = (value: boolean): SetDocumentLoading => ({
   value,
 });
 
-// NEXT_DOCUMENT
 export const NEXT_DOCUMENT: string = "NEXT_DOCUMENT";
 export interface NextDocument {
   type: typeof NEXT_DOCUMENT;
 }
 export const nextDocument = (): NextDocument => ({ type: NEXT_DOCUMENT });
 
-// PREVIOUS_DOCUMENT
 export const PREVIOUS_DOCUMENT: string = "PREVIOUS_DOCUMENT";
 export interface PreviousDocument {
   type: typeof PREVIOUS_DOCUMENT;
@@ -38,7 +34,6 @@ export const previousDocument = (): PreviousDocument => ({
   type: PREVIOUS_DOCUMENT,
 });
 
-// UPDATE_CURRENT_DOCUMENT
 export const UPDATE_CURRENT_DOCUMENT: string = "UPDATE_CURRENT_DOCUMENT";
 export interface UpdateCurrentDocument {
   type: typeof UPDATE_CURRENT_DOCUMENT;
@@ -48,7 +43,6 @@ export const updateCurrentDocument = (
   document: IDocument
 ): UpdateCurrentDocument => ({ type: UPDATE_CURRENT_DOCUMENT, document });
 
-// SET_RENDERER_RECT
 export const SET_RENDERER_RECT: string = "SET_RENDERER_RECT";
 export interface SetRendererRect {
   type: typeof SET_RENDERER_RECT;
@@ -59,7 +53,6 @@ export const setRendererRect = (rect: DOMRect): SetRendererRect => ({
   rect,
 });
 
-// SET_MAIN_CONFIG
 export const SET_MAIN_CONFIG: string = "SET_MAIN_CONFIG";
 export interface SetMainConfig {
   type: typeof SET_MAIN_CONFIG;

@@ -33,25 +33,25 @@ export const useDocumentLoader = (): {
       const controller = new AbortController();
       const { signal } = controller;
 
-      fetch(documentURI, { method: prefetchMethod || "HEAD", signal }).then((response) => {
-        const contentTypeRaw = response.headers.get("content-type");
-        const contentTypes = contentTypeRaw?.split(";") || [];
-        const contentType = contentTypes.length ? contentTypes[0] : undefined;
+      fetch(documentURI, { method: prefetchMethod || "HEAD", signal }).then(
+        (response) => {
+          const contentTypeRaw = response.headers.get("content-type");
+          const contentTypes = contentTypeRaw?.split(";") || [];
+          const contentType = contentTypes.length ? contentTypes[0] : undefined;
 
-        dispatch(
-          updateCurrentDocument({
-            ...currentDocument,
-            fileType: contentType || undefined,
-          })
-        );
-      });
+          dispatch(
+            updateCurrentDocument({
+              ...currentDocument,
+              fileType: contentType || undefined,
+            })
+          );
+        }
+      );
 
       return () => {
         controller.abort();
       };
     },
-    // eslint ignore added, because a warning appears for dispatch to
-    // be a dependancy of the useEffect
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentFileNo, documentURI]
   );
@@ -88,7 +88,7 @@ export const useDocumentLoader = (): {
     return () => {
       controller.abort();
     };
-  }, [CurrentRenderer, currentFileNo]);
+  }, [CurrentRenderer, currentFileNo, currentDocument, dispatch, documentURI]);
 
   return { state, dispatch, CurrentRenderer };
 };
