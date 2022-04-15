@@ -155,6 +155,18 @@ You can provide a theme object with one or all of the available properties.
 />
 ```
 
+## Custom pre-fetch HTTP Verb
+
+Some services (such as AWS) provide URLs that works only for one pre-configured verb.
+By default, `react-doc-viewer` fetches document metadata through a `HEAD` request in order to guess its `Content-Type`.
+If you need to have a specific verb for the pre-fetching, use the `prefetchMethod` option on the DocViewer:
+
+```tsx
+import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+
+<DocViewer prefetchMethod="GET" />;
+```
+
 ## Styling
 
 Any styling applied to the `<DocViewer>` component, is directly applied to the main `div` container.
@@ -202,13 +214,16 @@ const MyDocViewer = styled(DocViewer)`
 You can provide a config object, which configures parts of the component as required.
 
 ```tsx
-<DocViewer documents={docs} config={{
- header: {
-  disableHeader: false,
-  disableFileName: false,
-  retainURLParams: false
- }
-}} />
+<DocViewer
+  documents={docs}
+  config={{
+    header: {
+      disableHeader: false,
+      disableFileName: false,
+      retainURLParams: false,
+    },
+  }}
+/>
 ```
 
 ## Overriding Header Component
@@ -260,3 +275,134 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
   }}
 />
 ```
+
+# <<<<<<< HEAD
+
+## API
+
+---
+
+### `DocViewer props`
+
+| name             | type                            |
+| ---------------- | ------------------------------- |
+| documents        | [`IDocument[]`](#idocument)     |
+| className?       | `string`                        |
+| style?           | `React.CSSProperties`           |
+| config?          | [`IConfig`](#iconfig)           |
+| theme?           | [`ITheme`](#itheme)             |
+| pluginRenderers? | [`DocRenderer[]`](#docrenderer) |
+| prefetchMethod?  | `string`                        |
+
+---
+
+### `IDocument`
+
+| name      | type     |
+| --------- | -------- | ----------------------------------------------------------------- |
+| uri       | `string` |
+| fileType? | `string` |
+| fileData? | `string  | ArrayBuffer` - **Used Internally - Ignored if passed into props** |
+
+---
+
+### `IConfig`
+
+| name    | type                              |
+| ------- | --------------------------------- |
+| header? | [`IHeaderConfig`](#iheaderconfig) |
+
+---
+
+### `IHeaderConfig`
+
+| name               | type                                  |
+| ------------------ | ------------------------------------- |
+| disableHeader?     | `boolean`                             |
+| disableFileName?   | `boolean`                             |
+| retainURLParams?   | `boolean`                             |
+| overrideComponent? | [`IHeaderOverride`](#iheaderoverride) |
+
+---
+
+### `IHeaderOverride` () => `ReactElement<any, any> | null`
+
+| name             | type                        |
+| ---------------- | --------------------------- | ----- |
+| state            | [`IMainState`](#imainstate) |
+| previousDocument | `() => void`                |
+| nextDocument     | `() => void`                |
+| `returns`        | `ReactElement<any, any>     | null` |
+
+---
+
+### `ITheme`
+
+| name                   | type      |
+| ---------------------- | --------- |
+| primary?               | `string`  |
+| secondary?             | `string`  |
+| tertiary?              | `string`  |
+| text_primary?          | `string`  |
+| text_secondary?        | `string`  |
+| text_tertiary?         | `string`  |
+| disableThemeScrollbar? | `boolean` |
+
+---
+
+### `DocRenderer` extends React.FC\<[`DocRendererProps`](#docrendererprops)\>
+
+| name        | type                                          |
+| ----------- | --------------------------------------------- | ---- | ---------- |
+| fileTypes   | `string[]`                                    |
+| weight      | `number`                                      |
+| fileLoader? | [`FileLoaderFunction`](#fileloaderfunction) ` | null | undefined` |
+
+---
+
+### `FileLoaderFunction`
+
+(props: [`FileLoaderFuncProps`](#fileloaderfuncprops)) => void
+
+---
+
+### `FileLoaderFuncProps`
+
+| name               | type                                        |
+| ------------------ | ------------------------------------------- |
+| documentURI        | `string`                                    |
+| signal             | `AbortSignal`                               |
+| fileLoaderComplete | [`FileLoaderComplete`](#fileloadercomplete) |
+
+---
+
+### `FileLoaderComplete`
+
+| name       | type         |
+| ---------- | ------------ |
+| fileReader | `FileReader` |
+
+---
+
+### `DocRendererProps`
+
+| name      | type                        |
+| --------- | --------------------------- |
+| mainState | [`IMainState`](#imainstate) |
+
+---
+
+### `IMainState`
+
+| name             | type                        |
+| ---------------- | --------------------------- |
+| currentFileNo    | number                      |
+| documents        | [`IDocument[]`](#idocument) |
+| documentLoading? | boolean                     |
+| currentDocument? | [`IDocument`](#idocument)   |
+| rendererRect?    | DOMRect                     |
+| config?          | [`IConfig`](#iconfig)       |
+
+---
+
+> > > > > > > 54d9219eabc3c0883ba71bc533e7fc98ff88e3da
