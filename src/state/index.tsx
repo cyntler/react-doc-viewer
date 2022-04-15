@@ -20,7 +20,7 @@ const DocViewerContext = createContext<{
 }>({ state: initialState, dispatch: () => null });
 
 const AppProvider: FC<DocViewerProps> = (props) => {
-  const { children, documents, config, pluginRenderers } = props;
+  const { children, documents, config, pluginRenderers, prefetchMethod } = props;
 
   const [state, dispatch] = useReducer<MainStateReducer>(mainStateReducer, {
     ...initialState,
@@ -28,6 +28,7 @@ const AppProvider: FC<DocViewerProps> = (props) => {
     currentDocument: documents && documents.length ? documents[0] : undefined,
     config,
     pluginRenderers,
+    prefetchMethod,
   });
 
   // On inital load, and whenever they change,

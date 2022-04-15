@@ -155,6 +155,18 @@ You can provide a theme object with one or all of the available properties.
 />
 ```
 
+## Custom pre-fetch HTTP Verb
+
+Some services (such as AWS) provide URLs that works only for one pre-configured verb.
+By default, `react-doc-viewer` fetches document metadata through a `HEAD` request in order to guess its `Content-Type`.
+If you need to have a specific verb for the pre-fetching, use the `prefetchMethod` option on the DocViewer:
+
+```tsx
+import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+
+<DocViewer prefetchMethod="GET" />;
+```
+
 ## Styling
 
 Any styling applied to the `<DocViewer>` component, is directly applied to the main `div` container.
@@ -202,13 +214,16 @@ const MyDocViewer = styled(DocViewer)`
 You can provide a config object, which configures parts of the component as required.
 
 ```tsx
-<DocViewer documents={docs} config={{
- header: {
-  disableHeader: false,
-  disableFileName: false,
-  retainURLParams: false
- }
-}} />
+<DocViewer
+  documents={docs}
+  config={{
+    header: {
+      disableHeader: false,
+      disableFileName: false,
+      retainURLParams: false,
+    },
+  }}
+/>
 ```
 
 ## Overriding Header Component

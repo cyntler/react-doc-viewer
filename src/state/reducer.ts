@@ -23,6 +23,7 @@ export type IMainState = {
   rendererRect?: DOMRect;
   config?: IConfig;
   pluginRenderers?: DocRenderer[];
+  prefetchMethod?: string;
 };
 
 export const initialState: IMainState = {
