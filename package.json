@@ -1,9 +1,9 @@
 {
   "name": "@cyntler/react-doc-viewer",
   "version": "0.1.7",
-  "description": "Document viewer for react. Renders online/local documents.",
-  "author": "Matthew Mogford",
-  "license": "ISC",
+  "description": "File viewer for React.",
+  "author": "Matthew Mogford / Damian Cyntler",
+  "license": "Apache License 2.0",
   "repository": {
     "url": "https://github.com/cyntler/react-doc-viewer"
   },
