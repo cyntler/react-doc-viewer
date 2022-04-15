@@ -18,7 +18,7 @@
     "version:minor": "npm run version:pre && npm version minor && npm run version:post",
     "version:major": "npm run version:pre && npm version major && npm run version:post",
     "version:pre": "if [ $(git rev-parse --abbrev-ref HEAD) != 'main' ]; then echo \"\\033[1m\\033[31mCurrently on $(git rev-parse --abbrev-ref HEAD) branch. Please checkout main.\\033[0m\"; exit 1; else exit 0; fi",
-    "version:post": "git push origin master && git push origin master --tags",
+    "version:post": "git push origin main && git push origin main --tags",
     "build-release:patch": "react-scripts test --watchAll=false && npm run build && npm run version:patch",
     "build-release:minor": "react-scripts test --watchAll=false && npm run build && npm run version:minor",
     "build-release:major": "react-scripts test --watchAll=false && npm run build && npm run version:major"
