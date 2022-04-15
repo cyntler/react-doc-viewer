@@ -10,16 +10,22 @@ export const FileName: FC<{}> = () => {
 
   if (!currentDocument || config?.header?.disableFileName) return null;
 
-  let fileName = currentDocument.uri || "";
-  fileName = decodeURI(fileName);
+  let fileName = "";
 
-  if (!config?.header?.retainURLParams) {
-    fileName = fileName.split("?")[0];
-  }
+  if (currentDocument.fileName) {
+    fileName = currentDocument.fileName;
+  } else {
+    fileName = currentDocument.uri || "";
+    fileName = decodeURI(fileName);
 
-  const splitURL = fileName.split("/");
-  if (splitURL.length) {
-    fileName = splitURL[splitURL.length - 1];
+    if (!config?.header?.retainURLParams) {
+      fileName = fileName.split("?")[0];
+    }
+
+    const splitURL = fileName.split("/");
+    if (splitURL.length) {
+      fileName = splitURL[splitURL.length - 1];
+    }
   }
 
   return (
