@@ -27,9 +27,9 @@ File viewer for React.
 Use one of the package managers for Node.js.
 
 ```bash
- npm i react-doc-viewer
+ npm i @cyntler/react-doc-viewer
  # or
- yarn add react-doc-viewer
+ yarn add @cyntler/react-doc-viewer
 ```
 
 ## Usage

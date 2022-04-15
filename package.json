@@ -1,14 +1,29 @@
 {
- "name": "react-doc-viewer",
+ "name": "@cyntler/react-doc-viewer",
  "version": "0.1.5",
  "description": "Document viewer for react. Renders online/local documents.",
  "author": "Matthew Mogford",
  "license": "ISC",
  "repository": {
-  "url": "https://github.com/Alcumus/react-doc-viewer"
+  "url": "https://github.com/cyntler/react-doc-viewer"
  },
  "main": "build/index.js",
  "types": "build/index.d.ts",
+ "scripts": {
+  "start": "react-scripts start",
+  "build": "rm -rf build && tsc -p tsconfig-npm.json",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject",
+  "version:patch": "npm run version:pre && npm run version:changelog && npm version patch && npm run version:post",
+  "version:minor": "npm run version:pre && npm run version:changelog && npm version minor && npm run version:post",
+  "version:major": "npm run version:pre && npm run version:changelog && npm version major && npm run version:post",
+  "version:pre": "if [ $(git rev-parse --abbrev-ref HEAD) != 'master' ]; then echo \"\\033[1m\\033[31mCurrently on $(git rev-parse --abbrev-ref HEAD) branch. Please checkout master.\\033[0m\"; exit 1; else exit 0; fi",
+  "version:changelog": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md'",
+  "version:post": "git push origin master && git push origin master --tags",
+  "build-release:patch": "react-scripts test --watchAll=false && npm run build && npm run version:patch",
+  "build-release:minor": "react-scripts test --watchAll=false && npm run build && npm run version:minor",
+  "build-release:major": "react-scripts test --watchAll=false && npm run build && npm run version:major"
+ },
  "dependencies": {
   "pdfjs-dist": "2.4.456",
   "react-pdf": "5.0.0",
@@ -31,21 +46,6 @@
   "react-dom": "^16.13.1",
   "react-scripts": "3.4.3",
   "typescript": "^3.9.7"
- },
- "scripts": {
-  "start": "react-scripts start",
-  "build": "rm -rf build && tsc -p tsconfig-npm.json",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject",
-  "version:patch": "npm run version:pre && npm run version:changelog && npm version patch && npm run version:post",
-  "version:minor": "npm run version:pre && npm run version:changelog && npm version minor && npm run version:post",
-  "version:major": "npm run version:pre && npm run version:changelog && npm version major && npm run version:post",
-  "version:pre": "if [ $(git rev-parse --abbrev-ref HEAD) != 'master' ]; then echo \"\\033[1m\\033[31mCurrently on $(git rev-parse --abbrev-ref HEAD) branch. Please checkout master.\\033[0m\"; exit 1; else exit 0; fi",
-  "version:changelog": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md'",
-  "version:post": "git push origin master && git push origin master --tags",
-  "build-release:patch": "react-scripts test --watchAll=false && npm run build && npm run version:patch",
-  "build-release:minor": "react-scripts test --watchAll=false && npm run build && npm run version:minor",
-  "build-release:major": "react-scripts test --watchAll=false && npm run build && npm run version:major"
  },
  "eslintConfig": {
   "extends": "react-app"
