@@ -1,12 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# lock files
-package-lock.json
-yarn.lock
-
-# dev
-/.vscode
-
 # dependencies
 /node_modules
 /.pnp
