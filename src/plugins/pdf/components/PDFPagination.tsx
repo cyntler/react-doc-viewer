@@ -59,7 +59,7 @@ const PageNavButtonRight = styled(PageNavButtonLeft)`
 `;
 
 const PageTag = styled.div`
-  color: ${(props: IStyledProps) => props.theme.text_primary};
+  color: ${(props: IStyledProps) => props.theme.textPrimary};
   font-size: 14px;
   text-align: left;
 

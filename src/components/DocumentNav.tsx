@@ -53,7 +53,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin: 0 10px;
-  color: ${(props: IStyledProps) => props.theme.text_primary};
+  color: ${(props: IStyledProps) => props.theme.textPrimary};
 `;
 
 const ButtonPrev = styled(ButtonSecondary)`

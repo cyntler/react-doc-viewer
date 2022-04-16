@@ -46,7 +46,7 @@ const PageWrapper = styled.div<PageWrapperProps>`
 `;
 const PageTag = styled.div`
   padding: 0 0 10px 10px;
-  color: ${(props: IStyledProps) => props.theme.text_tertiary};
+  color: ${(props: IStyledProps) => props.theme.textTertiary};
   font-size: 14px;
   text-align: left;
 
