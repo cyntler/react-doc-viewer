@@ -38,7 +38,7 @@ export const FileName: FC<{}> = () => {
 const Container = styled.div`
   flex: 1;
   text-align: left;
-  color: ${(props: IStyledProps) => props.theme.text_primary};
+  color: ${(props: IStyledProps) => props.theme.textPrimary};
   font-weight: bold;
   margin: 0 10px;
   overflow: hidden;

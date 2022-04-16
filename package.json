@@ -3,6 +3,10 @@
   "version": "0.1.8",
   "description": "File viewer for React.",
   "author": "Matthew Mogford / Damian Cyntler",
+  "keywords": [
+    "reactjs",
+    "file-viewer"
+  ],
   "license": "Apache License 2.0",
   "repository": {
     "url": "https://github.com/cyntler/react-doc-viewer"
@@ -11,7 +15,7 @@
   "types": "build/index.d.ts",
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf build && tsc",
+    "build": "rm -rf build && tsc --noEmit false",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "version:patch": "npm run version:pre && npm version patch && npm run version:post",

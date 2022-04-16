@@ -1,11 +1,22 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, ComponentType } from "react";
 import { ThemedStyledProps } from "styled-components";
 import { IMainState } from "../state/reducer";
 import { FileLoaderFunction } from "../utils/fileLoaders";
 
 export interface IConfig {
   header?: IHeaderConfig;
+  loadingRenderer?: ILoadingRendererConfig;
+  noRenderer?: INoRendererConfig;
 }
+
+export interface ILoadingRendererConfig {
+  overrideComponent?: ComponentType;
+}
+
+export interface INoRendererConfig {
+  overrideComponent?: ComponentType;
+}
+
 export interface IHeaderConfig {
   disableHeader?: boolean;
   disableFileName?: boolean;
@@ -23,9 +34,9 @@ export interface ITheme {
   primary?: string;
   secondary?: string;
   tertiary?: string;
-  text_primary?: string;
-  text_secondary?: string;
-  text_tertiary?: string;
+  textPrimary?: string;
+  textSecondary?: string;
+  textTertiary?: string;
   disableThemeScrollbar?: boolean;
 }
 

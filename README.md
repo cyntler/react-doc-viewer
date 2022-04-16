@@ -147,9 +147,9 @@ You can provide a theme object with one or all of the available properties.
     primary: "#5296d8",
     secondary: "#ffffff",
     tertiary: "#5296d899",
-    text_primary: "#ffffff",
-    text_secondary: "#5296d8",
-    text_tertiary: "#00000099",
+    textPrimary: "#ffffff",
+    textSecondary: "#5296d8",
+    textTertiary: "#00000099",
     disableThemeScrollbar: false,
   }}
 />
@@ -234,31 +234,27 @@ Parameters include the state object from the main component, and document naviga
 Example:
 
 ```tsx
-const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
-    if (!state.currentDocument || state.config?.header?.disableFileName) {
-      return null;
-    }
+const MyHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
+  if (!state.currentDocument || state.config?.header?.disableFileName) {
+    return null;
+  }
 
-    return (
-      <>
-        <div>{state.currentDocument.uri || ""}</div>
-        <div>
-          <button
-            onClick={previousDocument}
-            disabled={state.currentFileNo === 0}
-          >
-            Previous Document
-          </button>
-          <button
-            onClick={nextDocument}
-            disabled={state.currentFileNo >= state.documents.length - 1}
-          >
-            Next Document
-          </button>
-        </div>
-      </>
-    );
-  };
+  return (
+    <>
+      <div>{state.currentDocument.uri || ""}</div>
+      <div>
+        <button onClick={previousDocument} disabled={state.currentFileNo === 0}>
+          Previous Document
+        </button>
+        <button
+          onClick={nextDocument}
+          disabled={state.currentFileNo >= state.documents.length - 1}
+        >
+          Next Document
+        </button>
+      </div>
+    </>
+  );
 };
 
 <DocViewer
@@ -270,8 +266,56 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
   }
   config={{
     header: {
-      overrideComponent: myHeader
-    }
+      overrideComponent: MyHeader,
+    },
   }}
-/>
+/>;
+```
+
+## Overriding Loading Renderer
+
+You can pass a callback function to `config.loadingRenderer.overrideComponent` that returns a React Element.
+
+Example:
+
+```tsx
+const MyLoadingRenderer = () => <div>Loading Renderer...</div>;
+
+<DocViewer
+  pluginRenderers={DocViewerRenderers}
+  documents={
+    {
+      // ...
+    }
+  }
+  config={{
+    loadingRenderer: {
+      overrideComponent: MyLoadingRenderer,
+    },
+  }}
+/>;
+```
+
+## Overriding No Renderer (Error)
+
+You can pass a callback function to `config.noRenderer.overrideComponent` that returns a React Element.
+
+Example:
+
+```tsx
+const MyNoRenderer = () => <div>No Renderer Error!</div>;
+
+<DocViewer
+  pluginRenderers={DocViewerRenderers}
+  documents={
+    {
+      // ...
+    }
+  }
+  config={{
+    noRenderer: {
+      overrideComponent: MyNoRenderer,
+    },
+  }}
+/>;
 ```
