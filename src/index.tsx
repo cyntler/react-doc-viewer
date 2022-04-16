@@ -30,9 +30,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
   const { documents, theme } = props;
 
   if (!documents || documents === undefined) {
-    throw new Error(
-      "Please provide an array of documents to DocViewer.\ne.g. <DocViewer documents={[ { uri: 'https://mypdf.pdf' } ]} />"
-    );
+    throw new Error("Please provide an array of documents to DocViewer!");
   }
 
   return (
@@ -59,7 +57,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #eee;
+  background: #ffffff;
 `;
 
 export { DocViewerRenderers } from "./plugins";
