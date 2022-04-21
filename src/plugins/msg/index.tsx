@@ -41,12 +41,8 @@ const MSGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
     return <span>{(fileData as MSGErrorResult)?.error}</span>;
   }
 
-  let {
-    recipients,
-    subject,
-    senderEmail,
-    senderName,
-  } = fileData as MSGFileData;
+  let { recipients, subject, senderEmail, senderName } =
+    fileData as MSGFileData;
 
   return (
     <Container id="msg-renderer">
