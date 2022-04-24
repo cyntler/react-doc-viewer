@@ -45,7 +45,7 @@
     "@types/react-pdf": "4.0.5",
     "@types/styled-components": "^5.1.2",
     "react": "^16.13.1",
-    "react-app-rewired": "^2.2.1",
+    "react-app-rewired": "^2.1.8",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "typescript": "^3.9.7"
