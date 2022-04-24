@@ -19,7 +19,7 @@ const HTMLRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
     iframeDoc.open();
     iframeDoc.write(`${body}`);
     iframeDoc.close();
-  }, []);
+  }, [currentDocument]);
 
   return (
     <Container id="html-renderer">
