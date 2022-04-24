@@ -23,7 +23,7 @@ const TIFFRenderer: DocRenderer = (props) => {
     } catch (error) {
       setCorruptedFile(true);
     }
-  }, []);
+  }, [currentDocument, loadedCanvas]);
 
   if (corruptedFile) {
     return (

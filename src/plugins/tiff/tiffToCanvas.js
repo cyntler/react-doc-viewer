@@ -1,3 +1,4 @@
+/* eslint-disable */
 let tiffDataView = undefined;
 let littleEndian = undefined;
 let fileDirectories = [];

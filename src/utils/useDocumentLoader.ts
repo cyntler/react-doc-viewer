@@ -88,7 +88,8 @@ export const useDocumentLoader = (): {
     return () => {
       controller.abort();
     };
-  }, [CurrentRenderer, currentFileNo, currentDocument, dispatch, documentURI]);
+    /* eslint-disable react-hooks/exhaustive-deps */
+  }, [CurrentRenderer, currentFileNo]);
 
   return { state, dispatch, CurrentRenderer };
 };
