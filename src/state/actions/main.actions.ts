@@ -1,4 +1,4 @@
-import { IConfig, IDocument } from "../types";
+import { IConfig, IDocument } from "../../types";
 
 export const SET_ALL_DOCUMENTS: string = "SET_ALL_DOCUMENTS";
 export interface SetAllDocuments {

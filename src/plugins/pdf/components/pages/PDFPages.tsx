@@ -1,31 +1,38 @@
 /* eslint-disable */
-import React, { FC, useContext, useEffect } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { Document } from "react-pdf";
 import styled from "styled-components";
-import { PDFContext } from "../../state";
-import { setNumPages } from "../../state/actions";
-import { initialPDFState } from "../../state/reducer";
+import { DocViewerContext, RenderContext } from "../../../../state";
+import { setDocumentPagesCount } from "../../../../state/actions/render.actions";
+import { initialState } from "../../../../state/reducers/main.reducers";
+import { initialRenderSettingsState } from "../../../../state/reducers/render.reducers";
+import onLoadCallback from "../../../../utils/onLoadCallback";
 import { PDFAllPages } from "./PDFAllPages";
 import PDFSinglePage from "./PDFSinglePage";
 
 const PDFPages: FC<{}> = () => {
   const {
-    state: { mainState, paginated },
-    dispatch,
-  } = useContext(PDFContext);
-
-  const currentDocument = mainState?.currentDocument || null;
+    state: { currentDocument }
+  } = useContext(DocViewerContext);
+  const {
+    state: { paginated },
+    dispatch
+  } = useContext(RenderContext)
+  const callback = onLoadCallback();
 
   useEffect(() => {
-    dispatch(setNumPages(initialPDFState.numPages));
+    dispatch(setDocumentPagesCount(initialRenderSettingsState.pagesCount));
   }, [currentDocument]);
 
-  if (!currentDocument || currentDocument.fileData === undefined) return null;
+  if (!currentDocument || currentDocument?.fileData === undefined) return null;
 
   return (
     <DocumentPDF
       file={currentDocument.fileData}
-      onLoadSuccess={({ numPages }) => dispatch(setNumPages(numPages))}
+      onLoadSuccess={(payload) => {
+        dispatch(setDocumentPagesCount(payload.numPages));
+        callback(payload);
+      }}
       loading={<span>Loading...</span>}
     >
       {paginated ? <PDFSinglePage /> : <PDFAllPages />}

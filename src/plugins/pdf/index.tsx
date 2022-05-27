@@ -6,18 +6,15 @@ import styled from "styled-components";
 import { DocRenderer, IStyledProps } from "../../types";
 import PDFPages from "./components/pages/PDFPages";
 import PDFControls from "./components/PDFControls";
-import { PDFProvider } from "./state";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
-const PDFRenderer: DocRenderer = ({ mainState }) => {
+const PDFRenderer: DocRenderer = () => {
   return (
-    <PDFProvider mainState={mainState}>
-      <Container id="pdf-renderer" data-testid="pdf-renderer">
-        <PDFControls />
-        <PDFPages />
-      </Container>
-    </PDFProvider>
+    <Container id="pdf-renderer" data-testid="pdf-renderer">
+      <PDFControls />
+      <PDFPages />
+    </Container>
   );
 };
 

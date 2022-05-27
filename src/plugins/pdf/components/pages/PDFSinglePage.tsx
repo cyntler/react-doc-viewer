@@ -1,8 +1,8 @@
 import React, { FC, useContext } from "react";
 import { Page } from "react-pdf";
 import styled from "styled-components";
+import { DocViewerContext, RenderContext } from "../../../../state";
 import { IStyledProps } from "../../../../types";
-import { PDFContext } from "../../state";
 
 interface Props {
   pageNum?: number;
@@ -11,19 +11,22 @@ interface Props {
 const PDFSinglePage: FC<Props> = (props) => {
   const { pageNum } = props;
 
+  const { 
+    state: {rendererRect},
+  } = useContext(DocViewerContext);  
   const {
-    state: { mainState, paginated, zoomLevel, numPages, currentPage },
-  } = useContext(PDFContext);
-
-  const rendererRect = mainState?.rendererRect || null;
+    state: {
+      paginated, zoomLevel, pagesCount, currentPage 
+    },
+  } = useContext(RenderContext);
 
   const _pageNum = pageNum || currentPage;
 
   return (
-    <PageWrapper id="pdf-page-wrapper" last={_pageNum >= numPages}>
+    <PageWrapper id="pdf-page-wrapper" last={_pageNum >= pagesCount}>
       {!paginated && (
         <PageTag id="pdf-page-info">
-          Page {_pageNum}/{numPages}
+          Page {_pageNum}/{pagesCount}
         </PageTag>
       )}
       <Page

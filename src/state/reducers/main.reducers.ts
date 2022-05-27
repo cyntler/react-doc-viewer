@@ -1,4 +1,4 @@
-import { DocRenderer, IConfig, IDocument } from "../types";
+import { DocRenderer, IConfig, IDocument } from "../../types";
 import {
   MainStateActions,
   NEXT_DOCUMENT,
@@ -13,7 +13,7 @@ import {
   SET_RENDERER_RECT,
   UpdateCurrentDocument,
   UPDATE_CURRENT_DOCUMENT,
-} from "./actions";
+} from "../actions/main.actions";
 
 export type IMainState = {
   currentFileNo: number;

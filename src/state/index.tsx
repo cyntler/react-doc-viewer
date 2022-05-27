@@ -6,20 +6,48 @@ import React, {
   useReducer,
 } from "react";
 import { DocViewerProps } from "..";
-import { MainStateActions, setAllDocuments, setMainConfig } from "./actions";
+import { IRenderSettings } from "../types"
+import { RenderStateActions, setDocumentRenderSettings } from "./actions/render.actions";
+import { MainStateActions, setAllDocuments, setMainConfig } from "./actions/main.actions";
 import {
   IMainState,
   initialState,
   mainStateReducer,
   MainStateReducer,
-} from "./reducer";
+} from "./reducers/main.reducers";
+import { initialRenderSettingsState, renderSettingsReducer, RenderSettingsStateReducer } from "./reducers/render.reducers";
 
 const DocViewerContext = createContext<{
   state: IMainState;
   dispatch: Dispatch<MainStateActions>;
 }>({ state: initialState, dispatch: () => null });
 
-const AppProvider: FC<DocViewerProps> = (props) => {
+const RenderContext = createContext<{
+  state: IRenderSettings;
+  dispatch: Dispatch<RenderStateActions>;
+}>({ state: initialRenderSettingsState, dispatch: () => null });
+
+const RenderProvider: FC<{ renderSettings: IRenderSettings }> = ({ children, renderSettings }) => {
+  const [state, dispatch] = useReducer<RenderSettingsStateReducer>(
+    renderSettingsReducer,
+    {
+      ...initialRenderSettingsState,
+      ...renderSettings
+    }
+  );
+
+  useEffect(() => {
+    dispatch(setDocumentRenderSettings(renderSettings));
+  }, [renderSettings])
+
+  return (
+    <RenderContext.Provider value={{ state, dispatch }}>
+      {children}
+    </RenderContext.Provider>
+  );
+}
+
+const AppProvider: FC<Omit<DocViewerProps, "renderSettings">> = (props) => {
   const { children, documents, config, pluginRenderers, prefetchMethod } =
     props;
 
@@ -44,4 +72,4 @@ const AppProvider: FC<DocViewerProps> = (props) => {
   );
 };
 
-export { DocViewerContext, AppProvider };
+export { RenderProvider, RenderContext, DocViewerContext, AppProvider };

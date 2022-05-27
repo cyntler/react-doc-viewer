@@ -4,8 +4,8 @@ import {
   MainStateActions,
   setDocumentLoading,
   updateCurrentDocument,
-} from "../state/actions";
-import { IMainState } from "../state/reducer";
+} from "../state/actions/main.actions";
+import { IMainState } from "../state/reducers/main.reducers";
 import { DocRenderer } from "../types";
 import { defaultFileLoader, FileLoaderComplete } from "./fileLoaders";
 import { useRendererSelector } from "./useRendererSelector";

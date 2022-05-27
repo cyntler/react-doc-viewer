@@ -1,18 +1,14 @@
 import React, { FC, useContext } from "react";
-import { PDFContext } from "../../state";
+import { RenderContext } from "../../../../state";
 import PDFSinglePage from "./PDFSinglePage";
 
-interface Props {
-  pageNum?: number;
-}
-
-export const PDFAllPages: FC<Props> = (props) => {
+export const PDFAllPages: FC<any> = () => {
   const {
-    state: { numPages },
-  } = useContext(PDFContext);
+    state: { pagesCount },
+  } = useContext(RenderContext);
 
   const PagesArray = [];
-  for (let i = 0; i < numPages; i++) {
+  for (let i = 0; i < pagesCount; i++) {
     PagesArray.push(<PDFSinglePage key={i + 1} pageNum={i + 1} />);
   }
 

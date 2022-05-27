@@ -12,40 +12,49 @@ import PDFRenderer from "./plugins/pdf";
 import PNGRenderer from "./plugins/png";
 import TIFFRenderer from "./plugins/tiff";
 import TXTRenderer from "./plugins/txt";
-import { AppProvider } from "./state";
+import { AppProvider, RenderProvider } from "./state";
 import { defaultTheme } from "./theme";
-import { DocRenderer, IConfig, IDocument, ITheme } from "./types";
+import { DocRenderer, IConfig, IDocument, IRenderSettings, ITheme } from "./types";
+import onLoadCallback from "./utils/onLoadCallback";
 
 export interface DocViewerProps {
   documents: IDocument[];
+  renderSettings: IRenderSettings;
   className?: string;
   style?: CSSProperties;
   config?: IConfig;
   theme?: ITheme;
-  pluginRenderers?: DocRenderer[];
   prefetchMethod?: string;
+  pluginRenderers?: DocRenderer[];
+  onLoaded?: (data?: any) => void;
 }
 
-const DocViewer: FC<DocViewerProps> = (props) => {
-  const { documents, theme } = props;
+const DocViewer: FC<DocViewerProps> = ({ onLoaded, ...props }) => {
+  onLoadCallback(onLoaded);
 
-  if (!documents || documents === undefined) {
+  const { renderSettings, ...appProps } = props;
+  const [appProviderProps,] = React.useState(appProps);
+
+  if (!appProps.documents || appProps.documents === undefined) {
     throw new Error("Please provide an array of documents to DocViewer!");
   }
 
+
   return (
-    <AppProvider {...props}>
+    <AppProvider {...appProviderProps}>
       <ThemeProvider
-        theme={theme ? { ...defaultTheme, ...theme } : defaultTheme}
+        theme={appProps.theme ? { ...defaultTheme, ...appProps.theme } : defaultTheme}
       >
-        <Container
-          id="react-doc-viewer"
-          data-testid="react-doc-viewer"
-          {...props}
-        >
-          <HeaderBar />
-          <ProxyRenderer />
-        </Container>
+        <RenderProvider renderSettings={renderSettings}>
+          <Container
+            id="react-doc-viewer"
+            data-testid="react-doc-viewer"
+            {...props}
+          >
+            <HeaderBar />
+            <ProxyRenderer />
+          </Container>
+        </RenderProvider>
       </ThemeProvider>
     </AppProvider>
   );

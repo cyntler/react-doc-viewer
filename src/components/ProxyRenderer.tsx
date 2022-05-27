@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
-import { setRendererRect } from "../state/actions";
+import { setRendererRect } from "../state/actions/main.actions";
 import { IStyledProps } from "../types";
 import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";

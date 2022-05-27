@@ -1,35 +1,35 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { Button } from "../../../components/common";
+import { RenderContext } from "../../../state";
+import { setDocumentCurrentPage } from "../../../state/actions/render.actions";
 import { IStyledProps } from "../../../types";
-import { PDFContext } from "../state";
-import { setCurrentPage } from "../state/actions";
 import { NextPDFNavIcon, PrevPDFNavIcon } from "./icons";
 
 const PDFPagination: FC<{}> = () => {
   const {
-    state: { currentPage, numPages },
+    state: renderSettings,
     dispatch,
-  } = useContext(PDFContext);
+  } = useContext(RenderContext);
 
   return (
     <Container id="pdf-pagination">
       <PageNavButtonLeft
         id="pdf-pagination-prev"
-        onClick={() => dispatch(setCurrentPage(currentPage - 1))}
-        disabled={currentPage === 1}
+        onClick={() => dispatch(setDocumentCurrentPage(renderSettings.currentPage - 1))}
+        disabled={renderSettings.currentPage === 1}
       >
         <PrevPDFNavIcon color="#000" size="50%" />
       </PageNavButtonLeft>
 
       <PageTag id="pdf-pagination-info">
-        Page {currentPage}/{numPages}
+        Page {renderSettings.currentPage}/{renderSettings.pagesCount}
       </PageTag>
 
       <PageNavButtonRight
         id="pdf-pagination-next"
-        onClick={() => dispatch(setCurrentPage(currentPage + 1))}
-        disabled={currentPage >= numPages}
+        onClick={() => dispatch(setDocumentCurrentPage(renderSettings.currentPage + 1))}
+        disabled={renderSettings.currentPage >=renderSettings.pagesCount}
       >
         <NextPDFNavIcon color="#000" size="50%" />
       </PageNavButtonRight>

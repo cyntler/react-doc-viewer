@@ -1,6 +1,6 @@
 import { FC, ReactElement, ComponentType } from "react";
 import { ThemedStyledProps } from "styled-components";
-import { IMainState } from "../state/reducer";
+import { IMainState } from "../state/reducers/main.reducers";
 import { FileLoaderFunction } from "../utils/fileLoaders";
 
 export interface IConfig {
@@ -38,6 +38,15 @@ export interface ITheme {
   textSecondary?: string;
   textTertiary?: string;
   disableThemeScrollbar?: boolean;
+}
+
+export interface IRenderSettings {
+  zoomLevel: number;
+  paginated: boolean;
+  pagesCount: number;
+  currentPage: number;
+  rotationAngle: number;
+  fitType: "width" | "height" | "page";
 }
 
 export interface IStyledProps extends ThemedStyledProps<any, any> {
