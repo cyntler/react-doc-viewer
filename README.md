@@ -5,7 +5,7 @@
 
 File viewer for React.
 
-> This is a fork of https://github.com/Alcumus/react-doc-viewer (inactivity for a long time)
+> This is a fork of https://github.com/cyntler/react-doc-viewer of https://github.com/Alcumus/react-doc-viewer (inactivity for a long time)
 
 ## Supported file types
 
