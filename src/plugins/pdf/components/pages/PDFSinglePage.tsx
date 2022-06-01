@@ -6,17 +6,18 @@ import { IStyledProps } from "../../../../types";
 
 interface Props {
   pageNum?: number;
+  onRendered: Function;
 }
 
 const PDFSinglePage: FC<Props> = (props) => {
-  const { pageNum } = props;
+  const { pageNum, onRendered } = props;
 
-  const { 
-    state: {rendererRect},
-  } = useContext(DocViewerContext);  
+  const {
+    state: { rendererRect },
+  } = useContext(DocViewerContext);
   const {
     state: {
-      paginated, zoomLevel, pagesCount, currentPage 
+      zoomLevel, pagesCount, currentPage, rotationAngle
     },
   } = useContext(RenderContext);
 
@@ -24,16 +25,13 @@ const PDFSinglePage: FC<Props> = (props) => {
 
   return (
     <PageWrapper id="pdf-page-wrapper" last={_pageNum >= pagesCount}>
-      {!paginated && (
-        <PageTag id="pdf-page-info">
-          Page {_pageNum}/{pagesCount}
-        </PageTag>
-      )}
       <Page
         pageNumber={_pageNum || currentPage}
         scale={zoomLevel}
+        rotate={rotationAngle}
         height={(rendererRect?.height || 100) - 100}
         width={(rendererRect?.width || 100) - 100}
+        onRenderSuccess={() => onRendered()}
       />
     </PageWrapper>
   );
@@ -45,7 +43,7 @@ interface PageWrapperProps {
   last?: boolean;
 }
 const PageWrapper = styled.div<PageWrapperProps>`
-  margin: 20px 0;
+  /* margin: 20px 0; */
 `;
 const PageTag = styled.div`
   padding: 0 0 10px 10px;

@@ -2,7 +2,7 @@ import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { Button, LinkButton } from "../../../components/common";
 import { DocViewerContext, RenderContext } from "../../../state";
-import { setDocumentPaginated, setDocumentZoomLevel } from "../../../state/actions/render.actions";
+import { setDocumentPaginated, setDocumentRotationAngle, setDocumentZoomLevel } from "../../../state/actions/render.actions";
 import { initialRenderSettingsState } from "../../../state/reducers/render.reducers";
 import { IStyledProps } from "../../../types";
 import {
@@ -51,7 +51,12 @@ const PDFControls: FC<{}> = () => {
       >
         <ZoomInPDFIcon color="#000" size="80%" />
       </ControlButton>
-
+      <button id="rotate-left-pdf" onClick={() => renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle - 90))}>
+        Rotate to left
+      </button>
+      <button id="rotate-right-pdf" onClick={() => renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle + 90))}>
+        Rotate to right
+      </button>
       <ControlButton
         id="pdf-zoom-reset"
         onMouseDown={() => renderDispatch(setDocumentZoomLevel(initialRenderSettingsState.zoomLevel))}

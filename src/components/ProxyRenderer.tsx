@@ -5,10 +5,12 @@ import { IStyledProps } from "../types";
 import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";
 import { LinkButton } from "./common";
+import DocumentPagesNav from "./DocumentPagesNav";
 import { LoadingIcon } from "./icons";
 
 export const ProxyRenderer: FC<{}> = () => {
   const { state, dispatch, CurrentRenderer } = useDocumentLoader();
+
   const { documents, documentLoading, currentDocument, config } = state;
 
   const size = useWindowSize();
@@ -66,6 +68,7 @@ export const ProxyRenderer: FC<{}> = () => {
 
   return (
     <Container id="proxy-renderer" ref={containerRef}>
+      {!documentLoading && <DocumentPagesNav />}
       <Contents />
     </Container>
   );
@@ -74,6 +77,7 @@ export const ProxyRenderer: FC<{}> = () => {
 const Container = styled.div`
   display: flex;
   flex: 1;
+  height: 100%;
   overflow-y: auto;
 `;
 
