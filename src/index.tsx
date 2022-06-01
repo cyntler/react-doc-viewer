@@ -39,7 +39,6 @@ const DocViewer: FC<DocViewerProps> = ({ onLoaded, ...props }) => {
     throw new Error("Please provide an array of documents to DocViewer!");
   }
 
-
   return (
     <AppProvider {...appProviderProps}>
       <ThemeProvider
@@ -66,7 +65,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #ffffff;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
 `;
 
 export { DocViewerRenderers } from "./plugins";
