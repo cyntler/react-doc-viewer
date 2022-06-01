@@ -6,7 +6,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Button, LinkButton } from "../../../components/common";
 import { DocViewerContext, RenderContext } from "../../../state";
-import { setDocumentPaginated, setDocumentZoomLevel } from "../../../state/actions/render.actions";
+import { setDocumentPaginated, setDocumentRotationAngle, setDocumentZoomLevel } from "../../../state/actions/render.actions";
 import { initialRenderSettingsState } from "../../../state/reducers/render.reducers";
 import { DownloadPDFIcon, ResetZoomPDFIcon, TogglePaginationPDFIcon, ZoomInPDFIcon, ZoomOutPDFIcon, } from "./icons";
 import PDFPagination from "./PDFPagination";
@@ -19,8 +19,11 @@ var PDFControls = function () {
             React.createElement(DownloadPDFIcon, { color: "#000", size: "75%" }))),
         React.createElement(ControlButton, { id: "pdf-zoom-out", onMouseDown: function () { return renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel - 0.1)); } },
             React.createElement(ZoomOutPDFIcon, { color: "#000", size: "80%" })),
+        React.createElement("label", null, renderSettings.zoomLevel),
         React.createElement(ControlButton, { id: "pdf-zoom-in", onMouseDown: function () { return renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel + 0.1)); } },
             React.createElement(ZoomInPDFIcon, { color: "#000", size: "80%" })),
+        React.createElement("button", { id: "rotate-left-pdf", onClick: function () { return renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle - 90)); } }, "Rotate to left"),
+        React.createElement("button", { id: "rotate-right-pdf", onClick: function () { return renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle + 90)); } }, "Rotate to right"),
         React.createElement(ControlButton, { id: "pdf-zoom-reset", onMouseDown: function () { return renderDispatch(setDocumentZoomLevel(initialRenderSettingsState.zoomLevel)); }, disabled: initialRenderSettingsState.zoomLevel === renderSettings.zoomLevel },
             React.createElement(ResetZoomPDFIcon, { color: "#000", size: "70%" })),
         renderSettings.pagesCount > 1 && (React.createElement(ControlButton, { id: "pdf-toggle-pagination", onMouseDown: function () { return renderDispatch(setDocumentPaginated(!renderSettings.paginated)); } },

@@ -57,7 +57,7 @@ var DocViewer = function (_a) {
                     React.createElement(ProxyRenderer, null))))));
 };
 export default DocViewer;
-var Container = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  background: #ffffff;\n"], ["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  background: #ffffff;\n"])));
+var Container = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.7);\n"], ["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.7);\n"])));
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";
 export * from "./utils/fileLoaders";
