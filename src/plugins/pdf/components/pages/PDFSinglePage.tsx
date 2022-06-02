@@ -29,8 +29,8 @@ const PDFSinglePage: FC<Props> = (props) => {
         pageNumber={_pageNum || currentPage}
         scale={zoomLevel}
         rotate={rotationAngle}
-        height={(rendererRect?.height || 100) - 100}
-        width={(rendererRect?.width || 100) - 100}
+        height={(rendererRect?.height || 100) - 240}
+        width={(rendererRect?.width || 100) - 240}
         onRenderSuccess={() => onRendered()}
       />
     </PageWrapper>

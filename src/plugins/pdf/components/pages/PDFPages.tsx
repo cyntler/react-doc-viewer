@@ -3,7 +3,7 @@ import React, { FC, useContext, useEffect, useState } from "react";
 import { Document } from "react-pdf";
 import styled from "styled-components";
 import { DocViewerContext, RenderContext } from "../../../../state";
-import { setDocumentCurrentPage, setDocumentPagesCount } from "../../../../state/actions/render.actions";
+import { setDocumentCurrentPage, setDocumentPagesCount, setDocumentRenderLoaded } from "../../../../state/actions/render.actions";
 import { initialRenderSettingsState } from "../../../../state/reducers/render.reducers";
 import { emitEvent } from "../../../../utils/events";
 import getVisiblePageIndex from "../../../../utils/getVisiblePageIndex";
@@ -20,7 +20,6 @@ const PDFPages: FC<{}> = () => {
     state: renderSettings,
     dispatch
   } = useContext(RenderContext)
-  const callback = onLoadCallback();
 
   const [loadedPageCount, setLoadedPageCount] = useState<number>(0);
   const scrollElement = document.querySelector("#pdf-renderer") as HTMLElement;
@@ -82,15 +81,18 @@ const PDFPages: FC<{}> = () => {
   // Set the loaded page count
   useEffect(() => {
     if (loadedPageCount !== renderSettings.pagesCount) return;
+
     const elements = Array.from(
       document.querySelectorAll("#pdf-page-wrapper canvas")
     );
+
     const payload = elements.map(
       (el: any, index) => ({
         index,
         imageURL: el.toDataURL()
       })
     );
+
     emitEvent("onPaginationDocumentLoaded", payload);
   }, [loadedPageCount]);
 
@@ -101,7 +103,7 @@ const PDFPages: FC<{}> = () => {
       file={currentDocument.fileData}
       onLoadSuccess={(payload) => {
         dispatch(setDocumentPagesCount(payload.numPages));
-        callback(payload);
+        dispatch(setDocumentRenderLoaded(true));
       }}
       loading={<span>Loading...</span>}
     >

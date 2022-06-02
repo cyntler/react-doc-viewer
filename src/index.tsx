@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC } from "react";
+import React, { CSSProperties, FC, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
@@ -15,11 +15,11 @@ import TXTRenderer from "./plugins/txt";
 import { AppProvider, RenderProvider } from "./state";
 import { defaultTheme } from "./theme";
 import { DocRenderer, IConfig, IDocument, IRenderSettings, ITheme } from "./types";
-import onLoadCallback from "./utils/onLoadCallback";
+import { createEvent, emitEvent } from "./utils/events";
 
 export interface DocViewerProps {
   documents: IDocument[];
-  renderSettings: IRenderSettings;
+  renderSettings?: IRenderSettings;
   className?: string;
   style?: CSSProperties;
   config?: IConfig;
@@ -27,28 +27,26 @@ export interface DocViewerProps {
   prefetchMethod?: string;
   pluginRenderers?: DocRenderer[];
   onLoaded?: (data?: any) => void;
+  onChange?: (data?: any) => void;
 }
 
-const DocViewer: FC<DocViewerProps> = ({ onLoaded, ...props }) => {
-  onLoadCallback(onLoaded);
-
-  const { renderSettings, ...appProps } = props;
-  const [appProviderProps,] = React.useState(appProps);
-
-  if (!appProps.documents || appProps.documents === undefined) {
+const DocViewerProxy: FC<any> = ({
+  applicationProps
+}) => {
+  if (!applicationProps.documents || applicationProps.documents === undefined) {
     throw new Error("Please provide an array of documents to DocViewer!");
   }
 
   return (
-    <AppProvider {...appProviderProps}>
+    <AppProvider {...applicationProps}>
       <ThemeProvider
-        theme={appProps.theme ? { ...defaultTheme, ...appProps.theme } : defaultTheme}
+        theme={applicationProps.theme ? { ...defaultTheme, ...applicationProps.theme } : defaultTheme}
       >
-        <RenderProvider renderSettings={renderSettings}>
+        <RenderProvider>
           <Container
             id="react-doc-viewer"
             data-testid="react-doc-viewer"
-            {...props}
+            {...applicationProps}
           >
             <HeaderBar />
             <ProxyRenderer />
@@ -57,9 +55,35 @@ const DocViewer: FC<DocViewerProps> = ({ onLoaded, ...props }) => {
       </ThemeProvider>
     </AppProvider>
   );
-};
+}
 
-export default DocViewer;
+const MemorizedDocViewerProxy = React.memo(DocViewerProxy);
+
+export default ({
+  onLoaded,
+  onChange,
+  renderSettings,
+  ...applicationProps
+}: DocViewerProps) => {
+  const [memorizedRenderSettings] = React.useState(renderSettings);
+  const [appProviderProps] = React.useState(applicationProps);
+
+  React.useEffect(() => {
+    emitEvent("input:onRenderSettingsChange", renderSettings);
+  }, [memorizedRenderSettings, renderSettings])
+
+  React.useEffect(() => {
+    createEvent("core:onRenderSettingsChange", (data) => {
+      if (onChange) onChange(data);
+    });
+
+    createEvent("onDocumentLoaded", (data) => {
+      if (onLoaded) onLoaded(data);
+    });
+  }, []);
+
+  return <MemorizedDocViewerProxy applicationProps={appProviderProps} />
+};
 
 const Container = styled.div`
   display: flex;

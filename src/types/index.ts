@@ -41,6 +41,7 @@ export interface ITheme {
 }
 
 export interface IRenderSettings {
+  loaded: boolean;
   zoomLevel: number;
   paginated: boolean;
   pagesCount: number;

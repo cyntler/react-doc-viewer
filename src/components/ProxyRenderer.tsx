@@ -6,6 +6,7 @@ import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";
 import { LinkButton } from "./common";
 import DocumentPagesNav from "./DocumentPagesNav";
+import ExternalStateAdapter from "./ExternalStateAdapter";
 import { LoadingIcon } from "./icons";
 
 export const ProxyRenderer: FC<{}> = () => {
@@ -68,6 +69,7 @@ export const ProxyRenderer: FC<{}> = () => {
 
   return (
     <Container id="proxy-renderer" ref={containerRef}>
+      {!documentLoading && <ExternalStateAdapter />}
       {!documentLoading && <DocumentPagesNav />}
       <Contents />
     </Container>

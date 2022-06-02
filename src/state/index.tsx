@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { DocViewerProps } from "..";
 import { IRenderSettings } from "../types"
-import { RenderStateActions, setDocumentRenderSettings } from "./actions/render.actions";
+import { RenderStateActions } from "./actions/render.actions";
 import { MainStateActions, setAllDocuments, setMainConfig } from "./actions/main.actions";
 import {
   IMainState,
@@ -27,18 +27,11 @@ const RenderContext = createContext<{
   dispatch: Dispatch<RenderStateActions>;
 }>({ state: initialRenderSettingsState, dispatch: () => null });
 
-const RenderProvider: FC<{ renderSettings: IRenderSettings }> = ({ children, renderSettings }) => {
+const RenderProvider: FC<{}> = ({ children }) => {
   const [state, dispatch] = useReducer<RenderSettingsStateReducer>(
     renderSettingsReducer,
-    {
-      ...initialRenderSettingsState,
-      ...renderSettings
-    }
+    initialRenderSettingsState
   );
-
-  useEffect(() => {
-    dispatch(setDocumentRenderSettings(renderSettings));
-  }, [renderSettings])
 
   return (
     <RenderContext.Provider value={{ state, dispatch }}>

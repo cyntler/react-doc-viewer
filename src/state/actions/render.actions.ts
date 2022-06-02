@@ -78,6 +78,19 @@ export const setDocumentRenderSettings = (
     value,
 });
 
+export const SET_DOCUMENT_RENDER_LOADED = "SET_DOCUMENT_RENDER_LOADED";
+export interface SetDocumentRenderLoaded {
+    type: typeof SET_DOCUMENT_RENDER_LOADED;
+    value: boolean;
+}
+
+export const setDocumentRenderLoaded = (
+    value: boolean
+): SetDocumentRenderLoaded => ({
+    type: SET_DOCUMENT_RENDER_LOADED,
+    value,
+});
+
 export type RenderStateActions =
     | SetDocumentRenderSettings
     | SetDocumentZoomLevel
@@ -85,4 +98,5 @@ export type RenderStateActions =
     | SetDocumentPagesCount
     | SetDocumentCurrentPage
     | SetDocumentRotationAngle
-    | SetDocumentFitType;
+    | SetDocumentFitType
+    | SetDocumentRenderLoaded;

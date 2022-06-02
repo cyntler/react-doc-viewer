@@ -1,7 +1,8 @@
 import { IRenderSettings } from "../../types";
-import { RenderStateActions, SetDocumentCurrentPage, SetDocumentFitType, SetDocumentPagesCount, SetDocumentPaginated, SetDocumentRenderSettings, SetDocumentRotationAngle, SetDocumentZoomLevel, SET_DOCUMENT_CURRENT_PAGE, SET_DOCUMENT_FIT_TYPE, SET_DOCUMENT_PAGES_COUNT, SET_DOCUMENT_PAGINATED, SET_DOCUMENT_RENDER_SETTINGS, SET_DOCUMENT_ROTATION_ANGLE, SET_DOCUMENT_ZOOM_LEVEL } from "../actions/render.actions";
+import { RenderStateActions, SetDocumentCurrentPage, SetDocumentFitType, SetDocumentPagesCount, SetDocumentPaginated, SetDocumentRenderLoaded, SetDocumentRenderSettings, SetDocumentRotationAngle, SetDocumentZoomLevel, SET_DOCUMENT_CURRENT_PAGE, SET_DOCUMENT_FIT_TYPE, SET_DOCUMENT_PAGES_COUNT, SET_DOCUMENT_PAGINATED, SET_DOCUMENT_RENDER_LOADED, SET_DOCUMENT_RENDER_SETTINGS, SET_DOCUMENT_ROTATION_ANGLE, SET_DOCUMENT_ZOOM_LEVEL } from "../actions/render.actions";
 
 export const initialRenderSettingsState: IRenderSettings = {
+    loaded: false,
     zoomLevel: 1,
     paginated: true,
     pagesCount: 0,
@@ -68,6 +69,14 @@ export const renderSettingsReducer: RenderSettingsStateReducer = (
             return {
                 ...state,
                 ...value,
+            };
+        }
+
+        case SET_DOCUMENT_RENDER_LOADED: {
+            const { value } = action as SetDocumentRenderLoaded;
+            return {
+                ...state,
+                loaded: value,
             };
         }
 
