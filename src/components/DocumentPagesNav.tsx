@@ -67,7 +67,7 @@ function DocumentPagesNav() {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const listRef = React.useRef<FixedSizeList>(null);
     const [listHeight, setListHeight] = React.useState(0);
-    
+
     React.useEffect(() => {
         createEvent("onPaginationDocumentLoaded", (payload: any) => {
             setPages(payload.map((item: any) => {
@@ -87,21 +87,16 @@ function DocumentPagesNav() {
     }, [state.currentPage]);
 
     React.useEffect(() => {
-        if (!listRef.current) return;
-    }, [listRef])
-    
-    React.useEffect(() => {
         if (!containerRef.current) return;
+
         setListHeight(containerRef.current.clientHeight);
-        
+
         window.addEventListener('resize', () => {
             setListHeight(containerRef.current?.clientHeight || 0);
         });
-    }, [containerRef]);
-    
-    // if (!state.paginated || !pages.length) return <></>;
+    }, [containerRef.current]);
 
-    const Row = React.memo(({ index, style }: any) => {
+    const Row = ({ index, style }: any) => {
         const page = pages[index];
 
         const onPageClick = () => {
@@ -120,15 +115,17 @@ function DocumentPagesNav() {
                 <div className="page-caption">{page.caption}</div>
             </div>
         );
-    }, areEqual);
+    };
 
-    return (
-        <Container ref={containerRef}>
+    const paginated = state.pagesCount > 1 && state.paginated;
+
+    return paginated ? (
+        <Container id="document-pages-nav" ref={containerRef}>
             <FixedSizeList className="navigator-list" ref={listRef} width={230} height={listHeight} itemCount={pages.length} itemData={pages} itemSize={300}>
                 {Row}
             </FixedSizeList>
         </Container>
-    );
+    ) : <></>;
 }
 
 export default DocumentPagesNav;

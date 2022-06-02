@@ -39,8 +39,9 @@ const Container = styled.div`
 const App = () => {
   const docs = [
     { uri: require("./examples/example-pdf.pdf") },
-    { uri: require("./examples/gif-image.gif") },
-    { uri: require("./examples/png-image.png") },
+    // { uri: require("./examples/pdf-file.pdf") },
+    // { uri: require("./examples/gif-image.gif") },
+    // { uri: require("./examples/png-image.png") },
   ];
 
   const [controller, setController] = useState<any>();

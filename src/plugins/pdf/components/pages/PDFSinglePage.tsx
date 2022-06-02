@@ -11,7 +11,9 @@ interface Props {
 
 const PDFSinglePage: FC<Props> = (props) => {
   const { pageNum, onRendered } = props;
-
+  const documentNavigationPages = document.querySelector("#document-pages-nav");
+  const subtractWidth = documentNavigationPages ? documentNavigationPages.clientWidth + 10 : 10;
+  
   const {
     state: { rendererRect },
   } = useContext(DocViewerContext);
@@ -29,8 +31,8 @@ const PDFSinglePage: FC<Props> = (props) => {
         pageNumber={_pageNum || currentPage}
         scale={zoomLevel}
         rotate={rotationAngle}
-        height={(rendererRect?.height || 100) - 240}
-        width={(rendererRect?.width || 100) - 240}
+        height={(rendererRect?.height || 100) - subtractWidth}
+        width={(rendererRect?.width || 100) - subtractWidth}
         onRenderSuccess={() => onRendered()}
       />
     </PageWrapper>
