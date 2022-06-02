@@ -40,4 +40,10 @@ export interface SetDocumentRenderSettings {
     value: IRenderSettings;
 }
 export declare const setDocumentRenderSettings: (value: IRenderSettings) => SetDocumentRenderSettings;
-export declare type RenderStateActions = SetDocumentRenderSettings | SetDocumentZoomLevel | SetDocumentPaginated | SetDocumentPagesCount | SetDocumentCurrentPage | SetDocumentRotationAngle | SetDocumentFitType;
+export declare const SET_DOCUMENT_RENDER_LOADED = "SET_DOCUMENT_RENDER_LOADED";
+export interface SetDocumentRenderLoaded {
+    type: typeof SET_DOCUMENT_RENDER_LOADED;
+    value: boolean;
+}
+export declare const setDocumentRenderLoaded: (value: boolean) => SetDocumentRenderLoaded;
+export declare type RenderStateActions = SetDocumentRenderSettings | SetDocumentZoomLevel | SetDocumentPaginated | SetDocumentPagesCount | SetDocumentCurrentPage | SetDocumentRotationAngle | SetDocumentFitType | SetDocumentRenderLoaded;

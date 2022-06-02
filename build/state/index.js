@@ -10,18 +10,14 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import React, { createContext, useEffect, useReducer, } from "react";
-import { setDocumentRenderSettings } from "./actions/render.actions";
 import { setAllDocuments, setMainConfig } from "./actions/main.actions";
 import { initialState, mainStateReducer, } from "./reducers/main.reducers";
 import { initialRenderSettingsState, renderSettingsReducer } from "./reducers/render.reducers";
 var DocViewerContext = createContext({ state: initialState, dispatch: function () { return null; } });
 var RenderContext = createContext({ state: initialRenderSettingsState, dispatch: function () { return null; } });
 var RenderProvider = function (_a) {
-    var children = _a.children, renderSettings = _a.renderSettings;
-    var _b = useReducer(renderSettingsReducer, __assign(__assign({}, initialRenderSettingsState), renderSettings)), state = _b[0], dispatch = _b[1];
-    useEffect(function () {
-        dispatch(setDocumentRenderSettings(renderSettings));
-    }, [renderSettings]);
+    var children = _a.children;
+    var _b = useReducer(renderSettingsReducer, initialRenderSettingsState), state = _b[0], dispatch = _b[1];
     return (React.createElement(RenderContext.Provider, { value: { state: state, dispatch: dispatch } }, children));
 };
 var AppProvider = function (props) {

@@ -19,7 +19,6 @@ var PDFControls = function () {
             React.createElement(DownloadPDFIcon, { color: "#000", size: "75%" }))),
         React.createElement(ControlButton, { id: "pdf-zoom-out", onMouseDown: function () { return renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel - 0.1)); } },
             React.createElement(ZoomOutPDFIcon, { color: "#000", size: "80%" })),
-        React.createElement("label", null, renderSettings.zoomLevel),
         React.createElement(ControlButton, { id: "pdf-zoom-in", onMouseDown: function () { return renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel + 0.1)); } },
             React.createElement(ZoomInPDFIcon, { color: "#000", size: "80%" })),
         React.createElement("button", { id: "rotate-left-pdf", onClick: function () { return renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle - 90)); } }, "Rotate to left"),

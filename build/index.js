@@ -40,23 +40,39 @@ import TIFFRenderer from "./plugins/tiff";
 import TXTRenderer from "./plugins/txt";
 import { AppProvider, RenderProvider } from "./state";
 import { defaultTheme } from "./theme";
-import onLoadCallback from "./utils/onLoadCallback";
-var DocViewer = function (_a) {
-    var onLoaded = _a.onLoaded, props = __rest(_a, ["onLoaded"]);
-    onLoadCallback(onLoaded);
-    var renderSettings = props.renderSettings, appProps = __rest(props, ["renderSettings"]);
-    var appProviderProps = React.useState(appProps)[0];
-    if (!appProps.documents || appProps.documents === undefined) {
+import { createEvent, emitEvent } from "./utils/events";
+var DocViewerProxy = function (_a) {
+    var applicationProps = _a.applicationProps;
+    if (!applicationProps.documents || applicationProps.documents === undefined) {
         throw new Error("Please provide an array of documents to DocViewer!");
     }
-    return (React.createElement(AppProvider, __assign({}, appProviderProps),
-        React.createElement(ThemeProvider, { theme: appProps.theme ? __assign(__assign({}, defaultTheme), appProps.theme) : defaultTheme },
-            React.createElement(RenderProvider, { renderSettings: renderSettings },
-                React.createElement(Container, __assign({ id: "react-doc-viewer", "data-testid": "react-doc-viewer" }, props),
+    return (React.createElement(AppProvider, __assign({}, applicationProps),
+        React.createElement(ThemeProvider, { theme: applicationProps.theme ? __assign(__assign({}, defaultTheme), applicationProps.theme) : defaultTheme },
+            React.createElement(RenderProvider, null,
+                React.createElement(Container, __assign({ id: "react-doc-viewer", "data-testid": "react-doc-viewer" }, applicationProps),
                     React.createElement(HeaderBar, null),
                     React.createElement(ProxyRenderer, null))))));
 };
-export default DocViewer;
+var MemorizedDocViewerProxy = React.memo(DocViewerProxy);
+export default (function (_a) {
+    var onLoaded = _a.onLoaded, onChange = _a.onChange, renderSettings = _a.renderSettings, applicationProps = __rest(_a, ["onLoaded", "onChange", "renderSettings"]);
+    var memorizedRenderSettings = React.useState(renderSettings)[0];
+    var appProviderProps = React.useState(applicationProps)[0];
+    React.useEffect(function () {
+        emitEvent("input:onRenderSettingsChange", renderSettings);
+    }, [memorizedRenderSettings, renderSettings]);
+    React.useEffect(function () {
+        createEvent("core:onRenderSettingsChange", function (data) {
+            if (onChange)
+                onChange(data);
+        });
+        createEvent("onDocumentLoaded", function (data) {
+            if (onLoaded)
+                onLoaded(data);
+        });
+    }, []);
+    return React.createElement(MemorizedDocViewerProxy, { applicationProps: appProviderProps });
+});
 var Container = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.7);\n"], ["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.7);\n"])));
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";

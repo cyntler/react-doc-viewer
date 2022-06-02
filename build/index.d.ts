@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { CSSProperties } from "react";
 import BMPRenderer from "./plugins/bmp";
 import HTMLRenderer from "./plugins/html";
 import ImageProxyRenderer from "./plugins/image";
@@ -12,7 +12,7 @@ import TXTRenderer from "./plugins/txt";
 import { DocRenderer, IConfig, IDocument, IRenderSettings, ITheme } from "./types";
 export interface DocViewerProps {
     documents: IDocument[];
-    renderSettings: IRenderSettings;
+    renderSettings?: IRenderSettings;
     className?: string;
     style?: CSSProperties;
     config?: IConfig;
@@ -20,9 +20,10 @@ export interface DocViewerProps {
     prefetchMethod?: string;
     pluginRenderers?: DocRenderer[];
     onLoaded?: (data?: any) => void;
+    onChange?: (data?: any) => void;
 }
-declare const DocViewer: FC<DocViewerProps>;
-export default DocViewer;
+declare const _default: ({ onLoaded, onChange, renderSettings, ...applicationProps }: DocViewerProps) => JSX.Element;
+export default _default;
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";
 export * from "./utils/fileLoaders";

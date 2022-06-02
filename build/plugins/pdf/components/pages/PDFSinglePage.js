@@ -12,7 +12,7 @@ var PDFSinglePage = function (props) {
     var _a = useContext(RenderContext).state, zoomLevel = _a.zoomLevel, pagesCount = _a.pagesCount, currentPage = _a.currentPage, rotationAngle = _a.rotationAngle;
     var _pageNum = pageNum || currentPage;
     return (React.createElement(PageWrapper, { id: "pdf-page-wrapper", last: _pageNum >= pagesCount },
-        React.createElement(Page, { pageNumber: _pageNum || currentPage, scale: zoomLevel, rotate: rotationAngle, height: ((rendererRect === null || rendererRect === void 0 ? void 0 : rendererRect.height) || 100) - 100, width: ((rendererRect === null || rendererRect === void 0 ? void 0 : rendererRect.width) || 100) - 100, onRenderSuccess: function () { return onRendered(); } })));
+        React.createElement(Page, { pageNumber: _pageNum || currentPage, scale: zoomLevel, rotate: rotationAngle, height: ((rendererRect === null || rendererRect === void 0 ? void 0 : rendererRect.height) || 100) - 240, width: ((rendererRect === null || rendererRect === void 0 ? void 0 : rendererRect.width) || 100) - 240, onRenderSuccess: function () { return onRendered(); } })));
 };
 export default PDFSinglePage;
 var PageWrapper = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  /* margin: 20px 0; */\n"], ["\n  /* margin: 20px 0; */\n"])));

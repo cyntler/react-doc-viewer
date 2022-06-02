@@ -7,17 +7,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { Document } from "react-pdf";
 import styled from "styled-components";
 import { DocViewerContext, RenderContext } from "../../../../state";
-import { setDocumentCurrentPage, setDocumentPagesCount } from "../../../../state/actions/render.actions";
+import { setDocumentCurrentPage, setDocumentPagesCount, setDocumentRenderLoaded } from "../../../../state/actions/render.actions";
 import { initialRenderSettingsState } from "../../../../state/reducers/render.reducers";
 import { emitEvent } from "../../../../utils/events";
 import getVisiblePageIndex from "../../../../utils/getVisiblePageIndex";
-import onLoadCallback from "../../../../utils/onLoadCallback";
 import { PDFAllPages } from "./PDFAllPages";
 var DOCUMENT_PAGES_MARGIN = 8;
 var PDFPages = function () {
     var currentDocument = useContext(DocViewerContext).state.currentDocument;
     var _a = useContext(RenderContext), renderSettings = _a.state, dispatch = _a.dispatch;
-    var callback = onLoadCallback();
     var _b = useState(0), loadedPageCount = _b[0], setLoadedPageCount = _b[1];
     var scrollElement = document.querySelector("#pdf-renderer");
     var canvas = document.querySelector("#pdf-page-wrapper canvas");
@@ -81,7 +79,7 @@ var PDFPages = function () {
         return null;
     return (React.createElement(DocumentPDF, { file: currentDocument.fileData, onLoadSuccess: function (payload) {
             dispatch(setDocumentPagesCount(payload.numPages));
-            callback(payload);
+            dispatch(setDocumentRenderLoaded(true));
         }, loading: React.createElement("span", null, "Loading...") },
         React.createElement("div", { className: "document-content" },
             React.createElement(PDFAllPages, { onRendered: function () { return setLoadedPageCount(loadedPageCount + 1); } }))));

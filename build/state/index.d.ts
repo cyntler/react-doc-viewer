@@ -12,8 +12,6 @@ declare const RenderContext: React.Context<{
     state: IRenderSettings;
     dispatch: Dispatch<RenderStateActions>;
 }>;
-declare const RenderProvider: FC<{
-    renderSettings: IRenderSettings;
-}>;
+declare const RenderProvider: FC<{}>;
 declare const AppProvider: FC<Omit<DocViewerProps, "renderSettings">>;
 export { RenderProvider, RenderContext, DocViewerContext, AppProvider };

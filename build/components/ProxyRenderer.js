@@ -9,6 +9,7 @@ import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";
 import { LinkButton } from "./common";
 import DocumentPagesNav from "./DocumentPagesNav";
+import ExternalStateAdapter from "./ExternalStateAdapter";
 import { LoadingIcon } from "./icons";
 export var ProxyRenderer = function () {
     var _a = useDocumentLoader(), state = _a.state, dispatch = _a.dispatch, CurrentRenderer = _a.CurrentRenderer;
@@ -53,6 +54,7 @@ export var ProxyRenderer = function () {
         }
     };
     return (React.createElement(Container, { id: "proxy-renderer", ref: containerRef },
+        !documentLoading && React.createElement(ExternalStateAdapter, null),
         !documentLoading && React.createElement(DocumentPagesNav, null),
         React.createElement(Contents, null)));
 };

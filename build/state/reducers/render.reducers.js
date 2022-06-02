@@ -9,8 +9,9 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import { SET_DOCUMENT_CURRENT_PAGE, SET_DOCUMENT_FIT_TYPE, SET_DOCUMENT_PAGES_COUNT, SET_DOCUMENT_PAGINATED, SET_DOCUMENT_RENDER_SETTINGS, SET_DOCUMENT_ROTATION_ANGLE, SET_DOCUMENT_ZOOM_LEVEL } from "../actions/render.actions";
+import { SET_DOCUMENT_CURRENT_PAGE, SET_DOCUMENT_FIT_TYPE, SET_DOCUMENT_PAGES_COUNT, SET_DOCUMENT_PAGINATED, SET_DOCUMENT_RENDER_LOADED, SET_DOCUMENT_RENDER_SETTINGS, SET_DOCUMENT_ROTATION_ANGLE, SET_DOCUMENT_ZOOM_LEVEL } from "../actions/render.actions";
 export var initialRenderSettingsState = {
+    loaded: false,
     zoomLevel: 1,
     paginated: true,
     pagesCount: 0,
@@ -48,6 +49,10 @@ export var renderSettingsReducer = function (state, action) {
         case SET_DOCUMENT_RENDER_SETTINGS: {
             var value = action.value;
             return __assign(__assign({}, state), value);
+        }
+        case SET_DOCUMENT_RENDER_LOADED: {
+            var value = action.value;
+            return __assign(__assign({}, state), { loaded: value });
         }
         default:
             return state;

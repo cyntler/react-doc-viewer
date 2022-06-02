@@ -29,3 +29,8 @@ export var setDocumentRenderSettings = function (value) { return ({
     type: SET_DOCUMENT_RENDER_SETTINGS,
     value: value,
 }); };
+export var SET_DOCUMENT_RENDER_LOADED = "SET_DOCUMENT_RENDER_LOADED";
+export var setDocumentRenderLoaded = function (value) { return ({
+    type: SET_DOCUMENT_RENDER_LOADED,
+    value: value,
+}); };

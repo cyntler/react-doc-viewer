@@ -30,6 +30,7 @@ export interface ITheme {
     disableThemeScrollbar?: boolean;
 }
 export interface IRenderSettings {
+    loaded: boolean;
     zoomLevel: number;
     paginated: boolean;
     pagesCount: number;
