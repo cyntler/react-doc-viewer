@@ -4,7 +4,7 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
 };
 import React from 'react';
 import styled from "styled-components";
-import { areEqual, FixedSizeList } from "react-window";
+import { FixedSizeList } from "react-window";
 import { RenderContext } from '../state';
 import { setDocumentCurrentPage } from '../state/actions/render.actions';
 import { createEvent } from '../utils/events';
@@ -32,10 +32,6 @@ function DocumentPagesNav() {
         }
     }, [state.currentPage]);
     React.useEffect(function () {
-        if (!listRef.current)
-            return;
-    }, [listRef]);
-    React.useEffect(function () {
         if (!containerRef.current)
             return;
         setListHeight(containerRef.current.clientHeight);
@@ -43,9 +39,8 @@ function DocumentPagesNav() {
             var _a;
             setListHeight(((_a = containerRef.current) === null || _a === void 0 ? void 0 : _a.clientHeight) || 0);
         });
-    }, [containerRef]);
-    // if (!state.paginated || !pages.length) return <></>;
-    var Row = React.memo(function (_a) {
+    }, [containerRef.current]);
+    var Row = function (_a) {
         var index = _a.index, style = _a.style;
         var page = pages[index];
         var onPageClick = function () {
@@ -61,9 +56,10 @@ function DocumentPagesNav() {
             React.createElement("div", { className: "page-image" },
                 React.createElement("img", { src: page.image, alt: page.caption })),
             React.createElement("div", { className: "page-caption" }, page.caption)));
-    }, areEqual);
-    return (React.createElement(Container, { ref: containerRef },
-        React.createElement(FixedSizeList, { className: "navigator-list", ref: listRef, width: 230, height: listHeight, itemCount: pages.length, itemData: pages, itemSize: 300 }, Row)));
+    };
+    var paginated = state.pagesCount > 1 && state.paginated;
+    return paginated ? (React.createElement(Container, { id: "document-pages-nav", ref: containerRef },
+        React.createElement(FixedSizeList, { className: "navigator-list", ref: listRef, width: 230, height: listHeight, itemCount: pages.length, itemData: pages, itemSize: 300 }, Row))) : React.createElement(React.Fragment, null);
 }
 export default DocumentPagesNav;
 var templateObject_1;

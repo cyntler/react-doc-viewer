@@ -21,8 +21,6 @@ var Container = styled.div(templateObject_1 || (templateObject_1 = __makeTemplat
 var App = function () {
     var docs = [
         { uri: require("./examples/example-pdf.pdf") },
-        { uri: require("./examples/gif-image.gif") },
-        { uri: require("./examples/png-image.png") },
     ];
     var _a = useState(), controller = _a[0], setController = _a[1];
     var _b = useState(), settings = _b[0], setSettings = _b[1];
