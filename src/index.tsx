@@ -65,12 +65,12 @@ export default ({
   renderSettings,
   ...applicationProps
 }: DocViewerProps) => {
-  const [memorizedRenderSettings] = React.useState(renderSettings);
-  const [appProviderProps] = React.useState(applicationProps);
+  const [appProviderProps, setAppProviderProps] = React.useState(applicationProps);
 
   React.useEffect(() => {
-    emitEvent("input:onRenderSettingsChange", renderSettings);
-  }, [memorizedRenderSettings, renderSettings])
+    setAppProviderProps(appProviderProps);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [applicationProps.documents]);
 
   React.useEffect(() => {
     createEvent("core:onRenderSettingsChange", (data) => {

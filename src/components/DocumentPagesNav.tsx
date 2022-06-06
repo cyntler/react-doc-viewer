@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import { areEqual, FixedSizeList } from "react-window";
+import { FixedSizeList } from "react-window";
 import { RenderContext } from '../state';
 import { setDocumentCurrentPage } from '../state/actions/render.actions';
 import { createEvent } from '../utils/events';
@@ -35,6 +35,10 @@ const Container = styled.div`
         justify-content: center;
         align-items: center;
         
+        &[data-active="true"] {
+            background: rgba(0, 0, 0, .3);
+        }
+
         &:hover { 
             background: rgba(0, 0, 0, .3);
         }
@@ -67,6 +71,7 @@ function DocumentPagesNav() {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const listRef = React.useRef<FixedSizeList>(null);
     const [listHeight, setListHeight] = React.useState(0);
+    const paginated = state.pagesCount > 1 && state.paginated;
 
     React.useEffect(() => {
         createEvent("onPaginationDocumentLoaded", (payload: any) => {
@@ -98,6 +103,7 @@ function DocumentPagesNav() {
 
     const Row = ({ index, style }: any) => {
         const page = pages[index];
+        const active = page.id === state.currentPage;
 
         const onPageClick = () => {
             if (state.currentPage === page.id) return;
@@ -108,7 +114,7 @@ function DocumentPagesNav() {
         };
 
         return (
-            <div className="page" style={style} onClick={onPageClick}>
+            <div className="page" data-active={active} style={style} onClick={onPageClick}>
                 <div className="page-image">
                     <img src={page.image} alt={page.caption} />
                 </div>
@@ -117,11 +123,9 @@ function DocumentPagesNav() {
         );
     };
 
-    const paginated = state.pagesCount > 1 && state.paginated;
-
     return paginated ? (
         <Container id="document-pages-nav" ref={containerRef}>
-            <FixedSizeList className="navigator-list" ref={listRef} width={230} height={listHeight} itemCount={pages.length} itemData={pages} itemSize={300}>
+            <FixedSizeList className="navigator-list" ref={listRef} width={230} height={listHeight} itemCount={pages.length} itemData={pages} itemSize={280}>
                 {Row}
             </FixedSizeList>
         </Container>

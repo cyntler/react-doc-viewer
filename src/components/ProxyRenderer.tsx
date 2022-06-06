@@ -11,8 +11,18 @@ import { LoadingIcon } from "./icons";
 
 export const ProxyRenderer: FC<{}> = () => {
   const { state, dispatch, CurrentRenderer } = useDocumentLoader();
+  const { documents, documentLoading, config } = state;
 
-  const { documents, documentLoading, currentDocument, config } = state;
+  const [currentDocument, setCurrentDocument] = React.useState(state.currentDocument);
+  const [documentLoaded, setDocumentLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    if (currentDocument?.uri !== state.currentDocument?.uri) {
+      setDocumentLoaded(false);
+      setCurrentDocument(state.currentDocument);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
 
   const size = useWindowSize();
 
@@ -42,7 +52,7 @@ export const ProxyRenderer: FC<{}> = () => {
       );
     } else {
       if (CurrentRenderer) {
-        return <CurrentRenderer mainState={state} />;
+        return <CurrentRenderer mainState={state} loaded={documentLoaded} onLoaded={() => setDocumentLoaded(true)} />;
       } else if (CurrentRenderer === undefined) {
         return null;
       } else {
