@@ -64,19 +64,6 @@ const PDFControls: FC<{}> = () => {
       >
         <ResetZoomPDFIcon color="#000" size="70%" />
       </ControlButton>
-
-      {renderSettings.pagesCount > 1 && (
-        <ControlButton
-          id="pdf-toggle-pagination"
-          onMouseDown={() => renderDispatch(setDocumentPaginated(!renderSettings.paginated))}
-        >
-          <TogglePaginationPDFIcon
-            color="#000"
-            size="70%"
-            reverse={renderSettings.paginated}
-          />
-        </ControlButton>
-      )}
     </Container>
   );
 };

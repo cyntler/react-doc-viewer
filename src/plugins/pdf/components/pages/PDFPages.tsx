@@ -96,7 +96,7 @@ const PDFPages: FC<{}> = () => {
     emitEvent("onPaginationDocumentLoaded", payload);
   }, [loadedPageCount]);
 
-  if (!currentDocument || currentDocument?.fileData === undefined) return null;
+  if (!currentDocument || currentDocument?.fileData === undefined) return <></>;
 
   return (
     <DocumentPDF
