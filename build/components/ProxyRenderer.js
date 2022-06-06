@@ -13,7 +13,17 @@ import ExternalStateAdapter from "./ExternalStateAdapter";
 import { LoadingIcon } from "./icons";
 export var ProxyRenderer = function () {
     var _a = useDocumentLoader(), state = _a.state, dispatch = _a.dispatch, CurrentRenderer = _a.CurrentRenderer;
-    var documents = state.documents, documentLoading = state.documentLoading, currentDocument = state.currentDocument, config = state.config;
+    var documents = state.documents, documentLoading = state.documentLoading, config = state.config;
+    var _b = React.useState(state.currentDocument), currentDocument = _b[0], setCurrentDocument = _b[1];
+    var _c = React.useState(false), documentLoaded = _c[0], setDocumentLoaded = _c[1];
+    React.useEffect(function () {
+        var _a;
+        if ((currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.uri) !== ((_a = state.currentDocument) === null || _a === void 0 ? void 0 : _a.uri)) {
+            setDocumentLoaded(false);
+            setCurrentDocument(state.currentDocument);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state]);
     var size = useWindowSize();
     var containerRef = useCallback(function (node) {
         node && dispatch(setRendererRect(node === null || node === void 0 ? void 0 : node.getBoundingClientRect()));
@@ -36,7 +46,7 @@ export var ProxyRenderer = function () {
         }
         else {
             if (CurrentRenderer) {
-                return React.createElement(CurrentRenderer, { mainState: state });
+                return React.createElement(CurrentRenderer, { mainState: state, loaded: documentLoaded, onLoaded: function () { return setDocumentLoaded(true); } });
             }
             else if (CurrentRenderer === undefined) {
                 return null;

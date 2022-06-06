@@ -76,7 +76,7 @@ var PDFPages = function () {
         emitEvent("onPaginationDocumentLoaded", payload);
     }, [loadedPageCount]);
     if (!currentDocument || (currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.fileData) === undefined)
-        return null;
+        return React.createElement(React.Fragment, null);
     return (React.createElement(DocumentPDF, { file: currentDocument.fileData, onLoadSuccess: function (payload) {
             dispatch(setDocumentPagesCount(payload.numPages));
             dispatch(setDocumentRenderLoaded(true));

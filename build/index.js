@@ -40,7 +40,7 @@ import TIFFRenderer from "./plugins/tiff";
 import TXTRenderer from "./plugins/txt";
 import { AppProvider, RenderProvider } from "./state";
 import { defaultTheme } from "./theme";
-import { createEvent, emitEvent } from "./utils/events";
+import { createEvent } from "./utils/events";
 var DocViewerProxy = function (_a) {
     var applicationProps = _a.applicationProps;
     if (!applicationProps.documents || applicationProps.documents === undefined) {
@@ -56,11 +56,11 @@ var DocViewerProxy = function (_a) {
 var MemorizedDocViewerProxy = React.memo(DocViewerProxy);
 export default (function (_a) {
     var onLoaded = _a.onLoaded, onChange = _a.onChange, renderSettings = _a.renderSettings, applicationProps = __rest(_a, ["onLoaded", "onChange", "renderSettings"]);
-    var memorizedRenderSettings = React.useState(renderSettings)[0];
-    var appProviderProps = React.useState(applicationProps)[0];
+    var _b = React.useState(applicationProps), appProviderProps = _b[0], setAppProviderProps = _b[1];
     React.useEffect(function () {
-        emitEvent("input:onRenderSettingsChange", renderSettings);
-    }, [memorizedRenderSettings, renderSettings]);
+        setAppProviderProps(appProviderProps);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [applicationProps.documents]);
     React.useEffect(function () {
         createEvent("core:onRenderSettingsChange", function (data) {
             if (onChange)

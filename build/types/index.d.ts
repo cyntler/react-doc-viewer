@@ -49,6 +49,8 @@ export interface IDocument {
 }
 export interface DocRendererProps {
     mainState: IMainState;
+    loaded: boolean;
+    onLoaded: () => void;
 }
 export interface DocRenderer extends FC<DocRendererProps> {
     fileTypes: string[];

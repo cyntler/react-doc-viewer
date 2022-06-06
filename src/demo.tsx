@@ -36,21 +36,19 @@ const Container = styled.div`
   }
 `;
 
-const App = () => {
-  const docs = [
-    { uri: require("./examples/example-pdf.pdf") },
-    // { uri: require("./examples/pdf-file.pdf") },
-    // { uri: require("./examples/gif-image.gif") },
-    // { uri: require("./examples/png-image.png") },
-  ];
-
+function DocViewerContainer(props: any) {
   const [controller, setController] = useState<any>();
   const [settings, setSettings] = useState<any>();
 
   React.useEffect(() => {
     if (!settings || !controller) return;
     controller.update(settings);
-  }, [settings]);
+  }, [controller, settings]);
+
+  React.useEffect(() => {
+    setController(undefined);
+    setSettings(undefined);
+  }, [props])
 
   const changeSettings = (key: string, value: any) => {
     if (settings) {
@@ -61,36 +59,43 @@ const App = () => {
   return (
     <Container>
       <DocViewer
-        documents={docs}
+        documents={[props.document]}
         pluginRenderers={DocViewerRenderers}
         onLoaded={(data) => {
+          console.log("Loaded", data);
           setSettings(data.state);
           setController(data.controller);
         }}
         onChange={(state) => {
+          console.log("Changed", state);
           setSettings(state);
         }}
         config={{
           noRenderer: {
             overrideComponent: () => <div />,
           },
+          loadingRenderer: {
+            overrideComponent: () => <div>Loading ...</div>,
+          }
         }}
       />
 
       {Boolean(settings && controller) && (
         <div className="dock-bar-container">
           <div className="dock-bar">
-            <div className="dock-bar-item">
-              <button onClick={() => changeSettings("currentPage", settings.currentPage - 1)}>
-                prev
-              </button>
-            </div>
-            <div className="dock-bar-item">{`Page ${settings.currentPage}/${settings.pagesCount}`}</div>
-            <div className="dock-bar-item">
-              <button onClick={() => changeSettings("currentPage", settings.currentPage + 1)}>
-                next
-              </button>
-            </div>
+            {settings.paginated && (<>
+              <div className="dock-bar-item">
+                <button onClick={() => changeSettings("currentPage", settings.currentPage - 1)}>
+                  prev
+                </button>
+              </div>
+              <div className="dock-bar-item">{`Page ${settings.currentPage}/${settings.pagesCount}`}</div><div className="dock-bar-item">
+                <button onClick={() => changeSettings("currentPage", settings.currentPage + 1)}>
+                  next
+                </button>
+              </div>
+            </>
+            )}
             <div className="dock-bar-item">
               <button onClick={() => changeSettings("zoomLevel", settings.zoomLevel - 0.1)}>
                 -
@@ -116,6 +121,23 @@ const App = () => {
       )}
     </Container>
   );
+
+}
+
+const App = () => {
+  const docs = [
+    // { uri: require("./examples/png-image.png") },
+    { uri: require("./examples/example-pdf.pdf") },
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  return (
+    <>
+      <button type="button" className="switch-button" onClick={() => setCurrentIndex(currentIndex + 1 >= docs.length ? 0 : currentIndex + 1)}>switch document</button>
+      <DocViewerContainer document={docs[currentIndex]} />
+    </>
+  )
 };
 
 render(<App />, document.getElementById("root"));

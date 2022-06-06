@@ -28,6 +28,7 @@ export default function ExternalStateAdapter() {
                 controller: controller,
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [renderStore.state.loaded]);
     React.useEffect(function () {
         if (renderStore.state.loaded && state) {
