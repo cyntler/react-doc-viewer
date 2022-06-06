@@ -18,6 +18,8 @@ jobs:
           node-version: 16
       - name: Install dependencies
         run: npm i
+      - name: Build library
+        run: npm run build
       - name: Publish to npm
         uses: JS-DevTools/npm-publish@v1
         with:
