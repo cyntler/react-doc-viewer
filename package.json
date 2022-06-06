@@ -11,6 +11,9 @@
   "repository": {
     "url": "https://github.com/cyntler/react-doc-viewer"
   },
+  "files": [
+    "dist/**"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
