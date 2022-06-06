@@ -1,10 +1,8 @@
-/.git
 /.vscode
+/.github
 /demo
 /public
 /src
-CHANGELOG.md
-README.md
 tsconfig-npm.json
 tsconfig.json
 yarn-error.log
