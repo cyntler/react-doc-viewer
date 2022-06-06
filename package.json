@@ -11,11 +11,11 @@
   "repository": {
     "url": "https://github.com/cyntler/react-doc-viewer"
   },
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "rm -rf build && tsc --noEmit false",
+    "build": "rm -rf dist && tsc --noEmit false",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "version:patch": "npm run version:pre && npm version patch && npm run version:post",
