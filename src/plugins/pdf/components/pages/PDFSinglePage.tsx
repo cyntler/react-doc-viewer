@@ -31,6 +31,7 @@ const PDFSinglePage: FC<Props> = (props) => {
         scale={zoomLevel}
         height={(rendererRect?.height || 100) - 100}
         width={(rendererRect?.width || 100) - 100}
+        loading=""
       />
     </PageWrapper>
   );

@@ -1,5 +1,4 @@
 // @ts-ignore
-import * as pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
 import React from "react";
 import { pdfjs } from "react-pdf";
 import styled from "styled-components";
@@ -8,7 +7,7 @@ import PDFPages from "./components/pages/PDFPages";
 import PDFControls from "./components/PDFControls";
 import { PDFProvider } from "./state";
 
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const PDFRenderer: DocRenderer = ({ mainState }) => {
   return (
