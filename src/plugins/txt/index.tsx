@@ -1,10 +1,14 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { DocRenderer } from "../../types";
 import { textFileLoader } from "../../utils/fileLoaders";
 
 const TXTRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
-  return <Container id="txt-renderer">{currentDocument?.fileData}</Container>;
+  return (
+    <Container id="txt-renderer">
+      {currentDocument?.fileData as ReactNode}
+    </Container>
+  );
 };
 
 export default TXTRenderer;

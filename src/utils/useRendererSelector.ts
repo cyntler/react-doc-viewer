@@ -23,7 +23,7 @@ export const useRendererSelector = (): {
 
     const matchingRenderers: DocRenderer[] = [];
 
-    pluginRenderers?.map((r) => {
+    pluginRenderers?.forEach((r) => {
       if (currentDocument.fileType === undefined) return;
       if (r.fileTypes.indexOf(currentDocument.fileType) >= 0) {
         matchingRenderers.push(r);

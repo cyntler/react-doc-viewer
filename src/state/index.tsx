@@ -4,6 +4,7 @@ import React, {
   FC,
   useEffect,
   useReducer,
+  PropsWithChildren,
 } from "react";
 import { DocViewerProps } from "..";
 import { MainStateActions, setAllDocuments, setMainConfig } from "./actions";
@@ -19,7 +20,7 @@ const DocViewerContext = createContext<{
   dispatch: Dispatch<MainStateActions>;
 }>({ state: initialState, dispatch: () => null });
 
-const AppProvider: FC<DocViewerProps> = (props) => {
+const AppProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
   const { children, documents, config, pluginRenderers, prefetchMethod } =
     props;
 

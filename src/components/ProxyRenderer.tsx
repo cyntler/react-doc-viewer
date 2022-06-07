@@ -14,7 +14,7 @@ export const ProxyRenderer: FC<{}> = () => {
   const size = useWindowSize();
 
   const containerRef = useCallback(
-    (node) => {
+    (node: HTMLDivElement) => {
       node && dispatch(setRendererRect(node?.getBoundingClientRect()));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

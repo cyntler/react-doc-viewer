@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import DocViewer from ".";
 import { DocViewerRenderers } from "./plugins";
 
@@ -12,11 +12,18 @@ const App = () => {
       pluginRenderers={DocViewerRenderers}
       config={{
         noRenderer: {
-          overrideComponent: () => <div />,
+          overrideComponent: () => <div>no renderer</div>,
+        },
+        loadingRenderer: {
+          overrideComponent: () => <div>loading</div>,
         },
       }}
     />
   );
 };
 
-render(<App />, document.getElementById("root"));
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  const root = createRoot(rootElement);
+  root.render(<App />);
+}
