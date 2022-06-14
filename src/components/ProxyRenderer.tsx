@@ -2,6 +2,7 @@ import React, { FC, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
 import { setRendererRect } from "../state/actions";
 import { IStyledProps } from "../types";
+import { getFileName } from "../utils";
 import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";
 import { LinkButton } from "./common";
@@ -21,13 +22,20 @@ export const ProxyRenderer: FC<{}> = () => {
     [size]
   );
 
+  const fileName = getFileName(
+    currentDocument,
+    config?.header?.retainURLParams || false
+  );
+
   const Contents = () => {
     if (!documents.length) {
       return <div id="no-documents">{/* No Documents */}</div>;
     } else if (documentLoading) {
       if (config && config?.loadingRenderer?.overrideComponent) {
         const OverrideComponent = config.loadingRenderer.overrideComponent;
-        return <OverrideComponent />;
+        return (
+          <OverrideComponent document={currentDocument} fileName={fileName} />
+        );
       }
 
       return (
@@ -45,7 +53,9 @@ export const ProxyRenderer: FC<{}> = () => {
       } else {
         if (config && config?.noRenderer?.overrideComponent) {
           const OverrideComponent = config.noRenderer.overrideComponent;
-          return <OverrideComponent />;
+          return (
+            <OverrideComponent document={currentDocument} fileName={fileName} />
+          );
         }
 
         return (

@@ -10,11 +10,17 @@ export interface IConfig {
 }
 
 export interface ILoadingRendererConfig {
-  overrideComponent?: ComponentType;
+  overrideComponent?: ComponentType<{
+    document: IDocument | undefined;
+    fileName: string;
+  }>;
 }
 
 export interface INoRendererConfig {
-  overrideComponent?: ComponentType;
+  overrideComponent?: ComponentType<{
+    document: IDocument | undefined;
+    fileName: string;
+  }>;
 }
 
 export interface IHeaderConfig {
