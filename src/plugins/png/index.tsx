@@ -11,6 +11,7 @@ const StyledImageRenderer = styled(ImageProxyRenderer)`
   height: 100%;
 `;
 
+// eslint-disable-next-line react/function-component-definition
 const PNGRenderer: DocRenderer = (props) => <StyledImageRenderer {...props} />;
 
 PNGRenderer.fileTypes = ["png", "image/png"];

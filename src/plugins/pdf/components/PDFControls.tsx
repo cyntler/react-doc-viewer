@@ -2,7 +2,11 @@ import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { Button, LinkButton } from "../../../components/common";
 import { DocViewerContext, RenderContext } from "../../../state";
-import { setDocumentPaginated, setDocumentRotationAngle, setDocumentZoomLevel } from "../../../state/actions/render.actions";
+import {
+  setDocumentPaginated,
+  setDocumentRotationAngle,
+  setDocumentZoomLevel,
+} from "../../../state/actions/render.actions";
 import { initialRenderSettingsState } from "../../../state/reducers/render.reducers";
 import { IStyledProps } from "../../../types";
 import {
@@ -19,14 +23,14 @@ const PDFControls: FC<{}> = () => {
     state: { currentDocument },
   } = useContext(DocViewerContext);
 
-  const {
-    state: renderSettings,
-    dispatch: renderDispatch,
-  } = useContext(RenderContext);
+  const { state: renderSettings, dispatch: renderDispatch } =
+    useContext(RenderContext);
 
   return (
     <Container id="pdf-controls">
-      {renderSettings.paginated && renderSettings.pagesCount > 1 && <PDFPagination />}
+      {renderSettings.paginated && renderSettings.pagesCount > 1 && (
+        <PDFPagination />
+      )}
 
       {currentDocument?.fileData && (
         <DownloadButton
@@ -40,27 +44,51 @@ const PDFControls: FC<{}> = () => {
 
       <ControlButton
         id="pdf-zoom-out"
-        onMouseDown={() => renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel - 0.1))}
+        onMouseDown={() =>
+          renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel - 0.1))
+        }
       >
         <ZoomOutPDFIcon color="#000" size="80%" />
       </ControlButton>
 
       <ControlButton
         id="pdf-zoom-in"
-        onMouseDown={() => renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel + 0.1))}
+        onMouseDown={() =>
+          renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel + 0.1))
+        }
       >
         <ZoomInPDFIcon color="#000" size="80%" />
       </ControlButton>
-      <button id="rotate-left-pdf" onClick={() => renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle - 90))}>
+      <button
+        id="rotate-left-pdf"
+        onClick={() =>
+          renderDispatch(
+            setDocumentRotationAngle(renderSettings.rotationAngle - 90)
+          )
+        }
+      >
         Rotate to left
       </button>
-      <button id="rotate-right-pdf" onClick={() => renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle + 90))}>
+      <button
+        id="rotate-right-pdf"
+        onClick={() =>
+          renderDispatch(
+            setDocumentRotationAngle(renderSettings.rotationAngle + 90)
+          )
+        }
+      >
         Rotate to right
       </button>
       <ControlButton
         id="pdf-zoom-reset"
-        onMouseDown={() => renderDispatch(setDocumentZoomLevel(initialRenderSettingsState.zoomLevel))}
-        disabled={initialRenderSettingsState.zoomLevel === renderSettings.zoomLevel}
+        onMouseDown={() =>
+          renderDispatch(
+            setDocumentZoomLevel(initialRenderSettingsState.zoomLevel)
+          )
+        }
+        disabled={
+          initialRenderSettingsState.zoomLevel === renderSettings.zoomLevel
+        }
       >
         <ResetZoomPDFIcon color="#000" size="70%" />
       </ControlButton>

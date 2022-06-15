@@ -7,6 +7,7 @@ import PDFRenderer from "./pdf";
 import PNGRenderer from "./png";
 import TIFFRenderer from "./tiff";
 import TXTRenderer from "./txt";
+import PPTXRenderer from "./pptx";
 
 export const DocViewerRenderers = [
   BMPRenderer,
@@ -18,4 +19,5 @@ export const DocViewerRenderers = [
   PNGRenderer,
   TIFFRenderer,
   TXTRenderer,
+  PPTXRenderer,
 ];

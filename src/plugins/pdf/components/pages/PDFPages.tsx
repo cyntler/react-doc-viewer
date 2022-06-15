@@ -7,7 +7,6 @@ import { setDocumentCurrentPage, setDocumentPagesCount, setDocumentRenderLoaded 
 import { initialRenderSettingsState } from "../../../../state/reducers/render.reducers";
 import { emitEvent } from "../../../../utils/events";
 import getVisiblePageIndex from "../../../../utils/getVisiblePageIndex";
-import onLoadCallback from "../../../../utils/onLoadCallback";
 import { PDFAllPages } from "./PDFAllPages";
 
 const DOCUMENT_PAGES_MARGIN = 8;
@@ -93,7 +92,7 @@ const PDFPages: FC<{}> = () => {
       })
     );
 
-    emitEvent("onPaginationDocumentLoaded", payload);
+      emitEvent("onPaginationDocumentLoaded", payload);
   }, [loadedPageCount]);
 
   if (!currentDocument || currentDocument?.fileData === undefined) return <></>;

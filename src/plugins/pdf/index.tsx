@@ -9,20 +9,6 @@ import PDFControls from "./components/PDFControls";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
-const PDFRenderer: DocRenderer = () => {
-  return (
-    <Container id="pdf-renderer" data-testid="pdf-renderer">
-      <PDFControls />
-      <PDFPages />
-    </Container>
-  );
-};
-
-export default PDFRenderer;
-
-PDFRenderer.fileTypes = ["pdf", "application/pdf"];
-PDFRenderer.weight = 0;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,9 +17,8 @@ const Container = styled.div`
 
   /* width */
   &::-webkit-scrollbar {
-    ${(props: IStyledProps) => {
-      return props.theme.disableThemeScrollbar ? "" : "width: 10px";
-    }};
+    ${(props: IStyledProps) =>
+      props.theme.disableThemeScrollbar ? "" : "width: 10px"};
   }
   /* Track */
   &::-webkit-scrollbar-track {
@@ -48,3 +33,15 @@ const Container = styled.div`
     background: ${(props: IStyledProps) => props.theme.primary};
   }
 `;
+
+const PDFRenderer: DocRenderer = () => (
+  <Container id="pdf-renderer" data-testid="pdf-renderer">
+    <PDFControls />
+    <PDFPages />
+  </Container>
+);
+
+export default PDFRenderer;
+
+PDFRenderer.fileTypes = ["pdf", "application/pdf"];
+PDFRenderer.weight = 0;

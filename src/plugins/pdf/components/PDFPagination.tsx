@@ -6,44 +6,6 @@ import { setDocumentCurrentPage } from "../../../state/actions/render.actions";
 import { IStyledProps } from "../../../types";
 import { NextPDFNavIcon, PrevPDFNavIcon } from "./icons";
 
-const PDFPagination: FC<{}> = () => {
-  const {
-    state: renderSettings,
-    dispatch,
-  } = useContext(RenderContext);
-
-  return (
-    <Container id="pdf-pagination">
-      <PageNavButtonLeft
-        id="pdf-pagination-prev"
-        onClick={() => dispatch(setDocumentCurrentPage(renderSettings.currentPage - 1))}
-        disabled={renderSettings.currentPage === 1}
-      >
-        <PrevPDFNavIcon color="#000" size="50%" />
-      </PageNavButtonLeft>
-
-      <PageTag id="pdf-pagination-info">
-        Page {renderSettings.currentPage}/{renderSettings.pagesCount}
-      </PageTag>
-
-      <PageNavButtonRight
-        id="pdf-pagination-next"
-        onClick={() => dispatch(setDocumentCurrentPage(renderSettings.currentPage + 1))}
-        disabled={renderSettings.currentPage >=renderSettings.pagesCount}
-      >
-        <NextPDFNavIcon color="#000" size="50%" />
-      </PageNavButtonRight>
-    </Container>
-  );
-};
-
-export default PDFPagination;
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 const PageNavButtonLeft = styled(Button)`
   width: 30px;
   height: 30px;
@@ -67,3 +29,41 @@ const PageTag = styled.div`
     font-size: 10px;
   }
 `;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+function PDFPagination() {
+  const { state: renderSettings, dispatch } = useContext(RenderContext);
+
+  return (
+    <Container id="pdf-pagination">
+      <PageNavButtonLeft
+        id="pdf-pagination-prev"
+        onClick={() =>
+          dispatch(setDocumentCurrentPage(renderSettings.currentPage - 1))
+        }
+        disabled={renderSettings.currentPage === 1}
+      >
+        <PrevPDFNavIcon color="#000" size="50%" />
+      </PageNavButtonLeft>
+
+      <PageTag id="pdf-pagination-info">
+        {`Page ${renderSettings.currentPage}/${renderSettings.pagesCount}`}
+      </PageTag>
+
+      <PageNavButtonRight
+        id="pdf-pagination-next"
+        onClick={() =>
+          dispatch(setDocumentCurrentPage(renderSettings.currentPage + 1))
+        }
+        disabled={renderSettings.currentPage >= renderSettings.pagesCount}
+      >
+        <NextPDFNavIcon color="#000" size="50%" />
+      </PageNavButtonRight>
+    </Container>
+  );
+}
+
+export default PDFPagination;

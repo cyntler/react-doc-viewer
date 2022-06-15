@@ -8,19 +8,35 @@ interface Props {
   pageNum?: number;
   onRendered: Function;
 }
+interface PageWrapperProps {
+  last?: boolean;
+}
+const PageWrapper = styled.div<PageWrapperProps>`
+  /* margin: 20px 0; */
+`;
+const PageTag = styled.div`
+  padding: 0 0 10px 10px;
+  color: ${(props: IStyledProps) => props.theme.textTertiary};
+  font-size: 14px;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+`;
 
 const PDFSinglePage: FC<Props> = (props) => {
   const { pageNum, onRendered } = props;
   const documentNavigationPages = document.querySelector("#document-pages-nav");
-  const subtractWidth = documentNavigationPages ? documentNavigationPages.clientWidth + 10 : 10;
-  
+  const subtractWidth = documentNavigationPages
+    ? documentNavigationPages.clientWidth + 10
+    : 10;
+
   const {
     state: { rendererRect },
   } = useContext(DocViewerContext);
   const {
-    state: {
-      zoomLevel, pagesCount, currentPage, rotationAngle
-    },
+    state: { zoomLevel, pagesCount, currentPage, rotationAngle },
   } = useContext(RenderContext);
 
   const _pageNum = pageNum || currentPage;
@@ -40,20 +56,3 @@ const PDFSinglePage: FC<Props> = (props) => {
 };
 
 export default PDFSinglePage;
-
-interface PageWrapperProps {
-  last?: boolean;
-}
-const PageWrapper = styled.div<PageWrapperProps>`
-  /* margin: 20px 0; */
-`;
-const PageTag = styled.div`
-  padding: 0 0 10px 10px;
-  color: ${(props: IStyledProps) => props.theme.textTertiary};
-  font-size: 14px;
-  text-align: left;
-
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-`;
