@@ -3,6 +3,23 @@
 import { AirParser } from "airppt-parser";
 import loadBinaryImage from "./loadImage.util";
 
+const applyAlphaToHex = (color: string, alpha: number) => {
+  if (alpha === 1) return color;
+
+  let hex = color.replace("#", "").slice(0, 6);
+
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+
+  let alphaHex = Math.floor(0xff * alpha).toString(16);
+  if (alphaHex.length === 1) {
+    alphaHex += alphaHex;
+  }
+
+  return `#${hex}${alphaHex}`;
+};
+
 const getFillColor = async (
   context: CanvasRenderingContext2D,
   colorLikeObject: any,
@@ -62,7 +79,10 @@ const getFillColor = async (
         );
 
         colorLikeObject.value.points.forEach((stop: any) => {
-          gradient.addColorStop(stop.position, stop.color);
+          gradient.addColorStop(
+            stop.position,
+            applyAlphaToHex(stop.color, stop.opacity || 1)
+          );
         });
 
         return gradient;
@@ -335,7 +355,7 @@ class PresentationDrawer {
 
   private splitTextByLines(context: any, text: string, maxWidth: number) {
     const lines = [];
-    let textRef = text;
+    let textRef = text.trim();
     let result;
     let width = 0;
     let i;

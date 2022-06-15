@@ -38,6 +38,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 /* eslint-disable no-unused-expressions */
 import { AirParser } from "airppt-parser";
 import loadBinaryImage from "./loadImage.util";
+var applyAlphaToHex = function (color, alpha) {
+    if (alpha === 1)
+        return color;
+    var hex = color.replace("#", "").slice(0, 6);
+    if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    var alphaHex = Math.floor(0xff * alpha).toString(16);
+    if (alphaHex.length === 1) {
+        alphaHex += alphaHex;
+    }
+    return "#" + hex + alphaHex;
+};
 var getFillColor = function (context, colorLikeObject, shape) { return __awaiter(void 0, void 0, void 0, function () {
     var radians, length_1, gradient_1, gradient_2, radius, gradient_3, image;
     return __generator(this, function (_a) {
@@ -69,7 +82,7 @@ var getFillColor = function (context, colorLikeObject, shape) { return __awaiter
                             radius = shape.boundingBox.width * 0.05;
                             gradient_3 = context.createRadialGradient(shape.boundingBox.x + shape.boundingBox.width / 2, shape.boundingBox.y + shape.boundingBox.height / 2, radius, shape.boundingBox.x + shape.boundingBox.width / 2, shape.boundingBox.y + shape.boundingBox.height / 2, shape.boundingBox.width / 2);
                             colorLikeObject.value.points.forEach(function (stop) {
-                                gradient_3.addColorStop(stop.position, stop.color);
+                                gradient_3.addColorStop(stop.position, applyAlphaToHex(stop.color, stop.opacity || 1));
                             });
                             return [2 /*return*/, gradient_3];
                         }
@@ -341,7 +354,7 @@ var PresentationDrawer = /** @class */ (function () {
     };
     PresentationDrawer.prototype.splitTextByLines = function (context, text, maxWidth) {
         var lines = [];
-        var textRef = text;
+        var textRef = text.trim();
         var result;
         var width = 0;
         var i;
