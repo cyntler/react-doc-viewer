@@ -17,6 +17,7 @@ import React from "react";
 import styled from "styled-components";
 import ImageProxyRenderer from "../image";
 var StyledImageRenderer = styled(ImageProxyRenderer)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex: 1;\n  align-items: center;\n  justify-content: center;\n  height: 100%;\n"], ["\n  display: flex;\n  flex: 1;\n  align-items: center;\n  justify-content: center;\n  height: 100%;\n"])));
+// eslint-disable-next-line react/function-component-definition
 var PNGRenderer = function (props) { return React.createElement(StyledImageRenderer, __assign({}, props)); };
 PNGRenderer.fileTypes = ["png", "image/png"];
 PNGRenderer.weight = 0;

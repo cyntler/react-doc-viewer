@@ -7,6 +7,7 @@ import PDFRenderer from "./pdf";
 import PNGRenderer from "./png";
 import TIFFRenderer from "./tiff";
 import TXTRenderer from "./txt";
+import PPTXRenderer from "./pptx";
 export var DocViewerRenderers = [
     BMPRenderer,
     HTMLRenderer,
@@ -17,4 +18,5 @@ export var DocViewerRenderers = [
     PNGRenderer,
     TIFFRenderer,
     TXTRenderer,
+    PPTXRenderer,
 ];

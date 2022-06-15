@@ -1,3 +1,3 @@
-import { FC } from "react";
-declare const PDFPagination: FC<{}>;
+/// <reference types="react" />
+declare function PDFPagination(): JSX.Element;
 export default PDFPagination;

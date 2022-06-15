@@ -31,13 +31,8 @@ var MSDocFTMaps = {
         "xlsx",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     ],
-    ppt: ["ppt", "application/vnd.ms-powerpoint"],
-    pptx: [
-        "pptx",
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-    ],
 };
-MSDocRenderer.fileTypes = __spreadArrays(MSDocFTMaps.doc, MSDocFTMaps.docx, MSDocFTMaps.xls, MSDocFTMaps.xlsx, MSDocFTMaps.ppt, MSDocFTMaps.pptx);
+MSDocRenderer.fileTypes = __spreadArrays(MSDocFTMaps.doc, MSDocFTMaps.docx, MSDocFTMaps.xls, MSDocFTMaps.xlsx);
 MSDocRenderer.weight = 0;
 MSDocRenderer.fileLoader = function (_a) {
     var fileLoaderComplete = _a.fileLoaderComplete;

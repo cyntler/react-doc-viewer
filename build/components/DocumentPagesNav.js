@@ -2,13 +2,13 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import { FixedSizeList } from "react-window";
-import { RenderContext } from '../state';
-import { setDocumentCurrentPage } from '../state/actions/render.actions';
-import { createEvent } from '../utils/events';
-var Container = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    display: flex;\n    gap: 15px;\n    flex-direction: column;\n    max-width: 340px;\n    height: 100%;\n    \n    .navigator-list {\n        // scroll bar \n        ::-webkit-scrollbar {\n            width: 5px;\n        }\n        ::-webkit-scrollbar-track {\n            background: transparent;\n        }\n        ::-webkit-scrollbar-thumb {\n            background: #888;\n        }\n        ::-webkit-scrollbar-thumb:hover {\n            background: #555;\n        }\n    }\n    \n    \n    .page {\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n        align-items: center;\n        \n        &[data-active=\"true\"] {\n            background: rgba(0, 0, 0, .3);\n        }\n\n        &:hover { \n            background: rgba(0, 0, 0, .3);\n        }\n        \n        .page-image {\n            max-width: 150px;\n            img { \n                width: 100%;\n\n            }\n        }\n\n        .page-caption {  \n            margin-top: 8px;\n            text-align: center;\n            color: #fff;\n        }\n    }\n"], ["\n    display: flex;\n    gap: 15px;\n    flex-direction: column;\n    max-width: 340px;\n    height: 100%;\n    \n    .navigator-list {\n        // scroll bar \n        ::-webkit-scrollbar {\n            width: 5px;\n        }\n        ::-webkit-scrollbar-track {\n            background: transparent;\n        }\n        ::-webkit-scrollbar-thumb {\n            background: #888;\n        }\n        ::-webkit-scrollbar-thumb:hover {\n            background: #555;\n        }\n    }\n    \n    \n    .page {\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n        align-items: center;\n        \n        &[data-active=\"true\"] {\n            background: rgba(0, 0, 0, .3);\n        }\n\n        &:hover { \n            background: rgba(0, 0, 0, .3);\n        }\n        \n        .page-image {\n            max-width: 150px;\n            img { \n                width: 100%;\n\n            }\n        }\n\n        .page-caption {  \n            margin-top: 8px;\n            text-align: center;\n            color: #fff;\n        }\n    }\n"])));
+import { areEqual, FixedSizeList } from "react-window";
+import { RenderContext } from "../state";
+import { setDocumentCurrentPage } from "../state/actions/render.actions";
+import { createEvent } from "../utils/events";
+var Container = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  gap: 15px;\n  flex-direction: column;\n  max-width: 340px;\n  height: 100%;\n\n  .navigator-list {\n    // scroll bar\n    ::-webkit-scrollbar {\n      width: 5px;\n    }\n    ::-webkit-scrollbar-track {\n      background: transparent;\n    }\n    ::-webkit-scrollbar-thumb {\n      background: #888;\n    }\n    ::-webkit-scrollbar-thumb:hover {\n      background: #555;\n    }\n  }\n\n  .page {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n\n    &[data-active=\"true\"] {\n      background: rgba(0, 0, 0, 0.3);\n    }\n\n    &:hover {\n      background: rgba(0, 0, 0, 0.3);\n    }\n\n    .page-image {\n      max-width: 150px;\n      img {\n        width: 100%;\n      }\n    }\n\n    .page-caption {\n      margin-top: 8px;\n      text-align: center;\n      color: #fff;\n    }\n  }\n"], ["\n  display: flex;\n  gap: 15px;\n  flex-direction: column;\n  max-width: 340px;\n  height: 100%;\n\n  .navigator-list {\n    // scroll bar\n    ::-webkit-scrollbar {\n      width: 5px;\n    }\n    ::-webkit-scrollbar-track {\n      background: transparent;\n    }\n    ::-webkit-scrollbar-thumb {\n      background: #888;\n    }\n    ::-webkit-scrollbar-thumb:hover {\n      background: #555;\n    }\n  }\n\n  .page {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n\n    &[data-active=\"true\"] {\n      background: rgba(0, 0, 0, 0.3);\n    }\n\n    &:hover {\n      background: rgba(0, 0, 0, 0.3);\n    }\n\n    .page-image {\n      max-width: 150px;\n      img {\n        width: 100%;\n      }\n    }\n\n    .page-caption {\n      margin-top: 8px;\n      text-align: center;\n      color: #fff;\n    }\n  }\n"])));
 function DocumentPagesNav() {
     var _a = React.useContext(RenderContext), state = _a.state, dispatch = _a.dispatch;
     var _b = React.useState([]), pages = _b[0], setPages = _b[1];
@@ -18,13 +18,11 @@ function DocumentPagesNav() {
     var paginated = state.pagesCount > 1 && state.paginated;
     React.useEffect(function () {
         createEvent("onPaginationDocumentLoaded", function (payload) {
-            setPages(payload.map(function (item) {
-                return {
-                    id: item.index + 1,
-                    image: item.imageURL,
-                    caption: "Page " + (item.index + 1)
-                };
-            }));
+            setPages(payload.map(function (item) { return ({
+                id: item.index + 1,
+                image: item.imageURL,
+                caption: (item.name || "Page") + " " + (item.index + 1),
+            }); }));
         });
     }, []);
     React.useEffect(function () {
@@ -36,12 +34,13 @@ function DocumentPagesNav() {
         if (!containerRef.current)
             return;
         setListHeight(containerRef.current.clientHeight);
-        window.addEventListener('resize', function () {
+        window.addEventListener("resize", function () {
             var _a;
             setListHeight(((_a = containerRef.current) === null || _a === void 0 ? void 0 : _a.clientHeight) || 0);
         });
     }, [containerRef.current]);
-    var Row = function (_a) {
+    // eslint-disable-next-line react/no-unstable-nested-components
+    var Row = React.memo(function (_a) {
         var index = _a.index, style = _a.style;
         var page = pages[index];
         var active = page.id === state.currentPage;
@@ -54,13 +53,13 @@ function DocumentPagesNav() {
             }
             dispatch(setDocumentCurrentPage(page.id));
         };
-        return (React.createElement("div", { className: "page", "data-active": active, style: style, onClick: onPageClick },
+        return (React.createElement("div", { role: "button", tabIndex: 0, onKeyDown: function () { }, className: "page", "data-active": active, style: style, onClick: onPageClick },
             React.createElement("div", { className: "page-image" },
                 React.createElement("img", { src: page.image, alt: page.caption })),
             React.createElement("div", { className: "page-caption" }, page.caption)));
-    };
+    }, areEqual);
     return paginated ? (React.createElement(Container, { id: "document-pages-nav", ref: containerRef },
-        React.createElement(FixedSizeList, { className: "navigator-list", ref: listRef, width: 230, height: listHeight, itemCount: pages.length, itemData: pages, itemSize: 280 }, Row))) : React.createElement(React.Fragment, null);
+        React.createElement(FixedSizeList, { className: "navigator-list", ref: listRef, width: 230, height: listHeight, itemCount: pages.length, itemData: pages, itemSize: 280 }, Row))) : (React.createElement(React.Fragment, null));
 }
 export default DocumentPagesNav;
 var templateObject_1;

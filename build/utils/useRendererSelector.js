@@ -11,7 +11,7 @@ export var useRendererSelector = function () {
             return;
         }
         var matchingRenderers = [];
-        pluginRenderers === null || pluginRenderers === void 0 ? void 0 : pluginRenderers.map(function (r) {
+        pluginRenderers === null || pluginRenderers === void 0 ? void 0 : pluginRenderers.forEach(function (r) {
             if (currentDocument.fileType === undefined)
                 return;
             if (r.fileTypes.indexOf(currentDocument.fileType) >= 0) {

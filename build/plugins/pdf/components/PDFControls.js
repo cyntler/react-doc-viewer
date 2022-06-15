@@ -6,7 +6,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Button, LinkButton } from "../../../components/common";
 import { DocViewerContext, RenderContext } from "../../../state";
-import { setDocumentRotationAngle, setDocumentZoomLevel } from "../../../state/actions/render.actions";
+import { setDocumentRotationAngle, setDocumentZoomLevel, } from "../../../state/actions/render.actions";
 import { initialRenderSettingsState } from "../../../state/reducers/render.reducers";
 import { DownloadPDFIcon, ResetZoomPDFIcon, ZoomInPDFIcon, ZoomOutPDFIcon, } from "./icons";
 import PDFPagination from "./PDFPagination";
@@ -14,16 +14,26 @@ var PDFControls = function () {
     var currentDocument = useContext(DocViewerContext).state.currentDocument;
     var _a = useContext(RenderContext), renderSettings = _a.state, renderDispatch = _a.dispatch;
     return (React.createElement(Container, { id: "pdf-controls" },
-        renderSettings.paginated && renderSettings.pagesCount > 1 && React.createElement(PDFPagination, null),
+        renderSettings.paginated && renderSettings.pagesCount > 1 && (React.createElement(PDFPagination, null)),
         (currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.fileData) && (React.createElement(DownloadButton, { id: "pdf-download", href: currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.fileData, download: (currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.fileName) || (currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.uri) },
             React.createElement(DownloadPDFIcon, { color: "#000", size: "75%" }))),
-        React.createElement(ControlButton, { id: "pdf-zoom-out", onMouseDown: function () { return renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel - 0.1)); } },
+        React.createElement(ControlButton, { id: "pdf-zoom-out", onMouseDown: function () {
+                return renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel - 0.1));
+            } },
             React.createElement(ZoomOutPDFIcon, { color: "#000", size: "80%" })),
-        React.createElement(ControlButton, { id: "pdf-zoom-in", onMouseDown: function () { return renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel + 0.1)); } },
+        React.createElement(ControlButton, { id: "pdf-zoom-in", onMouseDown: function () {
+                return renderDispatch(setDocumentZoomLevel(renderSettings.zoomLevel + 0.1));
+            } },
             React.createElement(ZoomInPDFIcon, { color: "#000", size: "80%" })),
-        React.createElement("button", { id: "rotate-left-pdf", onClick: function () { return renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle - 90)); } }, "Rotate to left"),
-        React.createElement("button", { id: "rotate-right-pdf", onClick: function () { return renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle + 90)); } }, "Rotate to right"),
-        React.createElement(ControlButton, { id: "pdf-zoom-reset", onMouseDown: function () { return renderDispatch(setDocumentZoomLevel(initialRenderSettingsState.zoomLevel)); }, disabled: initialRenderSettingsState.zoomLevel === renderSettings.zoomLevel },
+        React.createElement("button", { id: "rotate-left-pdf", onClick: function () {
+                return renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle - 90));
+            } }, "Rotate to left"),
+        React.createElement("button", { id: "rotate-right-pdf", onClick: function () {
+                return renderDispatch(setDocumentRotationAngle(renderSettings.rotationAngle + 90));
+            } }, "Rotate to right"),
+        React.createElement(ControlButton, { id: "pdf-zoom-reset", onMouseDown: function () {
+                return renderDispatch(setDocumentZoomLevel(initialRenderSettingsState.zoomLevel));
+            }, disabled: initialRenderSettingsState.zoomLevel === renderSettings.zoomLevel },
             React.createElement(ResetZoomPDFIcon, { color: "#000", size: "70%" }))));
 };
 export default PDFControls;
