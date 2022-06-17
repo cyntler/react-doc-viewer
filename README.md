@@ -284,7 +284,13 @@ You can pass a callback function to `config.loadingRenderer.overrideComponent` t
 Example:
 
 ```tsx
-const MyLoadingRenderer = () => <div>Loading Renderer...</div>;
+const MyLoadingRenderer = ({ document, fileName }) => {
+  const fileText = fileName || document?.fileType || "";
+  if (fileText) {
+    return <div>Loading Renderer ({fileText})...</div>;
+  }
+  return <div>Loading Renderer...</div>;
+};
 
 <DocViewer
   pluginRenderers={DocViewerRenderers}
@@ -308,7 +314,13 @@ You can pass a callback function to `config.noRenderer.overrideComponent` that r
 Example:
 
 ```tsx
-const MyNoRenderer = () => <div>No Renderer Error!</div>;
+const MyNoRenderer = ({ document, fileName }) => {
+  const fileText = fileName || document?.fileType || "";
+  if (fileText) {
+    return <div>No Renderer Error! ({fileText})</div>;
+  }
+  return <div>No Renderer Error!</div>;
+};
 
 <DocViewer
   pluginRenderers={DocViewerRenderers}

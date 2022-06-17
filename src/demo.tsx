@@ -12,10 +12,22 @@ const App = () => {
       pluginRenderers={DocViewerRenderers}
       config={{
         noRenderer: {
-          overrideComponent: () => <div>no renderer</div>,
+          overrideComponent: ({ document, fileName }) => {
+            const fileText = fileName || document?.fileType || "";
+            if (fileText) {
+              return <div>no renderer for {fileText}</div>;
+            }
+            return <div>no renderer</div>;
+          },
         },
         loadingRenderer: {
-          overrideComponent: () => <div>loading</div>,
+          overrideComponent: ({ document, fileName }) => {
+            const fileText = fileName || document?.fileType || "";
+            if (fileText) {
+              return <div>loading ({fileText})</div>;
+            }
+            return <div>loading</div>;
+          },
         },
       }}
     />
