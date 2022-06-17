@@ -63,6 +63,7 @@ const Container = styled.div`
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";
 export * from "./utils/fileLoaders";
+export * from "./utils/fromArrayBuffer";
 export {
   BMPRenderer,
   HTMLRenderer,

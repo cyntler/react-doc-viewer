@@ -49,6 +49,7 @@ export interface IDocument {
   fileType?: string;
   fileData?: string | ArrayBuffer;
   fileName?: string;
+  isAsArrayBuffer?: boolean;
 }
 
 export interface DocRendererProps {
