@@ -4,10 +4,16 @@ export const SET_ALL_DOCUMENTS: string = "SET_ALL_DOCUMENTS";
 export interface SetAllDocuments {
   type: typeof SET_ALL_DOCUMENTS;
   documents: IDocument[];
+  initialActiveDocument?: IDocument;
 }
-export const setAllDocuments = (documents: IDocument[]): SetAllDocuments => ({
+
+export const setAllDocuments = (
+  documents: IDocument[],
+  initialActiveDocument?: IDocument
+): SetAllDocuments => ({
   type: SET_ALL_DOCUMENTS,
   documents,
+  initialActiveDocument,
 });
 
 export const SET_DOCUMENT_LOADING: string = "SET_DOCUMENT_LOADING";
