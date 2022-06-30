@@ -4,11 +4,15 @@ import DocViewer from ".";
 import { DocViewerRenderers } from "./plugins";
 
 const App = () => {
-  const docs = [{ uri: require("./examples/pdf-file.pdf") }];
+  const docs = [
+    { uri: require("./examples/pdf-file.pdf") },
+    { uri: require("./examples/png-image.png") },
+  ];
 
   return (
     <DocViewer
       documents={docs}
+      initialActiveDocument={docs[1]}
       pluginRenderers={DocViewerRenderers}
       config={{
         noRenderer: {

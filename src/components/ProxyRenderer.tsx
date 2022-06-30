@@ -75,7 +75,11 @@ export const ProxyRenderer: FC<{}> = () => {
   };
 
   return (
-    <Container id="proxy-renderer" ref={containerRef}>
+    <Container
+      id="proxy-renderer"
+      data-testid="proxy-renderer"
+      ref={containerRef}
+    >
       <Contents />
     </Container>
   );

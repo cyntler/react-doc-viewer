@@ -59,6 +59,23 @@ function App() {
 }
 ```
 
+### Initial Active Document
+
+By default, the first item in your `documents` array will be displayed after the component is rendered. However, there is a prop `initialActiveDocument` that you can point to the initial document that should be displayed.
+
+```tsx
+import DocViewer from "react-doc-viewer";
+
+function App() {
+  const docs = [
+    { uri: "https://url-to-my-pdf.pdf" },
+    { uri: require("./example-files/pdf.pdf") }, // Local File
+  ];
+
+  return <DocViewer documents={docs} initialActiveDocument={docs[1]} />;
+}
+```
+
 ### Included Renderers
 
 To use the included renderers.
