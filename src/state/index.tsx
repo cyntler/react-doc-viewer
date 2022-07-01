@@ -27,6 +27,7 @@ const AppProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
     config,
     pluginRenderers,
     prefetchMethod,
+    requestHeaders,
     initialActiveDocument,
   } = props;
 
@@ -42,6 +43,7 @@ const AppProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
     config,
     pluginRenderers,
     prefetchMethod,
+    requestHeaders,
     currentFileNo: initialActiveDocument
       ? documents.findIndex((doc) => doc === initialActiveDocument) ?? 0
       : 0,

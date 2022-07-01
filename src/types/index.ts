@@ -7,7 +7,6 @@ export interface IConfig {
   header?: IHeaderConfig;
   loadingRenderer?: ILoadingRendererConfig;
   noRenderer?: INoRendererConfig;
-  requestHeaders?: { [key: string]: string };
 }
 
 export interface ILoadingRendererConfig {
