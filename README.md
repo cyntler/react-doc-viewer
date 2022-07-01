@@ -201,7 +201,7 @@ Provide Simple Request Headers, for authenticating with an API or something.
 <DocViewer
   documents={docs}
   prefetchMethod="GET"
-  requestHeaders={headers}
+  requestHeaders={headers} />;
 ```
 
 ## Styling
