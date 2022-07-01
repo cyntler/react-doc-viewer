@@ -33,7 +33,7 @@ export const useDocumentLoader = (): {
       const controller = new AbortController();
       const { signal } = controller;
 
-      fetch(documentURI, { method: prefetchMethod || "HEAD", signal }).then(
+      fetch(documentURI, { method: prefetchMethod || "HEAD", signal, headers: state.config?.requestHeaders  }).then(
         (response) => {
           const contentTypeRaw = response.headers.get("content-type");
           const contentTypes = contentTypeRaw?.split(";") || [];

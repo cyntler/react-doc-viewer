@@ -14,7 +14,11 @@ const App = () => {
       documents={docs}
       initialActiveDocument={docs[1]}
       pluginRenderers={DocViewerRenderers}
+      prefetchMethod='GET'
       config={{
+        requestHeaders: {
+          'x-session-token': '123',
+        },
         noRenderer: {
           overrideComponent: ({ document, fileName }) => {
             const fileText = fileName || document?.fileType || "";
