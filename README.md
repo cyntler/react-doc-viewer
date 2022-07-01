@@ -189,6 +189,21 @@ import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 <DocViewer prefetchMethod="GET" />;
 ```
 
+## Custom request Headers
+Provide Simple Request Headers, for authenticating with an API or something.
+
+```tsx
+ const headers: { [key: string]: string } = {
+    "x-access-token": "1234567890",
+    "my-custom-header": "my-custom-value",
+}
+
+<DocViewer
+  documents={docs}
+  prefetchMethod="GET"
+  requestHeaders={headers}
+```
+
 ## Styling
 
 Any styling applied to the `<DocViewer>` component, is directly applied to the main `div` container.

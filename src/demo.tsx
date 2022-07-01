@@ -4,6 +4,8 @@ import DocViewer from ".";
 import { DocViewerRenderers } from "./plugins";
 
 const App = () => {
+
+
   const docs = [
     { uri: require("./examples/pdf-file.pdf") },
     { uri: require("./examples/png-image.png") },
@@ -14,10 +16,6 @@ const App = () => {
       documents={docs}
       initialActiveDocument={docs[1]}
       pluginRenderers={DocViewerRenderers}
-      prefetchMethod='GET'
-      requestHeaders={{
-          'x-session-token': '123',
-      }}
       config={{
         noRenderer: {
           overrideComponent: ({ document, fileName }) => {
