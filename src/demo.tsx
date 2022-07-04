@@ -4,6 +4,8 @@ import DocViewer from ".";
 import { DocViewerRenderers } from "./plugins";
 
 const App = () => {
+
+
   const docs = [
     { uri: require("./examples/pdf-file.pdf") },
     { uri: require("./examples/png-image.png") },
