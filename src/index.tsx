@@ -24,7 +24,7 @@ export interface DocViewerProps {
   theme?: ITheme;
   pluginRenderers?: DocRenderer[];
   prefetchMethod?: string;
-  requestHeaders?: { [key: string]: string };
+  requestHeaders?: Record<string, string>;
   initialActiveDocument?: IDocument;
 }
 

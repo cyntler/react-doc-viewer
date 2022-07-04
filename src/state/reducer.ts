@@ -24,7 +24,7 @@ export type IMainState = {
   config?: IConfig;
   pluginRenderers?: DocRenderer[];
   prefetchMethod?: string;
-  requestHeaders?: { [key: string]: string };
+  requestHeaders?: Record<string, string>;
 };
 
 export const initialState: IMainState = {

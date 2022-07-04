@@ -33,20 +33,22 @@ export const useDocumentLoader = (): {
       const controller = new AbortController();
       const { signal } = controller;
 
-      fetch(documentURI, { method: prefetchMethod || "HEAD", signal, headers: state?.requestHeaders  }).then(
-        (response) => {
-          const contentTypeRaw = response.headers.get("content-type");
-          const contentTypes = contentTypeRaw?.split(";") || [];
-          const contentType = contentTypes.length ? contentTypes[0] : undefined;
+      fetch(documentURI, {
+        method: prefetchMethod || "HEAD",
+        signal,
+        headers: state?.requestHeaders,
+      }).then((response) => {
+        const contentTypeRaw = response.headers.get("content-type");
+        const contentTypes = contentTypeRaw?.split(";") || [];
+        const contentType = contentTypes.length ? contentTypes[0] : undefined;
 
-          dispatch(
-            updateCurrentDocument({
-              ...currentDocument,
-              fileType: contentType || undefined,
-            })
-          );
-        }
-      );
+        dispatch(
+          updateCurrentDocument({
+            ...currentDocument,
+            fileType: contentType || undefined,
+          })
+        );
+      });
 
       return () => {
         controller.abort();

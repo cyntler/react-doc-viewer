@@ -189,19 +189,17 @@ import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 <DocViewer prefetchMethod="GET" />;
 ```
 
-## Custom request Headers
-Provide Simple Request Headers, for authenticating with an API or something.
+## Custom Request Headers
+
+Provide request headers, i.e. for authenticating with an API etc.
 
 ```tsx
- const headers: { [key: string]: string } = {
-    "x-access-token": "1234567890",
-    "my-custom-header": "my-custom-value",
-}
+const headers = {
+  "X-Access-Token": "1234567890",
+  "My-Custom-Header": "my-custom-value",
+};
 
-<DocViewer
-  documents={docs}
-  prefetchMethod="GET"
-  requestHeaders={headers} />;
+<DocViewer documents={docs} prefetchMethod="GET" requestHeaders={headers} />;
 ```
 
 ## Styling
@@ -227,7 +225,7 @@ Each component / div already has a DOM id that can be used to style any part of 
 #### React Inline
 
 ```xml
-<DocViewer documents={docs} style={{width: 500, height: 500}} />
+<DocViewer documents={docs} style={{ width: 500, height: 500 }} />
 ```
 
 #### Styled Components
@@ -318,9 +316,11 @@ Example:
 ```tsx
 const MyLoadingRenderer = ({ document, fileName }) => {
   const fileText = fileName || document?.fileType || "";
+
   if (fileText) {
     return <div>Loading Renderer ({fileText})...</div>;
   }
+
   return <div>Loading Renderer...</div>;
 };
 
@@ -348,9 +348,11 @@ Example:
 ```tsx
 const MyNoRenderer = ({ document, fileName }) => {
   const fileText = fileName || document?.fileType || "";
+
   if (fileText) {
     return <div>No Renderer Error! ({fileText})</div>;
   }
+
   return <div>No Renderer Error!</div>;
 };
 
