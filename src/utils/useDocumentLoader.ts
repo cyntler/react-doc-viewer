@@ -7,7 +7,11 @@ import {
 } from "../state/actions";
 import { IMainState } from "../state/reducer";
 import { DocRenderer } from "../types";
-import { defaultFileLoader, FileLoaderComplete } from "./fileLoaders";
+import {
+  defaultFileLoader,
+  FileLoaderComplete,
+  FileLoaderFuncProps,
+} from "./fileLoaders";
 import { useRendererSelector } from "./useRendererSelector";
 
 /**
@@ -79,12 +83,19 @@ export const useDocumentLoader = (): {
       dispatch(setDocumentLoading(false));
     };
 
+    const loaderFunctionProps: FileLoaderFuncProps = {
+      documentURI,
+      signal,
+      fileLoaderComplete,
+      headers: state?.requestHeaders,
+    };
+
     if (CurrentRenderer === null) {
       dispatch(setDocumentLoading(false));
     } else if (CurrentRenderer.fileLoader !== undefined) {
-      CurrentRenderer.fileLoader?.({ documentURI, signal, fileLoaderComplete });
+      CurrentRenderer.fileLoader?.(loaderFunctionProps);
     } else {
-      defaultFileLoader({ documentURI, signal, fileLoaderComplete });
+      defaultFileLoader(loaderFunctionProps);
     }
 
     return () => {
