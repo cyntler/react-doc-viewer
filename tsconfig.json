@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "target": "es5",
-    "module": "esnext",
+    "module": "CommonJS",
     "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
     "allowJs": true,
