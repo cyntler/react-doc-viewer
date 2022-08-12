@@ -26,6 +26,14 @@ export const setDocumentLoading = (value: boolean): SetDocumentLoading => ({
   value,
 });
 
+export const UPDATE_DOCUMENT_NUMBER: string = "UPDATE_DOCUMENT_NUMBER";
+export interface DocumentNumber {
+  type: typeof UPDATE_DOCUMENT_NUMBER;
+}
+export const updateDocumentNumber = (): DocumentNumber => ({
+  type: UPDATE_DOCUMENT_NUMBER,
+});
+
 export const NEXT_DOCUMENT: string = "NEXT_DOCUMENT";
 export interface NextDocument {
   type: typeof NEXT_DOCUMENT;

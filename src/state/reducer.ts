@@ -1,6 +1,7 @@
 import { DocRenderer, IConfig, IDocument } from "../types";
 import {
   MainStateActions,
+  UPDATE_DOCUMENT_NUMBER,
   NEXT_DOCUMENT,
   PREVIOUS_DOCUMENT,
   SetAllDocuments,
@@ -61,6 +62,13 @@ export const mainStateReducer: MainStateReducer = (
     case SET_DOCUMENT_LOADING: {
       const { value } = action as SetDocumentLoading;
       return { ...state, documentLoading: value };
+    }
+
+    case UPDATE_DOCUMENT_NUMBER: {
+      return {
+        ...state,
+        currentFileNo: state.documents.indexOf( state.currentDocument as IDocument )
+      }
     }
 
     case NEXT_DOCUMENT: {
