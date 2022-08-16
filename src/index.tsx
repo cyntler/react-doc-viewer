@@ -15,6 +15,7 @@ import TXTRenderer from "./plugins/txt";
 import { AppProvider } from "./state";
 import { defaultTheme } from "./theme";
 import { DocRenderer, IConfig, IDocument, ITheme } from "./types";
+import { isWindow } from "./utils/isWindow";
 
 export interface DocViewerProps {
   documents: IDocument[];
@@ -26,6 +27,10 @@ export interface DocViewerProps {
   prefetchMethod?: string;
   requestHeaders?: Record<string, string>;
   initialActiveDocument?: IDocument;
+}
+
+if (isWindow) {
+  (window as any).DataStream = null;
 }
 
 const DocViewer: FC<DocViewerProps> = (props) => {
