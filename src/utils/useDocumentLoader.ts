@@ -3,9 +3,10 @@ import { DocViewerContext } from "../state";
 import {
   MainStateActions,
   setDocumentLoading,
-  updateCurrentDocument, updateDocumentNumber,
+  updateCurrentDocument,
+  updateDocumentNumber,
 } from "../state/actions";
-import {IMainState, initialState} from "../state/reducer";
+import { IMainState } from "../state/reducer";
 import { DocRenderer } from "../types";
 import {
   defaultFileLoader,
@@ -46,7 +47,7 @@ export const useDocumentLoader = (): {
         const contentTypes = contentTypeRaw?.split(";") || [];
         const contentType = contentTypes.length ? contentTypes[0] : undefined;
 
-        dispatch(updateDocumentNumber())
+        dispatch(updateDocumentNumber());
         dispatch(
           updateCurrentDocument({
             ...currentDocument,
