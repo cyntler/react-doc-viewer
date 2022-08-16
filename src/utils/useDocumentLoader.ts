@@ -3,9 +3,9 @@ import { DocViewerContext } from "../state";
 import {
   MainStateActions,
   setDocumentLoading,
-  updateCurrentDocument,
+  updateCurrentDocument, updateDocumentNumber,
 } from "../state/actions";
-import { IMainState } from "../state/reducer";
+import {IMainState, initialState} from "../state/reducer";
 import { DocRenderer } from "../types";
 import {
   defaultFileLoader,
@@ -46,6 +46,7 @@ export const useDocumentLoader = (): {
         const contentTypes = contentTypeRaw?.split(";") || [];
         const contentType = contentTypes.length ? contentTypes[0] : undefined;
 
+        dispatch(updateDocumentNumber())
         dispatch(
           updateCurrentDocument({
             ...currentDocument,
@@ -59,7 +60,7 @@ export const useDocumentLoader = (): {
       };
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentFileNo, documentURI]
+    [currentFileNo, documentURI, currentDocument]
   );
 
   useEffect(() => {
