@@ -14,8 +14,7 @@ export const NextDocIcon = (props: IIconProps) => {
   return <DocNavIcon {...props} reverse />;
 };
 
-const DocNavIcon = (props: IIconProps) => {
-  const { color, size, reverse } = props;
+const DocNavIcon = ({ color, size, reverse }: IIconProps) => {
   return (
     <svg
       width={size || "100%"}
