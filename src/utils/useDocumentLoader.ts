@@ -47,7 +47,8 @@ export const useDocumentLoader = (): {
         const contentTypes = contentTypeRaw?.split(";") || [];
         const contentType = contentTypes.length ? contentTypes[0] : undefined;
 
-        dispatch(updateDocumentNumber());
+        // TODO: it is not working, fix it!
+        // dispatch(updateDocumentNumber());
         dispatch(
           updateCurrentDocument({
             ...currentDocument,
