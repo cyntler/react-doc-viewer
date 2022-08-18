@@ -7,6 +7,7 @@ export interface IConfig {
   header?: IHeaderConfig;
   loadingRenderer?: ILoadingRendererConfig;
   noRenderer?: INoRendererConfig;
+  csvDelimiter?: string;
 }
 
 export interface ILoadingRendererConfig {
