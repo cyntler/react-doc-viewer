@@ -4,7 +4,6 @@ import {
   MainStateActions,
   setDocumentLoading,
   updateCurrentDocument,
-  updateDocumentNumber,
 } from "../state/actions";
 import { IMainState } from "../state/reducer";
 import { DocRenderer } from "../types";
@@ -47,8 +46,6 @@ export const useDocumentLoader = (): {
         const contentTypes = contentTypeRaw?.split(";") || [];
         const contentType = contentTypes.length ? contentTypes[0] : undefined;
 
-        // TODO: it is not working, fix it!
-        // dispatch(updateDocumentNumber());
         dispatch(
           updateCurrentDocument({
             ...currentDocument,

@@ -35,6 +35,7 @@ const App = () => {
             return <div>loading</div>;
           },
         },
+        csvDelimiter: ",",
       }}
     />
   );
