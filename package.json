@@ -31,6 +31,7 @@
     "build-release:major": "react-scripts test --watchAll=false && npm run build && npm run version:major"
   },
   "dependencies": {
+    "react-csv-to-table": "^0.0.4",
     "react-pdf": "5.7.2",
     "styled-components": "^5.3.5",
     "wl-msg-reader": "^0.2.0"

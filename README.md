@@ -12,6 +12,7 @@ File viewer for React.
 | Extension | MIME Type                                                                          |
 | --------- | ---------------------------------------------------------------------------------- |
 | bmp       | image/bmp                                                                          |
+| csv       | text/csv                                                                           |
 | doc       | application/msword                                                                 |
 | docx      | application/vnd.openxmlformats-officedocument.wordprocessingml.document            |
 | htm       | text/htm                                                                           |

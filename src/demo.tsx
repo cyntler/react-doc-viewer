@@ -4,11 +4,10 @@ import DocViewer from ".";
 import { DocViewerRenderers } from "./plugins";
 
 const App = () => {
-
-
   const docs = [
     { uri: require("./examples/pdf-file.pdf") },
     { uri: require("./examples/png-image.png") },
+    { uri: require("./examples/csv-file.csv") },
   ];
 
   return (
@@ -20,6 +19,7 @@ const App = () => {
         noRenderer: {
           overrideComponent: ({ document, fileName }) => {
             const fileText = fileName || document?.fileType || "";
+            console.log(document);
             if (fileText) {
               return <div>no renderer for {fileText}</div>;
             }

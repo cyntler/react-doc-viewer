@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC } from "react";
+import React, { CSSProperties, FC, memo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
@@ -12,6 +12,7 @@ import PDFRenderer from "./plugins/pdf";
 import PNGRenderer from "./plugins/png";
 import TIFFRenderer from "./plugins/tiff";
 import TXTRenderer from "./plugins/txt";
+import CSVRenderer from "./plugins/csv";
 import { AppProvider } from "./state";
 import { defaultTheme } from "./theme";
 import { DocRenderer, IConfig, IDocument, ITheme } from "./types";
@@ -58,7 +59,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
   );
 };
 
-export default DocViewer;
+export default memo(DocViewer);
 
 const Container = styled.div`
   display: flex;
@@ -81,4 +82,5 @@ export {
   PNGRenderer,
   TIFFRenderer,
   TXTRenderer,
+  CSVRenderer,
 };
