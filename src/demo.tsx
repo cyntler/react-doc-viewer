@@ -4,8 +4,6 @@ import DocViewer from ".";
 import { DocViewerRenderers } from "./plugins";
 
 const App = () => {
-  const [test, setTest] = React.useState<boolean>(false);
-
   const docs = [
     { uri: require("./examples/pdf-file.pdf") },
     { uri: require("./examples/png-image.png") },
@@ -13,36 +11,33 @@ const App = () => {
   ];
 
   return (
-    <div style={{ background: test ? "blue" : "green" }}>
-      <button onClick={() => setTest(!test)}>Re-render</button>
-      <DocViewer
-        documents={docs}
-        pluginRenderers={DocViewerRenderers}
-        initialActiveDocument={docs[1]}
-        config={{
-          noRenderer: {
-            overrideComponent: ({ document, fileName }) => {
-              const fileText = fileName || document?.fileType || "";
-              console.log(document);
-              if (fileText) {
-                return <div>no renderer for {fileText}</div>;
-              }
-              return <div>no renderer</div>;
-            },
+    <DocViewer
+      documents={docs}
+      pluginRenderers={DocViewerRenderers}
+      initialActiveDocument={docs[1]}
+      config={{
+        noRenderer: {
+          overrideComponent: ({ document, fileName }) => {
+            const fileText = fileName || document?.fileType || "";
+            console.log(document);
+            if (fileText) {
+              return <div>no renderer for {fileText}</div>;
+            }
+            return <div>no renderer</div>;
           },
-          loadingRenderer: {
-            overrideComponent: ({ document, fileName }) => {
-              const fileText = fileName || document?.fileType || "";
-              if (fileText) {
-                return <div>loading ({fileText})</div>;
-              }
-              return <div>loading</div>;
-            },
+        },
+        loadingRenderer: {
+          overrideComponent: ({ document, fileName }) => {
+            const fileText = fileName || document?.fileType || "";
+            if (fileText) {
+              return <div>loading ({fileText})</div>;
+            }
+            return <div>loading</div>;
           },
-          csvDelimiter: ",",
-        }}
-      />
-    </div>
+        },
+        csvDelimiter: ",",
+      }}
+    />
   );
 };
 
