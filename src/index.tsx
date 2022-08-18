@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC } from "react";
+import React, { CSSProperties, FC, memo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
@@ -59,7 +59,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
   );
 };
 
-export default DocViewer;
+export default memo(DocViewer);
 
 const Container = styled.div`
   display: flex;
