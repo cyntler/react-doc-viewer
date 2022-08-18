@@ -13,8 +13,8 @@ const App = () => {
   return (
     <DocViewer
       documents={docs}
-      pluginRenderers={DocViewerRenderers}
       initialActiveDocument={docs[1]}
+      pluginRenderers={DocViewerRenderers}
       config={{
         noRenderer: {
           overrideComponent: ({ document, fileName }) => {
