@@ -340,6 +340,31 @@ const MyLoadingRenderer = ({ document, fileName }) => {
 />;
 ```
 
+By default, the loading component is rendered if document loading process takes more than 500 ms.
+
+You can change this time value or disable this feature to make the component display immediately:
+
+```tsx
+const MyLoadingRenderer = ({ document, fileName }) => {
+  ...
+};
+
+<DocViewer
+  pluginRenderers={DocViewerRenderers}
+  documents={
+    {
+      // ...
+    }
+  }
+  config={{
+    loadingRenderer: {
+      overrideComponent: MyLoadingRenderer,
+      showLoadingTimeout: false, // false if you want to disable or number to provide your own value (ms)
+    },
+  }}
+/>;
+```
+
 ## Overriding No Renderer (Error)
 
 You can pass a callback function to `config.noRenderer.overrideComponent` that returns a React Element.
