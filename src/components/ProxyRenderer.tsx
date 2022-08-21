@@ -7,6 +7,7 @@ import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";
 import { LinkButton } from "./common";
 import { LoadingIcon } from "./icons";
+import { LoadingTimeout } from "./LoadingTimout";
 
 export const ProxyRenderer: FC<{}> = () => {
   const { state, dispatch, CurrentRenderer } = useDocumentLoader();
@@ -34,16 +35,23 @@ export const ProxyRenderer: FC<{}> = () => {
       if (config && config?.loadingRenderer?.overrideComponent) {
         const OverrideComponent = config.loadingRenderer.overrideComponent;
         return (
-          <OverrideComponent document={currentDocument} fileName={fileName} />
+          <LoadingTimeout>
+            <OverrideComponent document={currentDocument} fileName={fileName} />
+          </LoadingTimeout>
         );
       }
 
       return (
-        <LoadingContainer id="loading-renderer" data-testid="loading-renderer">
-          <LoadingIconContainer>
-            <LoadingIcon color="#444" size={40} />
-          </LoadingIconContainer>
-        </LoadingContainer>
+        <LoadingTimeout>
+          <LoadingContainer
+            id="loading-renderer"
+            data-testid="loading-renderer"
+          >
+            <LoadingIconContainer>
+              <LoadingIcon color="#444" size={40} />
+            </LoadingIconContainer>
+          </LoadingContainer>
+        </LoadingTimeout>
       );
     } else {
       if (CurrentRenderer) {

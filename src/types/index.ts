@@ -15,6 +15,7 @@ export interface ILoadingRendererConfig {
     document: IDocument | undefined;
     fileName: string;
   }>;
+  showLoadingTimeout?: false | number;
 }
 
 export interface INoRendererConfig {
