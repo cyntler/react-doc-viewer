@@ -14,8 +14,6 @@ export const LoadingTimeout: FC<PropsWithChildren> = ({ children }) => {
     config?.loadingRenderer?.showLoadingTimeout === false
   );
 
-  console.log("shouldLoadingRender", shouldLoadingRender);
-
   useEffect(() => {
     setTimeout(
       () => {
