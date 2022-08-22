@@ -32,19 +32,19 @@ const getFillColor = async (
     if (colorLikeObject.value.gradientType === "GradientLinear") {
       const radians = ((colorLikeObject.value.angle || 0) * Math.PI) / 180;
       const length = Math.sqrt(
-        (shape.boundingBox.width - shape.boundingBox.x) ** 2 +
-          (shape.boundingBox.height - shape.boundingBox.y) ** 2
+        (shape.box.width - shape.box.x) ** 2 +
+          (shape.box.height - shape.box.y) ** 2
       );
 
       const gradient = context.createLinearGradient(
-        shape.boundingBox.x + Math.sin(radians) * length,
-        shape.boundingBox.y + Math.cos(radians) * length,
-        shape.boundingBox.width - Math.sin(radians) * length,
-        shape.boundingBox.height - Math.cos(radians) * length
+        shape.box.x + Math.sin(radians) * length,
+        shape.box.y + Math.cos(radians) * length,
+        shape.box.width - Math.sin(radians) * length,
+        shape.box.height - Math.cos(radians) * length
       );
 
       colorLikeObject.value.points.forEach((point: any) => {
-        gradient.addColorStop(point.position, point.color);
+        gradient.addColorStop(point.position, point.fill.value);
       });
 
       return gradient;
@@ -53,35 +53,35 @@ const getFillColor = async (
     if (colorLikeObject.value.gradientType === "GradientPath") {
       if (colorLikeObject.value.path === "rect") {
         const gradient = context.createLinearGradient(
-          shape.boundingBox.x,
-          shape.boundingBox.y,
-          shape.boundingBox.width,
-          shape.boundingBox.height
+          shape.box.x,
+          shape.box.y,
+          shape.box.width,
+          shape.box.height
         );
 
         colorLikeObject.value.points.forEach((stop: any) => {
-          gradient.addColorStop(stop.position, stop.color);
+          gradient.addColorStop(stop.position, stop.fill.value);
         });
 
         return gradient;
       }
 
       if (colorLikeObject.value.path === "circle") {
-        const radius = shape.boundingBox.width * 0.05;
+        const radius = shape.box.width * 0.05;
 
         const gradient = context.createRadialGradient(
-          shape.boundingBox.x + shape.boundingBox.width / 2,
-          shape.boundingBox.y + shape.boundingBox.height / 2,
+          shape.box.x + shape.box.width / 2,
+          shape.box.y + shape.box.height / 2,
           radius,
-          shape.boundingBox.x + shape.boundingBox.width / 2,
-          shape.boundingBox.y + shape.boundingBox.height / 2,
-          shape.boundingBox.width / 2
+          shape.box.x + shape.box.width / 2,
+          shape.box.y + shape.box.height / 2,
+          shape.box.width / 2
         );
 
         colorLikeObject.value.points.forEach((stop: any) => {
           gradient.addColorStop(
             stop.position,
-            applyAlphaToHex(stop.color, stop.opacity || 1)
+            applyAlphaToHex(stop.fill.value, stop.fill.opacity || 1)
           );
         });
 
@@ -94,10 +94,10 @@ const getFillColor = async (
     const image = await loadBinaryImage(colorLikeObject.value.binary);
     context.drawImage(
       image,
-      shape.boundingBox.x,
-      shape.boundingBox.y,
-      shape.boundingBox.width,
-      shape.boundingBox.height
+      shape.box.x,
+      shape.box.y,
+      shape.box.width,
+      shape.box.height
     );
 
     return "transparent";
@@ -106,7 +106,7 @@ const getFillColor = async (
     return "transparent";
   }
 
-  console.log("Unknown shape fill type:", colorLikeObject);
+  console.warn("Unknown shape fill type:", colorLikeObject);
 
   return "#000";
 };
@@ -125,53 +125,52 @@ class PresentationDrawer {
 
     const slide = this.presentation.slides[slideIndex];
 
-    await this.drawSlideBackgrounds(context, slide.backgrounds);
+    if (slide.background) {
+      await this.drawSlideBackground(context, slide.background);
+    }
+
     await Promise.all(
       slide.layers.map((layer: any) => this.renderSlideLayer(context, layer))
     );
   }
 
-  private async drawSlideBackgrounds(
+  private async drawSlideBackground(
     context: CanvasRenderingContext2D,
-    backgrounds: any[]
+    background: any
   ) {
-    return Promise.all(
-      backgrounds.map(async (background: any) => {
-        context.save();
-        if (background.type === "SOLID") {
-          context.fillStyle = background.color;
-          context.fillRect(0, 0, context.canvas.width, context.canvas.height);
-        } else if (background.type === "GRADIENT") {
-          const radians = (background.value.angle * Math.PI) / 180;
-          const gradient = context.createLinearGradient(
-            0,
-            0,
-            Math.cos(radians) * context.canvas.width,
-            Math.sin(radians) * context.canvas.height
-          );
+    context.save();
+    if (background.type === "SOLID") {
+      context.fillStyle = background.value;
+      context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+    } else if (background.type === "GRADIENT") {
+      const radians = (background.value.angle * Math.PI) / 180;
+      const gradient = context.createLinearGradient(
+        0,
+        0,
+        Math.cos(radians) * context.canvas.width,
+        Math.sin(radians) * context.canvas.height
+      );
 
-          background.value.points.forEach((point: any) => {
-            gradient.addColorStop(point.position, point.color);
-          });
+      background.value.points.forEach((point: any) => {
+        gradient.addColorStop(point.position, point.color);
+      });
 
-          context.fillStyle = gradient;
-          context.fillRect(0, 0, context.canvas.width, context.canvas.height);
-        } else if (background.type === "BLIP") {
-          const image = await loadBinaryImage(background.value.binary);
-          context.drawImage(
-            image,
-            0,
-            0,
-            context.canvas.width,
-            context.canvas.height
-          );
-        } else {
-          console.log("Unrecognized background:", background);
-        }
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+    } else if (background.type === "BLIP") {
+      const image = await loadBinaryImage(background.value.binary);
+      context.drawImage(
+        image,
+        0,
+        0,
+        context.canvas.width,
+        context.canvas.height
+      );
+    } else {
+      console.log("Unrecognized background:", background);
+    }
 
-        context.restore();
-      })
-    );
+    context.restore();
   }
 
   private async renderSlideLayer(
@@ -182,17 +181,13 @@ class PresentationDrawer {
       layer.map(async (shape: any) => {
         if (shape.geometry.type === "custom") {
           await this.renderCustom(context, shape);
-        }
-
-        if (shape.geometry.type === "rect") {
+        } else if (shape.geometry.type === "rect") {
           await this.renderRect(context, shape);
-        }
-
-        if (shape.geometry.type === "ellipse") {
+        } else if (shape.geometry.type === "ellipse") {
           await this.renderEllipse(context, shape);
         }
 
-        if (shape.text) {
+        if (!shape.master && shape.text) {
           await this.renderText(context, shape);
         }
       })
@@ -203,21 +198,20 @@ class PresentationDrawer {
     context.save();
     context.beginPath();
 
-    context.fillStyle = shape.style.fill.value;
-    context.strokeStyle = shape.style.border
-      ? shape.style.border.fill.value
+    context.fillStyle = shape.containerStyle.fill.value;
+    context.strokeStyle = shape.containerStyle.border
+      ? shape.containerStyle.border.fill.value
       : "transparent";
-    context.globalAlpha = shape.style.opacity;
-    context.lineWidth = shape.style.border ? shape.style.border.thickness : 1;
+    context.globalAlpha = shape.containerStyle?.fill?.opacity || 1;
+    context.lineWidth = shape.containerStyle.border
+      ? shape.containerStyle.border.thickness
+      : 1;
     context.moveTo(
-      shape.boundingBox.x + shape.geometry.path.moveTo.x / 2,
-      shape.boundingBox.y + shape.geometry.path.moveTo.y / 2
+      shape.box.x + shape.geometry.path.moveTo.x / 2,
+      shape.box.y + shape.geometry.path.moveTo.y / 2
     );
     shape.geometry.path.points.forEach((point: any) => {
-      context.lineTo(
-        shape.boundingBox.x + point.x / 2,
-        shape.boundingBox.y + point.y / 2
-      );
+      context.lineTo(shape.box.x + point.x / 2, shape.box.y + point.y / 2);
     });
 
     context.fill();
@@ -228,22 +222,24 @@ class PresentationDrawer {
 
   private async renderRect(context: CanvasRenderingContext2D, shape: any) {
     context.save();
-    const fillColor = await getFillColor(context, shape.style.fill, shape);
-
-    context.beginPath();
-    context.rect(
-      shape.boundingBox.x,
-      shape.boundingBox.y,
-      shape.boundingBox.width,
-      shape.boundingBox.height
+    const fillColor = await getFillColor(
+      context,
+      shape.containerStyle.fill,
+      shape
     );
 
-    context.globalAlpha = shape.style.opacity;
+    context.beginPath();
+    context.rect(shape.box.x, shape.box.y, shape.box.width, shape.box.height);
+
+    context.globalAlpha = shape.containerStyle.opacity;
     context.fillStyle = fillColor;
 
-    if (shape.style.border && shape.style.border.thickness > 0) {
-      context.strokeStyle = shape.style.border.fill.value;
-      context.lineWidth = shape.style.border.thickness;
+    if (
+      shape.containerStyle.border &&
+      shape.containerStyle.border.thickness > 0
+    ) {
+      context.strokeStyle = shape.containerStyle.border.fill.value;
+      context.lineWidth = shape.containerStyle.border.thickness;
       context.stroke();
     }
 
@@ -255,32 +251,41 @@ class PresentationDrawer {
   private async renderText(context: CanvasRenderingContext2D, element: any) {
     if (!element.text) return;
     if (!element.text.paragraphs.length) return;
-
+    if (!element.box?.x) return;
     context.save();
+
     element.text.paragraphs.forEach(
       (paragraph: any, paragraphIndex: number) => {
         if (paragraph.type !== "PARAGRAPH") return;
-        const fontAttributes = paragraph.style.attributes
+
+        const fontAttributes = paragraph.properties.attributes
           .filter(
             (attribute: any) =>
               attribute.type === "BOLD" || attribute.type === "ITALIC"
           )
           .map((attribute: any) => attribute.toLowerCase().trim())
           .join(" ");
-        context.globalAlpha = paragraph.style.opacity;
-        context.fillStyle = paragraph.style.color;
-        context.textAlign = paragraph.style.alignment.toLowerCase();
-        context.font = `${fontAttributes} ${paragraph.style.fontSize}px ${paragraph.style.fontFamily}`;
 
-        let textPositionX = element.boundingBox.x;
-        let textPositionY = element.boundingBox.y;
+        context.globalAlpha = paragraph.properties.fill?.opacity || 1;
+        context.fillStyle = paragraph.properties.fill.value;
+        context.textAlign =
+          paragraph.properties.alignment?.toLowerCase() || "left";
+        context.font = `${fontAttributes} ${paragraph.properties.fontSize}px ${paragraph.properties.fontFamily}`;
+        console.log(
+          "Draw text:",
+          paragraph.text,
+          context.fillStyle,
+          context.font
+        );
+        let textPositionX = element.box.x;
+        let textPositionY = element.box.y;
 
-        switch (paragraph.style.alignment) {
+        switch (paragraph.properties.alignment) {
           case "CENTER":
-            textPositionX += element.boundingBox.width / 2;
+            textPositionX += element.box.width / 2;
             break;
           case "RIGHT":
-            textPositionX += element.boundingBox.width;
+            textPositionX += element.box.width;
             break;
           default: {
             textPositionX += 0;
@@ -290,38 +295,37 @@ class PresentationDrawer {
         const lines = this.splitTextByLines(
           context,
           paragraph.text,
-          element.boundingBox.width
+          element.box.width + paragraph.properties.fontSize
         );
 
-        switch (element.text.style.verticalAlign) {
-          case "TOP":
-            textPositionY += 0;
-            break;
+        switch (element.text.style?.verticalAlign) {
           case "CENTER":
             context.textBaseline = "middle";
-            textPositionY += element.boundingBox.height / 2;
+            textPositionY += element.box.height / 2;
             if (element.text.paragraphs.length > 1) {
               textPositionY -=
                 (element.text.paragraphs.length - paragraphIndex) *
-                paragraph.style.fontSize;
+                paragraph.properties.fontSize;
             }
             break;
           case "BOTTOM":
             context.textBaseline = "bottom";
-            textPositionY += element.boundingBox.height;
+            textPositionY += element.box.height;
             break;
           default: {
-            textPositionY += 0;
+            textPositionY +=
+              paragraph.properties.fontSize +
+              paragraph.properties.fontSize * paragraphIndex;
           }
         }
 
         lines.forEach((line) => {
           const shiftY =
             paragraphIndex *
-            (paragraph.style.fontSize + paragraph.style.spaceAfter);
+            (paragraph.properties.fontSize + paragraph.properties.spaceAfter);
           context.fillText(line, textPositionX, textPositionY + shiftY);
           textPositionY +=
-            paragraph.style.fontSize * paragraph.style.lineSpacing;
+            paragraph.properties.fontSize + paragraph.properties.lineSpacing;
         });
       }
     );
@@ -331,17 +335,21 @@ class PresentationDrawer {
 
   private async renderEllipse(context: CanvasRenderingContext2D, element: any) {
     context.save();
-    const fillColor = await getFillColor(context, element.style.fill, element);
+    const fillColor = await getFillColor(
+      context,
+      element.containerStyle.fill,
+      element
+    );
 
-    context.globalAlpha = element.style.opacity;
+    context.globalAlpha = element.containerStyle.fill?.opacity || 1;
     context.fillStyle = fillColor;
 
     context.beginPath();
     context.ellipse(
-      element.boundingBox.x + element.boundingBox.width / 2,
-      element.boundingBox.y + element.boundingBox.height / 2,
-      element.boundingBox.width / 2,
-      element.boundingBox.height / 2,
+      element.box.x + element.box.width / 2,
+      element.box.y + element.box.height / 2,
+      element.box.width / 2,
+      element.box.height / 2,
       0,
       0,
       2 * Math.PI
