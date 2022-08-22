@@ -3,7 +3,7 @@ declare class PresentationDrawer {
     presentation: any;
     constructor(presentation: any);
     drawSlide(canvas: HTMLCanvasElement, slideIndex: number): Promise<void>;
-    private drawSlideBackgrounds;
+    private drawSlideBackground;
     private renderSlideLayer;
     private renderCustom;
     private renderRect;
