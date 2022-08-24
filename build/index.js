@@ -41,13 +41,15 @@ import TXTRenderer from "./plugins/txt";
 import { AppProvider, RenderProvider } from "./state";
 import { defaultTheme } from "./theme";
 import { createEvent } from "./utils/events";
+var Container = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.7);\n"], ["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.7);\n"])));
 var DocViewerProxy = function (_a) {
     var applicationProps = _a.applicationProps;
     if (!applicationProps.documents || applicationProps.documents === undefined) {
         throw new Error("Please provide an array of documents to DocViewer!");
     }
     return (React.createElement(AppProvider, __assign({}, applicationProps),
-        React.createElement(ThemeProvider, { theme: applicationProps.theme ? __assign(__assign({}, defaultTheme), applicationProps.theme) : defaultTheme },
+        React.createElement(ThemeProvider, { theme: applicationProps.theme
+                ? __assign(__assign({}, defaultTheme), applicationProps.theme) : defaultTheme },
             React.createElement(RenderProvider, null,
                 React.createElement(Container, __assign({ id: "react-doc-viewer", "data-testid": "react-doc-viewer" }, applicationProps),
                     React.createElement(HeaderBar, null),
@@ -73,7 +75,6 @@ export default (function (_a) {
     }, []);
     return React.createElement(MemorizedDocViewerProxy, { applicationProps: appProviderProps });
 });
-var Container = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.7);\n"], ["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.7);\n"])));
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";
 export * from "./utils/fileLoaders";

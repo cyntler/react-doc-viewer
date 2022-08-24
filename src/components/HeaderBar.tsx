@@ -6,30 +6,6 @@ import { IStyledProps } from "../types";
 import { DocumentNav } from "./DocumentNav";
 import { FileName } from "./FileName";
 
-export const HeaderBar: FC<{}> = () => {
-  const { state, dispatch } = useContext(DocViewerContext);
-  const { config } = state;
-
-  if (config?.header?.disableHeader) return null;
-
-  const override = config?.header?.overrideComponent?.(
-    state,
-    () => dispatch(previousDocument()),
-    () => dispatch(nextDocument())
-  );
-
-  if (override) {
-    return override;
-  } else {
-    return (
-      <Container id="header-bar" data-testid="header-bar">
-        <FileName />
-        <DocumentNav />
-      </Container>
-    );
-  }
-};
-
 const Container = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -46,3 +22,27 @@ const Container = styled.div`
     font-size: 10px;
   }
 `;
+
+export const HeaderBar: FC<{}> = () => {
+  const { state, dispatch } = useContext(DocViewerContext);
+  const { config } = state;
+
+  if (config?.header?.disableHeader) return null;
+
+  const override = config?.header?.overrideComponent?.(
+    state,
+    () => dispatch(previousDocument()),
+    () => dispatch(nextDocument())
+  );
+
+  if (override) {
+    return override;
+  }
+
+  return (
+    <Container id="header-bar" data-testid="header-bar">
+      <FileName />
+      <DocumentNav />
+    </Container>
+  );
+};

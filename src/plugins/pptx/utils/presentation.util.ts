@@ -152,7 +152,7 @@ class PresentationDrawer {
       );
 
       background.value.points.forEach((point: any) => {
-        gradient.addColorStop(point.position, point.color);
+        gradient.addColorStop(point.position, point.fill.value);
       });
 
       context.fillStyle = gradient;
@@ -271,12 +271,7 @@ class PresentationDrawer {
         context.textAlign =
           paragraph.properties.alignment?.toLowerCase() || "left";
         context.font = `${fontAttributes} ${paragraph.properties.fontSize}px ${paragraph.properties.fontFamily}`;
-        console.log(
-          "Draw text:",
-          paragraph.text,
-          context.fillStyle,
-          context.font
-        );
+
         let textPositionX = element.box.x;
         let textPositionY = element.box.y;
 

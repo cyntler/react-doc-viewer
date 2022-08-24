@@ -1,3 +1,3 @@
-import { FC } from "react";
-declare const PDFPages: FC<{}>;
+/// <reference types="react" />
+declare const PDFPages: () => JSX.Element;
 export default PDFPages;

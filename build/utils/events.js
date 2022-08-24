@@ -1,10 +1,13 @@
 var events = [];
 export var createEvent = function (name, callback) {
-    var uniqueId = Array(16).fill(0).map(function () { return Math.floor(Math.random() * 16).toString(32); }).join('');
+    var uniqueId = Array(16)
+        .fill(0)
+        .map(function () { return Math.floor(Math.random() * 16).toString(32); })
+        .join("");
     events.push({
         id: uniqueId,
         name: name,
-        callback: callback
+        callback: callback,
     });
     return function () {
         events.splice(events.findIndex(function (event) { return event.id === uniqueId; }), 1);

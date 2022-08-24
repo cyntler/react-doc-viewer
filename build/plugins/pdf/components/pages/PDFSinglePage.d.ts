@@ -1,7 +1,9 @@
-import { FC } from "react";
+import React from "react";
 interface Props {
-    pageNum?: number;
+    pageNum: number;
+    visible: boolean;
+    pageDimension: any;
     onRendered: Function;
 }
-declare const PDFSinglePage: FC<Props>;
-export default PDFSinglePage;
+declare const _default: React.NamedExoticComponent<Props>;
+export default _default;

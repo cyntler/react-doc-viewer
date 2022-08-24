@@ -3,6 +3,6 @@ export default function getVisiblePageIndex(_a) {
     if (!scrollElement || !pageHeight)
         return -1;
     var currentScrollValue = scrollElement.scrollTop;
-    var currentPageIndex = Math.round(currentScrollValue / (pageHeight + pageMargin * pagesCount));
+    var currentPageIndex = Math.round(currentScrollValue / (pageHeight + pageMargin));
     return currentPageIndex;
 }

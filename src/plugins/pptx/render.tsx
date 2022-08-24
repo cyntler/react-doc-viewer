@@ -38,6 +38,7 @@ export default function PPTXRender({ presentation, onRendered }: any) {
           const slides = canvasElements.map((a: any, index) => ({
             name: "Slide",
             index,
+            loaded: true,
             imageURL: a.toDataURL(),
           }));
 

@@ -13,6 +13,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
@@ -38,11 +39,9 @@ function DocViewerContainer(props) {
     };
     return (React.createElement(Container, null,
         React.createElement(DocViewer, { documents: [props.document], pluginRenderers: DocViewerRenderers, onLoaded: function (data) {
-                console.log("Loaded", data);
                 setSettings(data.state);
                 setController(data.controller);
             }, onChange: function (state) {
-                console.log("Changed", state);
                 setSettings(state);
             }, config: {
                 noRenderer: {
@@ -56,28 +55,30 @@ function DocViewerContainer(props) {
             React.createElement("div", { className: "dock-bar" },
                 settings.paginated && (React.createElement(React.Fragment, null,
                     React.createElement("div", { className: "dock-bar-item" },
-                        React.createElement("button", { onClick: function () { return changeSettings("currentPage", settings.currentPage - 1); } }, "prev")),
+                        React.createElement("button", { type: "button", onClick: function () { return changeSettings("currentPage", settings.currentPage - 1); } }, "prev")),
                     React.createElement("div", { className: "dock-bar-item" }, "Page " + settings.currentPage + "/" + settings.pagesCount),
                     React.createElement("div", { className: "dock-bar-item" },
-                        React.createElement("button", { onClick: function () { return changeSettings("currentPage", settings.currentPage + 1); } }, "next")))),
+                        React.createElement("button", { type: "button", onClick: function () { return changeSettings("currentPage", settings.currentPage + 1); } }, "next")))),
                 React.createElement("div", { className: "dock-bar-item" },
-                    React.createElement("button", { onClick: function () { return changeSettings("zoomLevel", settings.zoomLevel - 0.1); } }, "-")),
+                    React.createElement("button", { type: "button", onClick: function () { return changeSettings("zoomLevel", settings.zoomLevel - 0.1); } }, "-")),
                 React.createElement("div", { className: "dock-bar-item" },
-                    React.createElement("button", { onClick: function () { return changeSettings("zoomLevel", settings.zoomLevel + 0.1); } }, "+")),
+                    React.createElement("button", { type: "button", onClick: function () { return changeSettings("zoomLevel", settings.zoomLevel + 0.1); } }, "+")),
                 React.createElement("div", { className: "dock-bar-item" },
-                    React.createElement("button", { onClick: function () { return changeSettings("rotationAngle", settings.rotationAngle - 90); } }, "rotate to left")),
+                    React.createElement("button", { type: "button", onClick: function () { return changeSettings("rotationAngle", settings.rotationAngle - 90); } }, "rotate to left")),
                 React.createElement("div", { className: "dock-bar-item" },
-                    React.createElement("button", { onClick: function () { return changeSettings("rotationAngle", settings.rotationAngle + 90); } }, "rotate to right")))))));
+                    React.createElement("button", { type: "button", onClick: function () { return changeSettings("rotationAngle", settings.rotationAngle + 90); } }, "rotate to right")))))));
 }
 var App = function () {
     var docs = [
         // { uri: require("./examples/png-image.png") },
-        { uri: require("./examples/example-pdf.pdf") },
+        { uri: "http://localhost:8080/presentation.pptx" },
+        { uri: "http://localhost:8080/pdf-file.pdf" },
+        { uri: "http://localhost:8080/example-pdf.pdf" },
+        { uri: "http://localhost:8080/gif-image.gif" },
+        { uri: "http://localhost:8080/war.pdf" },
     ];
     var _a = useState(0), currentIndex = _a[0], setCurrentIndex = _a[1];
-    return (React.createElement(React.Fragment, null,
-        React.createElement("button", { type: "button", className: "switch-button", onClick: function () { return setCurrentIndex(currentIndex + 1 >= docs.length ? 0 : currentIndex + 1); } }, "switch document"),
-        React.createElement(DocViewerContainer, { document: docs[currentIndex] })));
+    return (React.createElement(DocViewerContainer, { document: docs[currentIndex] }));
 };
 render(React.createElement(App, null), document.getElementById("root"));
 var templateObject_1;

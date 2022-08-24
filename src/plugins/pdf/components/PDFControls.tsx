@@ -18,7 +18,41 @@ import {
 } from "./icons";
 import PDFPagination from "./PDFPagination";
 
-const PDFControls: FC<{}> = () => {
+const Container = styled.div`
+  display: flex;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  justify-content: flex-end;
+  padding: 8px;
+  background-color: ${(props: IStyledProps) => props.theme.tertiary};
+  box-shadow: 0px 2px 3px #00000033;
+
+  @media (max-width: 768px) {
+    padding: 6px;
+  }
+`;
+
+const ControlButton = styled(Button)`
+  width: 30px;
+  height: 30px;
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 25px;
+  }
+`;
+
+const DownloadButton = styled(LinkButton)`
+  width: 30px;
+  height: 30px;
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 25px;
+  }
+`;
+
+const PDFControls = () => {
   const {
     state: { currentDocument },
   } = useContext(DocViewerContext);
@@ -61,6 +95,7 @@ const PDFControls: FC<{}> = () => {
       </ControlButton>
       <button
         id="rotate-left-pdf"
+        type="button"
         onClick={() =>
           renderDispatch(
             setDocumentRotationAngle(renderSettings.rotationAngle - 90)
@@ -71,6 +106,7 @@ const PDFControls: FC<{}> = () => {
       </button>
       <button
         id="rotate-right-pdf"
+        type="button"
         onClick={() =>
           renderDispatch(
             setDocumentRotationAngle(renderSettings.rotationAngle + 90)
@@ -97,37 +133,3 @@ const PDFControls: FC<{}> = () => {
 };
 
 export default PDFControls;
-
-const Container = styled.div`
-  display: flex;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  justify-content: flex-end;
-  padding: 8px;
-  background-color: ${(props: IStyledProps) => props.theme.tertiary};
-  box-shadow: 0px 2px 3px #00000033;
-
-  @media (max-width: 768px) {
-    padding: 6px;
-  }
-`;
-
-const ControlButton = styled(Button)`
-  width: 30px;
-  height: 30px;
-  @media (max-width: 768px) {
-    width: 25px;
-    height: 25px;
-  }
-`;
-
-const DownloadButton = styled(LinkButton)`
-  width: 30px;
-  height: 30px;
-  @media (max-width: 768px) {
-    width: 25px;
-    height: 25px;
-  }
-`;

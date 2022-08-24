@@ -15,7 +15,7 @@ export default function getVisiblePageIndex({
 
   const currentScrollValue = scrollElement.scrollTop;
   const currentPageIndex = Math.round(
-    currentScrollValue / (pageHeight + pageMargin * pagesCount)
+    currentScrollValue / (pageHeight + pageMargin)
   );
 
   return currentPageIndex;

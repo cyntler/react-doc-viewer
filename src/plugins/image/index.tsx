@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { RenderContext } from "../../state";
-import { setDocumentRenderLoaded, setDocumentRenderSettings } from "../../state/actions/render.actions";
+import {
+  setDocumentRenderLoaded,
+  setDocumentRenderSettings,
+} from "../../state/actions/render.actions";
 import { DocRenderer } from "../../types";
 
 const ImageProxyRenderer: DocRenderer = (props) => {
@@ -30,15 +33,20 @@ const ImageProxyRenderer: DocRenderer = (props) => {
         })
       );
       onLoaded();
-    };
-  }
+    }
+  };
 
   return (
     <Container id="image-renderer" {...props}>
       {children || (
-        <Img id="image-img" style={{
-          transform: `scale(${state.zoomLevel}) rotate(${state.rotationAngle}deg)`,
-        }} src={currentDocument.fileData as string} onLoad={onImageLoad} />
+        <Img
+          id="image-img"
+          style={{
+            transform: `scale(${state.zoomLevel}) rotate(${state.rotationAngle}deg)`,
+          }}
+          src={currentDocument.fileData as string}
+          onLoad={onImageLoad}
+        />
       )}
     </Container>
   );

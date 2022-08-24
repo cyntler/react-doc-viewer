@@ -1,9 +1,12 @@
+/* eslint-disable consistent-return */
 import React from "react";
 import styled from "styled-components";
 import { areEqual, FixedSizeList } from "react-window";
 import { RenderContext } from "../state";
 import { setDocumentCurrentPage } from "../state/actions/render.actions";
-import { createEvent } from "../utils/events";
+import { createEvent, emitEvent } from "../utils/events";
+import makeScrollListener from "../utils/makeScrollListener";
+import getVisibleIndexRangeByParent from "../utils/getVisibleIndexRangeByParent";
 
 const Container = styled.div`
   display: flex;
@@ -44,8 +47,16 @@ const Container = styled.div`
 
     .page-image {
       max-width: 150px;
+
       img {
         width: 100%;
+      }
+
+      .not-loaded {
+        width: 150px;
+        min-height: 200px;
+        height: 100%;
+        background: #fff;
       }
     }
 
@@ -61,27 +72,85 @@ interface IPage {
   id: number;
   image: string;
   caption: string;
+  loaded: boolean;
 }
 
 function DocumentPagesNav() {
   const { state, dispatch } = React.useContext(RenderContext);
   const [pages, setPages] = React.useState<IPage[]>([]);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const listRef = React.useRef<FixedSizeList>(null);
+  const listRef = React.useRef<any>(null);
   const [listHeight, setListHeight] = React.useState(0);
   const paginated = state.pagesCount > 1 && state.paginated;
 
   React.useEffect(() => {
-    createEvent("onPaginationDocumentLoaded", (payload: any) => {
-      setPages(
-        payload.map((item: any) => ({
+    let pages: IPage[] = [];
+
+    const clearLoadListener = createEvent(
+      "onPaginationDocumentLoaded",
+      (payload: any) => {
+        pages = payload.map((item: any) => ({
           id: item.index + 1,
+          loaded: item.loaded,
           image: item.imageURL,
           caption: `${item.name || "Page"} ${item.index + 1}`,
-        }))
-      );
-    });
+        }));
+
+        setPages(pages);
+      }
+    );
+    const clearPageLoadListener = createEvent(
+      "onPaginationDocumentPagesLoaded",
+      (loadedPages: any[]) => {
+        // I've pictures of the requested pages.
+        pages = pages.map((page) => {
+          const loadedPage = loadedPages.find(
+            (item) => item.index + 1 === page.id
+          );
+          if (loadedPage) {
+            return {
+              ...page,
+              loaded: true,
+              image: loadedPage.imageURL,
+            };
+          }
+
+          return page;
+        });
+        setPages(pages);
+      }
+    );
+
+    return () => {
+      clearPageLoadListener();
+      clearLoadListener();
+    };
   }, []);
+
+  React.useEffect(() => {
+    if (!listRef.current) return;
+    const element =
+      listRef.current._outerRef || document.querySelector(".navigator-list");
+    if (!element) return;
+
+    const clearScrollListener = makeScrollListener(
+      element,
+      () => {},
+      () => {
+        const visiblePageRange = getVisibleIndexRangeByParent(element, {
+          width: 280,
+          height: 280,
+        });
+
+        emitEvent("onPageRequestRange", visiblePageRange);
+      },
+      300
+    );
+
+    return () => {
+      clearScrollListener();
+    };
+  }, [listRef.current]);
 
   React.useEffect(() => {
     if (listRef.current) {
@@ -123,7 +192,11 @@ function DocumentPagesNav() {
         onClick={onPageClick}
       >
         <div className="page-image">
-          <img src={page.image} alt={page.caption} />
+          {page.loaded ? (
+            <img src={page.image} alt={page.caption} />
+          ) : (
+            <div className="not-loaded" />
+          )}
         </div>
         <div className="page-caption">{page.caption}</div>
       </div>

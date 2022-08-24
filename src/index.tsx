@@ -14,8 +14,22 @@ import TIFFRenderer from "./plugins/tiff";
 import TXTRenderer from "./plugins/txt";
 import { AppProvider, RenderProvider } from "./state";
 import { defaultTheme } from "./theme";
-import { DocRenderer, IConfig, IDocument, IRenderSettings, ITheme } from "./types";
+import {
+  DocRenderer,
+  IConfig,
+  IDocument,
+  IRenderSettings,
+  ITheme,
+} from "./types";
 import { createEvent, emitEvent } from "./utils/events";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+`;
 
 export interface DocViewerProps {
   documents: IDocument[];
@@ -30,9 +44,7 @@ export interface DocViewerProps {
   onChange?: (data?: any) => void;
 }
 
-const DocViewerProxy: FC<any> = ({
-  applicationProps
-}) => {
+const DocViewerProxy: FC<any> = ({ applicationProps }) => {
   if (!applicationProps.documents || applicationProps.documents === undefined) {
     throw new Error("Please provide an array of documents to DocViewer!");
   }
@@ -40,7 +52,11 @@ const DocViewerProxy: FC<any> = ({
   return (
     <AppProvider {...applicationProps}>
       <ThemeProvider
-        theme={applicationProps.theme ? { ...defaultTheme, ...applicationProps.theme } : defaultTheme}
+        theme={
+          applicationProps.theme
+            ? { ...defaultTheme, ...applicationProps.theme }
+            : defaultTheme
+        }
       >
         <RenderProvider>
           <Container
@@ -55,7 +71,7 @@ const DocViewerProxy: FC<any> = ({
       </ThemeProvider>
     </AppProvider>
   );
-}
+};
 
 const MemorizedDocViewerProxy = React.memo(DocViewerProxy);
 
@@ -65,7 +81,8 @@ export default ({
   renderSettings,
   ...applicationProps
 }: DocViewerProps) => {
-  const [appProviderProps, setAppProviderProps] = React.useState(applicationProps);
+  const [appProviderProps, setAppProviderProps] =
+    React.useState(applicationProps);
 
   React.useEffect(() => {
     setAppProviderProps(appProviderProps);
@@ -82,16 +99,8 @@ export default ({
     });
   }, []);
 
-  return <MemorizedDocViewerProxy applicationProps={appProviderProps} />
+  return <MemorizedDocViewerProxy applicationProps={appProviderProps} />;
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-`;
 
 export { DocViewerRenderers } from "./plugins";
 export * from "./types";

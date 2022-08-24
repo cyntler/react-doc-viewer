@@ -33,8 +33,8 @@ export const useDocumentLoader = (): {
       const controller = new AbortController();
       const { signal } = controller;
 
-      fetch(documentURI, { method: prefetchMethod || "HEAD", signal }).then(
-        (response) => {
+      fetch(documentURI, { method: prefetchMethod || "HEAD", signal })
+        .then((response) => {
           const contentTypeRaw = response.headers.get("content-type");
           const contentTypes = contentTypeRaw?.split(";") || [];
           const contentType = contentTypes.length ? contentTypes[0] : undefined;
@@ -45,8 +45,11 @@ export const useDocumentLoader = (): {
               fileType: contentType || undefined,
             })
           );
-        }
-      );
+        })
+        .catch((error) => {
+          // TODO: Add normal error handler
+          console.error(error);
+        });
 
       return () => {
         controller.abort();
@@ -68,7 +71,7 @@ export const useDocumentLoader = (): {
         return;
       }
 
-      let updatedDocument = { ...currentDocument };
+      const updatedDocument = { ...currentDocument };
       if (fileReader.result !== null) {
         updatedDocument.fileData = fileReader.result;
       }

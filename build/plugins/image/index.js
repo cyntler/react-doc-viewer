@@ -16,7 +16,7 @@ var __assign = (this && this.__assign) || function () {
 import React from "react";
 import styled from "styled-components";
 import { RenderContext } from "../../state";
-import { setDocumentRenderSettings } from "../../state/actions/render.actions";
+import { setDocumentRenderSettings, } from "../../state/actions/render.actions";
 var ImageProxyRenderer = function (props) {
     var currentDocument = props.mainState.currentDocument, loaded = props.loaded, onLoaded = props.onLoaded, children = props.children;
     var _a = React.useContext(RenderContext), state = _a.state, dispatch = _a.dispatch;
@@ -35,7 +35,6 @@ var ImageProxyRenderer = function (props) {
             }));
             onLoaded();
         }
-        ;
     };
     return (React.createElement(Container, __assign({ id: "image-renderer" }, props), children || (React.createElement(Img, { id: "image-img", style: {
             transform: "scale(" + state.zoomLevel + ") rotate(" + state.rotationAngle + "deg)",

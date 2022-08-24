@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
-import DocViewer, { DocViewerRenderers, IRenderSettings } from ".";
+import DocViewer, { DocViewerRenderers } from ".";
 
 const Container = styled.div`
   position: relative;
@@ -48,13 +49,13 @@ function DocViewerContainer(props: any) {
   React.useEffect(() => {
     setController(undefined);
     setSettings(undefined);
-  }, [props])
+  }, [props]);
 
   const changeSettings = (key: string, value: any) => {
     if (settings) {
       setSettings({ ...settings, [key]: value });
     }
-  }
+  };
 
   return (
     <Container>
@@ -62,12 +63,10 @@ function DocViewerContainer(props: any) {
         documents={[props.document]}
         pluginRenderers={DocViewerRenderers}
         onLoaded={(data) => {
-          console.log("Loaded", data);
           setSettings(data.state);
           setController(data.controller);
         }}
         onChange={(state) => {
-          console.log("Changed", state);
           setSettings(state);
         }}
         config={{
@@ -83,36 +82,38 @@ function DocViewerContainer(props: any) {
       {Boolean(settings && controller) && (
         <div className="dock-bar-container">
           <div className="dock-bar">
-            {settings.paginated && (<>
+            {settings.paginated && (
+            <>
               <div className="dock-bar-item">
-                <button onClick={() => changeSettings("currentPage", settings.currentPage - 1)}>
+                <button type="button" onClick={() => changeSettings("currentPage", settings.currentPage - 1)}>
                   prev
                 </button>
               </div>
-              <div className="dock-bar-item">{`Page ${settings.currentPage}/${settings.pagesCount}`}</div><div className="dock-bar-item">
-                <button onClick={() => changeSettings("currentPage", settings.currentPage + 1)}>
+              <div className="dock-bar-item">{`Page ${settings.currentPage}/${settings.pagesCount}`}</div>
+              <div className="dock-bar-item">
+                <button type="button" onClick={() => changeSettings("currentPage", settings.currentPage + 1)}>
                   next
                 </button>
               </div>
             </>
             )}
             <div className="dock-bar-item">
-              <button onClick={() => changeSettings("zoomLevel", settings.zoomLevel - 0.1)}>
+              <button type="button" onClick={() => changeSettings("zoomLevel", settings.zoomLevel - 0.1)}>
                 -
               </button>
             </div>
             <div className="dock-bar-item">
-              <button onClick={() => changeSettings("zoomLevel", settings.zoomLevel + 0.1)}>
+              <button type="button" onClick={() => changeSettings("zoomLevel", settings.zoomLevel + 0.1)}>
                 +
               </button>
             </div>
             <div className="dock-bar-item">
-              <button onClick={() => changeSettings("rotationAngle", settings.rotationAngle - 90)}>
+              <button type="button" onClick={() => changeSettings("rotationAngle", settings.rotationAngle - 90)}>
                 rotate to left
               </button>
             </div>
             <div className="dock-bar-item">
-              <button onClick={() => changeSettings("rotationAngle", settings.rotationAngle + 90)}>
+              <button type="button" onClick={() => changeSettings("rotationAngle", settings.rotationAngle + 90)}>
                 rotate to right
               </button>
             </div>
@@ -121,23 +122,24 @@ function DocViewerContainer(props: any) {
       )}
     </Container>
   );
-
 }
 
 const App = () => {
   const docs = [
     // { uri: require("./examples/png-image.png") },
-    { uri: require("./examples/example-pdf.pdf") },
+    { uri: "http://localhost:8080/presentation.pptx" },
+    { uri: "http://localhost:8080/pdf-file.pdf" },
+    { uri: "http://localhost:8080/example-pdf.pdf" },
+    { uri: "http://localhost:8080/gif-image.gif" },
+    { uri: "http://localhost:8080/war.pdf" },
+    // { uri: "https://test.cabinet24.com.ua/api/file/c29bb85495298111f3e0a8a2e4b37cc4/test.pptx" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <>
-      <button type="button" className="switch-button" onClick={() => setCurrentIndex(currentIndex + 1 >= docs.length ? 0 : currentIndex + 1)}>switch document</button>
-      <DocViewerContainer document={docs[currentIndex]} />
-    </>
-  )
+    <DocViewerContainer document={docs[currentIndex]} />
+  );
 };
 
 render(<App />, document.getElementById("root"));

@@ -6,6 +6,31 @@ import { IStyledProps } from "../types";
 import { ButtonSecondary } from "./common/Button";
 import { NextDocIcon, PrevDocIcon } from "./icons";
 
+
+const Container = styled.div`
+  min-width: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 10px;
+  color: ${(props: IStyledProps) => props.theme.textPrimary};
+`;
+
+const ButtonPrev = styled(ButtonSecondary)`
+  width: 30px;
+  height: 30px;
+  margin: 0 5px 0 10px;
+
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 25px;
+  }
+`;
+const ButtonNext = styled(ButtonPrev)`
+  margin: 0 5px;
+`;
+
 export const DocumentNav: FC<{}> = () => {
   const {
     state: { currentDocument, currentFileNo, documents },
@@ -45,27 +70,3 @@ export const DocumentNav: FC<{}> = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  min-width: 150px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  margin: 0 10px;
-  color: ${(props: IStyledProps) => props.theme.textPrimary};
-`;
-
-const ButtonPrev = styled(ButtonSecondary)`
-  width: 30px;
-  height: 30px;
-  margin: 0 5px 0 10px;
-
-  @media (max-width: 768px) {
-    width: 25px;
-    height: 25px;
-  }
-`;
-const ButtonNext = styled(ButtonPrev)`
-  margin: 0 5px;
-`;

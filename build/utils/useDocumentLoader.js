@@ -29,11 +29,16 @@ export var useDocumentLoader = function () {
             return;
         var controller = new AbortController();
         var signal = controller.signal;
-        fetch(documentURI, { method: prefetchMethod || "HEAD", signal: signal }).then(function (response) {
+        fetch(documentURI, { method: prefetchMethod || "HEAD", signal: signal })
+            .then(function (response) {
             var contentTypeRaw = response.headers.get("content-type");
             var contentTypes = (contentTypeRaw === null || contentTypeRaw === void 0 ? void 0 : contentTypeRaw.split(";")) || [];
             var contentType = contentTypes.length ? contentTypes[0] : undefined;
             dispatch(updateCurrentDocument(__assign(__assign({}, currentDocument), { fileType: contentType || undefined })));
+        })
+            .catch(function (error) {
+            // TODO: Add normal error handler
+            console.error(error);
         });
         return function () {
             controller.abort();

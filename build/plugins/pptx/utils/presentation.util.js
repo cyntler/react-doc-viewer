@@ -147,7 +147,7 @@ var PresentationDrawer = /** @class */ (function () {
                         radians = (background.value.angle * Math.PI) / 180;
                         gradient_4 = context.createLinearGradient(0, 0, Math.cos(radians) * context.canvas.width, Math.sin(radians) * context.canvas.height);
                         background.value.points.forEach(function (point) {
-                            gradient_4.addColorStop(point.position, point.color);
+                            gradient_4.addColorStop(point.position, point.fill.value);
                         });
                         context.fillStyle = gradient_4;
                         context.fillRect(0, 0, context.canvas.width, context.canvas.height);
@@ -288,7 +288,6 @@ var PresentationDrawer = /** @class */ (function () {
                     context.textAlign =
                         ((_b = paragraph.properties.alignment) === null || _b === void 0 ? void 0 : _b.toLowerCase()) || "left";
                     context.font = fontAttributes + " " + paragraph.properties.fontSize + "px " + paragraph.properties.fontFamily;
-                    console.log("Draw text:", paragraph.text, context.fillStyle, context.font);
                     var textPositionX = element.box.x;
                     var textPositionY = element.box.y;
                     switch (paragraph.properties.alignment) {

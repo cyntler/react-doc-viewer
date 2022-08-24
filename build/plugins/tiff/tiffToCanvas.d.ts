@@ -1,1 +1,1 @@
-export function parseTIFF(tiffArrayBuffer: any, _canvas: any): HTMLCanvasElement | undefined;
+export function parseTIFF(tiffArrayBuffer: any, _canvas: any): HTMLCanvasElement;
