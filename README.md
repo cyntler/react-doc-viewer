@@ -253,6 +253,7 @@ You can provide a config object, which configures parts of the component as requ
 <DocViewer
   documents={docs}
   config={{
+    csvDelimiter: ",", // ',' as default
     header: {
       disableHeader: false,
       disableFileName: false,
