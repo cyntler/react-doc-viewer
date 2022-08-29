@@ -1,12 +1,13 @@
-name: Release
+name: CI
 
 on:
   push:
-    tags:
-      - "*"
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  release:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,14 +17,9 @@ jobs:
         uses: actions/setup-node@v2.4.1
         with:
           node-version: ${{ env.NVMRC }}
-      - name: Install dependencies
+      - name: Install packages
         run: npm i --legacy-peer-deps
-      - name: Build library
+      - name: Check tests
+        run: npm run test
+      - name: Check build
         run: npm run build
-      - name: Publish to npm
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          access: public
-      - name: Release
-        uses: softprops/action-gh-release@v1
