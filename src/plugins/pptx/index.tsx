@@ -93,7 +93,6 @@ function PPTXRenderer(props: any) {
   const onRendered = React.useCallback(
     (slides) => {
       props.onLoaded(presentation);
-
       dispatch(
         setDocumentRenderSettings({
           currentPage: 1,

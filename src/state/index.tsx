@@ -6,16 +6,24 @@ import React, {
   useReducer,
 } from "react";
 import { DocViewerProps } from "..";
-import { IRenderSettings } from "../types"
+import { IRenderSettings } from "../types";
 import { RenderStateActions } from "./actions/render.actions";
-import { MainStateActions, setAllDocuments, setMainConfig } from "./actions/main.actions";
+import {
+  MainStateActions,
+  setAllDocuments,
+  setMainConfig,
+} from "./actions/main.actions";
 import {
   IMainState,
   initialState,
   mainStateReducer,
   MainStateReducer,
 } from "./reducers/main.reducers";
-import { initialRenderSettingsState, renderSettingsReducer, RenderSettingsStateReducer } from "./reducers/render.reducers";
+import {
+  initialRenderSettingsState,
+  renderSettingsReducer,
+  RenderSettingsStateReducer,
+} from "./reducers/render.reducers";
 
 const DocViewerContext = createContext<{
   state: IMainState;
@@ -38,7 +46,7 @@ const RenderProvider: FC<{}> = ({ children }) => {
       {children}
     </RenderContext.Provider>
   );
-}
+};
 
 const AppProvider: FC<Omit<DocViewerProps, "renderSettings">> = (props) => {
   const { children, documents, config, pluginRenderers, prefetchMethod } =
@@ -53,13 +61,17 @@ const AppProvider: FC<Omit<DocViewerProps, "renderSettings">> = (props) => {
     prefetchMethod,
   });
 
+  const contextValue = React.useMemo(() => ({ state, dispatch }), [state]);
+
   useEffect(() => {
     dispatch(setAllDocuments(documents));
-    config && dispatch(setMainConfig(config));
+    if (config) {
+      dispatch(setMainConfig(config));
+    }
   }, [documents, config]);
 
   return (
-    <DocViewerContext.Provider value={{ state, dispatch }}>
+    <DocViewerContext.Provider value={contextValue}>
       {children}
     </DocViewerContext.Provider>
   );

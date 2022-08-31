@@ -73,7 +73,13 @@ const DocViewerProxy: FC<any> = ({ applicationProps }) => {
   );
 };
 
-const MemorizedDocViewerProxy = React.memo(DocViewerProxy);
+const MemorizedDocViewerProxy = React.memo(
+  DocViewerProxy,
+  ({ applicationProps: prev }, { applicationProps: current }) =>
+    prev.documents.every((item: any) =>
+      current.documents.every((item2: any) => item2.uri === item.uri)
+    )
+);
 
 export default ({
   onLoaded,
@@ -85,8 +91,7 @@ export default ({
     React.useState(applicationProps);
 
   React.useEffect(() => {
-    setAppProviderProps(appProviderProps);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setAppProviderProps(applicationProps);
   }, [applicationProps.documents]);
 
   React.useEffect(() => {

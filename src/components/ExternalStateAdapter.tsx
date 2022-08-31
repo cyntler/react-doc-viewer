@@ -11,14 +11,16 @@ const equalObjects = (a: any, b: any) => {
   const keys = Object.keys(a);
   if (keys.length !== Object.keys(b).length) return false;
 
-  return keys.every(key => a[key] === b[key]);
-}
+  return keys.every((key) => a[key] === b[key]);
+};
 
 export default function ExternalStateAdapter() {
   const [state, setState] = React.useState<any>(null);
   const renderStore = React.useContext<any>(RenderContext);
   const controller = {
-    update: (newState: any) => renderStore.dispatch(setDocumentRenderSettings(newState))
+    update: (newState: any) => {
+      renderStore.dispatch(setDocumentRenderSettings(newState));
+    },
   };
 
   React.useEffect(() => {
@@ -29,7 +31,6 @@ export default function ExternalStateAdapter() {
         controller,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [renderStore.state.loaded]);
 
   React.useEffect(() => {
@@ -40,5 +41,5 @@ export default function ExternalStateAdapter() {
     }
   }, [renderStore, state]);
 
-  return <></>
+  return <></>;
 }

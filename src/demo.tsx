@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { render } from "react-dom";
@@ -45,11 +46,6 @@ function DocViewerContainer(props: any) {
     if (!settings || !controller) return;
     controller.update(settings);
   }, [controller, settings]);
-
-  React.useEffect(() => {
-    setController(undefined);
-    setSettings(undefined);
-  }, [props]);
 
   const changeSettings = (key: string, value: any) => {
     if (settings) {
@@ -127,18 +123,29 @@ function DocViewerContainer(props: any) {
 const App = () => {
   const docs = [
     // { uri: require("./examples/png-image.png") },
-    { uri: "http://localhost:8080/presentation.pptx" },
+    { uri: "http://localhost:8080/gif-image.gif" },
+    { uri: "http://localhost:8080/test.txt" },
     { uri: "http://localhost:8080/pdf-file.pdf" },
     { uri: "http://localhost:8080/example-pdf.pdf" },
-    { uri: "http://localhost:8080/gif-image.gif" },
-    { uri: "http://localhost:8080/war.pdf" },
+    // { uri: "http://localhost:8080/gif-image.gif" },
+    // { uri: "http://localhost:8080/war.pdf" },
     // { uri: "https://test.cabinet24.com.ua/api/file/c29bb85495298111f3e0a8a2e4b37cc4/test.pptx" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <DocViewerContainer document={docs[currentIndex]} />
+    <>
+      <div>
+        <button
+          type="button"
+          onClick={() => setCurrentIndex((currentIndex + 1) % docs.length)}
+        >
+          next
+        </button>
+      </div>
+      <DocViewerContainer document={docs[currentIndex]} />
+    </>
   );
 };
 

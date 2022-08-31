@@ -1,24 +1,26 @@
+export type FileLoaderComplete = (fileReader?: FileReader) => void;
+
 export interface FileLoaderFuncProps {
   documentURI: string;
   signal: AbortSignal;
   fileLoaderComplete: FileLoaderComplete;
 }
-export type FileLoaderComplete = (fileReader?: FileReader) => void;
+
 export type FileLoaderFunction = (props: FileLoaderFuncProps) => void;
-
 type ReaderTypeFunction = "dataURL" | "arrayBuffer" | "binaryString" | "text";
-
 interface BaseFileLoaderFuncOptions extends FileLoaderFuncProps {
   readerTypeFunction: ReaderTypeFunction;
 }
+
 type BaseFileLoaderFunction = (props: BaseFileLoaderFuncOptions) => void;
+
 const _fileLoader: BaseFileLoaderFunction = ({
   documentURI,
   signal,
   fileLoaderComplete,
   readerTypeFunction,
-}) => {
-  return fetch(documentURI, { signal })
+}) =>
+  fetch(documentURI, { signal })
     .then(async (res) => {
       const blob = await res.blob();
 
@@ -45,25 +47,18 @@ const _fileLoader: BaseFileLoaderFunction = ({
           break;
       }
     })
-    .catch((e) => {
-      return e;
-    });
-};
+    .catch((e) => e);
 
-export const arrayBufferFileLoader: FileLoaderFunction = (props) => {
-  return _fileLoader({ ...props, readerTypeFunction: "arrayBuffer" });
-};
+export const arrayBufferFileLoader: FileLoaderFunction = (props) =>
+  _fileLoader({ ...props, readerTypeFunction: "arrayBuffer" });
 
-export const dataURLFileLoader: FileLoaderFunction = (props) => {
-  return _fileLoader({ ...props, readerTypeFunction: "dataURL" });
-};
+export const dataURLFileLoader: FileLoaderFunction = (props) =>
+  _fileLoader({ ...props, readerTypeFunction: "dataURL" });
 
-export const textFileLoader: FileLoaderFunction = (props) => {
-  return _fileLoader({ ...props, readerTypeFunction: "text" });
-};
+export const textFileLoader: FileLoaderFunction = (props) =>
+  _fileLoader({ ...props, readerTypeFunction: "text" });
 
-export const binaryStringFileLoader: FileLoaderFunction = (props) => {
-  return _fileLoader({ ...props, readerTypeFunction: "binaryString" });
-};
+export const binaryStringFileLoader: FileLoaderFunction = (props) =>
+  _fileLoader({ ...props, readerTypeFunction: "binaryString" });
 
 export const defaultFileLoader = dataURLFileLoader;

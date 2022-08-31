@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     "jsx-a11y/no-autofocus": "off",
     "prefer-regex-literals": "off",
+    "react/require-default-props": "off",
     "import/resolver": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",

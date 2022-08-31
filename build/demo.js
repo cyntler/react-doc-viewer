@@ -13,6 +13,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { render } from "react-dom";
@@ -27,10 +28,6 @@ function DocViewerContainer(props) {
             return;
         controller.update(settings);
     }, [controller, settings]);
-    React.useEffect(function () {
-        setController(undefined);
-        setSettings(undefined);
-    }, [props]);
     var changeSettings = function (key, value) {
         var _a;
         if (settings) {
@@ -71,14 +68,16 @@ function DocViewerContainer(props) {
 var App = function () {
     var docs = [
         // { uri: require("./examples/png-image.png") },
-        { uri: "http://localhost:8080/presentation.pptx" },
+        { uri: "http://localhost:8080/gif-image.gif" },
+        { uri: "http://localhost:8080/test.txt" },
         { uri: "http://localhost:8080/pdf-file.pdf" },
         { uri: "http://localhost:8080/example-pdf.pdf" },
-        { uri: "http://localhost:8080/gif-image.gif" },
-        { uri: "http://localhost:8080/war.pdf" },
     ];
     var _a = useState(0), currentIndex = _a[0], setCurrentIndex = _a[1];
-    return (React.createElement(DocViewerContainer, { document: docs[currentIndex] }));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", null,
+            React.createElement("button", { type: "button", onClick: function () { return setCurrentIndex((currentIndex + 1) % docs.length); } }, "next")),
+        React.createElement(DocViewerContainer, { document: docs[currentIndex] })));
 };
 render(React.createElement(App, null), document.getElementById("root"));
 var templateObject_1;

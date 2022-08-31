@@ -47,16 +47,6 @@ var RenderContent = function (_a) {
 export var ProxyRenderer = function () {
     var _a = useDocumentLoader(), state = _a.state, dispatch = _a.dispatch, CurrentRenderer = _a.CurrentRenderer;
     var documentLoading = state.documentLoading;
-    // const [currentDocument, setCurrentDocument] = React.useState(
-    //   state.currentDocument
-    // );
-    // React.useEffect(() => {
-    //   if (currentDocument?.uri !== state.currentDocument?.uri) {
-    //     setDocumentLoaded(false);
-    //     setCurrentDocument(state.currentDocument);
-    //   }
-    //   // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [state]);
     var size = useWindowSize();
     var containerRef = useCallback(function (node) {
         if (node) {

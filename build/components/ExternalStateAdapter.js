@@ -18,7 +18,9 @@ export default function ExternalStateAdapter() {
     var _a = React.useState(null), state = _a[0], setState = _a[1];
     var renderStore = React.useContext(RenderContext);
     var controller = {
-        update: function (newState) { return renderStore.dispatch(setDocumentRenderSettings(newState)); }
+        update: function (newState) {
+            renderStore.dispatch(setDocumentRenderSettings(newState));
+        },
     };
     React.useEffect(function () {
         if (renderStore.state.loaded) {
@@ -28,7 +30,6 @@ export default function ExternalStateAdapter() {
                 controller: controller,
             });
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [renderStore.state.loaded]);
     React.useEffect(function () {
         if (renderStore.state.loaded && state) {

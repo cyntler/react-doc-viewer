@@ -79,9 +79,7 @@ var _fileLoader = function (_a) {
             }
         });
     }); })
-        .catch(function (e) {
-        return e;
-    });
+        .catch(function (e) { return e; });
 };
 export var arrayBufferFileLoader = function (props) {
     return _fileLoader(__assign(__assign({}, props), { readerTypeFunction: "arrayBuffer" }));

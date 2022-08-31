@@ -14,7 +14,10 @@ export var useRendererSelector = function () {
         pluginRenderers === null || pluginRenderers === void 0 ? void 0 : pluginRenderers.forEach(function (r) {
             if (currentDocument.fileType === undefined)
                 return;
-            if (r.fileTypes.indexOf(currentDocument.fileType) >= 0) {
+            var include = r.fileTypes.some(function (fileType) {
+                return currentDocument.fileType.includes(fileType);
+            });
+            if (include) {
                 matchingRenderers.push(r);
             }
         });

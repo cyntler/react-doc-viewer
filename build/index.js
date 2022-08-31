@@ -55,13 +55,18 @@ var DocViewerProxy = function (_a) {
                     React.createElement(HeaderBar, null),
                     React.createElement(ProxyRenderer, null))))));
 };
-var MemorizedDocViewerProxy = React.memo(DocViewerProxy);
+var MemorizedDocViewerProxy = React.memo(DocViewerProxy, function (_a, _b) {
+    var prev = _a.applicationProps;
+    var current = _b.applicationProps;
+    return prev.documents.every(function (item) {
+        return current.documents.every(function (item2) { return item2.uri === item.uri; });
+    });
+});
 export default (function (_a) {
     var onLoaded = _a.onLoaded, onChange = _a.onChange, renderSettings = _a.renderSettings, applicationProps = __rest(_a, ["onLoaded", "onChange", "renderSettings"]);
     var _b = React.useState(applicationProps), appProviderProps = _b[0], setAppProviderProps = _b[1];
     React.useEffect(function () {
-        setAppProviderProps(appProviderProps);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        setAppProviderProps(applicationProps);
     }, [applicationProps.documents]);
     React.useEffect(function () {
         createEvent("core:onRenderSettingsChange", function (data) {

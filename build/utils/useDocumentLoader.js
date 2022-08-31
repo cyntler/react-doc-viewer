@@ -10,8 +10,9 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import { useContext, useEffect } from "react";
-import { DocViewerContext } from "../state";
+import { DocViewerContext, RenderContext } from "../state";
 import { setDocumentLoading, updateCurrentDocument, } from "../state/actions/main.actions";
+import { setDocumentRenderSettings } from "../state/actions/render.actions";
 import { defaultFileLoader } from "./fileLoaders";
 import { useRendererSelector } from "./useRendererSelector";
 /**
@@ -19,6 +20,7 @@ import { useRendererSelector } from "./useRendererSelector";
  */
 export var useDocumentLoader = function () {
     var _a = useContext(DocViewerContext), state = _a.state, dispatch = _a.dispatch;
+    var renderStore = useContext(RenderContext);
     var currentFileNo = state.currentFileNo, currentDocument = state.currentDocument, prefetchMethod = state.prefetchMethod;
     var CurrentRenderer = useRendererSelector().CurrentRenderer;
     var documentURI = (currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.uri) || "";
@@ -34,6 +36,15 @@ export var useDocumentLoader = function () {
             var contentTypeRaw = response.headers.get("content-type");
             var contentTypes = (contentTypeRaw === null || contentTypeRaw === void 0 ? void 0 : contentTypeRaw.split(";")) || [];
             var contentType = contentTypes.length ? contentTypes[0] : undefined;
+            renderStore.dispatch(setDocumentRenderSettings({
+                loaded: true,
+                currentPage: 1,
+                zoomLevel: 1,
+                fitType: "width",
+                pagesCount: 0,
+                paginated: false,
+                rotationAngle: 0,
+            }));
             dispatch(updateCurrentDocument(__assign(__assign({}, currentDocument), { fileType: contentType || undefined })));
         })
             .catch(function (error) {
@@ -43,9 +54,7 @@ export var useDocumentLoader = function () {
         return function () {
             controller.abort();
         };
-    }, 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentFileNo, documentURI]);
+    }, [currentFileNo, documentURI]);
     useEffect(function () {
         var _a;
         if (!currentDocument || CurrentRenderer === undefined)
@@ -76,7 +85,6 @@ export var useDocumentLoader = function () {
         return function () {
             controller.abort();
         };
-        /* eslint-disable react-hooks/exhaustive-deps */
     }, [CurrentRenderer, currentFileNo]);
     return { state: state, dispatch: dispatch, CurrentRenderer: CurrentRenderer };
 };

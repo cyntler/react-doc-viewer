@@ -7,7 +7,7 @@ import { DocViewerContext, RenderContext } from "../../../../state";
 import {
   setDocumentCurrentPage,
   setDocumentPagesCount,
-  setDocumentRenderLoaded,
+  setDocumentRenderSettings,
 } from "../../../../state/actions/render.actions";
 import { initialRenderSettingsState } from "../../../../state/reducers/render.reducers";
 import { createEvent, emitEvent } from "../../../../utils/events";
@@ -147,8 +147,17 @@ const PDFPages = () => {
     <DocumentPDF
       file={currentDocument.fileData}
       onLoadSuccess={(payload) => {
-        dispatch(setDocumentPagesCount(payload.numPages));
-        dispatch(setDocumentRenderLoaded(true));
+        dispatch(
+          setDocumentRenderSettings({
+            currentPage: 1,
+            zoomLevel: 1,
+            fitType: "width",
+            loaded: true,
+            pagesCount: payload.numPages,
+            paginated: true,
+            rotationAngle: 0,
+          })
+        );
 
         const pages = new Array(payload.numPages).fill(0);
         emitEvent(

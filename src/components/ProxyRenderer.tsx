@@ -105,19 +105,6 @@ const RenderContent = ({ state, CurrentRenderer }: any) => {
 export const ProxyRenderer: FC<{}> = () => {
   const { state, dispatch, CurrentRenderer } = useDocumentLoader();
   const { documentLoading } = state;
-
-  // const [currentDocument, setCurrentDocument] = React.useState(
-  //   state.currentDocument
-  // );
-
-  // React.useEffect(() => {
-  //   if (currentDocument?.uri !== state.currentDocument?.uri) {
-  //     setDocumentLoaded(false);
-  //     setCurrentDocument(state.currentDocument);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [state]);
-
   const size = useWindowSize();
 
   const containerRef = useCallback(

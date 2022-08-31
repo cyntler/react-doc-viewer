@@ -26,7 +26,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Document } from "react-pdf";
 import styled from "styled-components";
 import { DocViewerContext, RenderContext } from "../../../../state";
-import { setDocumentCurrentPage, setDocumentPagesCount, setDocumentRenderLoaded, } from "../../../../state/actions/render.actions";
+import { setDocumentCurrentPage, setDocumentPagesCount, setDocumentRenderSettings, } from "../../../../state/actions/render.actions";
 import { initialRenderSettingsState } from "../../../../state/reducers/render.reducers";
 import { createEvent, emitEvent } from "../../../../utils/events";
 import getVisibleIndexRangeByParent from "../../../../utils/getVisibleIndexRangeByParent";
@@ -116,8 +116,15 @@ var PDFPages = function () {
     if (!currentDocument || (currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.fileData) === undefined)
         return React.createElement(React.Fragment, null);
     return (React.createElement(DocumentPDF, { file: currentDocument.fileData, onLoadSuccess: function (payload) {
-            dispatch(setDocumentPagesCount(payload.numPages));
-            dispatch(setDocumentRenderLoaded(true));
+            dispatch(setDocumentRenderSettings({
+                currentPage: 1,
+                zoomLevel: 1,
+                fitType: "width",
+                loaded: true,
+                pagesCount: payload.numPages,
+                paginated: true,
+                rotationAngle: 0,
+            }));
             var pages = new Array(payload.numPages).fill(0);
             emitEvent("onPaginationDocumentLoaded", pages.map(function (page, index) { return ({
                 index: index,
