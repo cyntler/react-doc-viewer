@@ -20,17 +20,13 @@ var MSDocRenderer = function (_a) {
 };
 export default MSDocRenderer;
 var MSDocFTMaps = {
-    doc: ["doc", "application/msword"],
+    doc: ["application/msword"],
     docx: [
-        "docx",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "application/octet-stream"
+        "application/octet-stream",
     ],
-    xls: ["xls", "application/vnd.ms-excel"],
-    xlsx: [
-        "xlsx",
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    ],
+    xls: ["application/vnd.ms-excel"],
+    xlsx: ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
 };
 MSDocRenderer.fileTypes = __spreadArrays(MSDocFTMaps.doc, MSDocFTMaps.docx, MSDocFTMaps.xls, MSDocFTMaps.xlsx);
 MSDocRenderer.weight = 0;
