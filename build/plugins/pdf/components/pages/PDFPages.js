@@ -53,7 +53,8 @@ var PDFPages = function () {
                 pageMargin: DOCUMENT_PAGES_MARGIN,
                 pagesCount: renderSettings.pagesCount,
             });
-            if (currentPageIndex !== -1) {
+            if (currentPageIndex !== -1 &&
+                currentPageIndex + 1 !== renderSettings.currentPage) {
                 var currentPage = currentPageIndex + 1;
                 dispatch(setDocumentCurrentPage(currentPage > renderSettings.pagesCount
                     ? renderSettings.pagesCount
@@ -90,6 +91,7 @@ var PDFPages = function () {
         scrollElement,
         pageDimension,
         requestPagesRange,
+        renderSettings.currentPage,
         renderSettings.zoomLevel,
     ]);
     // Scrolling to the current page and setting the current page by the visible page index
@@ -109,7 +111,12 @@ var PDFPages = function () {
                 top: (renderSettings.currentPage - 1) * pageHeight + DOCUMENT_PAGES_MARGIN,
             });
         }
-    }, [pageDimension, scrollElement, renderSettings]);
+    }, [
+        pageDimension,
+        scrollElement,
+        renderSettings.currentPage,
+        renderSettings.pagesCount,
+    ]);
     useEffect(function () {
         dispatch(setDocumentPagesCount(initialRenderSettingsState.pagesCount));
     }, [currentDocument]);

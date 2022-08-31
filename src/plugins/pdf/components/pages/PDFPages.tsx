@@ -56,7 +56,10 @@ const PDFPages = () => {
           pagesCount: renderSettings.pagesCount,
         });
 
-        if (currentPageIndex !== -1) {
+        if (
+          currentPageIndex !== -1 &&
+          currentPageIndex + 1 !== renderSettings.currentPage
+        ) {
           const currentPage = currentPageIndex + 1;
 
           dispatch(
@@ -72,6 +75,7 @@ const PDFPages = () => {
           width: pageDimension.width * renderSettings.zoomLevel,
           height: pageDimension.height * renderSettings.zoomLevel,
         });
+
         const alreadyExists = requestPagesRange.find(
           (range) =>
             range.min <= visibleRange.min && range.max >= visibleRange.max
@@ -113,6 +117,7 @@ const PDFPages = () => {
     scrollElement,
     pageDimension,
     requestPagesRange,
+    renderSettings.currentPage,
     renderSettings.zoomLevel,
   ]);
 
@@ -135,7 +140,12 @@ const PDFPages = () => {
           (renderSettings.currentPage - 1) * pageHeight + DOCUMENT_PAGES_MARGIN,
       });
     }
-  }, [pageDimension, scrollElement, renderSettings]);
+  }, [
+    pageDimension,
+    scrollElement,
+    renderSettings.currentPage,
+    renderSettings.pagesCount,
+  ]);
 
   useEffect(() => {
     dispatch(setDocumentPagesCount(initialRenderSettingsState.pagesCount));
