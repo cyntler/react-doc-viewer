@@ -25,6 +25,12 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
 }) => {
   const [state, dispatch] = useReducer<PDFStateReducer>(reducer, {
     ...initialPDFState,
+    defaultZoomLevel:
+      mainState.config?.pdfZoom?.defaultZoom ??
+      initialPDFState.defaultZoomLevel,
+    zoomLevel:
+      mainState.config?.pdfZoom?.defaultZoom ?? initialPDFState.zoomLevel,
+    zoomJump: mainState.config?.pdfZoom?.zoomJump ?? initialPDFState.zoomJump,
     mainState,
   });
 
