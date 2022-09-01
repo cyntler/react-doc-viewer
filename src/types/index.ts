@@ -8,6 +8,7 @@ export interface IConfig {
   loadingRenderer?: ILoadingRendererConfig;
   noRenderer?: INoRendererConfig;
   csvDelimiter?: string;
+  pdfZoom?: IPdfZoomConfig;
 }
 
 export interface ILoadingRendererConfig {
@@ -30,6 +31,11 @@ export interface IHeaderConfig {
   disableFileName?: boolean;
   retainURLParams?: boolean;
   overrideComponent?: IHeaderOverride;
+}
+
+export interface IPdfZoomConfig {
+  defaultZoom: number;
+  zoomJump: number;
 }
 
 export type IHeaderOverride = (

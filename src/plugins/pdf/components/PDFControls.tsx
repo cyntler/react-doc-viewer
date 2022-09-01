@@ -16,7 +16,14 @@ import PDFPagination from "./PDFPagination";
 
 const PDFControls: FC<{}> = () => {
   const {
-    state: { mainState, paginated, zoomLevel, numPages },
+    state: {
+      mainState,
+      paginated,
+      zoomLevel,
+      numPages,
+      zoomJump,
+      defaultZoomLevel,
+    },
     dispatch,
   } = useContext(PDFContext);
 
@@ -31,6 +38,7 @@ const PDFControls: FC<{}> = () => {
           id="pdf-download"
           href={currentDocument?.fileData as string}
           download={currentDocument?.fileName || currentDocument?.uri}
+          title="Download"
         >
           <DownloadPDFIcon color="#000" size="75%" />
         </DownloadButton>
@@ -38,22 +46,25 @@ const PDFControls: FC<{}> = () => {
 
       <ControlButton
         id="pdf-zoom-out"
-        onMouseDown={() => dispatch(setZoomLevel(zoomLevel - 0.1))}
+        onMouseDown={() => dispatch(setZoomLevel(zoomLevel - zoomJump))}
+        title="Zoom out"
       >
         <ZoomOutPDFIcon color="#000" size="80%" />
       </ControlButton>
 
       <ControlButton
         id="pdf-zoom-in"
-        onMouseDown={() => dispatch(setZoomLevel(zoomLevel + 0.1))}
+        onMouseDown={() => dispatch(setZoomLevel(zoomLevel + zoomJump))}
+        title="Zoom in"
       >
         <ZoomInPDFIcon color="#000" size="80%" />
       </ControlButton>
 
       <ControlButton
         id="pdf-zoom-reset"
-        onMouseDown={() => dispatch(setZoomLevel(initialPDFState.zoomLevel))}
-        disabled={zoomLevel === initialPDFState.zoomLevel}
+        onMouseDown={() => dispatch(setZoomLevel(defaultZoomLevel))}
+        disabled={zoomLevel === defaultZoomLevel}
+        title="Zoom reset"
       >
         <ResetZoomPDFIcon color="#000" size="70%" />
       </ControlButton>

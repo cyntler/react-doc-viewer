@@ -253,11 +253,15 @@ You can provide a config object, which configures parts of the component as requ
 <DocViewer
   documents={docs}
   config={{
-    csvDelimiter: ",", // ',' as default
     header: {
       disableHeader: false,
       disableFileName: false,
       retainURLParams: false,
+    },
+    csvDelimiter: ",", // "," as default,
+    pdfZoom: {
+      defaultZoom: 1.1, // 1 as default,
+      zoomJump: 0.2, // 0.1 as default,
     },
   }}
 />

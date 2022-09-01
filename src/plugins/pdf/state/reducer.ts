@@ -12,7 +12,9 @@ import {
 } from "./actions";
 
 export type IPDFState = {
+  defaultZoomLevel: number;
   zoomLevel: number;
+  zoomJump: number;
   paginated: boolean;
   numPages: number;
   currentPage: number;
@@ -20,7 +22,9 @@ export type IPDFState = {
 };
 
 export const initialPDFState: IPDFState = {
+  defaultZoomLevel: 1,
   zoomLevel: 1,
+  zoomJump: 0.1,
   paginated: true,
   numPages: 0,
   currentPage: 1,
