@@ -4,7 +4,6 @@ import { Button, LinkButton } from "../../../components/common";
 import { IStyledProps } from "../../../types";
 import { PDFContext } from "../state";
 import { setPDFPaginated, setZoomLevel } from "../state/actions";
-import { initialPDFState } from "../state/reducer";
 import {
   DownloadPDFIcon,
   ResetZoomPDFIcon,
