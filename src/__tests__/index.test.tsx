@@ -10,8 +10,8 @@ test("renders component with no documents", () => {
 
 test("renders component with documents", () => {
   const docs = [
-    { uri: require("../examples/pdf-file.pdf") },
-    { uri: require("../examples/png-image.png") },
+    { uri: require("../demoapp/exampleFiles/pdf-file.pdf") },
+    { uri: require("../demoapp/exampleFiles/png-image.png") },
   ];
 
   render(<DocViewer documents={docs} />);
@@ -22,8 +22,8 @@ test("renders component with documents", () => {
 
 test("renders doc viewer with initialActiveDocument prop", () => {
   const docs = [
-    { uri: require("../examples/pdf-file.pdf") },
-    { uri: require("../examples/png-image.png") },
+    { uri: require("../demoapp/exampleFiles/pdf-file.pdf") },
+    { uri: require("../demoapp/exampleFiles/png-image.png") },
   ];
 
   render(<DocViewer documents={docs} initialActiveDocument={docs[1]} />);

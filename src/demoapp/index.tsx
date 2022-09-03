@@ -1,13 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import DocViewer from ".";
-import { DocViewerRenderers } from "./plugins";
+import DocViewer from "..";
+import { DocViewerRenderers } from "../plugins";
 
 const App = () => {
   const docs = [
-    { uri: require("./examples/pdf-file.pdf") },
-    { uri: require("./examples/png-image.png") },
-    { uri: require("./examples/csv-file.csv") },
+    { uri: require("./exampleFiles/pdf-file.pdf") },
+    { uri: require("./exampleFiles/png-image.png") },
+    { uri: require("./exampleFiles/csv-file.csv") },
   ];
 
   return (
