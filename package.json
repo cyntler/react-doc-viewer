@@ -31,6 +31,7 @@
     "build-release:major": "react-scripts test --watchAll=false && npm run build && npm run version:major"
   },
   "dependencies": {
+    "@types/mustache": "^4.2.1",
     "mustache": "^4.2.0",
     "react-csv-to-table": "^0.0.4",
     "react-pdf": "5.7.2",
