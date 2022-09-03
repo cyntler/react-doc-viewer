@@ -1,7 +1,7 @@
 import { FC, ReactElement, ComponentType, PropsWithChildren } from "react";
 import { ThemedStyledProps } from "styled-components";
-import { IMainState } from "../state/reducer";
-import { FileLoaderFunction } from "../utils/fileLoaders";
+import { IMainState } from "./store/mainStateReducer";
+import { FileLoaderFunction } from "./utils/fileLoaders";
 
 export interface IConfig {
   header?: IHeaderConfig;
@@ -68,6 +68,7 @@ export interface IDocument {
 export interface DocRendererProps {
   mainState: IMainState;
 }
+
 export interface DocRenderer extends FC<PropsWithChildren<DocRendererProps>> {
   fileTypes: string[];
   weight: number;

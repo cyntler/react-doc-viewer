@@ -1,8 +1,8 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { DocViewerContext } from "../state";
-import { nextDocument, previousDocument } from "../state/actions";
-import { IStyledProps } from "../types";
+import { DocViewerContext } from "../store/DocViewerProvider";
+import { nextDocument, previousDocument } from "../store/actions";
+import { IStyledProps } from "..";
 import { ButtonSecondary } from "./common/Button";
 import { NextDocIcon, PrevDocIcon } from "./icons";
 

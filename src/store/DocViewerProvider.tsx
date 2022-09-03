@@ -6,21 +6,22 @@ import React, {
   useReducer,
   PropsWithChildren,
 } from "react";
-import { DocViewerProps } from "..";
+import { DocViewerProps } from "../";
+import { defaultLanguage, locales } from "../utils/i18n";
 import { MainStateActions, setAllDocuments, setMainConfig } from "./actions";
 import {
   IMainState,
   initialState,
   mainStateReducer,
   MainStateReducer,
-} from "./reducer";
+} from "./mainStateReducer";
 
 const DocViewerContext = createContext<{
   state: IMainState;
   dispatch: Dispatch<MainStateActions>;
 }>({ state: initialState, dispatch: () => null });
 
-const AppProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
+const DocViewerProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
   const {
     children,
     documents,
@@ -29,6 +30,7 @@ const AppProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
     prefetchMethod,
     requestHeaders,
     initialActiveDocument,
+    language,
   } = props;
 
   const [state, dispatch] = useReducer<MainStateReducer>(mainStateReducer, {
@@ -47,6 +49,7 @@ const AppProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
     currentFileNo: initialActiveDocument
       ? documents.findIndex((doc) => doc === initialActiveDocument) ?? 0
       : 0,
+    language: language && locales[language] ? language : defaultLanguage,
   });
 
   useEffect(() => {
@@ -61,4 +64,4 @@ const AppProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
   );
 };
 
-export { DocViewerContext, AppProvider };
+export { DocViewerContext, DocViewerProvider };

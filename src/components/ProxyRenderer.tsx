@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
-import { setRendererRect } from "../state/actions";
-import { IStyledProps } from "../types";
-import { getFileName } from "../utils";
+import { setRendererRect } from "../store/actions";
+import { IStyledProps } from "../models";
+import { getFileName } from "../utils/getFileName";
 import { useDocumentLoader } from "../utils/useDocumentLoader";
 import { useWindowSize } from "../utils/useWindowSize";
 import { LinkButton } from "./common";

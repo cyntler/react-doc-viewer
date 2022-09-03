@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { DocRenderer } from "../../types";
+import { DocRenderer } from "../..";
 import { arrayBufferFileLoader } from "../../utils/fileLoaders";
 import ImageProxyRenderer from "../image";
 import { parseTIFF } from "./tiffToCanvas";

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { DocViewerContext } from "../state";
-import { DocRenderer } from "../types";
+import { DocViewerContext } from "../store/DocViewerProvider";
+import { DocRenderer } from "..";
 
 export const useRendererSelector = (): {
   CurrentRenderer: DocRenderer | null | undefined;

@@ -2,7 +2,7 @@
 import React from "react";
 import { pdfjs } from "react-pdf";
 import styled from "styled-components";
-import { DocRenderer, IStyledProps } from "../../types";
+import { DocRenderer, IStyledProps } from "../..";
 import PDFPages from "./components/pages/PDFPages";
 import PDFControls from "./components/PDFControls";
 import { PDFProvider } from "./state";

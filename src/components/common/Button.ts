@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { IStyledProps } from "../../types";
+import { IStyledProps } from "../..";
 
 interface ButtonProps extends IStyledProps {
   disabled?: boolean;

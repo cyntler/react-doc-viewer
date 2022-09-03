@@ -5,7 +5,7 @@ import React, {
   PropsWithChildren,
   useReducer,
 } from "react";
-import { IMainState } from "../../../state/reducer";
+import { IMainState } from "../../../store/mainStateReducer";
 import { PDFActions } from "./actions";
 import {
   initialPDFState,

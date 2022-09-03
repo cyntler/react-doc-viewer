@@ -1,8 +1,8 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { DocViewerContext } from "../state";
-import { nextDocument, previousDocument } from "../state/actions";
-import { IStyledProps } from "../types";
+import { DocViewerContext } from "../store/DocViewerProvider";
+import { nextDocument, previousDocument } from "../store/actions";
+import { IStyledProps } from "../models";
 import { DocumentNav } from "./DocumentNav";
 import { FileName } from "./FileName";
 

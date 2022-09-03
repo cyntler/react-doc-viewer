@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CsvToHtmlTable } from "react-csv-to-table";
 import styled from "styled-components";
-import { DocRenderer } from "../../types";
+import { DocRenderer } from "../..";
 import { textFileLoader } from "../../utils/fileLoaders";
 
 const HTMLRenderer: DocRenderer = ({
