@@ -41,6 +41,7 @@ const App = () => {
           zoomJump: 0.2,
         },
       }}
+      language="pl"
     />
   );
 };
