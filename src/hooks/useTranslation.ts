@@ -11,7 +11,10 @@ export const useTranslation = () => {
   const defaultTranslations = locales[defaultLanguage];
 
   const t = useCallback(
-    (key: string, variables?: Record<string, string | number>) => {
+    (
+      key: keyof typeof defaultTranslations,
+      variables?: Record<string, string | number>
+    ) => {
       const translations = locales[language];
 
       if (translations[key]) {

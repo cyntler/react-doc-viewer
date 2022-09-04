@@ -159,7 +159,7 @@ MyCustomPNGRenderer.fileLoader = ({
 };
 ```
 
-## Themed
+## Theme
 
 You can provide a theme object with one or all of the available properties.
 
@@ -202,6 +202,16 @@ const headers = {
 
 <DocViewer documents={docs} prefetchMethod="GET" requestHeaders={headers} />;
 ```
+
+## Internationalization (i18n)
+
+From **v1.6.0** you can pass the `language` prop to the `DocViewer` component to get translated sentences and words that can be displayed by this library.
+
+```xml
+<DocViewer documents={docs} language="pl" />
+```
+
+The translations are based on the `.json` files that can be found in the `src/locales` directory.
 
 ## Styling
 
