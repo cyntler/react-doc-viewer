@@ -17,7 +17,7 @@ test("renders component with documents", () => {
   render(<DocViewer documents={docs} />);
 
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
-  expect(screen.getByText(`Doc 1 of ${docs.length}`)).toBeDefined();
+  expect(screen.getByText(`Document 1 of ${docs.length}`)).toBeDefined();
 });
 
 test("renders doc viewer with initialActiveDocument prop", () => {
@@ -31,7 +31,7 @@ test("renders doc viewer with initialActiveDocument prop", () => {
   const proxyRenderer = screen.getByTestId("proxy-renderer");
 
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
-  expect(screen.getByText(`Doc 2 of ${docs.length}`)).toBeDefined();
+  expect(screen.getByText(`Document 2 of ${docs.length}`)).toBeDefined();
   expect(proxyRenderer).toBeDefined();
   expect(proxyRenderer.querySelector("img")).toBeDefined();
 });

@@ -28,7 +28,7 @@ if (isWindow) {
 const DocViewer: FC<DocViewerProps> = (props) => {
   const { documents, theme } = props;
 
-  if (!documents || !documents.length) {
+  if (!documents) {
     throw new Error("Please provide an array of documents to DocViewer!");
   }
 
