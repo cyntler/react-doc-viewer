@@ -5,12 +5,14 @@ import { IStyledProps } from "../../..";
 import { PDFContext } from "../state";
 import { setCurrentPage } from "../state/actions";
 import { NextPDFNavIcon, PrevPDFNavIcon } from "./icons";
+import { useTranslation } from "../../../hooks/useTranslation";
 
 const PDFPagination: FC<{}> = () => {
   const {
     state: { currentPage, numPages },
     dispatch,
   } = useContext(PDFContext);
+  const { t } = useTranslation();
 
   return (
     <Container id="pdf-pagination">
@@ -23,7 +25,10 @@ const PDFPagination: FC<{}> = () => {
       </PageNavButtonLeft>
 
       <PageTag id="pdf-pagination-info">
-        Page {currentPage}/{numPages}
+        {t("pdfPluginPageNumber", {
+          currentPage,
+          allPagesCount: numPages,
+        })}
       </PageTag>
 
       <PageNavButtonRight

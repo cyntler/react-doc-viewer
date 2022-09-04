@@ -6,7 +6,7 @@ interface Props {
   pageNum?: number;
 }
 
-export const PDFAllPages: FC<Props> = (props) => {
+export const PDFAllPages: FC<Props> = () => {
   const {
     state: { numPages },
   } = useContext(PDFContext);

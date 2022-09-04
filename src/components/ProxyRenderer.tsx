@@ -8,12 +8,13 @@ import { useWindowSize } from "../utils/useWindowSize";
 import { LinkButton } from "./common";
 import { LoadingIcon } from "./icons";
 import { LoadingTimeout } from "./LoadingTimout";
+import { useTranslation } from "../hooks/useTranslation";
 
 export const ProxyRenderer: FC<{}> = () => {
   const { state, dispatch, CurrentRenderer } = useDocumentLoader();
   const { documents, documentLoading, currentDocument, config } = state;
-
   const size = useWindowSize();
+  const { t } = useTranslation();
 
   const containerRef = useCallback(
     (node: HTMLDivElement) => {
@@ -30,7 +31,7 @@ export const ProxyRenderer: FC<{}> = () => {
 
   const Contents = () => {
     if (!documents.length) {
-      return <div id="no-documents">{/* No Documents */}</div>;
+      return <div id="no-documents"></div>;
     } else if (documentLoading) {
       if (config && config?.loadingRenderer?.overrideComponent) {
         const OverrideComponent = config.loadingRenderer.overrideComponent;
@@ -68,13 +69,15 @@ export const ProxyRenderer: FC<{}> = () => {
 
         return (
           <div id="no-renderer" data-testid="no-renderer">
-            No Renderer for file type {currentDocument?.fileType}
+            {t("noRendererMessage", {
+              fileType: currentDocument?.fileType ?? "",
+            })}
             <DownloadButton
               id="no-renderer-download"
               href={currentDocument?.uri}
               download={currentDocument?.uri}
             >
-              Download File
+              {t("downloadButtonLabel")}
             </DownloadButton>
           </div>
         );
@@ -106,6 +109,7 @@ const LoadingContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const spinAnim = keyframes`
   from {
     transform: rotate(0deg);
@@ -114,6 +118,7 @@ const spinAnim = keyframes`
     transform: rotate(360deg);
   }
 `;
+
 const LoadingIconContainer = styled.div`
   animation-name: ${spinAnim};
   animation-duration: 4s;

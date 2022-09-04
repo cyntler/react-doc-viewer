@@ -9,6 +9,7 @@ export const ButtonPrimaryStyle = css`
   background-color: ${(props: IStyledProps) => props.theme.primary};
   color: ${(props: IStyledProps) => props.theme.textPrimary};
 `;
+
 export const ButtonSecondaryStyle = css`
   background-color: ${(props: IStyledProps) => props.theme.secondary};
   color: ${(props: IStyledProps) => props.theme.textSecondary};

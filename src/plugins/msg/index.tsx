@@ -3,10 +3,12 @@ import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import { MSGErrorResult, MSGFileData, MSGReader } from "wl-msg-reader";
 import { DocRenderer, IStyledProps } from "../..";
+import { useTranslation } from "../../hooks/useTranslation";
 import { arrayBufferFileLoader } from "../../utils/fileLoaders";
 
 const MSGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
   const [fileData, setFileData] = useState<MSGFileData | MSGErrorResult>();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!currentDocument || !currentDocument.fileData) return;
@@ -54,7 +56,7 @@ const MSGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
       <Sender name={senderName} email={senderEmail} />
 
       <RecipientContainer id="msg-recipient">
-        <h3 id="msg-recipient-title">Recipients</h3>
+        <h3 id="msg-recipient-title">{t("msgPluginRecipients")}</h3>
         <ul id="msg-recipient-ul">
           {recipients.map((r, i) => (
             <li key={i} id="msg-recipient-li">
@@ -73,11 +75,13 @@ const MSGRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
 };
 
 const Sender: FC<{ name: string; email: string }> = ({ name, email }) => {
+  const { t } = useTranslation();
+
   if (!name && !email) return null;
 
   return (
     <SenderContainer id="msg-sender">
-      <h3 id="msg-sender-title">Sender</h3>
+      <h3 id="msg-sender-title">{t("msgPluginSender")}</h3>
       {name !== undefined && <div id="msg-sender-name">{name}</div>}
       {email !== undefined && <div id="msg-sender-email">{email}</div>}
     </SenderContainer>
