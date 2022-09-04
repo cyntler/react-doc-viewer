@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { IStyledProps } from "../../types";
+import { IStyledProps } from "../..";
 
 interface ButtonProps extends IStyledProps {
   disabled?: boolean;
@@ -9,6 +9,7 @@ export const ButtonPrimaryStyle = css`
   background-color: ${(props: IStyledProps) => props.theme.primary};
   color: ${(props: IStyledProps) => props.theme.textPrimary};
 `;
+
 export const ButtonSecondaryStyle = css`
   background-color: ${(props: IStyledProps) => props.theme.secondary};
   color: ${(props: IStyledProps) => props.theme.textSecondary};

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DocRenderer } from "../../types";
+import { DocRenderer } from "../..";
 
 const MSDocRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
   if (!currentDocument) return null;
@@ -26,7 +26,7 @@ const MSDocFTMaps = {
   docx: [
     "docx",
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    "application/octet-stream"
+    "application/octet-stream",
   ],
   xls: ["xls", "application/vnd.ms-excel"],
   xlsx: [

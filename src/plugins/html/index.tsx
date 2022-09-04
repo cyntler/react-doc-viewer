@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { DocRenderer, IStyledProps } from "../../types";
+import { DocRenderer, IStyledProps } from "../..";
 import { dataURLFileLoader } from "../../utils/fileLoaders";
 
 const HTMLRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {

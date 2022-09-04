@@ -2,21 +2,11 @@ import React, { CSSProperties, FC, memo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
-import BMPRenderer from "./plugins/bmp";
-import HTMLRenderer from "./plugins/html";
-import ImageProxyRenderer from "./plugins/image";
-import JPGRenderer from "./plugins/jpg";
-import MSDocRenderer from "./plugins/msdoc";
-import MSGRenderer from "./plugins/msg";
-import PDFRenderer from "./plugins/pdf";
-import PNGRenderer from "./plugins/png";
-import TIFFRenderer from "./plugins/tiff";
-import TXTRenderer from "./plugins/txt";
-import CSVRenderer from "./plugins/csv";
-import { AppProvider } from "./state";
-import { defaultTheme } from "./theme";
-import { DocRenderer, IConfig, IDocument, ITheme } from "./types";
+import { DocViewerProvider } from "./store/DocViewerProvider";
+import { defaultTheme } from "./defaultTheme";
+import { DocRenderer, IConfig, IDocument, ITheme } from "./models";
 import { isWindow } from "./utils/isWindow";
+import { AvailableLanguages } from "./utils/i18n";
 
 export interface DocViewerProps {
   documents: IDocument[];
@@ -28,6 +18,7 @@ export interface DocViewerProps {
   prefetchMethod?: string;
   requestHeaders?: Record<string, string>;
   initialActiveDocument?: IDocument;
+  language?: AvailableLanguages;
 }
 
 if (isWindow) {
@@ -37,12 +28,12 @@ if (isWindow) {
 const DocViewer: FC<DocViewerProps> = (props) => {
   const { documents, theme } = props;
 
-  if (!documents || documents === undefined) {
+  if (!documents) {
     throw new Error("Please provide an array of documents to DocViewer!");
   }
 
   return (
-    <AppProvider {...props}>
+    <DocViewerProvider {...props}>
       <ThemeProvider
         theme={theme ? { ...defaultTheme, ...theme } : defaultTheme}
       >
@@ -55,7 +46,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
           <ProxyRenderer />
         </Container>
       </ThemeProvider>
-    </AppProvider>
+    </DocViewerProvider>
   );
 };
 
@@ -69,18 +60,7 @@ const Container = styled.div`
 `;
 
 export { DocViewerRenderers } from "./plugins";
-export * from "./types";
+export * from "./models";
 export * from "./utils/fileLoaders";
-export {
-  BMPRenderer,
-  HTMLRenderer,
-  ImageProxyRenderer,
-  JPGRenderer,
-  MSDocRenderer,
-  MSGRenderer,
-  PDFRenderer,
-  PNGRenderer,
-  TIFFRenderer,
-  TXTRenderer,
-  CSVRenderer,
-};
+export { type AvailableLanguages } from "./utils/i18n";
+export * from "./plugins";

@@ -1,5 +1,5 @@
 import React from "react";
-import { DocRenderer } from "../../types";
+import { DocRenderer } from "../..";
 import ImageProxyRenderer from "../image";
 
 const JPGRenderer: DocRenderer = (props) => <ImageProxyRenderer {...props} />;

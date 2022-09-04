@@ -2,6 +2,7 @@
 import React, { FC, useContext, useEffect } from "react";
 import { Document } from "react-pdf";
 import styled from "styled-components";
+import { useTranslation } from "../../../../hooks/useTranslation";
 import { PDFContext } from "../../state";
 import { setNumPages } from "../../state/actions";
 import { initialPDFState } from "../../state/reducer";
@@ -13,6 +14,7 @@ const PDFPages: FC<{}> = () => {
     state: { mainState, paginated },
     dispatch,
   } = useContext(PDFContext);
+  const { t } = useTranslation();
 
   const currentDocument = mainState?.currentDocument || null;
 
@@ -26,7 +28,7 @@ const PDFPages: FC<{}> = () => {
     <DocumentPDF
       file={currentDocument.fileData}
       onLoadSuccess={({ numPages }) => dispatch(setNumPages(numPages))}
-      loading={<span>Loading...</span>}
+      loading={<span>{t("pdfPluginLoading")}</span>}
     >
       {paginated ? <PDFSinglePage /> : <PDFAllPages />}
     </DocumentPDF>

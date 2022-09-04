@@ -1,12 +1,12 @@
 import { Dispatch, useContext, useEffect } from "react";
-import { DocViewerContext } from "../state";
+import { DocViewerContext } from "../store/DocViewerProvider";
 import {
   MainStateActions,
   setDocumentLoading,
   updateCurrentDocument,
-} from "../state/actions";
-import { IMainState } from "../state/reducer";
-import { DocRenderer } from "../types";
+} from "../store/actions";
+import { IMainState } from "../store/mainStateReducer";
+import { DocRenderer } from "..";
 import {
   defaultFileLoader,
   FileLoaderComplete,

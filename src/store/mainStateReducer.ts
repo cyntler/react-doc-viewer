@@ -1,4 +1,4 @@
-import { DocRenderer, IConfig, IDocument } from "../types";
+import { DocRenderer, IConfig, IDocument } from "..";
 import {
   MainStateActions,
   NEXT_DOCUMENT,
@@ -14,6 +14,7 @@ import {
   UpdateCurrentDocument,
   UPDATE_CURRENT_DOCUMENT,
 } from "./actions";
+import { AvailableLanguages, defaultLanguage } from "../utils/i18n";
 
 export type IMainState = {
   currentFileNo: number;
@@ -25,6 +26,7 @@ export type IMainState = {
   pluginRenderers?: DocRenderer[];
   prefetchMethod?: string;
   requestHeaders?: Record<string, string>;
+  language: AvailableLanguages;
 };
 
 export const initialState: IMainState = {
@@ -35,6 +37,7 @@ export const initialState: IMainState = {
   rendererRect: undefined,
   config: {},
   pluginRenderers: [],
+  language: defaultLanguage,
 };
 
 export type MainStateReducer = (

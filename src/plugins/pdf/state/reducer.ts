@@ -1,4 +1,4 @@
-import { IMainState } from "../../../state/reducer";
+import { IMainState } from "../../../store/mainStateReducer";
 import {
   PDFActions as PDFStateActions,
   SetCurrentPage,

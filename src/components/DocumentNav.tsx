@@ -1,16 +1,18 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { DocViewerContext } from "../state";
-import { nextDocument, previousDocument } from "../state/actions";
-import { IStyledProps } from "../types";
+import { DocViewerContext } from "../store/DocViewerProvider";
+import { nextDocument, previousDocument } from "../store/actions";
+import { IStyledProps } from "..";
 import { ButtonSecondary } from "./common/Button";
 import { NextDocIcon, PrevDocIcon } from "./icons";
+import { useTranslation } from "../hooks/useTranslation";
 
 export const DocumentNav: FC<{}> = () => {
   const {
     state: { currentDocument, currentFileNo, documents },
     dispatch,
   } = useContext(DocViewerContext);
+  const { t } = useTranslation();
 
   if (documents.length <= 1 || !currentDocument) return null;
 
@@ -24,7 +26,10 @@ export const DocumentNav: FC<{}> = () => {
   return (
     <Container id="doc-nav">
       <p id="doc-nav-info">
-        Doc {currentFileNo + 1} of {documents.length}
+        {t("documentNavInfo", {
+          currentFileNo: currentFileNo + 1,
+          allFilesCount: documents.length,
+        })}
       </p>
 
       <ButtonPrev

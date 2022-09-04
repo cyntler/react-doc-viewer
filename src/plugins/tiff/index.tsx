@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { DocRenderer } from "../../types";
+import { DocRenderer } from "../..";
+import { useTranslation } from "../../hooks/useTranslation";
 import { arrayBufferFileLoader } from "../../utils/fileLoaders";
 import ImageProxyRenderer from "../image";
 import { parseTIFF } from "./tiffToCanvas";
@@ -9,6 +10,7 @@ const TIFFRenderer: DocRenderer = (props) => {
   const {
     mainState: { currentDocument },
   } = props;
+  const { t } = useTranslation();
 
   const [loadedCanvas, setLoadedCanvas] = useState(false);
   const [corruptedFile, setCorruptedFile] = useState(false);
@@ -28,7 +30,7 @@ const TIFFRenderer: DocRenderer = (props) => {
   if (corruptedFile) {
     return (
       <ImageProxyRenderer {...props}>
-        <div>Your file is corrupted. Please check it on your machine.</div>
+        <div>{t("brokenFile")}</div>
       </ImageProxyRenderer>
     );
   }

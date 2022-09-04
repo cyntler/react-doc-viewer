@@ -10,20 +10,20 @@ test("renders component with no documents", () => {
 
 test("renders component with documents", () => {
   const docs = [
-    { uri: require("../examples/pdf-file.pdf") },
-    { uri: require("../examples/png-image.png") },
+    { uri: require("../demoapp/exampleFiles/pdf-file.pdf") },
+    { uri: require("../demoapp/exampleFiles/png-image.png") },
   ];
 
   render(<DocViewer documents={docs} />);
 
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
-  expect(screen.getByText(`Doc 1 of ${docs.length}`)).toBeDefined();
+  expect(screen.getByText(`Document 1 of ${docs.length}`)).toBeDefined();
 });
 
 test("renders doc viewer with initialActiveDocument prop", () => {
   const docs = [
-    { uri: require("../examples/pdf-file.pdf") },
-    { uri: require("../examples/png-image.png") },
+    { uri: require("../demoapp/exampleFiles/pdf-file.pdf") },
+    { uri: require("../demoapp/exampleFiles/png-image.png") },
   ];
 
   render(<DocViewer documents={docs} initialActiveDocument={docs[1]} />);
@@ -31,7 +31,7 @@ test("renders doc viewer with initialActiveDocument prop", () => {
   const proxyRenderer = screen.getByTestId("proxy-renderer");
 
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
-  expect(screen.getByText(`Doc 2 of ${docs.length}`)).toBeDefined();
+  expect(screen.getByText(`Document 2 of ${docs.length}`)).toBeDefined();
   expect(proxyRenderer).toBeDefined();
   expect(proxyRenderer.querySelector("img")).toBeDefined();
 });

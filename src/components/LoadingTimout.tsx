@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { DocViewerContext } from "../state";
+import { DocViewerContext } from "../store/DocViewerProvider";
 
 export const LoadingTimeout: FC<PropsWithChildren> = ({ children }) => {
   const { state } = useContext(DocViewerContext);

@@ -1,8 +1,8 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { DocViewerContext } from "../state";
-import { IStyledProps } from "../types";
-import { getFileName } from "../utils";
+import { DocViewerContext } from "../store/DocViewerProvider";
+import { IStyledProps } from "..";
+import { getFileName } from "../utils/getFileName";
 
 export const FileName: FC<{}> = () => {
   const {

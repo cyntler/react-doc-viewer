@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { Button, LinkButton } from "../../../components/common";
-import { IStyledProps } from "../../../types";
+import { IStyledProps } from "../../..";
 import { PDFContext } from "../state";
 import { setPDFPaginated, setZoomLevel } from "../state/actions";
 import {
@@ -46,7 +46,6 @@ const PDFControls: FC<{}> = () => {
       <ControlButton
         id="pdf-zoom-out"
         onMouseDown={() => dispatch(setZoomLevel(zoomLevel - zoomJump))}
-        title="Zoom out"
       >
         <ZoomOutPDFIcon color="#000" size="80%" />
       </ControlButton>
@@ -54,7 +53,6 @@ const PDFControls: FC<{}> = () => {
       <ControlButton
         id="pdf-zoom-in"
         onMouseDown={() => dispatch(setZoomLevel(zoomLevel + zoomJump))}
-        title="Zoom in"
       >
         <ZoomInPDFIcon color="#000" size="80%" />
       </ControlButton>
@@ -63,7 +61,6 @@ const PDFControls: FC<{}> = () => {
         id="pdf-zoom-reset"
         onMouseDown={() => dispatch(setZoomLevel(defaultZoomLevel))}
         disabled={zoomLevel === defaultZoomLevel}
-        title="Zoom reset"
       >
         <ResetZoomPDFIcon color="#000" size="70%" />
       </ControlButton>
