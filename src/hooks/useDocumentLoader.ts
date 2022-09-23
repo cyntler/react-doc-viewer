@@ -11,7 +11,7 @@ import {
   defaultFileLoader,
   FileLoaderComplete,
   FileLoaderFuncProps,
-} from "./fileLoaders";
+} from "../utils/fileLoaders";
 import { useRendererSelector } from "./useRendererSelector";
 
 /**
