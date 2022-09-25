@@ -38,7 +38,8 @@ export const useDocumentLoader = (): {
       const { signal } = controller;
 
       fetch(documentURI, {
-        method: prefetchMethod || "HEAD",
+        method:
+          prefetchMethod || documentURI.startsWith("blob:") ? "GET" : "HEAD",
         signal,
         headers: state?.requestHeaders,
       }).then((response) => {
