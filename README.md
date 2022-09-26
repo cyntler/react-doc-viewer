@@ -77,6 +77,37 @@ function App() {
 }
 ```
 
+### Displaying blob/uploaded documents
+
+Since **1.6.2** you can use documents in the form of blobs, which allows you to e.g. display uploaded files.
+
+```jsx
+const DocViewerWithInputApp = () => {
+  const [selectedDocs, setSelectedDocs] = useState<File[]>([]);
+
+  return (
+    <>
+      <input
+        type="file"
+        accept=".pdf"
+        multiple
+        onChange={(el) =>
+          el.target.files?.length &&
+          setSelectedDocs(Array.from(el.target.files))
+        }
+      />
+      <DocViewer
+        documents={selectedDocs.map((file) => ({
+          uri: window.URL.createObjectURL(file),
+          fileName: file.name,
+        }))}
+        pluginRenderers={DocViewerRenderers}
+      />
+    </>
+  );
+};
+```
+
 ### Included Renderers
 
 To use the included renderers.
@@ -126,7 +157,7 @@ MyCustomPNGRenderer.fileTypes = ["png", "image/png"];
 MyCustomPNGRenderer.weight = 1;
 ```
 
-And supply it to DocViewer > pluginRenderers inside an `Array`.
+And supply it to `pluginRenderers` inside an `Array`.
 
 ```tsx
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
@@ -277,7 +308,7 @@ You can provide a config object, which configures parts of the component as requ
 />
 ```
 
-## Overriding Header Component
+### Overriding Header Component
 
 You can pass a callback function to `config.header.overrideComponent` that returns a React Element. The function's parameters will be populated and usable, this function will also be re-called whenever the mainState updates.
 Parameters include the state object from the main component, and document navigation functions for `previousDocument` and `nextDocument`.
@@ -323,7 +354,7 @@ const MyHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 />;
 ```
 
-## Overriding Loading Renderer
+### Overriding Loading Renderer
 
 You can pass a callback function to `config.loadingRenderer.overrideComponent` that returns a React Element.
 
@@ -380,7 +411,7 @@ const MyLoadingRenderer = ({ document, fileName }) => {
 />;
 ```
 
-## Overriding No Renderer (Error)
+### Overriding No Renderer (Error)
 
 You can pass a callback function to `config.noRenderer.overrideComponent` that returns a React Element.
 
