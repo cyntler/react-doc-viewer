@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import DocViewer from "../index";
-import { DocViewerRenderers } from "../plugins";
+import DocViewer from "../../index";
+import { DocViewerRenderers } from "../../plugins";
 
 const DocViewerWithInputApp = () => {
   const [selectedDocs, setSelectedDocs] = useState<File[]>([]);

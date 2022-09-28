@@ -1,12 +1,12 @@
 import React from "react";
-import DocViewer from "../index";
-import { DocViewerRenderers } from "../plugins";
+import DocViewer from "../../index";
+import { DocViewerRenderers } from "../../plugins";
 
 const DocViewerApp = () => {
   const docs = [
-    { uri: require("./exampleFiles/pdf-file.pdf") },
-    { uri: require("./exampleFiles/png-image.png") },
-    { uri: require("./exampleFiles/csv-file.csv") },
+    { uri: require("../exampleFiles/pdf-file.pdf") },
+    { uri: require("../exampleFiles/png-image.png") },
+    { uri: require("../exampleFiles/csv-file.csv") },
   ];
 
   return (

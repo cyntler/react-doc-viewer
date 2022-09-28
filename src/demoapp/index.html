@@ -4,10 +4,42 @@
     <meta charset="UTF-8" />
     <title>@cyntler/react-doc-viewer demo</title>
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       html,
       body {
-        padding: 0;
         margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      main {
+        flex: 1;
+        width: 100%;
+        display: flex;
+      }
+
+      h1 {
+        margin: 0 0 20px 0;
+        padding: 0;
+      }
+
+      main nav.demo-app-nav {
+        width: 25%;
+      }
+
+      main div.demo-app-wrapper {
+        width: 75%;
       }
     </style>
   </head>
