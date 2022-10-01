@@ -57,6 +57,8 @@ const Container = styled.div`
   flex-direction: column;
   overflow: hidden;
   background: #ffffff;
+  width: 100%;
+  height: 100%;
 `;
 
 export { DocViewerRenderers } from "./plugins";
