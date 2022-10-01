@@ -8,6 +8,7 @@ import PNGRenderer from "./png";
 import TIFFRenderer from "./tiff";
 import TXTRenderer from "./txt";
 import CSVRenderer from "./csv";
+import GIFRenderer from "./gif";
 
 export const DocViewerRenderers = [
   BMPRenderer,
@@ -20,4 +21,5 @@ export const DocViewerRenderers = [
   TIFFRenderer,
   TXTRenderer,
   CSVRenderer,
+  GIFRenderer,
 ];
