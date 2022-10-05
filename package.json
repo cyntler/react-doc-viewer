@@ -14,11 +14,14 @@
   "files": [
     "dist/**"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "rm -rf dist && tsc --noEmit false",
+    "build": "rm -rf dist && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --noEmit false",
+    "build:cjs": "tsc --noEmit false --module commonjs --outDir ./dist/cjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "version:patch": "npm run version:pre && npm version patch && npm run version:post",
