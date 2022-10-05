@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "target": "es5",
-    "module": "CommonJS",
+    "outDir": "./dist/esm",
+    "target": "ES5",
+    "module": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
     "allowJs": true,
@@ -20,6 +20,7 @@
   "include": ["src"],
   "exclude": [
     "src/__tests__",
+    "src/demoapp",
     "src/examples",
     "src/serviceWorker.ts",
     "src/setupTests.ts"
