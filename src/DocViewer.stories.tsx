@@ -2,21 +2,17 @@ import React, { useState } from "react";
 import DocViewer from "./index";
 import { DocViewerRenderers } from "./plugins";
 
+import pdfFile from "./exampleFiles/pdf-file.pdf";
+import pngFile from "./exampleFiles/png-image.png";
+import csvFile from "./exampleFiles/csv-file.csv";
+
 /* eslint-disable import/no-anonymous-default-export */
 export default {
-  /* 👇 The title prop is optional.
-   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
-   * to learn how to generate automatic titles
-   */
   title: "DocViewer",
 };
 
 export const Default = () => {
-  const docs = [
-    { uri: require("./exampleFiles/pdf-file.pdf") },
-    { uri: require("./exampleFiles/png-image.png") },
-    { uri: require("./exampleFiles/csv-file.csv") },
-  ];
+  const docs = [{ uri: pdfFile }, { uri: pngFile }, { uri: csvFile }];
 
   return (
     <DocViewer
@@ -54,7 +50,7 @@ export const Default = () => {
   );
 };
 
-export const DocViewerWithInpu = () => {
+export const WithPDFInput = () => {
   const [selectedDocs, setSelectedDocs] = useState<File[]>([]);
 
   return (
