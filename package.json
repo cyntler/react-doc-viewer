@@ -22,9 +22,9 @@
     "build": "rm -rf dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --noEmit false",
     "build:cjs": "tsc --noEmit false --module commonjs --outDir ./dist/cjs",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "build-storybook": "build-storybook",
-    "release": "npm run test -- --watchAll=false && npm run build && release-it"
+    "release": "npm run test && npm run build && release-it"
   },
   "dependencies": {
     "@types/mustache": "^4.2.1",
