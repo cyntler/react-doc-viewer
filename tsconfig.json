@@ -17,12 +17,6 @@
     "jsx": "react",
     "noEmit": true
   },
-  "include": ["src"],
-  "exclude": [
-    "src/__tests__",
-    "src/demoapp",
-    "src/examples",
-    "src/serviceWorker.ts",
-    "src/setupTests.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["src/exampleFiles/*", "src/setupTests.ts"]
 }
