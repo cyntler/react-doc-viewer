@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: ${{ env.NVMRC }}
       - name: Install packages
-        run: npm i
+        run: npm i --legacy-peer-deps
       - name: Check tests
         run: npm run test
       - name: Check build
