@@ -55,6 +55,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.25",
     "babel-loader": "^8.2.5",
+    "file-loader": "^6.2.0",
     "react": "^18.1.0",
     "react-app-rewired": "^2.2.1",
     "react-dom": "^18.1.0",
