@@ -28,6 +28,10 @@ File viewer for React.
 | xls       | application/vnd.ms-excel                                                           |
 | xlsx      | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet                  |
 
+## Storybook Demo
+
+https://cyntler.github.io/react-doc-viewer
+
 ## Installation
 
 Use one of the package managers for Node.js.

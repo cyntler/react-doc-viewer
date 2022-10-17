@@ -8,6 +8,7 @@
     "file-viewer"
   ],
   "license": "Apache License 2.0",
+  "homepage": "https://cyntler.github.io/react-doc-viewer",
   "repository": {
     "url": "https://github.com/cyntler/react-doc-viewer"
   },
@@ -24,7 +25,8 @@
     "build:cjs": "tsc --noEmit false --module commonjs --outDir ./dist/cjs",
     "test": "react-scripts test --watchAll=false",
     "build-storybook": "build-storybook",
-    "release": "npm run test && npm run build && release-it"
+    "deploy": "npm run build-storybook && gh-pages -d storybook-static",
+    "release": "npm run test && npm run build && release-it && npm run deploy"
   },
   "dependencies": {
     "@types/mustache": "^4.2.1",
@@ -56,6 +58,7 @@
     "@types/styled-components": "^5.1.26",
     "babel-loader": "^8.2.5",
     "file-loader": "^6.2.0",
+    "gh-pages": "^4.0.0",
     "jest": "^29.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
