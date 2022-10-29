@@ -7,7 +7,7 @@ import PDFPages from "./components/pages/PDFPages";
 import PDFControls from "./components/PDFControls";
 import { PDFProvider } from "./state";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
 const PDFRenderer: DocRenderer = ({ mainState }) => {
   return (
