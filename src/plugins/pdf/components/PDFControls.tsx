@@ -4,6 +4,7 @@ import { Button, LinkButton } from "../../../components/common";
 import { IStyledProps } from "../../..";
 import { PDFContext } from "../state";
 import { setPDFPaginated, setZoomLevel } from "../state/actions";
+import { useTranslation } from "../../../hooks/useTranslation";
 import {
   DownloadPDFIcon,
   ResetZoomPDFIcon,
@@ -14,6 +15,7 @@ import {
 import PDFPagination from "./PDFPagination";
 
 const PDFControls: FC<{}> = () => {
+  const { t } = useTranslation();
   const {
     state: {
       mainState,
@@ -37,7 +39,7 @@ const PDFControls: FC<{}> = () => {
           id="pdf-download"
           href={currentDocument?.fileData as string}
           download={currentDocument?.fileName || currentDocument?.uri}
-          title="Download"
+          title={t("downloadButtonLabel")}
         >
           <DownloadPDFIcon color="#000" size="75%" />
         </DownloadButton>
