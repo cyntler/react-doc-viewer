@@ -1,48 +1,78 @@
 import React, { useEffect, useState } from "react";
-import { CsvToHtmlTable } from "react-csv-to-table";
 import styled from "styled-components";
+import { parse } from "csv-parse/browser/esm";
 import { DocRenderer } from "../..";
 import { textFileLoader } from "../../utils/fileLoaders";
 
-const HTMLRenderer: DocRenderer = ({
+const CSVRenderer: DocRenderer = ({
   mainState: { currentDocument, config },
 }) => {
-  const [data, setData] = useState("");
+  const [rows, setRows] = useState<string[][]>([]);
 
   useEffect(() => {
     if (currentDocument?.fileData) {
-      setData(currentDocument.fileData as string);
+      parse(
+        currentDocument.fileData as string,
+        {
+          delimiter: config?.csvDelimiter ?? ",",
+        },
+        (err, records) => {
+          if (!err && records) {
+            setRows(records);
+          }
+        }
+      );
     }
-  }, [currentDocument]);
+  }, [currentDocument, config?.csvDelimiter]);
 
-  if (!data) return null;
+  if (!rows.length) {
+    return null;
+  }
+
   return (
     <Container>
-      <CsvToHtmlTable
-        data={data}
-        csvDelimiter={config?.csvDelimiter ?? ","}
-        tableClassName="table"
-      />
+      <Table>
+        <thead>
+          <tr>
+            {rows[0].map((column) => (
+              <th key={column}>{column}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.slice(1, rows.length).map((row) => (
+            <tr key={row.join("")}>
+              {row.map((column) => (
+                <td key={column}>{column}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </Container>
   );
 };
 
-export default HTMLRenderer;
+export default CSVRenderer;
 
-HTMLRenderer.fileTypes = ["csv", "text/csv"];
-HTMLRenderer.weight = 0;
-HTMLRenderer.fileLoader = textFileLoader;
+CSVRenderer.fileTypes = ["csv", "text/csv"];
+CSVRenderer.weight = 0;
+CSVRenderer.fileLoader = textFileLoader;
 
 const Container = styled.div`
   width: 100%;
+`;
 
-  .table {
-    width: 100%;
-    text-align: left;
+const Table = styled.table`
+  width: 100%;
+  text-align: left;
 
-    th,
-    td {
-      padding: 5px 10px;
+  th,
+  td {
+    padding: 5px 10px;
+
+    &:empty {
+      display: none;
     }
   }
 `;

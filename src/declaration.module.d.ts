@@ -1,1 +1,1 @@
-declare module "react-csv-to-table";
+declare module "csv-visualizer/*";

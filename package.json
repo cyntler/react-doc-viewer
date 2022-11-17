@@ -18,6 +18,11 @@
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
+  "jest": {
+    "moduleNameMapper": {
+      "^csv-parse/browser/esm": "<rootDir>/node_modules/csv-parse/dist/cjs/index.cjs"
+    }
+  },
   "scripts": {
     "start": "start-storybook -p 6006",
     "build": "rm -rf dist && npm run build:esm && npm run build:cjs",
@@ -30,8 +35,8 @@
   },
   "dependencies": {
     "@types/mustache": "^4.2.1",
+    "csv-parse": "^5.3.2",
     "mustache": "^4.2.0",
-    "react-csv-to-table": "^0.0.4",
     "react-pdf": "5.7.2",
     "styled-components": "^5.3.6",
     "wl-msg-reader": "^0.2.0"
