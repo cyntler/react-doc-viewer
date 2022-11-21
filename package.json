@@ -23,6 +23,9 @@
       "^csv-parse/browser/esm": "<rootDir>/node_modules/csv-parse/dist/cjs/index.cjs"
     }
   },
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
     "start": "start-storybook -p 6006",
     "build": "rm -rf dist && npm run build:esm && npm run build:cjs",
