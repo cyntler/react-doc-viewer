@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { parse } from "csv-parse/browser/esm";
+import { parse } from "papaparse";
 import { DocRenderer } from "../..";
 import { textFileLoader } from "../../utils/fileLoaders";
 
@@ -11,17 +11,13 @@ const CSVRenderer: DocRenderer = ({
 
   useEffect(() => {
     if (currentDocument?.fileData) {
-      parse(
-        currentDocument.fileData as string,
-        {
-          delimiter: config?.csvDelimiter ?? ",",
-        },
-        (err, records) => {
-          if (!err && records) {
-            setRows(records);
-          }
-        }
-      );
+      const parseResult = parse(currentDocument.fileData as string, {
+        delimiter: config?.csvDelimiter ?? ",",
+      });
+
+      if (!parseResult.errors?.length && parseResult.data) {
+        setRows(parseResult.data as string[][]);
+      }
     }
   }, [currentDocument, config?.csvDelimiter]);
 
