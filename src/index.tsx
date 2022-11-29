@@ -5,7 +5,6 @@ import { ProxyRenderer } from "./components/ProxyRenderer";
 import { DocViewerProvider } from "./store/DocViewerProvider";
 import { defaultTheme } from "./defaultTheme";
 import { DocRenderer, IConfig, IDocument, ITheme } from "./models";
-import { isWindow } from "./utils/isWindow";
 import { AvailableLanguages } from "./utils/i18n";
 
 export interface DocViewerProps {
@@ -19,10 +18,6 @@ export interface DocViewerProps {
   requestHeaders?: Record<string, string>;
   initialActiveDocument?: IDocument;
   language?: AvailableLanguages;
-}
-
-if (isWindow) {
-  (window as any).DataStream = null;
 }
 
 const DocViewer: FC<DocViewerProps> = (props) => {

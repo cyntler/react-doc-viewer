@@ -37,8 +37,7 @@
     "mustache": "^4.2.0",
     "papaparse": "^5.3.2",
     "react-pdf": "5.7.2",
-    "styled-components": "^5.3.6",
-    "wl-msg-reader": "^0.2.0"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
