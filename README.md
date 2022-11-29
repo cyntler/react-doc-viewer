@@ -15,6 +15,7 @@ File viewer for React.
 | csv       | text/csv                                                                           |
 | doc       | application/msword                                                                 |
 | docx      | application/vnd.openxmlformats-officedocument.wordprocessingml.document            |
+| gif       | image/gif                                                                          |
 | htm       | text/htm                                                                           |
 | html      | text/html                                                                          |
 | jpg       | image/jpg                                                                          |
