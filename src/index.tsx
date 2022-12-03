@@ -6,6 +6,7 @@ import { DocViewerProvider } from "./store/DocViewerProvider";
 import { defaultTheme } from "./defaultTheme";
 import { DocRenderer, IConfig, IDocument, ITheme } from "./models";
 import { AvailableLanguages } from "./utils/i18n";
+import { DocViewerRenderers } from "./plugins";
 
 export interface DocViewerProps {
   documents: IDocument[];
@@ -28,7 +29,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
   }
 
   return (
-    <DocViewerProvider {...props}>
+    <DocViewerProvider pluginRenderers={DocViewerRenderers} {...props}>
       <ThemeProvider
         theme={theme ? { ...defaultTheme, ...theme } : defaultTheme}
       >
