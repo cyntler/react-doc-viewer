@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { parse } from "papaparse";
+import papaparse from "papaparse";
 import { DocRenderer } from "../..";
 import { textFileLoader } from "../../utils/fileLoaders";
 
@@ -11,7 +11,7 @@ const CSVRenderer: DocRenderer = ({
 
   useEffect(() => {
     if (currentDocument?.fileData) {
-      const parseResult = parse(currentDocument.fileData as string, {
+      const parseResult = papaparse.parse(currentDocument.fileData as string, {
         delimiter: config?.csvDelimiter ?? ",",
       });
 
