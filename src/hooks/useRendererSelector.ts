@@ -9,14 +9,13 @@ export const useRendererSelector = (): {
     state: { currentDocument, pluginRenderers },
   } = useContext(DocViewerContext);
 
-  const [CurrentRenderer, setCurrentRenderer] = useState<
-    DocRenderer | null | undefined
-  >();
+  const [CurrentRenderer, setCurrentRenderer] =
+    useState<DocRenderer | null | undefined>();
 
   useEffect(() => {
     if (!currentDocument) return;
 
-    if (!currentDocument.fileType) {
+    if (currentDocument.fileSource?.uri && !currentDocument.fileType) {
       setCurrentRenderer(undefined);
       return;
     }
@@ -24,8 +23,13 @@ export const useRendererSelector = (): {
     const matchingRenderers: DocRenderer[] = [];
 
     pluginRenderers?.forEach((r) => {
-      if (currentDocument.fileType === undefined) return;
-      if (r.fileTypes.indexOf(currentDocument.fileType) >= 0) {
+      const fileType = currentDocument.fileSource?.file
+        ? currentDocument.fileSource.file.type
+        : currentDocument.fileType;
+
+      if (!fileType) return;
+
+      if (r.fileTypes.indexOf(fileType) >= 0) {
         matchingRenderers.push(r);
       }
     });

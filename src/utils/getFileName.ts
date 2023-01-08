@@ -12,8 +12,10 @@ export const getFileName = (
 
   if (document.fileName) {
     fileName = document.fileName;
+  } else if (document.fileSource?.file) {
+    fileName = document.fileSource.file.name;
   } else {
-    fileName = document.uri || "";
+    fileName = document.fileSource?.uri || "";
     fileName = decodeURI(fileName);
 
     if (!retainURLParams) {

@@ -11,8 +11,11 @@ test("renders component with no documents", () => {
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
 });
 
-test("renders component with documents", () => {
-  const docs = [{ uri: pdfFile }, { uri: pngFile }];
+test("renders component with documents using uri", () => {
+  const docs = [
+    { fileSource: { uri: pdfFile } },
+    { fileSource: { uri: pngFile } },
+  ];
   render(<DocViewer documents={docs} />);
 
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
@@ -20,7 +23,10 @@ test("renders component with documents", () => {
 });
 
 test("renders doc viewer with initialActiveDocument prop", () => {
-  const docs = [{ uri: pdfFile }, { uri: pngFile }];
+  const docs = [
+    { fileSource: { uri: pdfFile } },
+    { fileSource: { uri: pngFile } },
+  ];
   render(<DocViewer documents={docs} initialActiveDocument={docs[1]} />);
 
   const proxyRenderer = screen.getByTestId("proxy-renderer");

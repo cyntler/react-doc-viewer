@@ -24,22 +24,24 @@ export const useDocumentLoader = (): {
 } => {
   const { state, dispatch } = useContext(DocViewerContext);
   const { currentFileNo, currentDocument, prefetchMethod } = state;
+  const { fileSource = {} } = currentDocument || {};
+  const { uri = "", file = null } = fileSource;
 
   const { CurrentRenderer } = useRendererSelector();
-
-  const documentURI = currentDocument?.uri || "";
 
   useEffect(
     () => {
       if (!currentDocument) return;
-      if (currentDocument.fileType !== undefined) return;
+
+      if (file) return;
+
+      if (currentDocument.fileType) return;
 
       const controller = new AbortController();
       const { signal } = controller;
 
-      fetch(documentURI, {
-        method:
-          prefetchMethod || documentURI.startsWith("blob:") ? "GET" : "HEAD",
+      fetch(uri, {
+        method: prefetchMethod || uri.startsWith("blob:") ? "GET" : "HEAD",
         signal,
         headers: state?.requestHeaders,
       }).then((response) => {
@@ -60,11 +62,11 @@ export const useDocumentLoader = (): {
       };
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentFileNo, documentURI, currentDocument]
+    [currentFileNo, fileSource]
   );
 
   useEffect(() => {
-    if (!currentDocument || CurrentRenderer === undefined) return;
+    if (!currentDocument || !CurrentRenderer) return;
 
     const controller = new AbortController();
     const { signal } = controller;
@@ -85,7 +87,7 @@ export const useDocumentLoader = (): {
     };
 
     const loaderFunctionProps: FileLoaderFuncProps = {
-      documentURI,
+      fileSource,
       signal,
       fileLoaderComplete,
       headers: state?.requestHeaders,

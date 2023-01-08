@@ -7,20 +7,14 @@ import { ButtonSecondary } from "./common/Button";
 import { NextDocIcon, PrevDocIcon } from "./icons";
 import { useTranslation } from "../hooks/useTranslation";
 
-export const DocumentNav: FC<{}> = () => {
+export const DocumentNav: FC<{}> = (): JSX.Element => {
   const {
     state: { currentDocument, currentFileNo, documents },
     dispatch,
   } = useContext(DocViewerContext);
   const { t } = useTranslation();
 
-  if (documents.length <= 1 || !currentDocument) return null;
-
-  let fileName = currentDocument.uri || "";
-  const splitURL = fileName.split("/");
-  if (splitURL.length) {
-    fileName = splitURL[splitURL.length - 1];
-  }
+  if (documents.length <= 1 || !currentDocument) return <></>;
 
   return (
     <Container id="doc-nav">

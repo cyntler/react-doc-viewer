@@ -1,5 +1,7 @@
+import { FileSource } from "../models";
+
 export interface FileLoaderFuncProps {
-  documentURI: string;
+  fileSource: FileSource;
   signal: AbortSignal;
   fileLoaderComplete: FileLoaderComplete;
   headers?: Record<string, string>;
@@ -16,23 +18,12 @@ interface BaseFileLoaderFuncOptions extends FileLoaderFuncProps {
 
 type BaseFileLoaderFunction = (props: BaseFileLoaderFuncOptions) => void;
 
-const _fileLoader: BaseFileLoaderFunction = ({
-  documentURI,
-  signal,
-  fileLoaderComplete,
-  readerTypeFunction,
-  headers,
-}) => {
-  return fetch(documentURI, { signal, headers })
-    .then(async (res) => {
-      const blob = await res.blob();
+const _fileReader = (blob: Blob, readerType: string, cb: Function) => {
+  const fileReader = new FileReader();
 
-      const fileReader = new FileReader();
-      fileReader.addEventListener("loadend", () =>
-        fileLoaderComplete(fileReader)
-      );
+  fileReader.addEventListener("loadend", () => cb && cb(fileReader));
 
-      switch (readerTypeFunction) {
+  switch (readerType) {
         case "arrayBuffer":
           fileReader.readAsArrayBuffer(blob);
           break;
@@ -49,6 +40,29 @@ const _fileLoader: BaseFileLoaderFunction = ({
         default:
           break;
       }
+};
+
+const _fileLoader: BaseFileLoaderFunction = ({
+  fileSource,
+  signal,
+  fileLoaderComplete,
+  readerTypeFunction,
+  headers,
+}) => {
+  const { uri = "", file = null } = fileSource;
+
+  if (file)
+    return _fileReader(
+      new Blob([file], { type: file.type }),
+      readerTypeFunction,
+      fileLoaderComplete
+    );
+
+  return fetch(uri, { signal, headers })
+    .then(async (res) => {
+      const blob = await res.blob();
+
+      _fileReader(blob, readerTypeFunction, fileLoaderComplete);
     })
     .catch((e) => {
       return e;

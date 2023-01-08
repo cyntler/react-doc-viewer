@@ -74,8 +74,8 @@ export const ProxyRenderer: FC<{}> = () => {
             })}
             <DownloadButton
               id="no-renderer-download"
-              href={currentDocument?.uri}
-              download={currentDocument?.uri}
+              href={currentDocument?.fileSource?.uri}
+              download={currentDocument?.fileSource?.uri}
             >
               {t("downloadButtonLabel")}
             </DownloadButton>

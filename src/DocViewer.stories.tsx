@@ -12,7 +12,11 @@ export default {
 };
 
 export const Default = () => {
-  const docs = [{ uri: pdfFile }, { uri: pngFile }, { uri: csvFile }];
+  const docs = [
+    { fileSource: { uri: pdfFile } },
+    { fileSource: { uri: pngFile } },
+    { fileSource: { uri: csvFile } },
+  ];
 
   return (
     <DocViewer
@@ -66,7 +70,9 @@ export const WithPDFInput = () => {
       />
       <DocViewer
         documents={selectedDocs.map((file) => ({
+          fileSource: {
           uri: window.URL.createObjectURL(file),
+          },
           fileName: file.name,
         }))}
         pluginRenderers={DocViewerRenderers}

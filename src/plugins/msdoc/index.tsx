@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { DocRenderer } from "../..";
 
 const MSDocRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
-  if (!currentDocument) return null;
+  if (!currentDocument || !currentDocument?.fileSource?.uri) return null;
 
   return (
     <Container id="msdoc-renderer">
@@ -11,7 +11,7 @@ const MSDocRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
         id="msdoc-iframe"
         title="msdoc-iframe"
         src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(
-          currentDocument.uri
+          currentDocument.fileSource.uri
         )}`}
         frameBorder="0"
       />

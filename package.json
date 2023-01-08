@@ -1,16 +1,16 @@
 {
-  "name": "@cyntler/react-doc-viewer",
-  "version": "1.10.3",
+  "name": "@vichur/react-doc-viewer",
+  "version": "2.0.0",
   "description": "File viewer for React.",
-  "author": "Matthew Mogford / Damian Cyntler",
+  "author": "Matthew Mogford / Damian Cyntler / Vishwanath Rameshbabu",
   "keywords": [
     "reactjs",
     "file-viewer"
   ],
   "license": "Apache License 2.0",
-  "homepage": "https://cyntler.github.io/react-doc-viewer",
+  "homepage": "https://vishwanath-ramesh.github.io/react-doc-viewer",
   "repository": {
-    "url": "https://github.com/cyntler/react-doc-viewer"
+    "url": "https://github.com/Vishwanath-Ramesh/react-doc-viewer"
   },
   "files": [
     "dist/**"

@@ -58,8 +58,13 @@ export interface IStyledProps extends ThemedStyledProps<any, any> {
   theme: ITheme;
 }
 
+export type FileSource = {
+  uri?: string;
+  file?: File;
+};
+
 export interface IDocument {
-  uri: string;
+  fileSource: FileSource;
   fileType?: string;
   fileData?: string | ArrayBuffer;
   fileName?: string;

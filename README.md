@@ -1,11 +1,11 @@
-[![npm-version](https://img.shields.io/npm/v/@cyntler/react-doc-viewer.svg)](https://www.npmjs.com/package/@cyntler/react-doc-viewer)
-[![npm-download](https://img.shields.io/npm/dt/@cyntler/react-doc-viewer.svg)](https://www.npmjs.com/package/@cyntler/react-doc-viewer)
+[![npm-version](https://img.shields.io/npm/v/@vichur/react-doc-viewer.svg)](https://www.npmjs.com/package/@vichur/react-doc-viewer)
+[![npm-download](https://img.shields.io/npm/dt/@vichur/react-doc-viewer.svg)](https://www.npmjs.com/package/@vichur/react-doc-viewer)
 
-# @cyntler/react-doc-viewer
+# @vichur/react-doc-viewer
 
 File viewer for React.
 
-> This is a fork of https://github.com/Alcumus/react-doc-viewer (inactivity for a long time)
+> This is a fork of https://github.com/cyntler/react-doc-viewer
 
 ## Supported file types
 
@@ -31,16 +31,16 @@ File viewer for React.
 
 ## Storybook Demo
 
-https://cyntler.github.io/react-doc-viewer
+https://vishwanath-ramesh.github.io/react-doc-viewer
 
 ## Installation
 
 Use one of the package managers for Node.js.
 
 ```bash
- npm i @cyntler/react-doc-viewer
+ npm i @vichur/react-doc-viewer
  # or
- yarn add @cyntler/react-doc-viewer
+ yarn add @vichur/react-doc-viewer
 ```
 
 ## Usage
@@ -53,12 +53,12 @@ DocViewer requires at least an array of document objects to function.
 Each document object must have a uri to a file, either a url that returns a file or a local file.
 
 ```tsx
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import DocViewer, { DocViewerRenderers } from "@vichur/react-doc-viewer";
 
 function App() {
   const docs = [
-    { uri: "https://url-to-my-pdf.pdf" }, // Remote file
-    { uri: require("./example-files/pdf.pdf") }, // Local File
+    { fileSource: { uri: "https://url-to-my-pdf.pdf" } }, // Remote file
+    { fileSource: { uri: require("./example-files/pdf.pdf") } }, // Local File
   ];
 
   return <DocViewer documents={docs} pluginRenderers={DocViewerRenderers} />;
@@ -70,12 +70,12 @@ function App() {
 By default, the first item in your `documents` array will be displayed after the component is rendered. However, there is a prop `initialActiveDocument` that you can point to the initial document that should be displayed.
 
 ```tsx
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import DocViewer, { DocViewerRenderers } from "@vichur/react-doc-viewer";
 
 function App() {
   const docs = [
-    { uri: "https://url-to-my-pdf.pdf" }, // Remote file
-    { uri: require("./example-files/pdf.pdf") }, // Local File
+    { fileSource: { uri: "https://url-to-my-pdf.pdf" } }, // Remote file
+    { fileSource: { uri: require("./example-files/pdf.pdf") } }, // Local File
   ];
 
   return (
@@ -109,8 +109,10 @@ const DocViewerWithInputApp = () => {
       />
       <DocViewer
         documents={selectedDocs.map((file) => ({
-          uri: window.URL.createObjectURL(file),
-          fileName: file.name,
+          fileSource: {
+            file,
+            fileName: file.name,
+          }
         }))}
         pluginRenderers={DocViewerRenderers}
       />
@@ -125,7 +127,7 @@ To use the included renderers.
 `DocViewerRenderers` is an Array of all the included renderers.
 
 ```tsx
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import DocViewer, { DocViewerRenderers } from "@vichur/react-doc-viewer";
 
 <DocViewer
   pluginRenderers={DocViewerRenderers}
@@ -136,7 +138,7 @@ import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 Or you can import individual renderers.
 
 ```tsx
-import DocViewer, { PDFRenderer, PNGRenderer } from "@cyntler/react-doc-viewer";
+import DocViewer, { PDFRenderer, PNGRenderer } from "@vichur/react-doc-viewer";
 
 <DocViewer
   pluginRenderers={[PDFRenderer, PNGRenderer]}
@@ -150,7 +152,7 @@ To create a custom renderer, that will just exist for your project.
 
 ```tsx
 import React from "react";
-import DocViewer from "@cyntler/react-doc-viewer";
+import DocViewer from "@vichur/react-doc-viewer";
 
 const MyCustomPNGRenderer: DocRenderer = ({
   mainState: { currentDocument },
@@ -171,7 +173,7 @@ MyCustomPNGRenderer.weight = 1;
 And supply it to `pluginRenderers` inside an `Array`.
 
 ```tsx
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import DocViewer, { DocViewerRenderers } from "@vichur/react-doc-viewer";
 
 <DocViewer
   pluginRenderers={[MyCustomPNGRenderer]}
@@ -185,7 +187,7 @@ import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 ### Custom File Loader
 
-If you need to prevent the actual loading of the file by `@cyntler/react-doc-viewer`.<br>
+If you need to prevent the actual loading of the file by `@vichur/react-doc-viewer`.<br>
 You can decorate your custom renderer with a callback to do as you wish. e.g. Load the file yourself in an iFrame.
 
 ```tsx
@@ -223,11 +225,11 @@ You can provide a theme object with one or all of the available properties.
 ## Custom pre-fetch HTTP Verb
 
 Some services (such as AWS) provide URLs that works only for one pre-configured verb.
-By default, `@cyntler/react-doc-viewer` fetches document metadata through a `HEAD` request in order to guess its `Content-Type`.
+By default, `@vichur/react-doc-viewer` fetches document metadata through a `HEAD` request in order to guess its `Content-Type`.
 If you need to have a specific verb for the pre-fetching, use the `prefetchMethod` option on the DocViewer:
 
 ```tsx
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import DocViewer, { DocViewerRenderers } from "@vichur/react-doc-viewer";
 
 <DocViewer prefetchMethod="GET" />;
 ```
