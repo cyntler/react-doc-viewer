@@ -10,9 +10,10 @@ File viewer for React.
 ## Supported file types
 
 | Extension | MIME Type                                                                          |
-| --------- | ---------------------------------------------------------------------------------- |
+|-----------| ---------------------------------------------------------------------------------- |
 | bmp       | image/bmp                                                                          |
 | csv       | text/csv                                                                           |
+| odt       | application/vnd.oasis.opendocument.text                                                                           |
 | doc       | application/msword                                                                 |
 | docx      | application/vnd.openxmlformats-officedocument.wordprocessingml.document            |
 | gif       | image/gif                                                                          |
