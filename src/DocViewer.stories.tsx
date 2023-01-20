@@ -65,6 +65,9 @@ export const WithPDFInput = () => {
         }
       />
       <DocViewer
+        config={{
+          defualtPDFPagenated : true,
+        }}
         documents={selectedDocs.map((file) => ({
           uri: window.URL.createObjectURL(file),
           fileName: file.name,

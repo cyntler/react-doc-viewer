@@ -87,9 +87,10 @@ export default PDFControls;
 
 const Container = styled.div`
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 1;
   justify-content: flex-end;
   padding: 8px;
