@@ -53,7 +53,11 @@ export const useDocumentLoader = (): {
             fileType: contentType || undefined,
           })
         );
-      });
+      }).catch(error => {
+        if (error?.name !== 'AbortError') {
+          throw error;
+        }
+      })
 
       return () => {
         controller.abort();
