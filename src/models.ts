@@ -9,7 +9,9 @@ export interface IConfig {
   noRenderer?: INoRendererConfig;
   csvDelimiter?: string;
   pdfZoom?: IPdfZoomConfig;
+  defualtPDFPagenated? : boolean;
 }
+
 
 export interface ILoadingRendererConfig {
   overrideComponent?: ComponentType<{
