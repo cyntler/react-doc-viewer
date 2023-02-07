@@ -2,7 +2,7 @@
     "documentNavInfo": "Документ {{ currentFileNo }} od {{ allFilesCount }}",
     "noRendererMessage": "Не постоји прегледач за тип фајла: {{ fileType }}",
     "downloadButtonLabel": "Преузимање фајла",
-    "brokenFile": "Ваш фајл није добар. Молимо Вас да пробатре да га отворите на вашем рачунару.",
+    "brokenFile": "Ваш фајл није добар. Молимо Вас да пробате да га отворите на вашем рачунару.",
     "msgPluginRecipients": "Примаоци",
     "msgPluginSender": "Пошиљалац",
     "pdfPluginLoading": "Учитавање...",
