@@ -22,6 +22,7 @@ const MSDocRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
 export default MSDocRenderer;
 
 const MSDocFTMaps = {
+  odt: ["odt", "application/vnd.oasis.opendocument.text"],
   doc: ["doc", "application/msword"],
   docx: [
     "docx",
@@ -41,6 +42,7 @@ const MSDocFTMaps = {
 };
 
 MSDocRenderer.fileTypes = [
+  ...MSDocFTMaps.odt,
   ...MSDocFTMaps.doc,
   ...MSDocFTMaps.docx,
   ...MSDocFTMaps.xls,
