@@ -1,8 +1,14 @@
 /.vscode
+/.storybook
 /.github
 /demo
 /public
 /src
+/storybook-static
+.nvmrc
+.release-it.json
+.eslintignore
+.eslintrc.json
 tsconfig-npm.json
 tsconfig.json
 yarn-error.log
