@@ -306,6 +306,7 @@ You can provide a config object, which configures parts of the component as requ
 <DocViewer
   documents={docs}
   config={{
+    defualtPDFPaginated : false, // false as vertical scroll, true as horizontal scroll
     header: {
       disableHeader: false,
       disableFileName: false,
