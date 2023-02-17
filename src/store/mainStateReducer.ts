@@ -14,7 +14,7 @@ import {
   UpdateCurrentDocument,
   UPDATE_CURRENT_DOCUMENT,
 } from "./actions";
-import { AvailableLanguages, defaultLanguage } from "../utils/i18n";
+import { AvailableLanguages, defaultLanguage } from "../i18n";
 
 export type IMainState = {
   currentFileNo: number;
@@ -27,6 +27,8 @@ export type IMainState = {
   prefetchMethod?: string;
   requestHeaders?: Record<string, string>;
   language: AvailableLanguages;
+  activeDocument?: IDocument;
+  onDocumentChange?: (document: IDocument) => void;
 };
 
 export const initialState: IMainState = {
@@ -52,6 +54,7 @@ export const mainStateReducer: MainStateReducer = (
   switch (action.type) {
     case SET_ALL_DOCUMENTS: {
       const { documents, initialActiveDocument } = action as SetAllDocuments;
+
       return {
         ...state,
         documents,
@@ -67,12 +70,18 @@ export const mainStateReducer: MainStateReducer = (
 
     case SET_DOCUMENT_LOADING: {
       const { value } = action as SetDocumentLoading;
+
       return { ...state, documentLoading: value };
     }
 
     case NEXT_DOCUMENT: {
       if (state.currentFileNo >= state.documents.length - 1) return state;
       const nextDocumentNo = state.currentFileNo + 1;
+
+      if (state.onDocumentChange) {
+        state.onDocumentChange(state.documents[nextDocumentNo]);
+        return state;
+      }
 
       return {
         ...state,
@@ -86,6 +95,11 @@ export const mainStateReducer: MainStateReducer = (
       if (state.currentFileNo <= 0) return state;
       const prevDocumentNo = state.currentFileNo - 1;
 
+      if (state.onDocumentChange) {
+        state.onDocumentChange(state.documents[prevDocumentNo]);
+        return state;
+      }
+
       return {
         ...state,
         currentFileNo: state.currentFileNo - 1,
@@ -96,14 +110,19 @@ export const mainStateReducer: MainStateReducer = (
 
     case UPDATE_CURRENT_DOCUMENT: {
       const { document } = action as UpdateCurrentDocument;
+
       return {
         ...state,
         currentDocument: document,
+        currentFileNo: state.documents.findIndex(
+          (doc) => doc.uri === document.uri
+        ),
       };
     }
 
     case SET_RENDERER_RECT: {
       const { rect } = action as SetRendererRect;
+
       return {
         ...state,
         rendererRect: rect,
@@ -112,6 +131,7 @@ export const mainStateReducer: MainStateReducer = (
 
     case SET_MAIN_CONFIG: {
       const { config } = action as SetMainConfig;
+
       return {
         ...state,
         config,
