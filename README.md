@@ -10,10 +10,10 @@ File viewer for React.
 ## Supported file types
 
 | Extension | MIME Type                                                                          |
-|-----------| ---------------------------------------------------------------------------------- |
+| --------- | ---------------------------------------------------------------------------------- |
 | bmp       | image/bmp                                                                          |
 | csv       | text/csv                                                                           |
-| odt       | application/vnd.oasis.opendocument.text                                                                           |
+| odt       | application/vnd.oasis.opendocument.text                                            |
 | doc       | application/msword                                                                 |
 | docx      | application/vnd.openxmlformats-officedocument.wordprocessingml.document            |
 | gif       | image/gif                                                                          |
@@ -73,7 +73,7 @@ By default, the first item in your `documents` array will be displayed after the
 ```tsx
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
-function App() {
+const App = () => {
   const docs = [
     { uri: "https://url-to-my-pdf.pdf" }, // Remote file
     { uri: require("./example-files/pdf.pdf") }, // Local File
@@ -86,7 +86,35 @@ function App() {
       pluginRenderers={DocViewerRenderers}
     />
   );
-}
+};
+```
+
+### Control over the displayed document
+
+From version **1.11.0** you can control the displayed document through two props: `activeDocument` and `onDocumentChange`.
+
+```jsx
+const DocViewerControlOverDisplayedDocument = () => {
+  const docs = [
+    { uri: "https://url-to-my-pdf.pdf" }, // Remote file
+    { uri: require("./example-files/pdf.pdf") }, // Local File
+  ];
+  const [activeDocument, setActiveDocument] = useState(docs[0]);
+
+  const handleDocumentChange = (document) => {
+    setActiveDocument(document);
+  };
+
+  return (
+    <>
+      <DocViewer
+        documents={docs}
+        activeDocument={activeDocument}
+        onDocumentChange={handleDocumentChange}
+      />
+    </>
+  );
+};
 ```
 
 ### Displaying blob/uploaded documents
