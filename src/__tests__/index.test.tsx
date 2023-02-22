@@ -4,6 +4,7 @@ import DocViewer from "../index";
 
 import pdfFile from "../exampleFiles/pdf-file.pdf";
 import pngFile from "../exampleFiles/png-image.png";
+import epsFile from "../exampleFiles/eps-file.eps";
 
 test("renders component with no documents", () => {
   render(<DocViewer documents={[]} />);
@@ -17,6 +18,17 @@ test("renders component with documents", () => {
 
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
   expect(screen.getByText(`Document 1 of ${docs.length}`)).toBeDefined();
+});
+
+test("renders component with unsupported file type", () => {
+  const docs = [{ uri: epsFile, fileType: "application/postscript" }];
+  render(<DocViewer documents={docs} />);
+
+  expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
+
+  expect(
+    screen.getByText("No renderer for file type: application/postscript")
+  ).toBeInTheDocument();
 });
 
 test("renders doc viewer with initialActiveDocument prop", () => {

@@ -6,6 +6,7 @@ import pdfFile from "./exampleFiles/pdf-file.pdf";
 import pdfMultiplePagesFile from "./exampleFiles/pdf-multiple-pages-file.pdf";
 import pngFile from "./exampleFiles/png-image.png";
 import csvFile from "./exampleFiles/csv-file.csv";
+import epsFile from "./exampleFiles/eps-file.eps";
 import { DocViewerRef, IDocument } from ".";
 
 /* eslint-disable import/no-anonymous-default-export */
@@ -118,4 +119,17 @@ export const WithRef = () => {
       />
     </>
   );
+};
+
+export const NoRenderType = () => {
+    const docs = [{ uri: epsFile, fileType: "application/postscript" }];
+
+    return (
+        <DocViewer
+            documents={docs}
+            initialActiveDocument={docs[0]}
+            pluginRenderers={DocViewerRenderers}
+            language="en"
+        />
+    );
 };
