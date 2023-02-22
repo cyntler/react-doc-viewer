@@ -1,6 +1,6 @@
 {
   "documentNavInfo": "Dokument {{ currentFileNo }} z {{ allFilesCount }}",
-  "noRendererMessage": "Brak funckji renderującej dla: {{ fileType }}",
+  "noRendererMessage": "Brak funckji renderującej dla: {{{ fileType }}}",
   "downloadButtonLabel": "Pobierz plik",
   "brokenFile": "Twój plik jest uszkodzony. Sprawdź go na swoim komputerze.",
   "msgPluginRecipients": "Odbiorcy",

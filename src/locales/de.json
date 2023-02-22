@@ -1,6 +1,6 @@
 {
   "documentNavInfo": "Dokument {{ currentFileNo }} von {{ allFilesCount }}",
-  "noRendererMessage": "Kein Renderer für Dateityp: {{ fileType }}",
+  "noRendererMessage": "Kein Renderer für Dateityp: {{{ fileType }}}",
   "downloadButtonLabel": "Datei herunterladen",
   "brokenFile": "Ihre Datei ist defekt. Bitte überprüfen Sie sie auf Ihrem Rechner.",
   "msgPluginRecipients": "Empfänger",
