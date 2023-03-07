@@ -3,6 +3,7 @@ import DocViewer from "./DocViewer";
 import { DocViewerRenderers } from "./renderers";
 
 import pdfFile from "./exampleFiles/pdf-file.pdf";
+import pdfMultiplePagesFile from "./exampleFiles/pdf-multiple-pages-file.pdf";
 import pngFile from "./exampleFiles/png-image.png";
 import csvFile from "./exampleFiles/csv-file.csv";
 import { IDocument } from ".";
@@ -12,7 +13,12 @@ export default {
   title: "DocViewer",
 };
 
-const docs = [{ uri: pdfFile }, { uri: pngFile }, { uri: csvFile }];
+const docs = [
+  { uri: pdfFile },
+  { uri: pngFile },
+  { uri: csvFile },
+  { uri: pdfMultiplePagesFile },
+];
 
 export const Default = () => (
   <DocViewer
@@ -43,6 +49,7 @@ export const Default = () => (
         defaultZoom: 1.1,
         zoomJump: 0.2,
       },
+      pdfVerticalScrollByDefault: true,
     }}
     language="pl"
   />

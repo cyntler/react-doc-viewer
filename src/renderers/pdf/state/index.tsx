@@ -31,6 +31,9 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
     zoomLevel:
       mainState.config?.pdfZoom?.defaultZoom ?? initialPDFState.zoomLevel,
     zoomJump: mainState.config?.pdfZoom?.zoomJump ?? initialPDFState.zoomJump,
+    paginated: mainState.config?.pdfVerticalScrollByDefault
+      ? false
+      : initialPDFState.paginated,
     mainState,
   });
 
