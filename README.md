@@ -344,6 +344,7 @@ You can provide a config object, which configures parts of the component as requ
       defaultZoom: 1.1, // 1 as default,
       zoomJump: 0.2, // 0.1 as default,
     },
+    pdfVerticalScrollByDefault: true, // false as default
   }}
 />
 ```
