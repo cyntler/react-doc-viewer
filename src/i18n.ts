@@ -8,6 +8,7 @@ import fr from "./locales/fr.json";
 import ar from "./locales/ar.json";
 import sr from "./locales/sr.json";
 import sr_cyr from "./locales/sr_cyr.json";
+import ja from "./locales/ja.json";
 
 export const locales = {
   en,
@@ -20,6 +21,7 @@ export const locales = {
   ar,
   sr,
   sr_cyr,
+  ja,
 };
 
 export type AvailableLanguages = keyof typeof locales;
