@@ -80,7 +80,6 @@ export const mainStateReducer: MainStateReducer = (
 
       if (state.onDocumentChange) {
         state.onDocumentChange(state.documents[nextDocumentNo]);
-        return state;
       }
 
       return {
@@ -97,7 +96,6 @@ export const mainStateReducer: MainStateReducer = (
 
       if (state.onDocumentChange) {
         state.onDocumentChange(state.documents[prevDocumentNo]);
-        return state;
       }
 
       return {
