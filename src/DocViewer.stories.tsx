@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import DocViewer from "./DocViewer";
 import { DocViewerRenderers } from "./renderers";
 
@@ -6,7 +6,7 @@ import pdfFile from "./exampleFiles/pdf-file.pdf";
 import pdfMultiplePagesFile from "./exampleFiles/pdf-multiple-pages-file.pdf";
 import pngFile from "./exampleFiles/png-image.png";
 import csvFile from "./exampleFiles/csv-file.csv";
-import { IDocument } from ".";
+import { DocViewerRef, IDocument } from ".";
 
 /* eslint-disable import/no-anonymous-default-export */
 export default {
@@ -93,6 +93,30 @@ export const ManualNextPrevNavigation = () => {
         documents={docs}
         activeDocument={activeDocument}
         onDocumentChange={handleDocumentChange}
+      />
+    </>
+  );
+};
+
+export const WithRef = () => {
+  const docViewerRef = useRef<DocViewerRef>(null);
+  const [currentDocument, setCurrentDocument] = useState<IDocument>();
+
+  return (
+    <>
+      <div>
+        <button onClick={() => docViewerRef?.current?.prev()}>
+          Prev Document By Ref
+        </button>
+        <button onClick={() => docViewerRef?.current?.next()}>
+          Next Document By Ref
+        </button>
+      </div>
+      <DocViewer
+        ref={docViewerRef}
+        documents={docs}
+        config={{ header: { disableHeader: false } }}
+        onDocumentChange={setCurrentDocument}
       />
     </>
   );

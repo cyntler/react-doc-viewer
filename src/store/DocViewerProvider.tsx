@@ -1,15 +1,19 @@
 import React, {
   createContext,
   Dispatch,
-  FC,
   useEffect,
   useReducer,
   PropsWithChildren,
+  useImperativeHandle,
+  forwardRef,
 } from "react";
+import { DocViewerRef } from "..";
 import { DocViewerProps } from "../DocViewer";
 import { defaultLanguage, locales } from "../i18n";
 import {
   MainStateActions,
+  nextDocument,
+  previousDocument,
   setAllDocuments,
   setMainConfig,
   updateCurrentDocument,
@@ -26,7 +30,10 @@ const DocViewerContext = createContext<{
   dispatch: Dispatch<MainStateActions>;
 }>({ state: initialState, dispatch: () => null });
 
-const DocViewerProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
+const DocViewerProvider = forwardRef<
+  DocViewerRef,
+  PropsWithChildren<DocViewerProps>
+>((props, ref) => {
   const {
     children,
     documents,
@@ -72,11 +79,24 @@ const DocViewerProvider: FC<PropsWithChildren<DocViewerProps>> = (props) => {
     }
   }, [activeDocument]);
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      prev() {
+        dispatch(previousDocument());
+      },
+      next() {
+        dispatch(nextDocument());
+      },
+    }),
+    [dispatch]
+  );
+
   return (
     <DocViewerContext.Provider value={{ state, dispatch }}>
       {children}
     </DocViewerContext.Provider>
   );
-};
+});
 
 export { DocViewerContext, DocViewerProvider };
