@@ -100,7 +100,6 @@ export const ManualNextPrevNavigation = () => {
 
 export const WithRef = () => {
   const docViewerRef = useRef<DocViewerRef>(null);
-  const [currentDocument, setCurrentDocument] = useState<IDocument>();
 
   return (
     <>
@@ -115,8 +114,7 @@ export const WithRef = () => {
       <DocViewer
         ref={docViewerRef}
         documents={docs}
-        config={{ header: { disableHeader: false } }}
-        onDocumentChange={setCurrentDocument}
+        config={{ header: { disableHeader: true } }}
       />
     </>
   );
