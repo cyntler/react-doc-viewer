@@ -10,7 +10,7 @@ import { LoadingIcon } from "./icons";
 import { LoadingTimeout } from "./LoadingTimout";
 import { useTranslation } from "../hooks/useTranslation";
 
-export const ProxyRenderer: FC<{}> = () => {
+export const ProxyRenderer: FC = () => {
   const { state, dispatch, CurrentRenderer } = useDocumentLoader();
   const { documents, documentLoading, currentDocument, config } = state;
   const size = useWindowSize();

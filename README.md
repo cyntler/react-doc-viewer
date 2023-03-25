@@ -119,7 +119,7 @@ const DocViewerControlOverDisplayedDocument = () => {
 
 ### Displaying blob/uploaded documents
 
-Since **1.6.2** you can use documents in the form of blobs, which allows you to e.g. display uploaded files.
+Since **v1.6.2** you can use documents in the form of blobs, which allows you to e.g. display uploaded files.
 
 ```jsx
 const DocViewerWithInputApp = () => {
@@ -324,6 +324,36 @@ import styled from "styled-components";
 const MyDocViewer = styled(DocViewer)`
   border-radius: 10px;
 `;
+```
+
+## Using DocViewerRef
+
+Since **v1.13.0** you can control the display of the document with `reference`.
+
+```tsx
+import DocViewer, { DocViewerRef } from "@cyntler/react-doc-viewer";
+
+export const UsingRef = () => {
+  const docViewerRef = useRef<DocViewerRef>(null);
+
+  return (
+    <>
+      <div>
+        <button onClick={() => docViewerRef?.current?.prev()}>
+          Prev Document By Ref
+        </button>
+        <button onClick={() => docViewerRef?.current?.next()}>
+          Next Document By Ref
+        </button>
+      </div>
+      <DocViewer
+        ref={docViewerRef}
+        documents={docs}
+        config={{ header: { disableHeader: true } }}
+      />
+    </>
+  );
+};
 ```
 
 ## Config

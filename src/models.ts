@@ -75,3 +75,8 @@ export interface DocRenderer extends FC<PropsWithChildren<DocRendererProps>> {
   weight: number;
   fileLoader?: FileLoaderFunction | null | undefined;
 }
+
+export interface DocViewerRef {
+  prev: () => void;
+  next: () => void;
+}

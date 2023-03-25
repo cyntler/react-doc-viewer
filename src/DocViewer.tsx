@@ -1,10 +1,16 @@
-import React, { CSSProperties, FC, memo } from "react";
+import React, { CSSProperties, forwardRef, memo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
 import { ProxyRenderer } from "./components/ProxyRenderer";
 import { defaultTheme } from "./defaultTheme";
 import { AvailableLanguages } from "./i18n";
-import { DocRenderer, IConfig, IDocument, ITheme } from "./models";
+import {
+  DocRenderer,
+  DocViewerRef,
+  IConfig,
+  IDocument,
+  ITheme,
+} from "./models";
 import { DocViewerRenderers } from "./renderers";
 import { DocViewerProvider } from "./store/DocViewerProvider";
 
@@ -23,7 +29,7 @@ export interface DocViewerProps {
   onDocumentChange?: (document: IDocument) => void;
 }
 
-const DocViewer: FC<DocViewerProps> = (props) => {
+const DocViewer = forwardRef<DocViewerRef, DocViewerProps>((props, ref) => {
   const { documents, theme } = props;
 
   if (!documents) {
@@ -31,7 +37,11 @@ const DocViewer: FC<DocViewerProps> = (props) => {
   }
 
   return (
-    <DocViewerProvider pluginRenderers={DocViewerRenderers} {...props}>
+    <DocViewerProvider
+      ref={ref}
+      pluginRenderers={DocViewerRenderers}
+      {...props}
+    >
       <ThemeProvider
         theme={theme ? { ...defaultTheme, ...theme } : defaultTheme}
       >
@@ -46,7 +56,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
       </ThemeProvider>
     </DocViewerProvider>
   );
-};
+});
 
 export default memo(DocViewer);
 
