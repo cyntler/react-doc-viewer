@@ -13,7 +13,7 @@ export default {
   title: "DocViewer",
 };
 
-const docs = [
+const docs: IDocument[] = [
   { uri: pdfFile },
   { uri: pngFile },
   { uri: csvFile },
