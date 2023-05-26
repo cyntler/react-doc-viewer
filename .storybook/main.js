@@ -11,7 +11,7 @@ module.exports = {
   },
   webpackFinal: async (config) => {
     config.module.rules.push({
-      test: /\.(txt|csv|mmdb)$/,
+      test: /\.(txt|csv|eps|mmdb)$/,
       use: [
         {
           loader: "file-loader",

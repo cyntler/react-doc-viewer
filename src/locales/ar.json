@@ -1,6 +1,6 @@
 {
   "documentNavInfo": "مستند {{ currentFileNo }} من {{ allFilesCount }}",
-  "noRendererMessage": "{{ fileType }} : لا يمكننا عرض هذا النوع من الملفات",
+  "noRendererMessage": "{{{ fileType }}} : لا يمكننا عرض هذا النوع من الملفات",
   "downloadButtonLabel": "تحميل الملف",
   "brokenFile": "الملف تالف، يرجى التحقق منه على جهازك الخاص.",
   "msgPluginRecipients": "المستلمين",
