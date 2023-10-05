@@ -6,5 +6,5 @@
   "msgPluginRecipients": "Empfänger",
   "msgPluginSender": "Absender",
   "pdfPluginLoading": "Wird geladen...",
-  "pdfPluginPageNumber": "Seite {{ aktuelleSeite }}/{{ allPagesCount }}"
+  "pdfPluginPageNumber": "Seite {{ currentPage }}/{{ allPagesCount }}"
 }
