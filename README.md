@@ -24,7 +24,7 @@ File viewer for React.
 | pdf       | application/pdf                                                                    |
 | png       | image/png                                                                          |
 | ppt       | application/vnd.ms-powerpoint                                                      |
-| pptx      | applicatiapplication/vnd.openxmlformats-officedocument.presentationml.presentation |
+| pptx      | application/vnd.openxmlformats-officedocument.presentationml.presentation |
 | tiff      | image/tiff                                                                         |
 | txt       | text/plain                                                                         |
 | xls       | application/vnd.ms-excel                                                           |
