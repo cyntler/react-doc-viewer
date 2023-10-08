@@ -27,9 +27,11 @@
     "build:esm": "tsc --noEmit false",
     "build:cjs": "tsc --noEmit false --module commonjs --outDir ./dist/cjs",
     "test": "react-scripts test --watchAll=false",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
     "build-storybook": "storybook build",
     "deploy": "npm run build-storybook && gh-pages -d storybook-static",
-    "release": "npm run test && npm run build && release-it && npm run deploy"
+    "release": "npm run prettier:check && npm run test && npm run build && release-it && npm run deploy"
   },
   "dependencies": {
     "@types/mustache": "^4.2.3",
@@ -41,6 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.0",
@@ -61,11 +64,14 @@
     "@types/react-pdf": "7.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.28",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
     "babel-loader": "^9.1.3",
     "eslint-plugin-storybook": "^0.6.15",
     "file-loader": "^6.2.0",
     "gh-pages": "^6.0.0",
     "jest": "^29.7.0",
+    "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
