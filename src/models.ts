@@ -1,5 +1,4 @@
 import { FC, ReactElement, ComponentType, PropsWithChildren } from "react";
-import { ThemedStyledProps } from "styled-components";
 import { IMainState } from "./store/mainStateReducer";
 import { FileLoaderFunction } from "./utils/fileLoaders";
 
@@ -42,7 +41,7 @@ export interface IPdfZoomConfig {
 export type IHeaderOverride = (
   state: IMainState,
   previousDocument: () => void,
-  nextDocument: () => void
+  nextDocument: () => void,
 ) => ReactElement<any, any> | null;
 
 export interface ITheme {
@@ -55,7 +54,7 @@ export interface ITheme {
   disableThemeScrollbar?: boolean;
 }
 
-export interface IStyledProps extends ThemedStyledProps<any, any> {
+export interface IStyledProps {
   theme: ITheme;
 }
 

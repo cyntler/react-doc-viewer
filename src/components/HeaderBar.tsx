@@ -15,7 +15,7 @@ export const HeaderBar: FC<{}> = () => {
   const override = config?.header?.overrideComponent?.(
     state,
     () => dispatch(previousDocument()),
-    () => dispatch(nextDocument())
+    () => dispatch(nextDocument()),
   );
 
   if (override) {

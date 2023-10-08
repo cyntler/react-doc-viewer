@@ -44,12 +44,12 @@ export const initialState: IMainState = {
 
 export type MainStateReducer = (
   state: IMainState,
-  action: MainStateActions
+  action: MainStateActions,
 ) => IMainState;
 
 export const mainStateReducer: MainStateReducer = (
   state = initialState,
-  action: MainStateActions
+  action: MainStateActions,
 ): IMainState => {
   switch (action.type) {
     case SET_ALL_DOCUMENTS: {
@@ -113,7 +113,7 @@ export const mainStateReducer: MainStateReducer = (
         ...state,
         currentDocument: document,
         currentFileNo: state.documents.findIndex(
-          (doc) => doc.uri === document.uri
+          (doc) => doc.uri === document.uri,
         ),
       };
     }

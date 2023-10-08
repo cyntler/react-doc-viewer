@@ -89,7 +89,7 @@ const DocViewerProvider = forwardRef<
         dispatch(nextDocument());
       },
     }),
-    [dispatch]
+    [dispatch],
   );
 
   return (

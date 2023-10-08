@@ -11,7 +11,7 @@ const MSDocRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
         id="msdoc-iframe"
         title="msdoc-iframe"
         src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(
-          currentDocument.uri
+          currentDocument.uri,
         )}`}
         frameBorder="0"
       />

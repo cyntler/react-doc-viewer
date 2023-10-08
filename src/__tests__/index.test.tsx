@@ -27,7 +27,7 @@ test("renders component with unsupported file type", () => {
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
 
   expect(
-    screen.getByText("No renderer for file type: application/postscript")
+    screen.getByText("No renderer for file type: application/postscript"),
   ).toBeInTheDocument();
 });
 

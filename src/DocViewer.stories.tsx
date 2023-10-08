@@ -122,14 +122,14 @@ export const WithRef = () => {
 };
 
 export const NoRenderType = () => {
-    const docs = [{ uri: epsFile, fileType: "application/postscript" }];
+  const docs = [{ uri: epsFile, fileType: "application/postscript" }];
 
-    return (
-        <DocViewer
-            documents={docs}
-            initialActiveDocument={docs[0]}
-            pluginRenderers={DocViewerRenderers}
-            language="en"
-        />
-    );
+  return (
+    <DocViewer
+      documents={docs}
+      initialActiveDocument={docs[0]}
+      pluginRenderers={DocViewerRenderers}
+      language="en"
+    />
+  );
 };

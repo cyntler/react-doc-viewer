@@ -2,7 +2,7 @@ import { IDocument } from "..";
 
 export const getFileName = (
   document: IDocument | undefined,
-  retainURLParams: boolean
+  retainURLParams: boolean,
 ): string => {
   if (!document) {
     return "";

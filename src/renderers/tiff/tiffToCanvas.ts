@@ -248,7 +248,7 @@ const getFieldValues = (
   fieldTagName,
   fieldTypeName,
   typeCount,
-  valueOffset
+  valueOffset,
 ) => {
   var fieldValues = [];
 
@@ -329,7 +329,7 @@ const parseFileDirectory = (byteOffset) => {
       fieldTagName,
       fieldTypeName,
       typeCount,
-      valueOffset
+      valueOffset,
     );
 
     tiffFields[fieldTagName] = { type: fieldTypeName, values: fieldValues };
@@ -386,7 +386,7 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
   fileDirectory.BitsPerSample.values.forEach(function (
     bitsPerSample,
     i,
-    bitsPerSampleValues
+    bitsPerSampleValues,
   ) {
     sampleProperties[i] = {
       bitsPerSample: bitsPerSample,
@@ -400,8 +400,7 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
     }
 
     bitsPerPixel += bitsPerSample;
-  },
-  this);
+  }, this);
 
   if (bitsPerPixel % 8 === 0) {
     hasBytesPerPixel = true;
@@ -458,14 +457,14 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
               pixel.push(
                 getBytes(
                   sampleProperties[m].bytesPerSample,
-                  stripOffset + byteOffset + sampleOffset
-                )
+                  stripOffset + byteOffset + sampleOffset,
+                ),
               );
             } else {
               var sampleInfo = getBits(
                 sampleProperties[m].bitsPerSample,
                 stripOffset + byteOffset,
-                bitOffset
+                bitOffset,
               );
 
               pixel.push(sampleInfo.bits);
@@ -530,7 +529,7 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
             // The header byte is signed.
             var header = tiffDataView.getInt8(
               stripOffset + byteOffset,
-              littleEndian
+              littleEndian,
             );
 
             if (header >= 0 && header <= 127) {
@@ -670,7 +669,7 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
               if (sampleProperties[0].hasBytesPerSample) {
                 var invertValue = Math.pow(
                   0x10,
-                  sampleProperties[0].bytesPerSample * 2
+                  sampleProperties[0].bytesPerSample * 2,
                 );
               }
 
@@ -687,7 +686,7 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
                 blue =
                   clampColorSample(
                     pixelSamples[0],
-                    sampleProperties[0].bitsPerSample
+                    sampleProperties[0].bitsPerSample,
                   );
               break;
 
@@ -695,15 +694,15 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
             case 2:
               red = clampColorSample(
                 pixelSamples[0],
-                sampleProperties[0].bitsPerSample
+                sampleProperties[0].bitsPerSample,
               );
               green = clampColorSample(
                 pixelSamples[1],
-                sampleProperties[1].bitsPerSample
+                sampleProperties[1].bitsPerSample,
               );
               blue = clampColorSample(
                 pixelSamples[2],
-                sampleProperties[2].bitsPerSample
+                sampleProperties[2].bitsPerSample,
               );
               break;
 
@@ -718,11 +717,11 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
               red = clampColorSample(colorMapValues[colorMapIndex], 16);
               green = clampColorSample(
                 colorMapValues[colorMapSampleSize + colorMapIndex],
-                16
+                16,
               );
               blue = clampColorSample(
                 colorMapValues[2 * colorMapSampleSize + colorMapIndex],
-                16
+                16,
               );
               break;
 
@@ -750,7 +749,7 @@ export const parseTIFF = (tiffArrayBuffer, _canvas) => {
             default:
               throw RangeError(
                 "Unknown Photometric Interpretation:",
-                photometricInterpretation
+                photometricInterpretation,
               );
               break;
           }

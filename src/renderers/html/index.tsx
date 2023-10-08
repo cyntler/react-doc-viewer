@@ -10,7 +10,7 @@ const HTMLRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
     const body: string = window.atob(bodyBase64);
 
     let iframeCont = document.getElementById(
-      "html-body"
+      "html-body",
     ) as HTMLIFrameElement | null;
     let iframe = iframeCont?.contentWindow && iframeCont.contentWindow;
     if (!iframe) return;

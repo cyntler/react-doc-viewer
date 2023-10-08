@@ -21,12 +21,12 @@ export const ProxyRenderer: FC = () => {
       node && dispatch(setRendererRect(node?.getBoundingClientRect()));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [size]
+    [size],
   );
 
   const fileName = getFileName(
     currentDocument,
-    config?.header?.retainURLParams || false
+    config?.header?.retainURLParams || false,
   );
 
   const Contents = () => {

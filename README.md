@@ -9,26 +9,26 @@ File viewer for React.
 
 ## Supported file types
 
-| Extension | MIME Type                                                                          |
-| --------- | ---------------------------------------------------------------------------------- |
-| bmp       | image/bmp                                                                          |
-| csv       | text/csv                                                                           |
-| odt       | application/vnd.oasis.opendocument.text                                            |
-| doc       | application/msword                                                                 |
-| docx      | application/vnd.openxmlformats-officedocument.wordprocessingml.document            |
-| gif       | image/gif                                                                          |
-| htm       | text/htm                                                                           |
-| html      | text/html                                                                          |
-| jpg       | image/jpg                                                                          |
-| jpeg      | image/jpeg                                                                         |
-| pdf       | application/pdf                                                                    |
-| png       | image/png                                                                          |
-| ppt       | application/vnd.ms-powerpoint                                                      |
+| Extension | MIME Type                                                                 |
+| --------- | ------------------------------------------------------------------------- |
+| bmp       | image/bmp                                                                 |
+| csv       | text/csv                                                                  |
+| odt       | application/vnd.oasis.opendocument.text                                   |
+| doc       | application/msword                                                        |
+| docx      | application/vnd.openxmlformats-officedocument.wordprocessingml.document   |
+| gif       | image/gif                                                                 |
+| htm       | text/htm                                                                  |
+| html      | text/html                                                                 |
+| jpg       | image/jpg                                                                 |
+| jpeg      | image/jpeg                                                                |
+| pdf       | application/pdf                                                           |
+| png       | image/png                                                                 |
+| ppt       | application/vnd.ms-powerpoint                                             |
 | pptx      | application/vnd.openxmlformats-officedocument.presentationml.presentation |
-| tiff      | image/tiff                                                                         |
-| txt       | text/plain                                                                         |
-| xls       | application/vnd.ms-excel                                                           |
-| xlsx      | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet                  |
+| tiff      | image/tiff                                                                |
+| txt       | text/plain                                                                |
+| xls       | application/vnd.ms-excel                                                  |
+| xlsx      | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet         |
 
 ## Storybook Demo
 

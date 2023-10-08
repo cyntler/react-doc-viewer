@@ -13,7 +13,7 @@ export const useTranslation = () => {
   const t = useCallback(
     (
       key: keyof typeof defaultTranslations,
-      variables?: Record<string, string | number>
+      variables?: Record<string, string | number>,
     ) => {
       const translations = locales[language];
 
@@ -27,7 +27,7 @@ export const useTranslation = () => {
 
       return key;
     },
-    [language, defaultTranslations]
+    [language, defaultTranslations],
   );
 
   return {

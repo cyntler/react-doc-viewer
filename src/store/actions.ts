@@ -44,7 +44,7 @@ export interface PreviousDocument {
 
 export const setAllDocuments = (
   documents: IDocument[],
-  initialActiveDocument?: IDocument
+  initialActiveDocument?: IDocument,
 ): SetAllDocuments => ({
   type: SET_ALL_DOCUMENTS,
   documents,
@@ -63,7 +63,7 @@ export const previousDocument = (): PreviousDocument => ({
 });
 
 export const updateCurrentDocument = (
-  document: IDocument
+  document: IDocument,
 ): UpdateCurrentDocument => ({ type: UPDATE_CURRENT_DOCUMENT, document });
 
 export const setRendererRect = (rect: DOMRect): SetRendererRect => ({

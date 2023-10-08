@@ -13,7 +13,7 @@ export const FileName: FC<{}> = () => {
 
   const fileName = getFileName(
     currentDocument,
-    config?.header?.retainURLParams || false
+    config?.header?.retainURLParams || false,
   );
 
   return (

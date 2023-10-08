@@ -31,7 +31,7 @@ export const useRendererSelector = (): {
     });
 
     const [SelectedRenderer] = matchingRenderers.sort(
-      (a, b) => b.weight - a.weight
+      (a, b) => b.weight - a.weight,
     );
 
     if (SelectedRenderer && SelectedRenderer !== undefined) {

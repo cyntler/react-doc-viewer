@@ -29,7 +29,7 @@ const _fileLoader: BaseFileLoaderFunction = ({
 
       const fileReader = new FileReader();
       fileReader.addEventListener("loadend", () =>
-        fileLoaderComplete(fileReader)
+        fileLoaderComplete(fileReader),
       );
 
       switch (readerTypeFunction) {

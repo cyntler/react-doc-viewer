@@ -32,12 +32,12 @@ export const initialPDFState: IPDFState = {
 
 export type PDFStateReducer = (
   state: IPDFState,
-  action: PDFStateActions
+  action: PDFStateActions,
 ) => IPDFState;
 
 export const reducer: PDFStateReducer = (
   state = initialPDFState,
-  action: PDFStateActions
+  action: PDFStateActions,
 ): IPDFState => {
   switch (action.type) {
     case SET_ZOOM_LEVEL: {
