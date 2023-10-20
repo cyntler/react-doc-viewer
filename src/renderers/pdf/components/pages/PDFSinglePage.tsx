@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect, useRef } from "react";
 import { Page } from "react-pdf";
 import styled from "styled-components";
 import { IStyledProps } from "../../../..";
@@ -14,13 +14,47 @@ const PDFSinglePage: FC<Props> = ({ pageNum }) => {
     state: { mainState, paginated, zoomLevel, numPages, currentPage },
   } = useContext(PDFContext);
   const { t } = useTranslation();
+  const pdfPageRef = useRef(null);
 
   const rendererRect = mainState?.rendererRect || null;
 
   const _pageNum = pageNum || currentPage;
+  // call function to return page data for single
+  useEffect(() => {
+    if (!mainState?.config?.getPdfData) return;
+    if (!numPages) return;
+    if (!paginated) return;
+
+    mainState?.config?.getPdfData({
+      currentPage: _pageNum,
+      totalPages: numPages,
+    });
+  }, [numPages, _pageNum]);
+
+  // call function to return page data for multi page
+  useEffect(() => {
+    if (paginated) return;
+    if (!mainState?.config?.getPdfData) return;
+    if (!pdfPageRef?.current) return;
+    if (!numPages) return;
+
+    let observer = new IntersectionObserver((entries) => {
+      if (!entries?.[0]?.isIntersecting) return;
+
+      mainState?.config?.getPdfData({
+        currentPage: _pageNum,
+        totalPages: numPages,
+      });
+    });
+    observer.observe(pdfPageRef?.current);
+  }, [pdfPageRef?.current]);
 
   return (
-    <PageWrapper id="pdf-page-wrapper" last={_pageNum >= numPages}>
+    <PageWrapper
+      id="pdf-page-wrapper"
+      last={_pageNum >= numPages}
+      ref={pdfPageRef}
+    >
       {!paginated && (
         <PageTag id="pdf-page-info">
           {t("pdfPluginPageNumber", {
