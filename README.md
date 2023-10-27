@@ -29,6 +29,7 @@ File viewer for React.
 | txt       | text/plain                                                                |
 | xls       | application/vnd.ms-excel                                                  |
 | xlsx      | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet         |
+| mp4       | video/mp4                                                                 |
 
 ## Storybook Demo
 
