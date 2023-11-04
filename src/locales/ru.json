@@ -1,5 +1,5 @@
 {
-  "documentNavInfo": "Документ {{ currentFileNo }} of {{ allFilesCount }}",
+  "documentNavInfo": "Документ {{ currentFileNo }} из {{ allFilesCount }}",
   "noRendererMessage": "Данный тип файла не поддерживается рендером: {{{ fileType }}}",
   "downloadButtonLabel": "Скачать файл",
   "brokenFile": "Ваш файл сломан. Пожалуйста, проверьте его на своём комьютере.",
