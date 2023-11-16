@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
 import { setRendererRect } from "../store/actions";
-import { IStyledProps } from "../models";
+import { DocRenderer, IConfig, IDocument, IStyledProps } from "../models";
 import { getFileName } from "../utils/getFileName";
 import { useDocumentLoader } from "../hooks/useDocumentLoader";
 import { useWindowSize } from "../hooks/useWindowSize";
@@ -9,27 +9,21 @@ import { LinkButton } from "./common";
 import { LoadingIcon } from "./icons";
 import { LoadingTimeout } from "./LoadingTimout";
 import { useTranslation } from "../hooks/useTranslation";
+import { IMainState } from "../store/mainStateReducer";
 
-export const ProxyRenderer: FC = () => {
-  const { state, dispatch, CurrentRenderer } = useDocumentLoader();
-  const { documents, documentLoading, currentDocument, config } = state;
-  const size = useWindowSize();
-  const { t } = useTranslation();
+type ContentsProps = {
+  documents: IDocument[];
+  documentLoading: boolean | undefined;
+  config: IConfig | undefined;
+  currentDocument: IDocument | undefined;
+  fileName: string;
+  CurrentRenderer: DocRenderer | null | undefined;
+  state: IMainState;
+  t: (key: "noRendererMessage" | "documentNavInfo" | "downloadButtonLabel" | "brokenFile" | "msgPluginRecipients" | "msgPluginSender" | "pdfPluginLoading" | "pdfPluginPageNumber", variables?: Record<string, string | number>) => string
+};
 
-  const containerRef = useCallback(
-    (node: HTMLDivElement) => {
-      node && dispatch(setRendererRect(node?.getBoundingClientRect()));
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [size],
-  );
+  const Contents: React.FC<ContentsProps> = ({documents, documentLoading, config, currentDocument, fileName, CurrentRenderer, state, t}) => {
 
-  const fileName = getFileName(
-    currentDocument,
-    config?.header?.retainURLParams || false,
-  );
-
-  const Contents = () => {
     if (!documents.length) {
       return <div id="no-documents"></div>;
     } else if (documentLoading) {
@@ -85,13 +79,31 @@ export const ProxyRenderer: FC = () => {
     }
   };
 
+export const ProxyRenderer: FC = () => {
+  const { state, dispatch, CurrentRenderer } = useDocumentLoader();
+  const { documents, documentLoading, currentDocument, config } = state;
+  const size = useWindowSize();
+  const { t } = useTranslation();
+
+  const containerRef = useCallback(
+    (node: HTMLDivElement) => {
+      node && dispatch(setRendererRect(node?.getBoundingClientRect()));
+    },
+    [size],
+  );
+
+  const fileName = getFileName(
+    currentDocument,
+    config?.header?.retainURLParams || false,
+  );
+
   return (
     <Container
       id="proxy-renderer"
       data-testid="proxy-renderer"
       ref={containerRef}
     >
-      <Contents />
+      <Contents {...{state, documents, documentLoading, config, currentDocument, fileName, CurrentRenderer, t}} />
     </Container>
   );
 };
