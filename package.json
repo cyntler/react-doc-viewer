@@ -38,7 +38,7 @@
     "@types/papaparse": "^5.3.9",
     "mustache": "^4.2.0",
     "papaparse": "^5.4.1",
-    "react-pdf": "7.5.0",
+    "react-pdf": "7.7.1",
     "styled-components": "^6.0.8"
   },
   "devDependencies": {
@@ -83,7 +83,11 @@
   },
   "peerDependencies": {
     "react": ">=16.13.1",
-    "react-dom": ">=16.13.1"
+    "react-dom": ">=16.13.1",
+    "react-pdf": ">=7"
+  },
+  "resolutions": {
+    "typescript": "^5.2.2"
   },
   "browserslist": {
     "production": [
