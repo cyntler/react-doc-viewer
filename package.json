@@ -83,8 +83,7 @@
   },
   "peerDependencies": {
     "react": ">=16.13.1",
-    "react-dom": ">=16.13.1",
-    "react-pdf": ">=7"
+    "react-dom": ">=16.13.1"
   },
   "resolutions": {
     "typescript": "^5.2.2"
