@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { DocRenderer } from "../..";
-import ImageProxyRenderer from "../image";
+import ImageProxyRenderer from "../imageProxy";
 
 const StyledImageRenderer = styled(ImageProxyRenderer)`
   display: flex;
@@ -22,9 +22,9 @@ const StyledImageRenderer = styled(ImageProxyRenderer)`
     -10px 0px;
 `;
 
-const PNGRenderer: DocRenderer = (props) => <StyledImageRenderer {...props} />;
+const ImagesRenderer: DocRenderer = (props) => <StyledImageRenderer {...props} />;
 
-PNGRenderer.fileTypes = ["png", "image/png"];
-PNGRenderer.weight = 0;
+ImagesRenderer.fileTypes = ["png", "gif", "jpg", "jpeg", "bmp", "image/png", "image/gif", "image/jpg", "image/jpeg", "image/bmp"];
+ImagesRenderer.weight = 0;
 
-export default PNGRenderer;
+export default ImagesRenderer;
