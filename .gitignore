@@ -23,3 +23,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .idea
+
+# pdf worker: this fill must be fetched after each installation since it depends
+# on react-pdf's embdeded version
+src/pdf.worker.min.js
