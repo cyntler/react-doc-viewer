@@ -6,12 +6,13 @@ const ImageProxyRenderer: DocRenderer = (props) => {
   const {
     mainState: { currentDocument },
     children,
+    ...rest
   } = props;
 
   if (!currentDocument) return null;
 
   return (
-    <Container id="image-renderer" {...props}>
+    <Container id="image-renderer" {...rest}>
       {children || (
         <Img id="image-img" src={currentDocument.fileData as string} />
       )}
