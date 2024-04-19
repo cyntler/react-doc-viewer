@@ -7,9 +7,11 @@ import PDFControls from "./components/PDFControls";
 import { PDFProvider } from "./state";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
-import pdfjsWorker from '../../pdf.worker.min'
 
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker as unknown as string
+// react-explorer
+pdfjs.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js'
+// original
+// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const PDFRenderer: DocRenderer = ({ mainState }) => {
   return (
