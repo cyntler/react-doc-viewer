@@ -115,6 +115,7 @@ export const mainStateReducer: MainStateReducer = (
         currentFileNo: state.documents.findIndex(
           (doc) => doc.uri === document.uri,
         ),
+        documentLoading: true,
       };
     }
 

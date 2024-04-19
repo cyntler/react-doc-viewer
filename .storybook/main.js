@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
 
@@ -13,6 +15,7 @@ module.exports = {
   },
 
   webpackFinal: async (config) => {
+    config.resolve.alias.reactPdfDist = path.resolve(__dirname, '../node_modules/react-pdf/dist/cjs/')
     config.module.rules.push({
       test: /\.(txt|csv|eps|mmdb)$/,
       use: [
