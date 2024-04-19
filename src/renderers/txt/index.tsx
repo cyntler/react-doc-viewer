@@ -22,4 +22,5 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 30px;
+  white-space: pre;
 `;
