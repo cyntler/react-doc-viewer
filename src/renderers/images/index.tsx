@@ -24,7 +24,7 @@ const StyledImageRenderer = styled(ImageProxyRenderer)`
 
 const ImagesRenderer: DocRenderer = (props) => <StyledImageRenderer {...props} />;
 
-ImagesRenderer.fileTypes = ["png", "gif", "jpg", "jpeg", "bmp", "image/png", "image/gif", "image/jpg", "image/jpeg", "image/bmp"];
+ImagesRenderer.fileTypes = ["png", "gif", "jpg", "jpeg", "bmp", "webp", "image/png", "image/gif", "image/jpg", "image/jpeg", "image/bmp", "image/webp"];
 ImagesRenderer.weight = 0;
 
 export default ImagesRenderer;
