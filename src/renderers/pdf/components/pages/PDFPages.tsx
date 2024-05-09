@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { FC, useContext, useEffect } from "react";
-import { Document } from "react-pdf";
+import { Document, pdfjs } from "react-pdf";
 import styled from "styled-components";
 import { useTranslation } from "../../../../hooks/useTranslation";
 import { PDFContext } from "../../state";
@@ -29,6 +29,10 @@ const PDFPages: FC<{}> = () => {
       file={currentDocument.fileData}
       onLoadSuccess={({ numPages }) => dispatch(setNumPages(numPages))}
       loading={<span>{t("pdfPluginLoading")}</span>}
+      options={{
+        cMapUrl: `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
+        cMapPacked: true,
+      }}
     >
       {paginated ? <PDFSinglePage /> : <PDFAllPages />}
     </DocumentPDF>
