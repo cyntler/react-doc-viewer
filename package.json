@@ -25,7 +25,7 @@
     "start": "storybook dev -p 6006",
     "build": "rm -rf dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --noEmit false",
-    "build:cjs": "tsc --noEmit false --module commonjs --outDir ./dist/cjs",
+    "build:cjs": "tsc --noEmit false --module commonjs --moduleResolution node --outDir ./dist/cjs",
     "test": "react-scripts test --watchAll=false",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
@@ -36,32 +36,32 @@
   "dependencies": {
     "@types/mustache": "^4.2.5",
     "@types/papaparse": "^5.3.14",
+    "ajv": "^7",
     "mustache": "^4.2.0",
     "papaparse": "^5.4.1",
-    "react-pdf": "7.7.1",
-    "styled-components": "^6.1.9"
+    "react-pdf": "latest",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.0",
+    "@babel/core": "^7.24.5",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
-    "@storybook/addon-actions": "^7.6.18",
-    "@storybook/addon-essentials": "^7.6.18",
-    "@storybook/addon-interactions": "^7.6.18",
-    "@storybook/addon-links": "^7.6.18",
-    "@storybook/react": "^7.6.18",
-    "@storybook/react-webpack5": "^7.6.18",
+    "@storybook/addon-actions": "^7.6.19",
+    "@storybook/addon-essentials": "^7.6.19",
+    "@storybook/addon-interactions": "^7.6.19",
+    "@storybook/addon-links": "^7.6.19",
+    "@storybook/react": "^7.6.19",
+    "@storybook/react-webpack5": "^7.6.19",
     "@storybook/testing-library": "^0.2.2",
-    "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^14.3.1",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.7",
-    "@types/react": "^18.3.1",
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
-    "@types/react-pdf": "7.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.34",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
@@ -76,7 +76,7 @@
     "react-dom": "^18.3.1",
     "react-scripts": "^5.0.1",
     "release-it": "^17.2.1",
-    "storybook": "^7.6.18",
+    "storybook": "^7.6.19",
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0"
@@ -84,9 +84,6 @@
   "peerDependencies": {
     "react": ">=16.13.1",
     "react-dom": ">=16.13.1"
-  },
-  "resolutions": {
-    "typescript": "^5.2.2"
   },
   "browserslist": {
     "production": [
