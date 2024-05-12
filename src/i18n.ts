@@ -25,7 +25,7 @@ export const locales = {
   sr_cyr,
   ja,
   ru,
-  se
+  se,
 };
 
 export type AvailableLanguages = keyof typeof locales;

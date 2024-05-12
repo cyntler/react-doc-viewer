@@ -1,22 +1,18 @@
 {
   "compilerOptions": {
     "outDir": "./dist/esm",
-    "target": "ES5",
-    "module": "ESNext",
+    "target": "ES6",
+    "module": "NodeNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
-    "allowJs": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react",
-    "noEmit": true
-  },
-  "include": ["src/**/*", "src/setupTests.ts"],
-  "exclude": ["src/exampleFiles/*"]
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "skipLibCheck": false
+  }
 }

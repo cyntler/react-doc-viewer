@@ -19,65 +19,81 @@ type ContentsProps = {
   fileName: string;
   CurrentRenderer: DocRenderer | null | undefined;
   state: IMainState;
-  t: (key: "noRendererMessage" | "documentNavInfo" | "downloadButtonLabel" | "brokenFile" | "msgPluginRecipients" | "msgPluginSender" | "pdfPluginLoading" | "pdfPluginPageNumber", variables?: Record<string, string | number>) => string
+  t: (
+    key:
+      | "noRendererMessage"
+      | "documentNavInfo"
+      | "downloadButtonLabel"
+      | "brokenFile"
+      | "msgPluginRecipients"
+      | "msgPluginSender"
+      | "pdfPluginLoading"
+      | "pdfPluginPageNumber",
+    variables?: Record<string, string | number>,
+  ) => string;
 };
 
-  const Contents: React.FC<ContentsProps> = ({documents, documentLoading, config, currentDocument, fileName, CurrentRenderer, state, t}) => {
+const Contents: React.FC<ContentsProps> = ({
+  documents,
+  documentLoading,
+  config,
+  currentDocument,
+  fileName,
+  CurrentRenderer,
+  state,
+  t,
+}) => {
+  if (!documents.length) {
+    return <div id="no-documents"></div>;
+  } else if (documentLoading) {
+    if (config && config?.loadingRenderer?.overrideComponent) {
+      const OverrideComponent = config.loadingRenderer.overrideComponent;
+      return (
+        <LoadingTimeout>
+          <OverrideComponent document={currentDocument} fileName={fileName} />
+        </LoadingTimeout>
+      );
+    }
 
-    if (!documents.length) {
-      return <div id="no-documents"></div>;
-    } else if (documentLoading) {
-      if (config && config?.loadingRenderer?.overrideComponent) {
-        const OverrideComponent = config.loadingRenderer.overrideComponent;
+    return (
+      <LoadingTimeout>
+        <LoadingContainer id="loading-renderer" data-testid="loading-renderer">
+          <LoadingIconContainer>
+            <LoadingIcon color="#444" size={40} />
+          </LoadingIconContainer>
+        </LoadingContainer>
+      </LoadingTimeout>
+    );
+  } else {
+    if (CurrentRenderer) {
+      return <CurrentRenderer mainState={state} />;
+    } else if (CurrentRenderer === undefined) {
+      return null;
+    } else {
+      if (config && config?.noRenderer?.overrideComponent) {
+        const OverrideComponent = config.noRenderer.overrideComponent;
         return (
-          <LoadingTimeout>
-            <OverrideComponent document={currentDocument} fileName={fileName} />
-          </LoadingTimeout>
+          <OverrideComponent document={currentDocument} fileName={fileName} />
         );
       }
 
       return (
-        <LoadingTimeout>
-          <LoadingContainer
-            id="loading-renderer"
-            data-testid="loading-renderer"
+        <div id="no-renderer" data-testid="no-renderer">
+          {t("noRendererMessage", {
+            fileType: currentDocument?.fileType ?? "",
+          })}
+          <DownloadButton
+            id="no-renderer-download"
+            href={currentDocument?.uri}
+            download={currentDocument?.uri}
           >
-            <LoadingIconContainer>
-              <LoadingIcon color="#444" size={40} />
-            </LoadingIconContainer>
-          </LoadingContainer>
-        </LoadingTimeout>
+            {t("downloadButtonLabel")}
+          </DownloadButton>
+        </div>
       );
-    } else {
-      if (CurrentRenderer) {
-        return <CurrentRenderer mainState={state} />;
-      } else if (CurrentRenderer === undefined) {
-        return null;
-      } else {
-        if (config && config?.noRenderer?.overrideComponent) {
-          const OverrideComponent = config.noRenderer.overrideComponent;
-          return (
-            <OverrideComponent document={currentDocument} fileName={fileName} />
-          );
-        }
-
-        return (
-          <div id="no-renderer" data-testid="no-renderer">
-            {t("noRendererMessage", {
-              fileType: currentDocument?.fileType ?? "",
-            })}
-            <DownloadButton
-              id="no-renderer-download"
-              href={currentDocument?.uri}
-              download={currentDocument?.uri}
-            >
-              {t("downloadButtonLabel")}
-            </DownloadButton>
-          </div>
-        );
-      }
     }
-  };
+  }
+};
 
 export const ProxyRenderer: FC = () => {
   const { state, dispatch, CurrentRenderer } = useDocumentLoader();
@@ -103,7 +119,18 @@ export const ProxyRenderer: FC = () => {
       data-testid="proxy-renderer"
       ref={containerRef}
     >
-      <Contents {...{state, documents, documentLoading, config, currentDocument, fileName, CurrentRenderer, t}} />
+      <Contents
+        {...{
+          state,
+          documents,
+          documentLoading,
+          config,
+          currentDocument,
+          fileName,
+          CurrentRenderer,
+          t,
+        }}
+      />
     </Container>
   );
 };
