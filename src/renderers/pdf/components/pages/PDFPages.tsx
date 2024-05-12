@@ -1,6 +1,6 @@
 /* eslint-disable */
-import React, { FC, useContext, useEffect } from "react";
-import { Document } from "react-pdf";
+import React, { FC, useContext, useEffect, useMemo } from "react";
+import { Document, pdfjs } from "react-pdf";
 import styled from "styled-components";
 import { useTranslation } from "../../../../hooks/useTranslation";
 import { PDFContext } from "../../state";
@@ -18,6 +18,14 @@ const PDFPages: FC<{}> = () => {
 
   const currentDocument = mainState?.currentDocument || null;
 
+  const options = useMemo(
+    () => ({
+      cMapUrl: `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
+      cMapPacked: true,
+    }),
+    [],
+  );
+
   useEffect(() => {
     dispatch(setNumPages(initialPDFState.numPages));
   }, [currentDocument]);
@@ -29,6 +37,7 @@ const PDFPages: FC<{}> = () => {
       file={currentDocument.fileData}
       onLoadSuccess={({ numPages }) => dispatch(setNumPages(numPages))}
       loading={<span>{t("pdfPluginLoading")}</span>}
+      options={options}
     >
       {paginated ? <PDFSinglePage /> : <PDFAllPages />}
     </DocumentPDF>
