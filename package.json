@@ -40,7 +40,7 @@
     "mustache": "^4.2.0",
     "papaparse": "^5.4.1",
     "react-pdf": "7.7.1",
-    "styled-components": "^6.1.9"
+    "styled-components": "^6.1.10"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
