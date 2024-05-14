@@ -32,7 +32,6 @@
     "build-storybook": "storybook build",
     "deploy": "npm run build-storybook && gh-pages -d storybook-static",
     "release": "npm run prettier:check && npm run test && npm run build && release-it && npm run deploy",
-    "prepareOnly": "npm run build"
   },
   "dependencies": {
     "@types/mustache": "^4.2.5",
