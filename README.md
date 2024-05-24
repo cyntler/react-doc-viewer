@@ -7,6 +7,11 @@ File viewer for React.
 
 > This is a fork of https://github.com/Alcumus/react-doc-viewer (inactivity for a long time)
 
+## Important note!
+
+> [!WARNING]
+> This library uses the official MS Office online document viewing service. This means it works on an iframe basis and only supports public file URLs! Therefore, it may not be compatible with all projects. Currently, there is no way to natively render MS Office documents in the browser.
+
 ## Supported file types
 
 | Extension | MIME Type                                                                 |
