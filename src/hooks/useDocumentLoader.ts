@@ -13,6 +13,7 @@ import {
   FileLoaderFuncProps,
 } from "../utils/fileLoaders";
 import { useRendererSelector } from "./useRendererSelector";
+import { isValidHttpUrl } from "../utils/isValidHttpUrl";
 
 /**
  * Custom Hook for loading the current document into context
@@ -31,8 +32,12 @@ export const useDocumentLoader = (): {
 
   useEffect(
     () => {
-      if (!currentDocument) return;
-      if (currentDocument.fileType !== undefined) return;
+      if (
+        !currentDocument ||
+        currentDocument.fileType !== undefined ||
+        !isValidHttpUrl(documentURI)
+      )
+        return;
 
       const controller = new AbortController();
       const { signal } = controller;
