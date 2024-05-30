@@ -1,12 +1,14 @@
 import React from "react";
-import { pdfjs } from "react-pdf";
 import styled from "styled-components";
 import { DocRenderer, IStyledProps } from "../..";
 import PDFPages from "./components/pages/PDFPages";
 import PDFControls from "./components/PDFControls";
 import { PDFProvider } from "./state";
+import { pdfjs } from "react-pdf";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`,
+).toString();
 
 const PDFRenderer: DocRenderer = ({ mainState }) => {
   return (
@@ -28,7 +30,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  overflow-y: auto;
 
   /* width */
   &::-webkit-scrollbar {
