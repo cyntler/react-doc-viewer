@@ -14,7 +14,7 @@ import {
 } from "./icons";
 import PDFPagination from "./PDFPagination";
 
-const PDFControls: FC<{}> = () => {
+const PDFControls: FC = () => {
   const { t } = useTranslation();
   const {
     state: {

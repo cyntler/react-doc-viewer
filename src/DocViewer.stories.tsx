@@ -11,7 +11,6 @@ import webpFile from "./exampleFiles/webp-file.webp";
 
 import { DocViewerRef, IDocument } from ".";
 
-/* eslint-disable import/no-anonymous-default-export */
 export default {
   title: "DocViewer",
 };

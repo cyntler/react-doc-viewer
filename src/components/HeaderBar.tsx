@@ -6,7 +6,7 @@ import { IStyledProps } from "../models";
 import { DocumentNav } from "./DocumentNav";
 import { FileName } from "./FileName";
 
-export const HeaderBar: FC<{}> = () => {
+export const HeaderBar: FC = () => {
   const { state, dispatch } = useContext(DocViewerContext);
   const { config } = state;
 

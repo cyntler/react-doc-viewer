@@ -105,7 +105,8 @@ export const ProxyRenderer: FC = () => {
     (node: HTMLDivElement) => {
       node && dispatch(setRendererRect(node?.getBoundingClientRect()));
     },
-    [size],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [size, dispatch],
   );
 
   const fileName = getFileName(

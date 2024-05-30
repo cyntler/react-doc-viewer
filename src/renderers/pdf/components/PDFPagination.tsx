@@ -7,7 +7,7 @@ import { setCurrentPage } from "../state/actions";
 import { NextPDFNavIcon, PrevPDFNavIcon } from "./icons";
 import { useTranslation } from "../../../hooks/useTranslation";
 
-const PDFPagination: FC<{}> = () => {
+const PDFPagination: FC = () => {
   const {
     state: { currentPage, numPages },
     dispatch,

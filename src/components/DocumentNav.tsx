@@ -7,7 +7,7 @@ import { ButtonSecondary } from "./common/Button";
 import { NextDocIcon, PrevDocIcon } from "./icons";
 import { useTranslation } from "../hooks/useTranslation";
 
-export const DocumentNav: FC<{}> = () => {
+export const DocumentNav: FC = () => {
   const {
     state: { currentDocument, currentFileNo, documents },
     dispatch,

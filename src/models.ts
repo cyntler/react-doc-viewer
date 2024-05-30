@@ -42,6 +42,7 @@ export type IHeaderOverride = (
   state: IMainState,
   previousDocument: () => void,
   nextDocument: () => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ) => ReactElement<any, any> | null;
 
 export interface ITheme {

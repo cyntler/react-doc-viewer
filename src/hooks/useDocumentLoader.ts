@@ -81,7 +81,7 @@ export const useDocumentLoader = (): {
         return;
       }
 
-      let updatedDocument = { ...currentDocument };
+      const updatedDocument = { ...currentDocument };
       if (fileReader.result !== null) {
         updatedDocument.fileData = fileReader.result;
       }

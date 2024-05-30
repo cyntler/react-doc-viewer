@@ -4,7 +4,7 @@ import { DocViewerContext } from "../store/DocViewerProvider";
 import { IStyledProps } from "..";
 import { getFileName } from "../utils/getFileName";
 
-export const FileName: FC<{}> = () => {
+export const FileName: FC = () => {
   const {
     state: { config, currentDocument },
   } = useContext(DocViewerContext);
