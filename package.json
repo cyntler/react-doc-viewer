@@ -18,21 +18,27 @@
   "files": [
     "dist/**"
   ],
+  "types": "./dist/esm/index.d.ts",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/index.js"
+  },
   "scripts": {
     "start": "storybook dev -p 6006",
     "build": "rm -rf dist && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc --noEmit false",
-    "build:cjs": "tsc --noEmit false --module commonjs --moduleResolution node --outDir ./dist/cjs",
+    "build:esm": "tsc --project tsconfig.build.json",
+    "build:cjs": "tsc --project tsconfig.build.json --module commonjs --moduleResolution node --verbatimModuleSyntax false --outDir ./dist/cjs",
+    "postbuild:cjs": "echo '{\n  \"type\": \"commonjs\"\n}' > dist/cjs/package.json",
     "test": "vitest run",
     "lint": "eslint ./src --ext .ts,.tsx",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "build-storybook": "storybook build",
     "deploy": "npm run build-storybook && gh-pages -d storybook-static",
-    "release": "npm run prettier:check && npm run lint && npm run test && npm run build && release-it && npm run deploy"
+    "release": "npm run prettier:check && npm run lint && npm run test && npm run build && release-it && npm run deploy",
+    "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
     "@types/mustache": "^4.2.5",
@@ -44,23 +50,17 @@
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.6",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/preset-env": "^7.24.6",
-    "@babel/preset-react": "^7.24.6",
-    "@babel/preset-typescript": "^7.24.6",
     "@rollup/plugin-dsv": "^3.0.4",
-    "@storybook/addon-actions": "^8.1.4",
-    "@storybook/addon-essentials": "^8.1.4",
-    "@storybook/addon-interactions": "^8.1.4",
-    "@storybook/addon-links": "^8.1.4",
-    "@storybook/react": "^8.1.4",
-    "@storybook/react-webpack5": "^8.1.4",
-    "@storybook/testing-library": "^0.2.2",
+    "@storybook/addon-essentials": "^8.1.5",
+    "@storybook/addon-interactions": "^8.1.5",
+    "@storybook/addon-links": "^8.1.5",
+    "@storybook/blocks": "^8.1.5",
+    "@storybook/react": "^8.1.5",
+    "@storybook/react-vite": "^8.1.5",
+    "@storybook/test": "^8.1.5",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.5.2",
-    "@types/jest": "^29.5.12",
     "@types/node": "^20.12.13",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -81,14 +81,14 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "release-it": "^17.3.0",
-    "storybook": "^8.1.4",
+    "storybook": "^8.1.5",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0",
     "webpack": "^5.91.0"
   },
   "peerDependencies": {
-    "react": ">=16.13.1",
-    "react-dom": ">=16.13.1"
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
   },
   "browserslist": {
     "production": [
