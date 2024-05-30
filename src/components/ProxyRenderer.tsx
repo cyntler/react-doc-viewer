@@ -139,7 +139,6 @@ export const ProxyRenderer: FC = () => {
 const Container = styled.div`
   display: flex;
   flex: 1;
-  overflow-y: auto;
 `;
 
 const LoadingContainer = styled.div`
