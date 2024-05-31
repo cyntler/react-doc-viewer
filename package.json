@@ -37,8 +37,7 @@
     "prettier:fix": "prettier --write .",
     "build-storybook": "storybook build",
     "deploy": "npm run build-storybook && gh-pages -d storybook-static",
-    "release": "npm run prettier:check && npm run lint && npm run test && npm run build && release-it && npm run deploy",
-    "storybook": "storybook dev -p 6006"
+    "release": "npm run prettier:check && npm run lint && npm run test && npm run build && release-it && npm run deploy"
   },
   "dependencies": {
     "@types/mustache": "^4.2.5",
