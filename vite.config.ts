@@ -4,8 +4,8 @@ import dsv from "@rollup/plugin-dsv";
 export default defineConfig({
   plugins: [dsv()],
   test: {
-    environment: "happy-dom",
     globals: true,
+    environment: "happy-dom",
     setupFiles: ["./vitest.setup.ts"],
   },
 });
