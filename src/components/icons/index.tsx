@@ -2,7 +2,7 @@ import React from "react";
 
 export interface IIconProps {
   color?: string;
-  size?: string | number | (string & {}) | undefined;
+  size?: string | number | string | undefined;
   reverse?: boolean;
 }
 

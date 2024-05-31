@@ -17,8 +17,8 @@ const TIFFRenderer: DocRenderer = (props) => {
 
   useEffect(() => {
     if (!currentDocument || loadedCanvas) return;
+    const canvas = document.getElementById("tiff-img");
 
-    var canvas = document.getElementById("tiff-img");
     try {
       canvas && parseTIFF(currentDocument.fileData as ArrayBuffer, canvas);
       setLoadedCanvas(true);

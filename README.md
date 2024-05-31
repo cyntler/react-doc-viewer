@@ -3,7 +3,7 @@
 
 # @cyntler/react-doc-viewer
 
-File viewer for React.
+File viewer for **React v17+**.
 
 > This is a fork of https://github.com/Alcumus/react-doc-viewer (inactivity for a long time)
 

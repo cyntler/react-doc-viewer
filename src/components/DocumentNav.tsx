@@ -7,7 +7,7 @@ import { ButtonSecondary } from "./common/Button";
 import { NextDocIcon, PrevDocIcon } from "./icons";
 import { useTranslation } from "../hooks/useTranslation";
 
-export const DocumentNav: FC<{}> = () => {
+export const DocumentNav: FC = () => {
   const {
     state: { currentDocument, currentFileNo, documents },
     dispatch,
@@ -17,7 +17,7 @@ export const DocumentNav: FC<{}> = () => {
   if (documents.length <= 1 || !currentDocument) return null;
 
   let fileName = currentDocument.uri || "";
-  const splitURL = fileName.split("/");
+  const splitURL = fileName?.split("/");
   if (splitURL.length) {
     fileName = splitURL[splitURL.length - 1];
   }

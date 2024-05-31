@@ -9,10 +9,11 @@ const HTMLRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
     const bodyBase64 = b64String?.replace("data:text/html;base64,", "") || "";
     const body: string = window.atob(bodyBase64);
 
-    let iframeCont = document.getElementById(
+    const iframeCont = document.getElementById(
       "html-body",
     ) as HTMLIFrameElement | null;
-    let iframe = iframeCont?.contentWindow && iframeCont.contentWindow;
+
+    const iframe = iframeCont?.contentWindow && iframeCont.contentWindow;
     if (!iframe) return;
 
     const iframeDoc = iframe.document;

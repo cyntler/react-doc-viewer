@@ -105,7 +105,8 @@ export const ProxyRenderer: FC = () => {
     (node: HTMLDivElement) => {
       node && dispatch(setRendererRect(node?.getBoundingClientRect()));
     },
-    [size],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [size, dispatch],
   );
 
   const fileName = getFileName(
@@ -138,7 +139,6 @@ export const ProxyRenderer: FC = () => {
 const Container = styled.div`
   display: flex;
   flex: 1;
-  overflow-y: auto;
 `;
 
 const LoadingContainer = styled.div`

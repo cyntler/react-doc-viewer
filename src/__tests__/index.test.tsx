@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import React from "react";
 import DocViewer from "../index";
 
-import pdfFile from "../exampleFiles/pdf-file.pdf";
-import pngFile from "../exampleFiles/png-image.png";
-import epsFile from "../exampleFiles/eps-file.eps";
+import csvFile from "../exampleFiles/csv-file.csv?url";
+import pdfFile from "../exampleFiles/pdf-file.pdf?url";
+import gifFile from "../exampleFiles/gif-image.gif?url";
+import pngFile from "../exampleFiles/png-image.png?url";
 
 test("renders component with no documents", () => {
   render(<DocViewer documents={[]} />);
@@ -13,7 +13,13 @@ test("renders component with no documents", () => {
 });
 
 test("renders component with documents", () => {
-  const docs = [{ uri: pdfFile }, { uri: pngFile }];
+  const docs = [
+    { uri: pdfFile },
+    { uri: pngFile },
+    { uri: csvFile },
+    { uri: gifFile },
+  ];
+
   render(<DocViewer documents={docs} />);
 
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();
@@ -21,7 +27,7 @@ test("renders component with documents", () => {
 });
 
 test("renders component with unsupported file type", () => {
-  const docs = [{ uri: epsFile, fileType: "application/postscript" }];
+  const docs = [{ uri: "", fileType: "application/postscript" }];
   render(<DocViewer documents={docs} />);
 
   expect(screen.getByTestId("react-doc-viewer")).toBeDefined();

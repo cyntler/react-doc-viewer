@@ -4,14 +4,13 @@ import { DocViewerRenderers } from "./renderers";
 
 import pdfFile from "./exampleFiles/pdf-file.pdf";
 import pdfMultiplePagesFile from "./exampleFiles/pdf-multiple-pages-file.pdf";
-import pngFile from "./exampleFiles/png-image.png";
-import csvFile from "./exampleFiles/csv-file.csv";
-import epsFile from "./exampleFiles/eps-file.eps";
-import webpFile from "./exampleFiles/webp-file.webp";
+import pngFile from "./exampleFiles/png-image.png?url";
+import csvFile from "./exampleFiles/csv-file.csv?url";
+import epsFile from "./exampleFiles/eps-file.eps?url";
+import webpFile from "./exampleFiles/webp-file.webp?url";
 
 import { DocViewerRef, IDocument } from ".";
 
-/* eslint-disable import/no-anonymous-default-export */
 export default {
   title: "DocViewer",
 };

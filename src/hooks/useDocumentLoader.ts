@@ -31,8 +31,7 @@ export const useDocumentLoader = (): {
 
   useEffect(
     () => {
-      if (!currentDocument) return;
-      if (currentDocument.fileType !== undefined) return;
+      if (!currentDocument || currentDocument.fileType !== undefined) return;
 
       const controller = new AbortController();
       const { signal } = controller;
@@ -81,7 +80,7 @@ export const useDocumentLoader = (): {
         return;
       }
 
-      let updatedDocument = { ...currentDocument };
+      const updatedDocument = { ...currentDocument };
       if (fileReader.result !== null) {
         updatedDocument.fileData = fileReader.result;
       }
