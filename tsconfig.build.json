@@ -4,6 +4,7 @@
     "node_modules",
     "./*.ts",
     "src/**/*.test.tsx",
-    "src/**/*.stories.tsx"
+    "src/**/*.stories.tsx",
+    "./use-cases"
   ]
 }
