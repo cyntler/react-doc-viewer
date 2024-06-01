@@ -37,7 +37,7 @@
     "prettier:fix": "prettier --write .",
     "build-storybook": "storybook build",
     "deploy": "npm run build-storybook && gh-pages -d storybook-static",
-    "prerelease": "npm run prettier:check && npm run lint && npm run test && npm run build && cd use-cases/nextjs && npm i && npm run build",
+    "prerelease": "git checkout main && git pull && npm run prettier:check && npm run lint && npm run test && npm run build && cd use-cases/nextjs && npm i && npm run build",
     "release": "release-it && npm run deploy"
   },
   "dependencies": {
