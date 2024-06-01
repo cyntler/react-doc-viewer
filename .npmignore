@@ -5,6 +5,7 @@
 /public
 /src
 /storybook-static
+/use-cases
 .nvmrc
 .release-it.json
 .eslintignore
