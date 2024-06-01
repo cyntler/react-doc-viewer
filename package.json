@@ -35,8 +35,8 @@
     "lint": "eslint ./src --ext .ts,.tsx",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "build-storybook": "storybook build",
-    "deploy": "npm run build-storybook && gh-pages -d storybook-static",
+    "storybook:build": "rm -rf storybook-static && storybook build",
+    "deploy": "npm run storybook:build && gh-pages -d storybook-static",
     "prerelease": "git checkout main && git pull && npm run prettier:check && npm run lint && npm run test && npm run build && cd use-cases/nextjs && npm i && npm run build",
     "release": "release-it && npm run deploy"
   },
