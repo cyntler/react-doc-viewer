@@ -1,3 +1,4 @@
+import "core-js/proposals/promise-with-resolvers";
 import React, { CSSProperties, forwardRef, memo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { HeaderBar } from "./components/HeaderBar";
