@@ -37,12 +37,14 @@
     "prettier:fix": "prettier --write .",
     "build-storybook": "storybook build",
     "deploy": "npm run build-storybook && gh-pages -d storybook-static",
-    "release": "npm run prettier:check && npm run lint && npm run test && npm run build && release-it && npm run deploy"
+    "prerelease": "npm run prettier:check && npm run lint && npm run test && npm run build && cd use-cases/nextjs && npm i && npm run build",
+    "release": "release-it && npm run deploy"
   },
   "dependencies": {
     "@types/mustache": "^4.2.5",
     "@types/papaparse": "^5.3.14",
     "ajv": "^7.2.4",
+    "core-js": "^3.37.1",
     "mustache": "^4.2.0",
     "papaparse": "^5.4.1",
     "react-pdf": "^9.0.0",
@@ -68,7 +70,6 @@
     "@typescript-eslint/eslint-plugin": "^7.11.0",
     "@typescript-eslint/parser": "^7.11.0",
     "babel-loader": "^9.1.3",
-    "core-js": "^3.37.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
