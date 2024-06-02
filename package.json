@@ -36,7 +36,7 @@
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "storybook:build": "rm -rf storybook-static && storybook build",
-    "deploy": "npm run storybook:build && gh-pages --nojekyll -d storybook-static",
+    "deploy": "npm run storybook:build && gh-pages --nojekyll -d storybook-static --message 'feat: storybook deploy'",
     "prerelease": "git checkout main && git pull && npm run prettier:check && npm run lint && npm run test && npm run build && cd use-cases/nextjs && npm i && npm run build",
     "release": "release-it && npm run deploy"
   },
