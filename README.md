@@ -5,12 +5,44 @@
 
 File viewer for **React v17+**.
 
-> This is a fork of https://github.com/Alcumus/react-doc-viewer (inactivity for a long time)
+> This is a fork of https://github.com/Alcumus/react-doc-viewer (inactivity for a long time).
 
 ## Important note!
 
 > [!WARNING]
 > This library uses the official MS Office online document viewing service. This means it works on an iframe basis and only supports public file URLs! Therefore, it may not be compatible with all projects. Currently, there is no way to natively render MS Office documents in the browser.
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
+
+- [Supported file types](#supported-file-types)
+- [Storybook Demo](#storybook-demo)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Basic](#basic)
+  - [Initial Active Document](#initial-active-document)
+  - [Control over the displayed document](#control-over-the-displayed-document)
+  - [Displaying blob/uploaded documents](#displaying-blobuploaded-documents)
+  - [Included Renderers](#included-renderers)
+  - [Custom Renderer](#custom-renderer)
+  - [Custom File Loader](#custom-file-loader)
+- [Theme](#theme)
+- [Custom pre-fetch HTTP Verb](#custom-pre-fetch-http-verb)
+- [Custom Request Headers](#custom-request-headers)
+- [Internationalization (i18n)](#internationalization-i18n)
+- [Styling](#styling)
+  - [CSS Class](#css-class)
+  - [CSS Class Default Override](#css-class-default-override)
+  - [React Inline](#react-inline)
+  - [Styled Components](#styled-components)
+- [Using DocViewerRef](#using-docviewerref)
+- [Config](#config)
+  - [Overriding Header Component](#overriding-header-component)
+  - [Overriding Loading Renderer](#overriding-loading-renderer)
+  - [Overriding No Renderer (Error)](#overriding-no-renderer-error)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Supported file types
 
@@ -295,13 +327,13 @@ The translations are based on the `.json` files that can be found in the `src/lo
 
 Any styling applied to the `<DocViewer>` component, is directly applied to the main `div` container.
 
-#### CSS Class
+### CSS Class
 
 ```xml
 <DocViewer documents={docs} className="my-doc-viewer-style" />
 ```
 
-#### CSS Class Default Override
+### CSS Class Default Override
 
 Each component / div already has a DOM id that can be used to style any part of the document viewer.
 
@@ -311,13 +343,13 @@ Each component / div already has a DOM id that can be used to style any part of 
 }
 ```
 
-#### React Inline
+### React Inline
 
 ```xml
 <DocViewer documents={docs} style={{ width: 500, height: 500 }} />
 ```
 
-#### Styled Components
+### Styled Components
 
 ```tsx
 import styled from "styled-components";
