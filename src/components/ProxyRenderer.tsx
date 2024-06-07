@@ -1,4 +1,6 @@
-import React, { FC, useCallback } from "react";
+"use client";
+
+import { FC, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
 import { setRendererRect } from "../store/actions";
 import { DocRenderer, IConfig, IDocument, IStyledProps } from "../models";

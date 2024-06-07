@@ -18,19 +18,19 @@
   "files": [
     "dist/**"
   ],
-  "types": "./dist/esm/index.d.ts",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/react-doc-viewer.cjs",
+  "module": "./dist/react-doc-viewer.js",
   "exports": {
-    "require": "./dist/cjs/index.js",
-    "import": "./dist/esm/index.js"
+    ".": {
+      "require": "./dist/react-doc-viewer.cjs",
+      "import": "./dist/react-doc-viewer.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "scripts": {
     "start": "storybook dev -p 6006",
-    "build": "rm -rf dist && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc --project tsconfig.build.json",
-    "build:cjs": "tsc --project tsconfig.build.json --module commonjs --moduleResolution node --verbatimModuleSyntax false --outDir ./dist/cjs",
-    "postbuild:cjs": "echo '{\n  \"type\": \"commonjs\"\n}' > dist/cjs/package.json",
+    "build": "rm -rf dist && tsc && vite build",
     "test": "vitest run",
     "lint": "eslint ./src --ext .ts,.tsx",
     "prettier:check": "prettier --check .",
@@ -85,6 +85,8 @@
     "release-it": "^17.3.0",
     "storybook": "^8.1.5",
     "typescript": "^5.4.5",
+    "vite": "^5.2.12",
+    "vite-plugin-dts": "^3.9.1",
     "vitest": "^1.6.0",
     "vitest-fetch-mock": "^0.2.2",
     "webpack": "^5.91.0"

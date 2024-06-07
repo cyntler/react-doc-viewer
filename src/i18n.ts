@@ -29,4 +29,5 @@ export const locales = {
 };
 
 export type AvailableLanguages = keyof typeof locales;
+
 export const defaultLanguage: AvailableLanguages = "en";

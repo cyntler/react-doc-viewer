@@ -1,5 +1,5 @@
 "use client";
-import DocViewer, { IDocument } from "@cyntler/react-doc-viewer";
+import DocViewer, { IDocument } from "../../../../";
 
 import gifFile from "../../../../src/exampleFiles/gif-image.gif";
 import pngFile from "../../../../src/exampleFiles/png-image.png";
