@@ -428,6 +428,11 @@ You can provide a config object, which configures parts of the component as requ
       zoomJump: 0.2, // 0.1 as default,
     },
     pdfVerticalScrollByDefault: true, // false as default
+
+    // only applicable for pdf
+    getPdfData: ({ currentPage, totalPages }) => {
+      console.log("pdf data", totalPages, currentPage);
+    },
   }}
 />
 ```

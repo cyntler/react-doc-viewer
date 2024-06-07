@@ -2,6 +2,11 @@ import { FC, ReactElement, ComponentType, PropsWithChildren } from "react";
 import { IMainState } from "./store/mainStateReducer";
 import { FileLoaderFunction } from "./utils/fileLoaders";
 
+export interface IpdfDataProps {
+  currentPage: number;
+  totalPages: number;
+}
+
 export interface IConfig {
   header?: IHeaderConfig;
   loadingRenderer?: ILoadingRendererConfig;
@@ -9,6 +14,7 @@ export interface IConfig {
   csvDelimiter?: string;
   pdfZoom?: IPdfZoomConfig;
   pdfVerticalScrollByDefault?: boolean;
+  getPdfData?: (props: IpdfDataProps) => void | null | undefined;
 }
 
 export interface ILoadingRendererConfig {
