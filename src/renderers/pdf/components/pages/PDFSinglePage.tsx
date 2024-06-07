@@ -17,10 +17,10 @@ const PDFSinglePage: FC<Props> = ({ pageNum }) => {
 
   const rendererRect = mainState?.rendererRect || null;
 
-  const _pageNum = pageNum || currentPage;
+  const _pageNum = pageNum ?? currentPage;
 
   return (
-    <PageWrapper id="pdf-page-wrapper" last={_pageNum >= numPages}>
+    <PageWrapper id="pdf-page-wrapper" $lastPage={_pageNum >= numPages}>
       {!paginated && (
         <PageTag id="pdf-page-info">
           {t("pdfPluginPageNumber", {
@@ -32,8 +32,8 @@ const PDFSinglePage: FC<Props> = ({ pageNum }) => {
       <Page
         pageNumber={_pageNum || currentPage}
         scale={zoomLevel}
-        height={(rendererRect?.height || 100) - 100}
-        width={(rendererRect?.width || 100) - 100}
+        height={(rendererRect?.height ?? 100) - 100}
+        width={(rendererRect?.width ?? 100) - 100}
         loading={t("pdfPluginLoading")}
       />
     </PageWrapper>
@@ -43,11 +43,11 @@ const PDFSinglePage: FC<Props> = ({ pageNum }) => {
 export default PDFSinglePage;
 
 interface PageWrapperProps {
-  last?: boolean;
+  $lastPage: boolean;
 }
 
 const PageWrapper = styled.div<PageWrapperProps>`
-  margin: 20px 0;
+  margin: ${(props) => (props.$lastPage ? "20px 0" : undefined)};
 `;
 
 const PageTag = styled.div`
