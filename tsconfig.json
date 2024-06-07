@@ -1,19 +1,13 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/esm",
-    "target": "ES6",
-    "module": "es2020",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "declaration": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "noEmit": false,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
     "types": ["vitest/globals"]
-  }
+  },
+  "exclude": ["node_modules", "use-cases"]
 }

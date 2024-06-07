@@ -1,4 +1,6 @@
-import React, { FC, useContext } from "react";
+"use client";
+
+import { FC, useContext } from "react";
 import styled from "styled-components";
 import { DocViewerContext } from "../store/DocViewerProvider";
 import { nextDocument, previousDocument } from "../store/actions";
