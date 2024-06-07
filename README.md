@@ -87,6 +87,14 @@ Use one of the package managers for Node.js.
 
 > **Warning:** _By default the component height will expand and contract to the current loaded file. The width will expand to fill the parent._
 
+### Required styles
+
+The library exports a CSS file containing classes needed for correct rendering of e.g. PDF files. It is best to include it at the beginning of the application or in the place where you use this library.
+
+```tsx
+import "@cyntler/react-doc-viewer/dist/index.css";
+```
+
 ### Basic
 
 DocViewer requires at least an array of document objects to function.
@@ -94,6 +102,7 @@ Each document object must have a uri to a file, either a url that returns a file
 
 ```tsx
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
 
 function App() {
   const docs = [
@@ -111,6 +120,7 @@ By default, the first item in your `documents` array will be displayed after the
 
 ```tsx
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
 
 const App = () => {
   const docs = [
@@ -194,6 +204,7 @@ To use the included renderers.
 
 ```tsx
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
 
 <DocViewer
   pluginRenderers={DocViewerRenderers}
@@ -205,6 +216,7 @@ Or you can import individual renderers.
 
 ```tsx
 import DocViewer, { PDFRenderer, PNGRenderer } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
 
 <DocViewer
   pluginRenderers={[PDFRenderer, PNGRenderer]}
@@ -240,6 +252,7 @@ And supply it to `pluginRenderers` inside an `Array`.
 
 ```tsx
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
 
 <DocViewer
   pluginRenderers={[MyCustomPNGRenderer]}
