@@ -20,6 +20,7 @@ File viewer for **React v17+**.
 - [Storybook Demo](#storybook-demo)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Required styles](#required-styles)
   - [Basic](#basic)
   - [Initial Active Document](#initial-active-document)
   - [Control over the displayed document](#control-over-the-displayed-document)
