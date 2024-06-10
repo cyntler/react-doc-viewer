@@ -117,11 +117,7 @@ export const ProxyRenderer: FC = () => {
   );
 
   return (
-    <Container
-      id="proxy-renderer"
-      data-testid="proxy-renderer"
-      ref={containerRef}
-    >
+    <div id="proxy-renderer" data-testid="proxy-renderer" ref={containerRef}>
       <Contents
         {...{
           state,
@@ -134,14 +130,9 @@ export const ProxyRenderer: FC = () => {
           t,
         }}
       />
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex: 1;
-`;
 
 const LoadingContainer = styled.div`
   display: flex;
