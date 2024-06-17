@@ -6,7 +6,8 @@ import { dataURLFileLoader } from "../../utils/fileLoaders";
 const HTMLRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
   useEffect(() => {
     const b64String = currentDocument?.fileData as string;
-    const bodyBase64 = b64String?.replace("data:text/html;base64,", "") || "";
+    const bodyBase64 =
+      b64String?.replace(/^data:text\/html;([^;]*?;)?base64,/, "") || "";
     const body: string = window.atob(bodyBase64);
 
     const iframeCont = document.getElementById(
