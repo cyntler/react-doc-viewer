@@ -28,6 +28,8 @@ export const locales = {
   se,
 };
 
+export const supportedLanguages = Object.keys(locales);
+
 export type AvailableLanguages = keyof typeof locales;
 
 export const defaultLanguage: AvailableLanguages = "en";
