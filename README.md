@@ -47,28 +47,28 @@ File viewer for **React v17+**.
 
 ## Supported file types
 
-| Extension | MIME Type                                                                 |
-| --------- | ------------------------------------------------------------------------- |
-| bmp       | image/bmp                                                                 |
-| csv       | text/csv                                                                  |
-| odt       | application/vnd.oasis.opendocument.text                                   |
-| doc       | application/msword                                                        |
-| docx      | application/vnd.openxmlformats-officedocument.wordprocessingml.document   |
-| gif       | image/gif                                                                 |
-| htm       | text/htm                                                                  |
-| html      | text/html                                                                 |
-| jpg       | image/jpg                                                                 |
-| jpeg      | image/jpeg                                                                |
-| pdf       | application/pdf                                                           |
-| png       | image/png                                                                 |
-| ppt       | application/vnd.ms-powerpoint                                             |
-| pptx      | application/vnd.openxmlformats-officedocument.presentationml.presentation |
-| tiff      | image/tiff                                                                |
-| txt       | text/plain                                                                |
-| xls       | application/vnd.ms-excel                                                  |
-| xlsx      | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet         |
-| mp4       | video/mp4                                                                 |
-| webp      | image/webp                                                                |
+| Extension | MIME Type                                                                 | Comments |
+| --------- | ------------------------------------------------------------------------- | ------------- |
+| bmp       | image/bmp                                                                 | |
+| csv       | text/csv                                                                  | |
+| odt       | application/vnd.oasis.opendocument.text                                   | |
+| doc       | application/msword                                                        | Public URLs only! |
+| docx      | application/vnd.openxmlformats-officedocument.wordprocessingml.document   | Public URLs only! |
+| gif       | image/gif                                                                 | |
+| htm       | text/htm                                                                  | |
+| html      | text/html                                                                 | |
+| jpg       | image/jpg                                                                 | |
+| jpeg      | image/jpeg                                                                | |
+| pdf       | application/pdf                                                           | |
+| png       | image/png                                                                 | |
+| ppt       | application/vnd.ms-powerpoint                                             | Public URLs only! |
+| pptx      | application/vnd.openxmlformats-officedocument.presentationml.presentation | Public URLs only! |
+| tiff      | image/tiff                                                                | |
+| txt       | text/plain                                                                | |
+| xls       | application/vnd.ms-excel                                                  | Public URLs only! |
+| xlsx      | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet         | Public URLs only! |
+| mp4       | video/mp4                                                                 | |
+| webp      | image/webp                                                                | |
 
 ## Storybook Demo
 
