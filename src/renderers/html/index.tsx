@@ -6,8 +6,24 @@ import { dataURLFileLoader } from "../../utils/fileLoaders";
 const HTMLRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
   useEffect(() => {
     const b64String = currentDocument?.fileData as string;
-    const bodyBase64 = b64String?.replace("data:text/html;base64,", "") || "";
-    const body: string = window.atob(bodyBase64);
+
+    let encoding = "";
+    const bodyBase64 =
+      b64String?.replace(
+        /^data:text\/html;(?:charset=([^;]*);)?base64,/,
+        (_, charset) => {
+          encoding = charset;
+          return "";
+        },
+      ) || "";
+    let body: string = window.atob(bodyBase64);
+
+    if (encoding) {
+      // decode charset
+      const buffer = new Uint8Array(body.length);
+      for (let i = 0; i < body.length; i++) buffer[i] = body.charCodeAt(i);
+      body = new TextDecoder(encoding).decode(buffer);
+    }
 
     const iframeCont = document.getElementById(
       "html-body",
