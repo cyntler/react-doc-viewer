@@ -130,5 +130,6 @@ export declare const locales: {
         pdfPluginPageNumber: string;
     };
 };
+export declare const supportedLanguages: string[];
 export type AvailableLanguages = keyof typeof locales;
 export declare const defaultLanguage: AvailableLanguages;
