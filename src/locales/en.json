@@ -6,5 +6,8 @@
   "msgPluginRecipients": "Recipients",
   "msgPluginSender": "Sender",
   "pdfPluginLoading": "Loading...",
-  "pdfPluginPageNumber": "Page {{ currentPage }}/{{ allPagesCount }}"
+  "pdfPluginPageNumber": "Page {{ currentPage }}/{{ allPagesCount }}",
+  "pdfZoomInLabel": "Zoom in",
+  "pdfZoomOutLabel": "Zoom out",
+  "pdfZoomResetLabel": "Reset to default zoom level"
 }

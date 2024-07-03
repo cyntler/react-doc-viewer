@@ -6,5 +6,8 @@
   "msgPluginRecipients": "المستلمين",
   "msgPluginSender": "المرسل",
   "pdfPluginLoading": "تحميل ...",
-  "pdfPluginPageNumber": " {{ allPagesCount }} \\ {{ currentPage }} صفحة "
+  "pdfPluginPageNumber": " {{ allPagesCount }} \\ {{ currentPage }} صفحة ",
+  "pdfZoomInLabel": "تكبير",
+  "pdfZoomOutLabel": "تصغير",
+  "pdfZoomResetLabel": "إعادة الضبط على مستوى التكبير أو التصغير التلقائي"
 }

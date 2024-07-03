@@ -47,6 +47,7 @@ const PDFControls: FC = () => {
 
       <ControlButton
         id="pdf-zoom-out"
+        title={t("pdfZoomOutLabel")}
         onMouseDown={() => dispatch(setZoomLevel(zoomLevel - zoomJump))}
       >
         <ZoomOutPDFIcon color="#000" size="80%" />
@@ -54,6 +55,7 @@ const PDFControls: FC = () => {
 
       <ControlButton
         id="pdf-zoom-in"
+        title={t("pdfZoomInLabel")}
         onMouseDown={() => dispatch(setZoomLevel(zoomLevel + zoomJump))}
       >
         <ZoomInPDFIcon color="#000" size="80%" />
@@ -61,6 +63,7 @@ const PDFControls: FC = () => {
 
       <ControlButton
         id="pdf-zoom-reset"
+        title={t("pdfZoomResetLabel")}
         onMouseDown={() => dispatch(setZoomLevel(defaultZoomLevel))}
         disabled={zoomLevel === defaultZoomLevel}
       >

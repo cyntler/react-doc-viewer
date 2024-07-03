@@ -6,5 +6,8 @@
   "msgPluginRecipients": "Получатели",
   "msgPluginSender": "Отправитель",
   "pdfPluginLoading": "Загрузка...",
-  "pdfPluginPageNumber": "Страница {{ currentPage }}/{{ allPagesCount }}"
+  "pdfPluginPageNumber": "Страница {{ currentPage }}/{{ allPagesCount }}",
+  "pdfZoomInLabel": "Увеличить",
+  "pdfZoomOutLabel": "Уменьшить",
+  "pdfZoomResetLabel": "Восстановить масштаб по умолчанию"
 }

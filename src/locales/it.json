@@ -6,5 +6,8 @@
   "msgPluginRecipients": "Destinatari",
   "msgPluginSender": "Mittente",
   "pdfPluginLoading": "Caricamento in corso...",
-  "pdfPluginPageNumber": "Pagina {{ currentPage }}/{{ allPagesCount }}"
+  "pdfPluginPageNumber": "Pagina {{ currentPage }}/{{ allPagesCount }}",
+  "pdfZoomInLabel": "Ingrandisci",
+  "pdfZoomOutLabel": "Riduci",
+  "pdfZoomResetLabel": "Ripristina il livello di zoom predefinito"
 }

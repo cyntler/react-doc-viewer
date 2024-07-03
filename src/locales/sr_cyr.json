@@ -6,5 +6,8 @@
   "msgPluginRecipients": "Примаоци",
   "msgPluginSender": "Пошиљалац",
   "pdfPluginLoading": "Учитавање...",
-  "pdfPluginPageNumber": "Страна {{ currentPage }}/{{ allPagesCount }}"
+  "pdfPluginPageNumber": "Страна {{ currentPage }}/{{ allPagesCount }}",
+  "pdfZoomInLabel": "Увећај",
+  "pdfZoomOutLabel": "Умањи",
+  "pdfZoomResetLabel": "Ресетуј на подразумевани ниво зумирања"
 }
