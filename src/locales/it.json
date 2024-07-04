@@ -9,5 +9,7 @@
   "pdfPluginPageNumber": "Pagina {{ currentPage }}/{{ allPagesCount }}",
   "pdfZoomInLabel": "Ingrandisci",
   "pdfZoomOutLabel": "Riduci",
-  "pdfZoomResetLabel": "Ripristina il livello di zoom predefinito"
+  "pdfZoomResetLabel": "Ripristina il livello di zoom predefinito",
+  "pdfNextPageLabel": "Pagina successiva",
+  "pdfPreviousPageLabel": "Pagina precedente"
 }

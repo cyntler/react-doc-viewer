@@ -9,5 +9,7 @@
   "pdfPluginPageNumber": "Sida {{ currentPage }}/{{ allPagesCount }}",
   "pdfZoomInLabel": "Zooma in",
   "pdfZoomOutLabel": "Zooma out",
-  "pdfZoomResetLabel": "Återställ standardzoomnivån"
+  "pdfZoomResetLabel": "Återställ standardzoomnivån",
+  "pdfNextPageLabel": "Nästa sida",
+  "pdfPreviousPageLabel": "Föregående sida"
 }

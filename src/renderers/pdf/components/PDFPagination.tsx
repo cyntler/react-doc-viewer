@@ -18,6 +18,7 @@ const PDFPagination: FC = () => {
     <Container id="pdf-pagination">
       <PageNavButtonLeft
         id="pdf-pagination-prev"
+        title={t("pdfPreviousPageLabel")}
         onClick={() => dispatch(setCurrentPage(currentPage - 1))}
         disabled={currentPage === 1}
       >
@@ -33,6 +34,7 @@ const PDFPagination: FC = () => {
 
       <PageNavButtonRight
         id="pdf-pagination-next"
+        title={t("pdfNextPageLabel")}
         onClick={() => dispatch(setCurrentPage(currentPage + 1))}
         disabled={currentPage >= numPages}
       >

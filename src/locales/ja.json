@@ -9,5 +9,7 @@
   "pdfPluginPageNumber": "ページ {{ currentPage }}/{{ allPagesCount }}",
   "pdfZoomInLabel": "拡大",
   "pdfZoomOutLabel": "縮小",
-  "pdfZoomResetLabel": "リセットしてデフォルトのズームレベルに戻す"
+  "pdfZoomResetLabel": "リセットしてデフォルトのズームレベルに戻す",
+  "pdfNextPageLabel": "次のページ",
+  "pdfPreviousPageLabel": "前のページ"
 }

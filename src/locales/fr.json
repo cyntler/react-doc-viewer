@@ -9,5 +9,7 @@
   "pdfPluginPageNumber": "Page {{ currentPage }}/{{ allPagesCount }}",
   "pdfZoomInLabel": "Zoom avant",
   "pdfZoomOutLabel": "Zoom arrière",
-  "pdfZoomResetLabel": "Réinitialiser le niveau de zoom par défaut"
+  "pdfZoomResetLabel": "Réinitialiser le niveau de zoom par défaut",
+  "pdfNextPageLabel": "Page suivante",
+  "pdfPreviousPageLabel": "Page précédente"
 }

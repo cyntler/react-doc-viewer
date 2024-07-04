@@ -9,5 +9,7 @@
   "pdfPluginPageNumber": "Страна {{ currentPage }}/{{ allPagesCount }}",
   "pdfZoomInLabel": "Увећај",
   "pdfZoomOutLabel": "Умањи",
-  "pdfZoomResetLabel": "Ресетуј на подразумевани ниво зумирања"
+  "pdfZoomResetLabel": "Ресетуј на подразумевани ниво зумирања",
+  "pdfNextPageLabel": "Следећа страница",
+  "pdfPreviousPageLabel": "Претходна страница"
 }
