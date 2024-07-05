@@ -91,6 +91,7 @@
     "typescript": "^5.4.5",
     "vite": "^5.2.12",
     "vite-plugin-dts": "^3.9.1",
+    "vite-plugin-node-polyfills": "^0.22.0",
     "vitest": "^1.6.0",
     "vitest-fetch-mock": "^0.2.2",
     "webpack": "^5.91.0"
