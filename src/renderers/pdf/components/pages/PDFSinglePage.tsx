@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react";
-import { Document, Page } from "react-pdf";
+import { Page } from "react-pdf";
 import styled from "styled-components";
 import { IStyledProps } from "../../../..";
 import { useTranslation } from "../../../../hooks/useTranslation";
