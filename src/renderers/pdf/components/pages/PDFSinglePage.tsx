@@ -1,9 +1,14 @@
 import React, { FC, useContext } from "react";
-import { Page } from "react-pdf";
+import { Document, Page } from "react-pdf";
 import styled from "styled-components";
 import { IStyledProps } from "../../../..";
 import { useTranslation } from "../../../../hooks/useTranslation";
 import { PDFContext } from "../../state";
+import { pdfjs } from "react-pdf";
+
+const options = {
+  cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
+};
 
 interface Props {
   pageNum?: number;
