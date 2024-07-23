@@ -45,6 +45,7 @@ const DocViewerProvider = forwardRef<
     language,
     activeDocument,
     onDocumentChange,
+    onFetchError,
   } = props;
 
   const [state, dispatch] = useReducer<MainStateReducer>(mainStateReducer, {
@@ -66,6 +67,7 @@ const DocViewerProvider = forwardRef<
     language: language && locales[language] ? language : defaultLanguage,
     activeDocument,
     onDocumentChange,
+    onFetchError,
   });
 
   useEffect(() => {
