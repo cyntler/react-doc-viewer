@@ -1,3 +1,5 @@
+import { IMainState } from "../../../store/mainStateReducer";
+
 export const SET_ZOOM_LEVEL: string = "SET_ZOOM_LEVEL";
 
 export interface SetZoomLevel {
@@ -40,6 +42,13 @@ export interface SetCurrentPage {
   value: number;
 }
 
+export const SET_CURRENT_MAIN_STATE: string = "SET_CURRENT_MAIN_STATE";
+
+export interface SetCurrentMainState {
+  type: typeof SET_CURRENT_MAIN_STATE;
+  value: IMainState;
+}
+
 export const setCurrentPage = (value: number): SetCurrentPage => ({
   type: SET_CURRENT_PAGE,
   value,
@@ -49,4 +58,5 @@ export type PDFActions =
   | SetZoomLevel
   | SetPDFPaginated
   | SetNumPages
-  | SetCurrentPage;
+  | SetCurrentPage
+  | SetCurrentMainState;

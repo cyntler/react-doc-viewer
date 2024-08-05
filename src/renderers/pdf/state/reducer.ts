@@ -9,6 +9,8 @@ import {
   SET_NUM_PAGES,
   SET_PDF_PAGINATED,
   SET_ZOOM_LEVEL,
+  SET_CURRENT_MAIN_STATE,
+  SetCurrentMainState,
 } from "./actions";
 
 export type IPDFState = {
@@ -59,6 +61,11 @@ export const reducer: PDFStateReducer = (
     case SET_CURRENT_PAGE: {
       const { value } = action as SetCurrentPage;
       return { ...state, currentPage: value };
+    }
+
+    case SET_CURRENT_MAIN_STATE: {
+      const { value } = action as SetCurrentMainState;
+      return { ...state, mainState: value };
     }
 
     default:
