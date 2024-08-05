@@ -3,10 +3,11 @@ import React, {
   Dispatch,
   FC,
   PropsWithChildren,
+  useEffect,
   useReducer,
 } from "react";
 import { IMainState } from "../../../store/mainStateReducer";
-import { PDFActions } from "./actions";
+import { PDFActions, SET_CURRENT_MAIN_STATE } from "./actions";
 import {
   initialPDFState,
   IPDFState,
@@ -36,6 +37,13 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
       : initialPDFState.paginated,
     mainState,
   });
+
+  useEffect(() => {
+    dispatch({
+      type: SET_CURRENT_MAIN_STATE,
+      value: mainState,
+    });
+  }, [mainState]);
 
   return (
     <PDFContext.Provider value={{ state, dispatch }}>
