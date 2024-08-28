@@ -7,6 +7,7 @@
     "skipLibCheck": true,
     "noEmit": true,
     "resolveJsonModule": true,
+    "module": "Preserve",
     "types": ["vitest/globals"]
   },
   "exclude": ["node_modules", "use-cases"]
