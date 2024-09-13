@@ -2,12 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { DocRenderer } from "../..";
 
-const ImageProxyRenderer: DocRenderer = (props) => {
-  const {
-    mainState: { currentDocument },
-    children,
-  } = props;
-
+const ImageProxyRenderer: DocRenderer = ({
+  mainState: { currentDocument },
+  children,
+  ...props
+}) => {
   if (!currentDocument) return null;
 
   return (
