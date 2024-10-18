@@ -28,6 +28,7 @@ export interface DocViewerProps {
   language?: AvailableLanguages;
   activeDocument?: IDocument;
   onDocumentChange?: (document: IDocument) => void;
+  onFetchError?: (error: Error) => void;
 }
 
 const DocViewer = forwardRef<DocViewerRef, DocViewerProps>((props, ref) => {
