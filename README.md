@@ -1,6 +1,12 @@
 [![npm-version](https://img.shields.io/npm/v/@cyntler/react-doc-viewer.svg)](https://www.npmjs.com/package/@cyntler/react-doc-viewer)
 [![npm-download](https://img.shields.io/npm/dt/@cyntler/react-doc-viewer.svg)](https://www.npmjs.com/package/@cyntler/react-doc-viewer)
 
+## I am stopping work on this library
+
+> [!WARNING]
+**Due to lack of free time to develop this library, I am stopping work on this library.<br>
+> It will not be developed in the near future.**
+
 # @cyntler/react-doc-viewer
 
 File viewer for **React v17+**.
@@ -9,7 +15,7 @@ File viewer for **React v17+**.
 
 ## Important note!
 
-> [!WARNING]
+> [!IMPORTANT]
 > This library uses the official MS Office online document viewing service. This means it works on an iframe basis and only supports public file URLs! Therefore, it may not be compatible with all projects. Currently, there is no way to natively render MS Office documents in the browser.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
