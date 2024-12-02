@@ -23,7 +23,7 @@ export const useDocumentLoader = (): {
   CurrentRenderer: DocRenderer | null | undefined;
 } => {
   const { state, dispatch } = useContext(DocViewerContext);
-  const { currentFileNo, currentDocument, prefetchMethod } = state;
+  const { currentFileNo, currentDocument, prefetchMethod, onFetchError } = state;
 
   const { CurrentRenderer } = useRendererSelector();
 
@@ -56,7 +56,11 @@ export const useDocumentLoader = (): {
         })
         .catch((error) => {
           if (error?.name !== "AbortError") {
-            throw error;
+            if (onFetchError) {
+              onFetchError(error);
+            } else {
+              throw error;
+            }
           }
         });
 
