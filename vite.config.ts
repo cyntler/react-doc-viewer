@@ -1,7 +1,16 @@
-import { defineConfig } from "vitest/config";
+import path from 'node:path';
+import { createRequire } from 'node:module';
+
+import { defineConfig, normalizePath } from 'vite';
 import dsv from "@rollup/plugin-dsv";
 import dts from "vite-plugin-dts";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+
+const require = createRequire(import.meta.url);
+
+const pdfjsDistPath = path.dirname(require.resolve('pdfjs-dist/package.json'));
+const cMapsDir = normalizePath(path.join(pdfjsDistPath, 'cmaps'));
 
 export default defineConfig({
   plugins: [
@@ -10,6 +19,14 @@ export default defineConfig({
     }),
     dsv(),
     nodePolyfills(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: cMapsDir,
+          dest: '',
+        },
+      ],
+    }),
   ],
   build: {
     lib: {
