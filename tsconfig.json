@@ -7,7 +7,9 @@
     "skipLibCheck": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "types": ["vitest/globals"]
+    "moduleResolution": "node",
+    "types": ["vitest/globals"],
+    "module": "esnext"
   },
   "exclude": ["node_modules", "use-cases"]
 }

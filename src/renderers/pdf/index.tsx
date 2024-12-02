@@ -7,7 +7,8 @@ import { PDFProvider } from "./state";
 import { pdfjs } from "react-pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`,
+  `pdf.worker.mjs`,
+  import.meta.url,
 ).toString();
 
 const PDFRenderer: DocRenderer = ({ mainState }) => {
