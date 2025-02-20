@@ -8,22 +8,18 @@ const HTMLRenderer: DocRenderer = ({ mainState: { currentDocument } }) => {
     const b64String = currentDocument?.fileData as string;
 
     let encoding = "";
-    const bodyBase64 =
-      b64String?.replace(
-        /^data:text\/html;(?:charset=([^;]*);)?base64,/,
-        (_, charset) => {
-          encoding = charset;
-          return "";
-        },
-      ) || "";
+    const bodyBase64 = b64String?.replace(
+      /^data:text\/html;(?:charset=([^;]*);)?base64,/,
+      (_, charset) => {
+        encoding = charset || "utf-8";
+        return "";
+      },
+    );
     let body: string = window.atob(bodyBase64);
 
-    if (encoding) {
-      // decode charset
-      const buffer = new Uint8Array(body.length);
-      for (let i = 0; i < body.length; i++) buffer[i] = body.charCodeAt(i);
-      body = new TextDecoder(encoding).decode(buffer);
-    }
+    // decode charset
+    const buffer = Uint8Array.from(body, (c) => c.charCodeAt(0));
+    body = new TextDecoder(encoding).decode(buffer);
 
     const iframeCont = document.getElementById(
       "html-body",
