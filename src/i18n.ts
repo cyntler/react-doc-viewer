@@ -11,6 +11,7 @@ import sr_cyr from "./locales/sr_cyr.json";
 import ja from "./locales/ja.json";
 import ru from "./locales/ru.json";
 import se from "./locales/se.json";
+import tr from "./locales/tr.json";
 
 export const locales = {
   en,
@@ -26,6 +27,7 @@ export const locales = {
   ja,
   ru,
   se,
+  tr,
 };
 
 export const supportedLanguages = Object.keys(locales);
