@@ -129,6 +129,16 @@ export declare const locales: {
         pdfPluginLoading: string;
         pdfPluginPageNumber: string;
     };
+    tr: {
+        documentNavInfo: string;
+        noRendererMessage: string;
+        downloadButtonLabel: string;
+        brokenFile: string;
+        msgPluginRecipients: string;
+        msgPluginSender: string;
+        pdfPluginLoading: string;
+        pdfPluginPageNumber: string;
+    };
 };
 export declare const supportedLanguages: string[];
 export type AvailableLanguages = keyof typeof locales;
