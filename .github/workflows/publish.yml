@@ -2,8 +2,8 @@ name: Publish Package to Azure Artifacts
 
 on:
   push:
-    tags:
-      - "*.*.*" # publish when you push a version tag like 1.0.0
+    branches:
+      - main # only run when commits land in main (direct push or PR merge)
 
 jobs:
   publish:
