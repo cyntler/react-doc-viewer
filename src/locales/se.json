@@ -6,5 +6,10 @@
   "msgPluginRecipients": "Mottagare",
   "msgPluginSender": "Avsändare",
   "pdfPluginLoading": "Laddar...",
-  "pdfPluginPageNumber": "Sida {{ currentPage }}/{{ allPagesCount }}"
+  "pdfPluginPageNumber": "Sida {{ currentPage }}/{{ allPagesCount }}",
+  "pdfZoomInLabel": "Zooma in",
+  "pdfZoomOutLabel": "Zooma out",
+  "pdfZoomResetLabel": "Återställ standardzoomnivån",
+  "pdfNextPageLabel": "Nästa sida",
+  "pdfPreviousPageLabel": "Föregående sida"
 }

@@ -6,5 +6,10 @@
   "msgPluginRecipients": "受信者",
   "msgPluginSender": "送信者",
   "pdfPluginLoading": "ローティング中...",
-  "pdfPluginPageNumber": "ページ {{ currentPage }}/{{ allPagesCount }}"
+  "pdfPluginPageNumber": "ページ {{ currentPage }}/{{ allPagesCount }}",
+  "pdfZoomInLabel": "拡大",
+  "pdfZoomOutLabel": "縮小",
+  "pdfZoomResetLabel": "リセットしてデフォルトのズームレベルに戻す",
+  "pdfNextPageLabel": "次のページ",
+  "pdfPreviousPageLabel": "前のページ"
 }

@@ -6,5 +6,10 @@
   "msgPluginRecipients": "Odbiorcy",
   "msgPluginSender": "Nadawca",
   "pdfPluginLoading": "Wczytywanie...",
-  "pdfPluginPageNumber": "Strona {{ currentPage }}/{{ allPagesCount }}"
+  "pdfPluginPageNumber": "Strona {{ currentPage }}/{{ allPagesCount }}",
+  "pdfZoomInLabel": "Powiększ",
+  "pdfZoomOutLabel": "Pomniejsz",
+  "pdfZoomResetLabel": "Przywróć domyślny poziom powiększeni",
+  "pdfNextPageLabel": "Następna strona",
+  "pdfPreviousPageLabel": "Poprzednia strona"
 }

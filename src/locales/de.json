@@ -6,5 +6,10 @@
   "msgPluginRecipients": "Empfänger",
   "msgPluginSender": "Absender",
   "pdfPluginLoading": "Wird geladen...",
-  "pdfPluginPageNumber": "Seite {{ currentPage }}/{{ allPagesCount }}"
+  "pdfPluginPageNumber": "Seite {{ currentPage }}/{{ allPagesCount }}",
+  "pdfZoomInLabel": "Vergrößern",
+  "pdfZoomOutLabel": "Verkleinern",
+  "pdfZoomResetLabel": "Auf Standard-Zoomstufe zurücksetzen",
+  "pdfNextPageLabel": "Nächste Seite",
+  "pdfPreviousPageLabel": "Vorherige Seite"
 }
