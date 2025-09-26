@@ -1,0 +1,31 @@
+name: Publish Package to Azure Artifacts
+
+on:
+  push:
+    tags:
+      - "*.*.*" # publish when you push a version tag like 1.0.0
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: "https://pkgs.dev.azure.com/${{ secrets.AZURE_ORG }}/${{ secrets.AZURE_PROJECT }}/_packaging/${{ secrets.AZURE_FEED }}/npm/registry/"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Publish to Azure Artifacts
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.AZURE_NPM_TOKEN }}
