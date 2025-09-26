@@ -11,7 +11,8 @@
 
 File viewer for **React v17+**.
 
-> This is a fork of https://github.com/Alcumus/react-doc-viewer (inactivity for a long time).
+> This project is a fork of [cyntler/react-doc-viewer](https://github.com/cyntler/react-doc-viewer).  
+> Unlike the original, this fork adds support for custom PDF controls.
 
 ## Important note!
 
