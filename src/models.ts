@@ -63,6 +63,7 @@ export type IHeaderOverride = (
 export type IPdfControlsOverride = {
   (
     state: IPDFState,
+    config: IPdfControlsConfig,
     pdfZoomOut?: () => void,
     pdfZoomIn?: () => void,
     pdfZoomReset?: () => void,

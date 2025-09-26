@@ -40,6 +40,7 @@ const PDFControls: FC = () => {
 
   const override = config?.pdfControls?.overrideComponent?.(
     pdfState,
+    config.pdfControls,
     pdfZoomOut,
     pdfZoomIn,
     pdfZoomReset,

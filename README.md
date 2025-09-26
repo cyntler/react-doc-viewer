@@ -540,6 +540,58 @@ const MyLoadingRenderer = ({ document, fileName }) => {
   }}
 />;
 ```
+### Overriding PDF Controls
+
+You can override the default PDF controls by passing a callback function to `config.pdfControls.overrideComponent`. This function receives several parameters: the current PDF state, the pdfControls config, and handler functions for zooming in, zooming out, resetting zoom, and toggling pagination. Your function should return a React element to render custom controls.
+
+Example:
+
+```tsx
+const MyPDFControls = (
+  pdfState,
+  pdfControlsConfig,
+  pdfZoomOut,
+  pdfZoomIn,
+  pdfZoomReset,
+  pdfTogglePaginated
+) => {
+  // Example: Only show a custom zoom in/out
+  return (
+    <div>
+      <button onClick={pdfZoomOut}>-</button>
+      <span>{pdfState.zoomLevel.toFixed(2)}</span>
+      <button onClick={pdfZoomIn}>+</button>
+      <button onClick={pdfZoomReset} disabled={pdfState.zoomLevel === pdfState.defaultZoomLevel}>
+        Reset
+      </button>
+      <button onClick={pdfTogglePaginated}>
+        {pdfState.paginated ? "Single Page" : "Paginated"}
+      </button>
+    </div>
+  );
+};
+
+<DocViewer
+  pluginRenderers={DocViewerRenderers}
+  documents={docs}
+  config={{
+    pdfControls: {
+      overrideComponent: MyPDFControls,
+    },
+  }}
+/>
+```
+
+The parameters provided to your override function are:
+
+- `pdfState`: The current PDF renderer state (e.g., `zoomLevel`, `paginated`, `numPages`, etc.)
+- `pdfControlsConfig`: The current pdfControls config object.
+- `pdfZoomOut`: Function to decrease zoom.
+- `pdfZoomIn`: Function to increase zoom.
+- `pdfZoomReset`: Function to reset zoom to default.
+- `pdfTogglePaginated`: Function to toggle between paginated and continuous scroll.
+
+If your override returns a React element, it will replace the default PDF controls UI.
 
 ### Overriding No Renderer (Error)
 
