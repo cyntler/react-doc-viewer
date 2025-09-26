@@ -13,74 +13,89 @@ import {
   ZoomOutPDFIcon,
 } from "./icons";
 import PDFPagination from "./PDFPagination";
+import { DocViewerContext } from "../../../store/DocViewerProvider";
 
 const PDFControls: FC = () => {
   const { t } = useTranslation();
+  const { state: pdfState, dispatch } = useContext(PDFContext);
+
   const {
-    state: {
-      mainState,
-      paginated,
-      zoomLevel,
-      numPages,
-      zoomJump,
-      defaultZoomLevel,
-    },
-    dispatch,
-  } = useContext(PDFContext);
+    mainState,
+    paginated,
+    zoomLevel,
+    numPages,
+    zoomJump,
+    defaultZoomLevel,
+  } = pdfState;
+
+  const { state: viewerState } = useContext(DocViewerContext);
+  const { config } = viewerState;
 
   const currentDocument = mainState?.currentDocument || null;
 
-  return (
-    <Container id="pdf-controls">
-      {paginated && numPages > 1 && <PDFPagination />}
+  const pdfZoomOut = () => dispatch(setZoomLevel(zoomLevel - zoomJump));
+  const pdfZoomIn = () => dispatch(setZoomLevel(zoomLevel + zoomJump));
+  const pdfZoomReset = () => dispatch(setZoomLevel(defaultZoomLevel));
+  const pdfTogglePaginated = () => dispatch(setPDFPaginated(!paginated));
 
-      {currentDocument?.fileData && (
-        <DownloadButton
-          id="pdf-download"
-          href={currentDocument?.fileData as string}
-          download={currentDocument?.fileName || currentDocument?.uri}
-          title={t("downloadButtonLabel")}
-        >
-          <DownloadPDFIcon color="#000" size="75%" />
-        </DownloadButton>
-      )}
-
-      <ControlButton
-        id="pdf-zoom-out"
-        onMouseDown={() => dispatch(setZoomLevel(zoomLevel - zoomJump))}
-      >
-        <ZoomOutPDFIcon color="#000" size="80%" />
-      </ControlButton>
-
-      <ControlButton
-        id="pdf-zoom-in"
-        onMouseDown={() => dispatch(setZoomLevel(zoomLevel + zoomJump))}
-      >
-        <ZoomInPDFIcon color="#000" size="80%" />
-      </ControlButton>
-
-      <ControlButton
-        id="pdf-zoom-reset"
-        onMouseDown={() => dispatch(setZoomLevel(defaultZoomLevel))}
-        disabled={zoomLevel === defaultZoomLevel}
-      >
-        <ResetZoomPDFIcon color="#000" size="70%" />
-      </ControlButton>
-
-      {numPages > 1 && (
-        <ControlButton
-          id="pdf-toggle-pagination"
-          onMouseDown={() => dispatch(setPDFPaginated(!paginated))}
-        >
-          <TogglePaginationPDFIcon
-            color="#000"
-            size="70%"
-            reverse={paginated}
-          />
-        </ControlButton>
-      )}
-    </Container>
+  const override = config?.pdfControls?.overrideComponent?.(
+    pdfState,
+    config.pdfControls,
+    pdfZoomOut,
+    pdfZoomIn,
+    pdfZoomReset,
+    pdfTogglePaginated,
   );
+
+  if (override) {
+    return override;
+  } else {
+    return (
+      <Container id="pdf-controls">
+        {paginated && numPages > 1 && <PDFPagination />}
+
+        {currentDocument?.fileData && (
+          <DownloadButton
+            id="pdf-download"
+            href={currentDocument?.fileData as string}
+            download={currentDocument?.fileName || currentDocument?.uri}
+            title={t("downloadButtonLabel")}
+          >
+            <DownloadPDFIcon color="#000" size="75%" />
+          </DownloadButton>
+        )}
+
+        <ControlButton id="pdf-zoom-out" onMouseDown={pdfZoomOut}>
+          <ZoomOutPDFIcon color="#000" size="80%" />
+        </ControlButton>
+
+        <ControlButton id="pdf-zoom-in" onMouseDown={pdfZoomIn}>
+          <ZoomInPDFIcon color="#000" size="80%" />
+        </ControlButton>
+
+        <ControlButton
+          id="pdf-zoom-reset"
+          onMouseDown={pdfZoomReset}
+          disabled={zoomLevel === defaultZoomLevel}
+        >
+          <ResetZoomPDFIcon color="#000" size="70%" />
+        </ControlButton>
+
+        {numPages > 1 && (
+          <ControlButton
+            id="pdf-toggle-pagination"
+            onMouseDown={pdfTogglePaginated}
+          >
+            <TogglePaginationPDFIcon
+              color="#000"
+              size="70%"
+              reverse={paginated}
+            />
+          </ControlButton>
+        )}
+      </Container>
+    );
+  }
 };
 
 export default PDFControls;
