@@ -1,8 +1,8 @@
 {
-  "name": "@cyntler/react-doc-viewer",
+  "name": "@unitfly/react-doc-viewer",
   "version": "1.17.1",
   "description": "File viewer for React.",
-  "author": "Matthew Mogford / Damian Cyntler",
+  "author": "Matthew Mogford / Damian Cyntler / Toma Karadole",
   "type": "module",
   "keywords": [
     "reactjs",
