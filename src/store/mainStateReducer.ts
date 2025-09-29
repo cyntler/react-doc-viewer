@@ -29,6 +29,7 @@ export type IMainState = {
   language: AvailableLanguages;
   activeDocument?: IDocument;
   onDocumentChange?: (document: IDocument) => void;
+  onFetchError?: (error: Error) => void;
 };
 
 export const initialState: IMainState = {
